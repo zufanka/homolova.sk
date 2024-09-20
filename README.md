@@ -1,2 +1,0 @@
-# homolova.sk
-web
