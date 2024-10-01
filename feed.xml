@@ -3,7 +3,7 @@
     <title>homolova.sk</title>
     <link href="https://homolova.sk/feed.xml" rel="self" />
     <link href="https://homolova.sk" />
-    <updated>2024-10-01T22:30:59+02:00</updated>
+    <updated>2024-10-01T22:32:59+02:00</updated>
     <author>
         <name>Ada Homolova</name>
     </author>
@@ -50,15 +50,18 @@
         </author>
         <link href="https://homolova.sk/portfolio.html"/>
         <id>https://homolova.sk/portfolio.html</id>
+        <media:content url="https://homolova.sk/media/posts/1/12-3.jpg" medium="image" />
 
         <updated>2024-07-12T16:48:00+02:00</updated>
             <summary>
                 <![CDATA[
+                        <img src="https://homolova.sk/media/posts/1/12-3.jpg" alt="" />
                     I am a data journalist, data journalism teacher,&nbsp;speaker&nbsp;and public spending enthusiast. Currently I'm working with Arena for Journalism in Europe on the Dataharvest conference as&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
+                    <p><img src="https://homolova.sk/media/posts/1/12-3.jpg" class="type:primaryImage" alt="" /></p>
                 
   <p>
     I am a <b>data journalist,</b> data journalism<b> teacher</b>,<b>&nbsp;speaker&nbsp;</b>and public spending enthusiast.<br>
