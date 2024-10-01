@@ -3,7 +3,7 @@
     <title>homolova.sk</title>
     <link href="https://homolova.sk/feed.xml" rel="self" />
     <link href="https://homolova.sk" />
-    <updated>2024-10-01T22:23:20+02:00</updated>
+    <updated>2024-10-01T22:30:59+02:00</updated>
     <author>
         <name>Ada Homolova</name>
     </author>
@@ -77,7 +77,7 @@
   </p>
 
     <figure class="post__image post__image--center">
-      <img loading="lazy" src="https://homolova.sk/media/posts/1/12-3.jpg" height="1065" width="600" alt=""  sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/1/responsive/12-3-xs.jpg 300w ,https://homolova.sk/media/posts/1/responsive/12-3-sm.jpg 480w ,https://homolova.sk/media/posts/1/responsive/12-3-md.jpg 768w ,https://homolova.sk/media/posts/1/responsive/12-3-lg.jpg 1024w">
+      <img loading="lazy" src="https://homolova.sk/media/posts/1/12.jpg" height="1065" width="600" alt=""  sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/1/responsive/12-xs.jpg 300w ,https://homolova.sk/media/posts/1/responsive/12-sm.jpg 480w ,https://homolova.sk/media/posts/1/responsive/12-md.jpg 768w ,https://homolova.sk/media/posts/1/responsive/12-lg.jpg 1024w">
       
     </figure>
 
