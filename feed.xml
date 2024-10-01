@@ -3,7 +3,7 @@
     <title>homolova.sk</title>
     <link href="https://homolova.sk/feed.xml" rel="self" />
     <link href="https://homolova.sk" />
-    <updated>2024-10-01T16:21:45+02:00</updated>
+    <updated>2024-10-01T22:09:19+02:00</updated>
     <author>
         <name>Ada Homolova</name>
     </author>
@@ -18,8 +18,30 @@
         <id>https://homolova.sk/hire-me.html</id>
 
         <updated>2024-10-01T16:05:53+02:00</updated>
-            <summary></summary>
-        <content></content>
+            <summary>
+                <![CDATA[
+                    My time is for sale! I have 10+ years of experience as data journalist in both small and big newsrooms and cross-border teams. Journalism in&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                <p>My time is for sale!</p>
+<p>I have 10+ years of experience as data journalist in both small and big newsrooms and cross-border teams. Journalism in Europe is still dearly lacking computer literacy. Since the start of my carreer I have therefore also been teaching data journalism to anyone interested. I have experience teaching and training university students and professional journalists in every aspect of data journalism process: from the basic data literacy to programming.</p>
+<p>I am currently open to one off or short-term jobs such as analysis, teaching, training or speaking about:</p>
+<ul>
+<li>basics of journalistic data analysis</li>
+<li>data visualization theory and applied</li>
+<li>non-code data analysis solutions for newsrooms</li>
+<li>Python for journalism - analysis, scraping, data visualization</li>
+<li>use of generative AI in journalistic research</li>
+<li>cross-border collaborations between newsrooms</li>
+<li>larg scale data collection for investigative journalism</li>
+<li>analysis of public procurement and tenders</li>
+<li>... <em>ask me!</em></li>
+</ul>
+<p>Reach at <em>hello@homolova.sk</em></p>
+            ]]>
+        </content>
     </entry>
     <entry>
         <title>Hi! I&#x27;m Ada</title>
@@ -32,7 +54,7 @@
         <updated>2024-07-12T16:48:00+02:00</updated>
             <summary>
                 <![CDATA[
-                    I am a data journalist, data journalism teacher,&nbsp;speaker&nbsp;and public spending enthusiast. I do data collection, analysis and visualisation for journalism, with years of experience working&hellip;
+                    I am a data journalist, data journalism teacher,&nbsp;speaker&nbsp;and public spending enthusiast. Currently I'm working with Arena for Journalism in Europe on the Dataharvest conference as&hellip;
                 ]]>
             </summary>
         <content type="html">
@@ -43,19 +65,15 @@
   </p>
 
   <p>
-    I do data collection, analysis and visualisation for journalism, with years of experience working in cross-border collaborative teams.&nbsp;&nbsp;
-  </p>
-
-  <p>
     Currently I'm working with <a href="https://journalismarena.eu/" target="_blank">Arena for Journalism</a> in Europe on the <a href="https://dataharvest.eu/" target="_blank">Dataharvest</a> conference as the data skills track coordinator and <a href="https://www.ftm.nl/" target="_blank">Follow The Money</a>'s&nbsp;<i>Bureau Brussel</i> as a data journalist and data coordinator in collaborative reporting.
   </p>
 
   <p>
-    As a guest lecturer I teach Python at the <a href="https://www.gu.se/en/study-gothenburg/masters-programme-in-investigative-journalism-s2jou" target="_blank">Master of Investigative Journalism</a> at the University of Gothenburg. I am also a proud member of the <a href="https://www.open-spending.eu/" target="_blank">Open Spending Coalition</a>, coalition for open, fair, and accountable public spending in the EU.
+    As guest lecturer I teach Python at the <a href="https://www.gu.se/en/study-gothenburg/masters-programme-in-investigative-journalism-s2jou" target="_blank">Master of Investigative Journalism</a> at the University of Gothenburg. I am also a proud member of the <a href="https://www.open-spending.eu/" target="_blank">Open Spending Coalition</a>, coalition for open, fair, and accountable public spending in the EU.
   </p>
 
   <p>
-    Reach out to me!&nbsp;<i>hello@homolova.sk</i>
+    Wanna <a href="https://homolova.sk/hire-me.html">hire me</a> or have any questions? Reach out to me!&nbsp;<i>hello@homolova.sk&nbsp;</i>
   </p>
 
     <figure class="post__image post__image--center">
