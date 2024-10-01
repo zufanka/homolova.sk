@@ -3,7 +3,7 @@
     <title>homolova.sk</title>
     <link href="https://homolova.sk/feed.xml" rel="self" />
     <link href="https://homolova.sk" />
-    <updated>2024-09-20T17:26:11+02:00</updated>
+    <updated>2024-10-01T16:02:13+02:00</updated>
     <author>
         <name>Ada Homolova</name>
     </author>
@@ -26,11 +26,6 @@
         <content type="html">
             <![CDATA[
                 
-    <figure class="post__image post__image--center">
-      <img loading="lazy" src="https://homolova.sk/media/posts/1/photo_6010447001927401924_y-2.jpg" height="600" width="600" alt=""  sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/1/responsive/photo_6010447001927401924_y-2-xs.jpg 300w ,https://homolova.sk/media/posts/1/responsive/photo_6010447001927401924_y-2-sm.jpg 480w ,https://homolova.sk/media/posts/1/responsive/photo_6010447001927401924_y-2-md.jpg 768w ,https://homolova.sk/media/posts/1/responsive/photo_6010447001927401924_y-2-lg.jpg 1024w">
-      
-    </figure>
-
   <p>
     I am a <b>data journalist,</b> data journalism<b> teacher </b>and public spending enthusiast.<br>
   </p>
@@ -40,12 +35,21 @@
   </p>
 
   <p>
-    Currently I'm working with <a href="https://journalismarena.eu/" target="_blank">Arena for Journalism</a> in Europe on the <a href="https://dataharvest.eu/" target="_blank">Dataharvest</a> conference as the data skills track coordinator and <a href="https://www.ftm.nl/" target="_blank">Follow The Money</a>'s&nbsp;<i>Bureau Brussel</i> as a data journalist and data coordinator in collaborations with multiple newsrooms. I am also a member of the <a href="https://www.open-spending.eu/" target="_blank">Open Spending Coalition</a>, coalition for open, fair, and accountable public spending in the EU.
+    Currently I'm working with <a href="https://journalismarena.eu/" target="_blank">Arena for Journalism</a> in Europe on the <a href="https://dataharvest.eu/" target="_blank">Dataharvest</a> conference as the data skills track coordinator and <a href="https://www.ftm.nl/" target="_blank">Follow The Money</a>'s&nbsp;<i>Bureau Brussel</i> as a data journalist and data coordinator in collaborations with multiple newsrooms.
+  </p>
+
+  <p>
+    As a guest lecturer I teach Python at the <a href="https://www.gu.se/en/study-gothenburg/masters-programme-in-investigative-journalism-s2jou" target="_blank">Master of Investigative Journalism</a> at the Gothenburg University. I am also&nbsp; a member of the <a href="https://www.open-spending.eu/" target="_blank">Open Spending Coalition</a>, coalition for open, fair, and accountable public spending in the EU.
   </p>
 
   <p>
     Reach out to me!&nbsp;<i>hello@homolova.sk</i>
   </p>
+
+    <figure class="post__image post__image--center">
+      <img loading="lazy" src="https://homolova.sk/media/posts/1/1000035980-1.jpg" height="888" width="500" alt=""  sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/1/responsive/1000035980-1-xs.jpg 300w ,https://homolova.sk/media/posts/1/responsive/1000035980-1-sm.jpg 480w ,https://homolova.sk/media/posts/1/responsive/1000035980-1-md.jpg 768w ,https://homolova.sk/media/posts/1/responsive/1000035980-1-lg.jpg 1024w">
+      
+    </figure>
 
     <h1 id="past-projects">
       Past projects
