@@ -3,12 +3,24 @@
     <title>homolova.sk</title>
     <link href="https://homolova.sk/feed.xml" rel="self" />
     <link href="https://homolova.sk" />
-    <updated>2024-10-01T16:02:13+02:00</updated>
+    <updated>2024-10-01T16:17:56+02:00</updated>
     <author>
         <name>Ada Homolova</name>
     </author>
     <id>https://homolova.sk</id>
 
+    <entry>
+        <title>Hire me!</title>
+        <author>
+            <name>Ada Homolova</name>
+        </author>
+        <link href="https://homolova.sk/hire-me.html"/>
+        <id>https://homolova.sk/hire-me.html</id>
+
+        <updated>2024-10-01T16:05:53+02:00</updated>
+            <summary></summary>
+        <content></content>
+    </entry>
     <entry>
         <title>Hi! I&#x27;m Ada</title>
         <author>
@@ -20,18 +32,18 @@
         <updated>2024-07-12T16:48:00+02:00</updated>
             <summary>
                 <![CDATA[
-                    I am a data journalist, data journalism teacher and public spending enthusiast. I specialise in data collection, analysis and visualisation for journalism, with a special&hellip;
+                    I am a data journalist, data journalism teacher,&nbsp;speaker&nbsp;and public spending enthusiast. I specialise in data collection, analysis and visualisation for journalism, especially reporting in teams&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
                 
   <p>
-    I am a <b>data journalist,</b> data journalism<b> teacher </b>and public spending enthusiast.<br>
+    I am a <b>data journalist,</b> data journalism<b> teacher</b>,<b>&nbsp;speaker&nbsp;</b>and public spending enthusiast.<br>
   </p>
 
   <p>
-    I specialise in data collection, analysis and visualisation for journalism, with a special focus on reporting in large European teams.&nbsp;&nbsp;
+    I specialise in data collection, analysis and visualisation for journalism, especially reporting in teams of European journalists.&nbsp;&nbsp;
   </p>
 
   <p>
@@ -39,7 +51,7 @@
   </p>
 
   <p>
-    As a guest lecturer I teach Python at the <a href="https://www.gu.se/en/study-gothenburg/masters-programme-in-investigative-journalism-s2jou" target="_blank">Master of Investigative Journalism</a> at the Gothenburg University. I am also&nbsp; a member of the <a href="https://www.open-spending.eu/" target="_blank">Open Spending Coalition</a>, coalition for open, fair, and accountable public spending in the EU.
+    As a guest lecturer I teach Python at the <a href="https://www.gu.se/en/study-gothenburg/masters-programme-in-investigative-journalism-s2jou" target="_blank">Master of Investigative Journalism</a> at the University of Gothenburg. I am also a proud member of the <a href="https://www.open-spending.eu/" target="_blank">Open Spending Coalition</a>, coalition for open, fair, and accountable public spending in the EU.
   </p>
 
   <p>
