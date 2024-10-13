@@ -3,183 +3,57 @@
     <title>homolova.sk</title>
     <link href="https://homolova.sk/feed.xml" rel="self" />
     <link href="https://homolova.sk" />
-    <updated>2024-10-02T14:01:11+02:00</updated>
+    <updated>2024-10-13T18:01:37+02:00</updated>
     <author>
         <name>Ada Homolova</name>
     </author>
     <id>https://homolova.sk</id>
 
     <entry>
-        <title>Hire me!</title>
+        <title> Make internet search your own!</title>
         <author>
             <name>Ada Homolova</name>
         </author>
-        <link href="https://homolova.sk/hire-me.html"/>
-        <id>https://homolova.sk/hire-me.html</id>
+        <link href="https://homolova.sk/blog/make-internet-search-your-own/"/>
+        <id>https://homolova.sk/blog/make-internet-search-your-own/</id>
 
-        <updated>2024-10-01T16:05:53+02:00</updated>
+        <updated>2024-10-13T17:29:07+02:00</updated>
             <summary>
                 <![CDATA[
-                    My time is for sale! I have 10+ years of experience as data journalist in both small and big newsrooms and cross-border teams. Journalism in&hellip;
+                    Internet search sucks. It’s not only my personal opinion, as a quick internet search confirms: Researchers from German universities came to the same conclusion: “We&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
-                <p>My time is for sale!</p>
-<p>I have 10+ years of experience as data journalist in both small and big newsrooms and cross-border teams. Journalism in Europe is still dearly lacking computer literacy. Since the start of my carreer I have therefore also been teaching data journalism to anyone interested. I have experience teaching and training university students and professional journalists in every aspect of data journalism process: from the basic data literacy to programming.</p>
-<p>I am currently open to one off or short-term jobs such as analysis, teaching, training or speaking about:</p>
-<ul>
-<li>basics of journalistic data analysis</li>
-<li>data visualization theory and applied</li>
-<li>non-code data analysis solutions for newsrooms</li>
-<li>Python for journalism - analysis, scraping, data visualization</li>
-<li>use of generative AI in journalistic research</li>
-<li>cross-border collaborations between newsrooms</li>
-<li>larg scale data collection for investigative journalism</li>
-<li>analysis of public procurement and tenders</li>
-<li>... <em>ask me!</em></li>
-</ul>
-<p>Reach at <em>hello@homolova.sk</em></p>
-            ]]>
-        </content>
-    </entry>
-    <entry>
-        <title>Hi! I&#x27;m Ada</title>
-        <author>
-            <name>Ada Homolova</name>
-        </author>
-        <link href="https://homolova.sk/portfolio.html"/>
-        <id>https://homolova.sk/portfolio.html</id>
-
-        <updated>2024-07-12T16:48:00+02:00</updated>
-            <summary>
-                <![CDATA[
-                    I am a data journalist, data journalism teacher,&nbsp;speaker&nbsp;and public spending enthusiast. Currently I'm working with Arena for Journalism in Europe on the Dataharvest conference as&hellip;
-                ]]>
-            </summary>
-        <content type="html">
-            <![CDATA[
-                
-  <p>
-    I am a <b>data journalist,</b> data journalism<b> teacher</b>,<b>&nbsp;speaker&nbsp;</b>and public spending enthusiast.<br>
-  </p>
-
-  <p>
-    Currently I'm working with <a href="https://journalismarena.eu/" target="_blank">Arena for Journalism</a> in Europe on the <a href="https://dataharvest.eu/" target="_blank">Dataharvest</a> conference as the data skills track coordinator and <a href="https://www.ftm.nl/" target="_blank">Follow The Money</a>'s&nbsp;<i>Bureau Brussel</i> as a data journalist and data coordinator in collaborative reporting.
-  </p>
-
-  <p>
-    As guest lecturer I teach Python at the <a href="https://www.gu.se/en/study-gothenburg/masters-programme-in-investigative-journalism-s2jou" target="_blank">Master of Investigative Journalism</a> at the University of Gothenburg. I am also a proud member of the <a href="https://www.open-spending.eu/" target="_blank">Open Spending Coalition</a>, coalition for open, fair, and accountable public spending in the EU.
-  </p>
-
-  <p>
-    Wanna <a href="https://homolova.sk/hire-me.html">hire me</a> or have any questions? Reach out to me!&nbsp;<i>hello@homolova.sk&nbsp;</i>
-  </p>
-
-    <figure class="post__image post__image--center">
-      <img loading="lazy" src="https://homolova.sk/media/posts/1/1000035980-2.jpg" height="1280" width="721" alt=""  sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/1/responsive/1000035980-2-xs.jpg 300w ,https://homolova.sk/media/posts/1/responsive/1000035980-2-sm.jpg 480w ,https://homolova.sk/media/posts/1/responsive/1000035980-2-md.jpg 768w ,https://homolova.sk/media/posts/1/responsive/1000035980-2-lg.jpg 1024w">
-      
-    </figure>
-
-    <h1 id="past-projects">
-      Past projects
-    </h1>
-
-    <h2 id="2021-2022-lost-in-europe">
-      2021-2022: Lost in Europe
-    </h2>
-
-  <p>
-    <a href="https://lostineurope.eu/" target="_blank">An European team of journalists</a> reporting on migration, especially children missing in migration. The most story with most impact I worked on was on quantifying the amount of missing children in European asylum centres. The story was initially published in 9 outlets, including <a href="https://www.theguardian.com/global-development/2021/apr/21/nearly-17-child-migrants-a-day-vanished-in-europe-since-2018" target="_blank">The Guardian</a>&nbsp;and was republished in news outlets as far as Russia, Syria and South America.
-  </p>
-
-    <h2 id="2021-cities-for-rent">
-      2021: Cities for rent
-    </h2>
-
-  <p>
-    An European collaborative reporting on corporate landlords. As data coordinator, I was the part of the coordinating team. This project won the <a href="https://www.europeanpressprize.com/laureate/cities-for-rent/" target="_blank">European Press Prize</a>.
-  </p>
-
-  <p>
-    <a href="https://cities4rent.journalismarena.media/" target="_blank">See all the publications</a>
-  </p>
-
-    <h2 id="2020-occrp">
-      2020: OCCRP
-    </h2>
-
-  <p>
-    <a href="https://www.occrp.org" target="_blank">Investigative journalism organisation</a> with focus on organised crime and corruption, cross-border collaborations and data investigations. I worked on two projects in 2020:
-  </p>
-
-    <h3 id="kocners-library">
-      Kočners Library
-    </h3>
-
-  <p>
-    In late 2019, reporters at the <a href="https://www.icjk.sk/94/Odhalenia-Kocnerovej-kniznice-00-Kocnerov-vplyv-Kristufkovej-dovolenka-Ficove-telefonaty-Bodorove-peniaze-a-mnohe-dalsie">Ján Kuciak Investigative Center</a> in Bratislava and the <a href="https://www.investigace.cz/kocnerova-kniznica-verejnych-tajemstvi/">Czech investigative reporting platform Investigace.cz</a>, were given access to the complete police case file on the brutal assassination of Martina Kušnírová and Ján Kuciak in 2018. Slovak police and Europol had collected a total of 53 TB of material. The full archive included digital copies of seized computers and phones, footage from security cameras and other evidence. As a part of the OCCRP’s data team, I&nbsp;<a href="https://medium.com/occrp-unreported/how-to-eat-an-elephant-9da7e146e475<br>">helped to transfer and analyze the information</a>.&nbsp;This project has won the<a href="https://osf.sk/en/pribehy/nadacia-otvorenej-spolocnosti-ocenila-najkvalitnejsie-prace-slovenskych-novinarok-a-novinarov/" target="_blank"> Award of the Investigative Journalism&nbsp;Fund</a> in Slovakia. 
-  </p>
-
-    <h3 id="europes-covid-19-spending-spree-unmaskedlessbrgreater">
-      Europe's COVID-19 Spending Spree Unmasked<br>
-    </h3>
-
-  <p>
-    An European collaboration collecting and analysing European COVID-19 public tender data. We have collected 21 billion euros worth of tender data from 37 countries.
-  </p>
-
-  <ul>
-    <li><a href="https://www.occrp.org/en/coronavirus/europes-covid-19-spending-spree-unmasked">Publication</a></li><li><a href="https://www.open-contracting.org/2021/02/04/unmasking-emergency-procurement-how-we-published-37000-european-covid-19-related-tenders/" target="_blank">Background on the data collection (at OpenContracting.org)</a><br></li><li><a href="https://github.com/occrp/COVID-19-spending-2020" target="_blank">Github repository with all the data</a><br></li>
-  </ul>
-
-    <h2 id="2019-pointer">
-      2019: Pointer
-    </h2>
-
-  <p>
-    <a href="https://pointer.kro-ncrv.nl/">Data newsroom</a> of the Dutch broadcast. Combined the expertise of data specialists, coders and designers for each story. See example stories I worked on below (in Dutch):
-  </p>
-
-  <ul>
-    <li><a href="https://pointer.kro-ncrv.nl/de-waterschappen-kosten-jaarlijks-drie-miljard-en-vooral-jij-betaalt-die-rekening" target="_blank" class="">The water boards cost three billion euros annually, and you pay that bill</a></li><li><a href="https://web.archive.org/web/20240704155747/https://pointer.kro-ncrv.nl/zeldzame-vogels-in-gevaar-door-stikstofvervuiling" target="_blank">Rare birds at risk due to nitrogen pollution</a></li><li><a href="https://pointer.kro-ncrv.nl/een-overheidsdocument-aangevraagd-daar-moet-je-soms-jaren-op-wachten" target="_blank">Requested a government document? Sometimes you have to wait for years</a><br></li>
-  </ul>
-
-    <h2 id="2014-2018-investico">
-      2014-2018: Investico
-    </h2>
-
-  <p>
-    An independent platform for structural investigative journalism. See example stories I worked on below (in Dutch):
-  </p>
-
-  <ul>
-    <li><a href="https://web.archive.org/web/20190424064302/https://www.platform-investico.nl/artikel/bekijk-van-wie-die-coffeeshop/" target="_blank">Whose coffeeshop is that?</a></li>
-  </ul>
-
-    <h2 id="2014-2018-oneworld">
-      2014-2018: OneWorld
-    </h2>
-
-  <p>
-    A small Dutch magazine focused on sustainability and human rights. See example stories I made while working there (in Dutch)
-  </p>
-
-  <ul>
-    <li><a href="https://web.archive.org/web/20230705083819/https://www.oneworld.nl/klimaat/laat-klm-nou-echt-een-ghanese-familie-onze-co2uitstoot-compenseren/" target="_blank" class="">Did KLM really have a Ghanaian family offset our CO2 emissions?</a></li><li><a href="https://web.archive.org/web/20230708222145/https://www.oneworld.nl/mensenrechten/u-kunt-hier-niet-naar-de-wc/" target="_blank" class="">You can not go to the toilet here</a></li><li><a href="https://web.archive.org/web/20230714044020/https://www.oneworld.nl/klimaat/met-de-nachttrein-naar-het-buitenland-niet-vanuit-nederland/" target="_blank" class="">Sleeping on the rail</a></li>
-  </ul>
-
-    <h2 id="2014-elvis-map-me-tender">
-      2014: Elvis (map me tender)
-    </h2>
-
-  <p>
-    Data visualisation tool for public spending networks. We set out to visualise all the public spending in Europe as a graph visualisation. See how it worked in this <a href="https://www.youtube.com/watch?v=xsIUoBfdhEw" target="_blank">YouTube video</a>, or have a look at the version we made for <a href="https://defence.tenders.exposed/" target="_blank">defence tenders</a> only (in collaboration with the&nbsp;<a href="https://www.govtransparency.eu" target="_blank">Government Transparency Institute</a><br>
-  </p>
-
-  <p>
-    
-  </p>
+                <p><span style="font-weight: 400;">Internet search sucks. It’s not only my personal opinion, as a quick internet search confirms:</span></p>
+<figure class="post__image"><img loading="lazy"  src="https://homolova.sk/media/posts/8/searchsucks.png" alt="Screenshot of an Ecosia search results various reports about internet search has gotten worse" width="812" height="937" sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/8/responsive/searchsucks-xs.png 300w ,https://homolova.sk/media/posts/8/responsive/searchsucks-sm.png 480w ,https://homolova.sk/media/posts/8/responsive/searchsucks-md.png 768w ,https://homolova.sk/media/posts/8/responsive/searchsucks-lg.png 1024w"></figure>
+<p><span style="font-weight: 400;">Researchers from German universities came to the same conclusion: <em>“We can conclude that higher-ranked pages are on average more optimized, more monetized with affiliate marketing, and they show signs of lower text quality”, </em>reads their recent </span><a href="https://downloads.webis.de/publications/papers/bevendorff_2024a.pdf"><span style="font-weight: 400;">paper</span></a><span style="font-weight: 400;">.</span></p>
+<p><span style="font-weight: 400;">The search is also probably </span><a href="https://xeiaso.net/blog/birth-death-seo/"><span style="font-weight: 400;">going to get worse</span></a><span style="font-weight: 400;">. With the dawn of generative AI, the internet </span><a href="https://github.com/rspeer/wordfreq/blob/master/SUNSET.md"><span style="font-weight: 400;">will never be the same</span></a><span style="font-weight: 400;"> as when it was populated just by us humans. And as much as I love robots, they also produce text that contradicts itself in two consecutive sentences, or in a much worse case it helps you </span><a href="https://fortune.com/2023/09/03/ai-written-mushroom-hunting-guides-sold-on-amazon-potentially-deadly/"><span style="font-weight: 400;">poison yourself with mushrooms</span></a><span style="font-weight: 400;">.</span></p>
+<p><span style="font-weight: 400;">Still, the deepest wish of every website is to be found. And internet search is the most important way we navigate the vast lands of the internet. A search engine is like a map, albeit one that always shows just a select piece of the landscape. Search is so important that it even shapes the internet (and The Verge wrote </span><a href="https://www.theverge.com/c/23998379/google-search-seo-algorithm-webpage-optimization"><span style="font-weight: 400;">a beautiful article</span></a><span style="font-weight: 400;"> about that).</span></p>
+<p><span style="font-weight: 400;">So how to search in between all the advertisement farms and AI generated slob? Can we look beyond the big news websites for interesting articles to read? </span><span style="font-weight: 400;">The good news is: you don’t have to keep on </span><i><span style="font-weight: 400;">Googling</span></i><span style="font-weight: 400;">, there is much more out there!</span></p>
+<p><span style="color: var(--text-primary-color); font-family: var(--editor-font-family); font-size: inherit;">Take my hand into the expanding lands of internet search.</span></p>
+<figure class="post__image"><img loading="lazy"  src="https://homolova.sk/media/posts/8/takemyhand.jpg" alt="A photo of me from the back holding your hand to come along." width="960" height="1280" sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/8/responsive/takemyhand-xs.jpg 300w ,https://homolova.sk/media/posts/8/responsive/takemyhand-sm.jpg 480w ,https://homolova.sk/media/posts/8/responsive/takemyhand-md.jpg 768w ,https://homolova.sk/media/posts/8/responsive/takemyhand-lg.jpg 1024w"></figure>
+<p><span style="font-weight: 400;">On a daily basis, I use a couple of different search engines. All of them have a different approach to indexing the web and this helps me to think better about what results I actually want to achieve by my searches.</span></p>
+<p><span style="font-weight: 400;">Internet anno 2024 is quite a different animal than it was 10 years ago. Now websites with extensive SEO strategies and big platforms (BBC, Medium, Reddit) are deemed more relevant for search engines like Google or Bing. I therefore like to make an effort to look further.</span></p>
+<p><i><span style="font-weight: 400;">Disclaimer: The search engines below are just my personal blend to encourage and inspire: Make search your own!</span></i></p>
+<h2><span style="font-weight: 400;">Ecosia - the default </span></h2>
+<p><a href="https://www.ecosia.org/search"><i><span style="font-weight: 400;">Ecosia</span></i></a><span style="font-weight: 400;"> is my default search engine. I use it when I know what I am searching for: company names, people, wikipedia articles, documentation. Under the hood it uses two of the big boys : </span><i><span style="font-weight: 400;">Google</span></i><span style="font-weight: 400;"> and </span><i><span style="font-weight: 400;">Microsoft Bing</span></i><span style="font-weight: 400;">. The search is therefore still not better than Google, but their business model I like. </span><i><span style="font-weight: 400;">Ecosia</span></i><span style="font-weight: 400;"> is a not-for-profit company that puts their revenues into </span><a href="https://blog.ecosia.org/ecosia-financial-reports-tree-planting-receipts/"><span style="font-weight: 400;">planting trees</span></a><span style="font-weight: 400;">.</span></p>
+<p><span style="font-weight: 400;">Next to search, they also offer an </span><a href="https://www.ecosia.org/chat"><span style="font-weight: 400;">AI chat feature</span></a><span style="font-weight: 400;">, based on GPT-3. This one I use for translations and when I need definitions of some term or phenomenon. I also use it for basic recipes, and tweaks for recipes. But for recipes in general, I actually like to use another search engine.</span></p>
+<h2><span style="font-weight: 400;">Marginalia - the warm</span></h2>
+<p><a href="https://search.marginalia.nu/"><i><span style="font-weight: 400;">Marginalia</span></i></a><span style="font-weight: 400;"> is what I like to see as a serendipity search engine: you don’t really know what you get. The index is built by a Swedish developer </span><span style="font-weight: 400;">Viktor Löfgren</span><span style="font-weight: 400;"> on mostly grant money (he also has a </span><a href="https://www.patreon.com/marginalia_nu"><span style="font-weight: 400;">patreon</span></a><span style="font-weight: 400;">) and focuses on “small obscure websites and non-commercial content”, as the author writes. </span></p>
+<p><span style="font-weight: 400;">What I love about </span><i><span style="font-weight: 400;">Marginalia</span></i><span style="font-weight: 400;"> is that when I searched for a recipe for a crumble, instead of one of the sterile over-optimized recipe pages, I discovered the Kitchen Projects substack, where somebody called Nicola Lamb documents their </span><a href="https://kitchenprojects.substack.com/p/plum-crumble-pie"><span style="font-weight: 400;">experiments in crumble baking</span></a><span style="font-weight: 400;">. Next to the recipe, she also shares explanations of how baking with fruit works. If this doesn’t give you warm fuzzy feelings for the internet, I don’t know what does.</span></p>
+<figure class="post__image"><img loading="lazy"  src="https://homolova.sk/media/posts/8/nicolalammcrumbleexperiments.jpg" alt="Pie thickeners, by Nicola Lamb" width="1200" height="1600" sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/8/responsive/nicolalammcrumbleexperiments-xs.jpg 300w ,https://homolova.sk/media/posts/8/responsive/nicolalammcrumbleexperiments-sm.jpg 480w ,https://homolova.sk/media/posts/8/responsive/nicolalammcrumbleexperiments-md.jpg 768w ,https://homolova.sk/media/posts/8/responsive/nicolalammcrumbleexperiments-lg.jpg 1024w"><figcaption>
+<p><i><span style="font-weight: 400;">Pie thickeners, by Nicola Lamb</span></i></p>
+</figcaption></figure>
+<p><span style="font-weight: 400;">I use </span><i><span style="font-weight: 400;">Marginalia</span></i><span style="font-weight: 400;"> if I am interested in anything related to craft (cooking, basket weaving) or if I feel like exploring something online, but don’t feel like hanging out on social media. Their rainbow </span><a href="https://search.marginalia.nu/explore/random"><span style="font-weight: 400;">‘random’</span></a><span style="font-weight: 400;"> button is perfect for that.</span></p>
+<h2><span style="font-weight: 400;">Google - the necessary evil</span></h2>
+<p><a href="https://www.google.com/"><i><span style="font-weight: 400;">Google</span></i></a><span style="font-weight: 400;"> is not completely out of my system, but I currently use it only when I can not find things via Ecosia. Something where Google shines is finding out where to buy things online, so I do my infrequent online shopping ventures on </span><i><span style="font-weight: 400;">Google</span></i><span style="font-weight: 400;"> too.</span></p>
+<h2><span style="font-weight: 400;">Exa - the new shiny toy</span></h2>
+<p><a href="https://exa.ai/search"><span style="font-weight: 400;">Exa</span></a><span style="font-weight: 400;"> is an LLM based search engine that took on quite the ambitious goal to </span><a href="https://exa.ai/blog/announcing-exa"><span style="font-weight: 400;">fix the internet search</span></a><span style="font-weight: 400;">. I discovered it only recently, but I like it a lot and use it regularly to discover material around a certain topic for my work related searches. </span></p>
+<p><span style="font-weight: 400;">Where </span><i><span style="font-weight: 400;">Exa</span></i><span style="font-weight: 400;"> also provides something unique is that it lets you chat with the individual search results pages. It also formulates new questions for you to search for based on the current search. One to keep an eye on!</span></p>
+<h2><span style="font-weight: 400;">Kagi - the premium</span></h2>
+<p><a href="https://kagi.com/"><span style="font-weight: 400;">Kagi</span></a><span style="font-weight: 400;"> is the only search engine in the list that you need to pay for if you want to do more than 100 searches a month. I therefore keep it as the last option. I do have to admit the search results are very relevant and it helps me find things that I could not find via any of the other search engines.</span></p>
+<p><span style="font-weight: 400;">Are there search engines you use and love? I’m curious to hear!</span></p>
             ]]>
         </content>
     </entry>
