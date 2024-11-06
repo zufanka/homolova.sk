@@ -3,7 +3,7 @@
     <title>homolova.sk</title>
     <link href="https://homolova.sk/feed.xml" rel="self" />
     <link href="https://homolova.sk" />
-    <updated>2024-11-06T19:33:27+01:00</updated>
+    <updated>2024-11-06T19:44:12+01:00</updated>
     <author>
         <name>Ada Homolova</name>
     </author>
@@ -17,6 +17,8 @@
         <link href="https://homolova.sk/blog/make-search-your-own/"/>
         <id>https://homolova.sk/blog/make-search-your-own/</id>
             <category term="search"/>
+            <category term="exa.ai"/>
+            <category term="blog"/>
 
         <updated>2024-10-13T17:29:07+02:00</updated>
             <summary>
@@ -34,7 +36,7 @@
 <figure class="post__image"><img loading="lazy"  src="https://homolova.sk/media/posts/8/notalwaysbabypeacock.jpg" alt="" width="921" height="996" sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/8/responsive/notalwaysbabypeacock-xs.jpg 300w ,https://homolova.sk/media/posts/8/responsive/notalwaysbabypeacock-sm.jpg 480w ,https://homolova.sk/media/posts/8/responsive/notalwaysbabypeacock-md.jpg 768w ,https://homolova.sk/media/posts/8/responsive/notalwaysbabypeacock-lg.jpg 1024w"></figure>
 <p><span style="font-weight: 400;">So how do we search for high quality content in waters made murky by SEO optimization and generative AI? For me a  search engine is like a map, and I have to keep reminding myself that like a map it only ever shows part of the landscape.</span></p>
 <p><span style="font-weight: 400;">Google has been steadily </span><a href="https://gs.statcounter.com/search-engine-market-share#monthly-200901-202409"><span style="font-weight: 400;">holding about 90%</span></a><span style="font-weight: 400;"> of the search engine market for at least the last 15 years. But the good news is you don’t have to keep on only </span><i><span style="font-weight: 400;">Googling.</span></i><span style="font-weight: 400;"> The key to any healthy diet is variety. So take my hand into the (expanding) possibilities of searching the web.</span></p>
-<figure class="post__image"><img loading="lazy"  src="https://homolova.sk/media/posts/8/takemyhand.jpg" alt="A photo of me from the back holding your hand to come along." width="960" height="1280" sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/8/responsive/takemyhand-xs.jpg 300w ,https://homolova.sk/media/posts/8/responsive/takemyhand-sm.jpg 480w ,https://homolova.sk/media/posts/8/responsive/takemyhand-md.jpg 768w ,https://homolova.sk/media/posts/8/responsive/takemyhand-lg.jpg 1024w"></figure>
+<figure class="post__image"><img loading="lazy"  src="https://homolova.sk/media/posts/8/takemyhand-3.jpg" alt="back of my head and an outstretched arm" width="771" height="622" sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/8/responsive/takemyhand-3-xs.jpg 300w ,https://homolova.sk/media/posts/8/responsive/takemyhand-3-sm.jpg 480w ,https://homolova.sk/media/posts/8/responsive/takemyhand-3-md.jpg 768w ,https://homolova.sk/media/posts/8/responsive/takemyhand-3-lg.jpg 1024w"></figure>
 <p><span style="font-weight: 400;">Every day I use a couple of different search engines. All of them are designed with a different approach to indexing the web.</span></p>
 <h2><span style="font-weight: 400;">Keyword search</span></h2>
 <h3><span style="font-weight: 400;">Ecosia</span></h3>
