@@ -3,7 +3,7 @@
     <title>homolova.sk</title>
     <link href="https://homolova.sk/feed.xml" rel="self" />
     <link href="https://homolova.sk" />
-    <updated>2024-11-06T19:44:12+01:00</updated>
+    <updated>2024-11-06T22:03:21+01:00</updated>
     <author>
         <name>Ada Homolova</name>
     </author>
@@ -16,6 +16,7 @@
         </author>
         <link href="https://homolova.sk/blog/make-search-your-own/"/>
         <id>https://homolova.sk/blog/make-search-your-own/</id>
+        <media:content url="https://homolova.sk/media/posts/8/takemyhand.jpg" medium="image" />
             <category term="search"/>
             <category term="exa.ai"/>
             <category term="blog"/>
@@ -23,11 +24,13 @@
         <updated>2024-10-13T17:29:07+02:00</updated>
             <summary>
                 <![CDATA[
+                        <img src="https://homolova.sk/media/posts/8/takemyhand.jpg" alt="" />
                     Internet search sucks. It's not just my personal opinion. If you don't trust the media, maybe you do trust the Germans: their university researchers came&hellip;
                 ]]>
             </summary>
         <content type="html">
             <![CDATA[
+                    <p><img src="https://homolova.sk/media/posts/8/takemyhand.jpg" class="type:primaryImage" alt="" /></p>
                 <p><span style="font-weight: 400;">Internet search sucks. It's not just my personal opinion.</span></p>
 <figure class="post__image align-center"><img loading="lazy"  src="https://homolova.sk/media/posts/8/googleisgettingworse.png" alt="screenshots of articles about google getting worse" width="1200" height="1200" sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/8/responsive/googleisgettingworse-xs.png 300w ,https://homolova.sk/media/posts/8/responsive/googleisgettingworse-sm.png 480w ,https://homolova.sk/media/posts/8/responsive/googleisgettingworse-md.png 768w ,https://homolova.sk/media/posts/8/responsive/googleisgettingworse-lg.png 1024w"></figure>
 <p><span style="font-weight: 400;">If you don't trust the media, maybe you do trust the Germans: their university researchers came to the same sad conclusion </span><i><span style="font-weight: 400;">“that higher-ranked pages are on average more optimized, more monetized [...] and they show signs of lower text quality”, </span></i><span style="font-weight: 400;">reads their recent</span><a href="https://downloads.webis.de/publications/papers/bevendorff_2024a.pdf"><span style="font-weight: 400;"> </span><span style="font-weight: 400;">paper</span></a><span style="font-weight: 400;">.</span></p>
