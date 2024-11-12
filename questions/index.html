@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/night.css">
+
+		<style type="text/css">
+			section { text-align: left; }
+			section strong {
+    			color: #FE7F6E;
+			}
+			section em, i {
+    			color: #84C5E6; 
+			}
+			.reveal img {
+				max-width: 60%;
+				text-align: center;
+			}
+
+		</style>
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background="img/frontpic.jpg"></section>
+				<section 
+				data-background="img/frontpic.jpg"
+				data-background-opacity="0.3"
+				data-markdown
+				data-transition="none">
+				# Asking better questions?
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## About me
+						- Ada Homolova 👋 *(Slovakia - Netherlands - Austria)*
+						- 10+ years experience as data journalist & educator 👩🏼‍💻
+						- worked in 6 newsrooms and in independent European projects
+						- currently: data journalist with investigative newsroom **Follow The Money**, coordinator at the **Dataharvest** conference
+						---
+						## Structure
+						1. Introduction *(15 min)*
+						2. What is data analysis *(15 min)*
+						3. How journalists do *(30-40 min)*
+						4. Wrap-up and discussion *(10-20 min)*
+						---
+						## Who are you?
+						![](img/mentimeter_qr_code.png)
+					</script>
+				</section>
+				<section data-background-iframe="https://www.mentimeter.com/app/presentation/n/alqbrho48i3v1bex41p31gvnxuqukg3z/embed"
+						data-background-interactive></section>
+						<section data-background="img/dataanalysis.webp"></section>
+						<section 
+						data-background="img/dataanalysis.webp"
+						data-background-opacity="0.3"
+						data-markdown
+						data-transition="none">
+						# What is data analysis
+						</section>
+						
+				<section data-markdown>
+					<script type="text/template">
+						- Purpose: getting *insights* from data
+						- Happens in *multiple parts*
+						- *Iterative process*, not linear
+						---
+						## Parts
+						- context information collection
+						- hypothesis
+						- data collection
+						- cleaning
+						- exploratory analysis
+						- creating data visualizations
+						- communicating
+						---
+						## Process
+						![](img/dataanalysisprocess.png)
+						---
+						## What do you think?
+					</script>
+				</section>
+				<section data-background-iframe="https://www.mentimeter.com/app/presentation/n/alqbrho48i3v1bex41p31gvnxuqukg3z/embed"
+						data-background-interactive></section>
+
+				<section data-background="img/interview.jpg"></section>
+				<section
+				data-background="img/interview.jpg"
+				data-background-opacity="0.3"
+				data-markdown
+				data-transition="none">
+				# Interviewing data
+				</section>
+				<section data-markdown>
+							<script type="text/template">
+								![](img/GunsGermsAndSteel-by-JaredDiamond.jpg)
+								---
+								<blockquote>"Why is it that you white people developed so much cargo* and brought it to New Guinea, but we black people had little cargo of our own?"</blockquote>
+
+								<sub>*manufactured products like metal pots, radios, umbrellas</sub>
+								---
+								## One question to rule them all
+								---
+								What is the story?
+								---
+								We are all *storytellers*
+								---
+								Each dataset can tell us a set of tales, if we ask the *right questions*.
+								---
+								## Interviewing data
+								- Background check
+								- Interview
+								---
+								## Background check
+								- learn as much as you can about the data before analysis helps to make better questions later
+								- example questions: where is the data? In what format is it? Is it machine readable? *Who made it and for what purpose?* *Is the data complete?* Is there a methodology? *What arbitrary choices had to be made to generate the data?* *What is NOT in the data?* Why? What other stories were made with the data?
+								---
+								![](img/ppf1.jpg)
+
+								[source](https://www.ftm.eu/articles/eu-party-finances-transparancy?share=3zJWLnMfn3HzE7%2BLecZWpa0n0izwavYcP4qGpu8kzUhRyRrUf7EZRfivKgxMhLc%3D)
+								---
+								- collaboration of *50 journalists* from *27 countries*
+								- *1200* annual financial reports & *500,000* donations
+								---
+								## What is the story?
+								For only *three out of every 10 euros* political parties receive from individuals and companies the name of the donor is made public.
+								---
+								![](img/ppf2.jpg)
+								---
+								### Where is the data?
+								- Different formats (yearly reports in scanned PDFs, websites, public offices)
+								### Is it complete?
+								- Different rules around disclosure (above 500, 5000 euro, none)
+								---
+								- boundaries on what story we could tell: this on itself was a part of the story
+								---
+								## Interview
+								1. **Ice breakers**: descriptive statistics & *distributions*, *missing values*, unique values, counts, *outliers*
+								---
+								![](img/torchbearers.png)
+
+								[source](https://www.theguardian.com/sport/2012/jun/06/torchbearers-nominated-olympics-sponsors)
+								---
+								'Throughout their descriptions of the 70-day Olympic torch relay, the London 2012 organisers talked of having tracked down *"8,000 truly inspirational people from across the UK".*
+								---
+								*missing values*: many torchbearers did not have a BIO
+								- EDF: included the group's former director of HR and communications
+								- BP selected a member of the company's North Sea leadership team
+								- ArcelorMittal selected the company's founder, Lakshmi Mittal and his son Aditya, the group's chief financial officer
+								---
+								## Interview
+								2. **Core questions**: focused on the story we want to tell, *testing our hypotheses*
+								---
+								### Hypothesis
+								A good hypothesis formulates not only the idea, but also the means of proving it.
+								---
+								*'Vaccine distribution is unequal’*
+								
+								VS 
+								
+								*‘Vaccines are more available for high income countries in general, and, on an individual level, for wealthy people not the poor’.*
+								---
+								### Good hypothesis
+								- Can either be *proven or disproven with data*
+								- Is *specific* about what is being measured
+								- The data is *available*
+								- Even if proven false, you still might have a good story
+								---
+								If we have a good hypothesis, questions will arise by themselves.
+								---
+								![](img/tennisracket.png)
+
+								[source](https://www.buzzfeednews.com/article/heidiblake/the-tennis-racket)
+								---
+								![](img/tennisracket2.png)
+								---
+								![](img/tennisracket5.png)
+								---
+								Hypothesis: professional tennis players manipulate or outright fix first-round matches in professional tournaments
+								---
+								![](img/nude0.png)
+
+								[source](https://pudding.cool/2021/03/foundation-names/)
+								---
+								![](img/nude.png)
+								---
+								Hypothesis: lighter foundation colors are more likely to be called 'nude'
+								---
+								## Interview people too!
+								Data can answer different types of questions (quantitative) than humans (qualitative). For a good story we *need both*.
+								---
+								![](img/iepr.png)
+								
+
+							</script>
+						</section>
+						<section data-background="img/communicate.webp"></section>
+				<section
+				data-background="img/communicate.webp"
+				data-background-opacity="0.3"
+				data-markdown
+				data-transition="none">
+				# Communicating the story
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						*"What is the story"* applies here too
+						---
+						![](img/communicate1.png)
+
+						![](img/communicate2.png)
+						---
+						# Wrap-up
+					</script>
+				</section>
+				<section data-background-iframe="https://www.mentimeter.com/app/presentation/n/alqbrho48i3v1bex41p31gvnxuqukg3z/embed"
+						data-background-interactive></section>
+						<section data-markdown>
+							<script type="text/template">
+							## Thank you!
+							![](img/linkedin_qr_code.png)
+							---
+							## Sources
+							- [Interview approach to data analysis](https://mediashift.org/2014/07/take-an-interviewing-approach-to-find-stories-in-data/)
+							- [Data hypothesis](https://datajournalism.com/read/longreads/hypothesis-data-journalism)
+							- [Drawing Conclusions from Data](https://source.opennews.org/articles/statistically-sound-data-journalism/)
+							- [Data Analysis in the Era of Generative AI](https://arxiv.org/abs/2409.18475)
+						</script>
+					</section>	
+								
+
+							
+				
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
