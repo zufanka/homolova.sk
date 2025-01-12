@@ -3,7 +3,7 @@
     <title>Hi! I&#x27;m Ada</title>
     <link href="https://homolova.sk/feed.xml" rel="self" />
     <link href="https://homolova.sk" />
-    <updated>2025-01-12T18:47:13+01:00</updated>
+    <updated>2025-01-12T23:32:00+01:00</updated>
     <author>
         <name>Ada Homolova</name>
     </author>
@@ -35,11 +35,32 @@
                 <p>At the end of 2024, I asked a some friends and colleagues a question: "Which topic do you think is the most important to write about next year?" and got some very diverse answers. A friend who is a designer and visual artist suggested to make people aware that no piece of information is neutral. A colleague reflected on the power Musk and his army of satellites. And another friend simply said: "Nothing. I can't do anything with the news." </p>
 <p>The conversations were so interensting that I decided to scale it up. At the end of November I tossed a survey into my network and let it cook there for a couple of weeks. This resulted in a fresh batch of <strong>31 answers </strong>to ponder.</p>
 <p>Some topics made an expected appearance. Climate, for instance, was mentioned 11 times accross all the answers. However many responses surprised me. And so I have found myself diving into democracy metrics, world population predictions, duck curves and dark data.</p>
-<p>While putting it all together, it started turning into a bit of a mammoth piece. So, I decided to split it into multiple parts. In this first part, I will discuss the (simple) analysis I used to organize the responses and share the first, albeit unsurprising, category: <strong>world order</strong>.</p>
+<p>While putting all the answers together to share with you, it started turning into a bit of a mammoth piece. So, I decided to split it into multiple parts. In the upcoming weeks I will write multiple posts. In each of them I will unpack several of the responses, divided into categories (more on those below).</p>
+<p>In this first part, I will discuss the (simple) analysis I used to organize the responses and share the first, albeit unsurprising, category: <strong>world order</strong>.</p>
 <h1>Analysis</h1>
-<p>While the survey was open, I considered using some of the modern and hyped ways to analyse and visualise the data. Should I use an LLM? While browsing the Hugging Face <a href="https://huggingface.co/models">models</a>, I realized that my data were actually little stories, rather than numbers. To make sense of these stories, I needed to approach them with attention and understanding. So, I closed the browser tab full of models and opened the spreadsheet with the responses. Then I spent a few hours — and then a few more — studying them.</p>
-<p>To introduce some structure, I needed to add a layer abstraction. And my beautiful organic brain indeed proved to be the perfect tool. First, I wrote down a few keywords for each response. Then, I looked for overlaps and recurring themes within these keywords and distilled them into broader categories.</p>
-<p>The categories that came up were 🥁: <strong>climate &amp; energy, </strong><strong>world order, conflict, information, oneness, demographics, housing, human rights, journalism, </strong>and<strong> trust. </strong>Naturally, there is some overlap between them, but I did my best to extract the most prominent theme from each response to highlight larger trends.</p>
+<p>While the survey was open, I considered using some of the modern and hyped ways to analyse and visualise the data. Should I use an LLM? While browsing the Hugging Face <a href="https://huggingface.co/models">models</a>, I realized that my data were actually little stories, rather than numbers. And that to make sense of these stories, it was better to approach them with attention and understanding. So, I closed the browser tab full of models and opened the spreadsheet with the responses. Then I spent a few hours — and then a few more — studying them.</p>
+<p>Even if not using any fancy statstics, I wanted to introduce some structure. My beautiful organic brain proved to be the perfect tool for this. First I wrote down a few keywords for each response. Then, I looked for overlaps and recurring themes within these keywords and distilled them into broader categories. In practice, I added two columns next to the responses, which looked something like this:</p>
+<table style="border-collapse: collapse; width: 100%;" border="1">
+<tbody>
+<tr>
+<td style="width: 67.4558%;"><strong>keywords</strong></td>
+<td style="width: 32.5157%;"><strong>category</strong></td>
+</tr>
+<tr>
+<td style="width: 67.4558%;">war, military upscaling, changing role of the USA, national security, war</td>
+<td style="width: 32.5157%;">conflict</td>
+</tr>
+<tr>
+<td style="width: 67.4558%;">climate, technology impacts, energy requirements</td>
+<td style="width: 32.5157%;">climate &amp; energy</td>
+</tr>
+<tr>
+<td style="width: 67.4558%;">positive news, rethinking journalism, positive trends, positive outlook, diversity of opinions</td>
+<td style="width: 32.5157%;">journalism</td>
+</tr>
+</tbody>
+</table>
+<p>The categories that came up in the end were 🥁: <strong>climate &amp; energy, </strong><strong>world order, conflict, information, oneness, demographics, housing, human rights, journalism, </strong>and<strong> trust. </strong>Naturally, there is some overlap between them, but I did my best to extract the most prominent theme from each response to highlight larger trends.</p>
 <figure class="post__image"><img loading="lazy"  src="https://homolova.sk/media/posts/10/categories.png" alt="" width="632" height="749" sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/10/responsive/categories-xs.png 300w ,https://homolova.sk/media/posts/10/responsive/categories-sm.png 480w ,https://homolova.sk/media/posts/10/responsive/categories-md.png 768w ,https://homolova.sk/media/posts/10/responsive/categories-lg.png 1024w"></figure>
 <p>Below you will find the responses from the first prominent category: <strong>world order</strong>.<strong> </strong>The answers are provided in full, lightly edited, and include some of my own reflections, data and other resources. Enjoy!</p>
 <figure class="post__image post__image--center"><img loading="lazy"  src="https://homolova.sk/media/posts/10/bro1-2.png" alt="" width="137" height="112" sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/10/responsive/bro1-2-xs.png 300w ,https://homolova.sk/media/posts/10/responsive/bro1-2-sm.png 480w ,https://homolova.sk/media/posts/10/responsive/bro1-2-md.png 768w ,https://homolova.sk/media/posts/10/responsive/bro1-2-lg.png 1024w"></figure>
@@ -53,7 +74,7 @@
 <blockquote>
 <p>2. The democracy is under pressure in Europe, in some countries more than others. In the Netherlands, people generally believe everything is still OK,  but also here the democracy gets weaker and weaker. It would be good to get some relevant data, do some comparisons, pick some interesting examples and raise some awareness on this. </p>
 </blockquote>
-<p>Curious about how democracy is measured, I fired up <a href="/blog/making-internet-search-your-own/" target="_blank" rel="noopener">Ecosia search</a> and found an impressive overview of the <a href="https://ourworldindata.org/democracies-measurement"></a><a href="https://ourworldindata.org/democracies-measurement" target="_blank" rel="noopener noreferrer">eight leading indexes to measure democracy</a> by Our World in Data. Spending some time exploring their <a href="https://ourworldindata.org/explorers/democracy?Dataset=Varieties+of+Democracy&amp;Metric=Electoral+democracy&amp;Sub-metric=Main+index&amp;country=ARG~AUS~BWA~CHN~OWID_WRL" target="_blank" rel="noopener">interactive visualisations</a> I began to see that there just might be something to it.</p>
+<p>Curious about how democracy is measured, I fired up <a href="/blog/making-internet-search-your-own/" target="_blank" rel="noopener">Ecosia search</a> and found an impressive overview of the <a href="https://ourworldindata.org/democracies-measurement"></a><a href="https://ourworldindata.org/democracies-measurement" target="_blank" rel="noopener noreferrer">eight leading indexes to measure democracy</a> by Our World in Data. Spending some time exploring their <a href="https://ourworldindata.org/explorers/democracy?Dataset=Varieties+of+Democracy&amp;Metric=Electoral+democracy&amp;Sub-metric=Main+index&amp;country=ARG~AUS~BWA~CHN~OWID_WRL" target="_blank" rel="noopener">interactive visualisations</a> I began to see that there just might be something to it. See below the Varieties of democracy index for the Netherlands. Similarly, their <a href="https://v-dem.net/documents/43/v-dem_dr2024_lowres.pdf" target="_blank" rel="noopener">recent report</a> is not very uplifting: "<em>Almost all components of democracy are getting worse in more countries than they are getting  better, compared to ten years ago."</em></p>
 <figure class="post__image"><img loading="lazy"  src="https://homolova.sk/media/posts/10/vdemnetherlands.png" alt="V-Dem index in the Netherlands going down" width="839" height="605" sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/10/responsive/vdemnetherlands-xs.png 300w ,https://homolova.sk/media/posts/10/responsive/vdemnetherlands-sm.png 480w ,https://homolova.sk/media/posts/10/responsive/vdemnetherlands-md.png 768w ,https://homolova.sk/media/posts/10/responsive/vdemnetherlands-lg.png 1024w"></figure>
 <blockquote>
 <p>3. Totalitarianism in Europe. Totalitarian trends (or fear of totalitarian trends, fear of public unrest, active instrumentalisation of groups in difficult political challenges) overshadow meaningful political discussions on all important topics such as the climate crisis, inequality and polarisation in societies, environmental issues such as pollution with chemicals, plastics and the resulting health crisis... The general wish to maintain a "business as usual" approach in spite of all the above concerns may be among the keys to start covering this challenge. </p>
