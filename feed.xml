@@ -3,7 +3,7 @@
     <title>Hi! I&#x27;m Ada</title>
     <link href="https://homolova.sk/feed.xml" rel="self" />
     <link href="https://homolova.sk" />
-    <updated>2025-01-12T18:40:09+01:00</updated>
+    <updated>2025-01-12T18:47:13+01:00</updated>
     <author>
         <name>Ada Homolova</name>
     </author>
@@ -17,6 +17,10 @@
         <link href="https://homolova.sk/blog/topics-that-matter-most-in-2025/"/>
         <id>https://homolova.sk/blog/topics-that-matter-most-in-2025/</id>
         <media:content url="https://homolova.sk/media/posts/10/zufanka_Broligarchy_how_tech_and_similar_bros_are_broing_away_4a39518c-15c9-4399-949a-c96b6c77cc3b_1.png" medium="image" />
+            <category term="world order"/>
+            <category term="survey"/>
+            <category term="bros"/>
+            <category term="blog"/>
 
         <updated>2024-12-30T18:13:47+01:00</updated>
             <summary>
@@ -29,7 +33,7 @@
             <![CDATA[
                     <p><img src="https://homolova.sk/media/posts/10/zufanka_Broligarchy_how_tech_and_similar_bros_are_broing_away_4a39518c-15c9-4399-949a-c96b6c77cc3b_1.png" class="type:primaryImage" alt="Two men dressed in suits and sunglasses, sitting back-to-back on an ornate bench, each engrossed in using a tablet." /></p>
                 <p>At the end of 2024, I asked a some friends and colleagues a question: "Which topic do you think is the most important to write about next year?" and got some very diverse answers. A friend who is a designer and visual artist suggested to make people aware that no piece of information is neutral. A colleague reflected on the power Musk and his army of satellites. And another friend simply said: "Nothing. I can't do anything with the news." </p>
-<p>The conversations were so interensting that I decided to scale it up a bit. At the end of November I tossed a survey into my network and left it cook there for a couple of weeks. This resulted in a fresh batch of <strong>31 answers </strong>to ponder.</p>
+<p>The conversations were so interensting that I decided to scale it up. At the end of November I tossed a survey into my network and let it cook there for a couple of weeks. This resulted in a fresh batch of <strong>31 answers </strong>to ponder.</p>
 <p>Some topics made an expected appearance. Climate, for instance, was mentioned 11 times accross all the answers. However many responses surprised me. And so I have found myself diving into democracy metrics, world population predictions, duck curves and dark data.</p>
 <p>While putting it all together, it started turning into a bit of a mammoth piece. So, I decided to split it into multiple parts. In this first part, I will discuss the (simple) analysis I used to organize the responses and share the first, albeit unsurprising, category: <strong>world order</strong>.</p>
 <h1>Analysis</h1>
@@ -38,7 +42,7 @@
 <p>The categories that came up were 🥁: <strong>climate &amp; energy, </strong><strong>world order, conflict, information, oneness, demographics, housing, human rights, journalism, </strong>and<strong> trust. </strong>Naturally, there is some overlap between them, but I did my best to extract the most prominent theme from each response to highlight larger trends.</p>
 <figure class="post__image"><img loading="lazy"  src="https://homolova.sk/media/posts/10/categories.png" alt="" width="632" height="749" sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/10/responsive/categories-xs.png 300w ,https://homolova.sk/media/posts/10/responsive/categories-sm.png 480w ,https://homolova.sk/media/posts/10/responsive/categories-md.png 768w ,https://homolova.sk/media/posts/10/responsive/categories-lg.png 1024w"></figure>
 <p>Below you will find the responses from the first prominent category: <strong>world order</strong>.<strong> </strong>The answers are provided in full, lightly edited, and include some of my own reflections, data and other resources. Enjoy!</p>
-<figure class="post__image align-center"><img loading="lazy"  src="https://homolova.sk/media/posts/10/bro1.png" alt="" width="161" height="132" sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/10/responsive/bro1-xs.png 300w ,https://homolova.sk/media/posts/10/responsive/bro1-sm.png 480w ,https://homolova.sk/media/posts/10/responsive/bro1-md.png 768w ,https://homolova.sk/media/posts/10/responsive/bro1-lg.png 1024w"></figure>
+<figure class="post__image post__image--center"><img loading="lazy"  src="https://homolova.sk/media/posts/10/bro1-2.png" alt="" width="137" height="112" sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/10/responsive/bro1-2-xs.png 300w ,https://homolova.sk/media/posts/10/responsive/bro1-2-sm.png 480w ,https://homolova.sk/media/posts/10/responsive/bro1-2-md.png 768w ,https://homolova.sk/media/posts/10/responsive/bro1-2-lg.png 1024w"></figure>
 <h2>World order</h2>
 <p>The responses in this category focus on the shifting political climate. They highlight concerns abocut the rise of populist leaders, far-right sentiments, and the changing role of the U.S. They question the direction modern democracies are heading.</p>
 <blockquote>
@@ -73,8 +77,8 @@
 </blockquote>
 <p>The final answer in this category suggests something intriguing: <em>we are doing something right here</em>. </p>
 <p data-pm-slice="0 0 []">What exactly is it, and how can we preserve it amidst a shifting world order?</p>
-<figure class="post__image align-center"><img loading="lazy"  src="https://homolova.sk/media/posts/10/bro2.png" alt="" width="149" height="120" sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/10/responsive/bro2-xs.png 300w ,https://homolova.sk/media/posts/10/responsive/bro2-sm.png 480w ,https://homolova.sk/media/posts/10/responsive/bro2-md.png 768w ,https://homolova.sk/media/posts/10/responsive/bro2-lg.png 1024w"></figure>
-<p><em>In the next part we'll explore topics around climate and conflict. Want to to get the rest of the series in your inbox? <a href="https://hi-im-ada.beehiiv.com/subscribe" target="_blank" rel="noopener">Sign up for my newsletter</a>!</em></p>
+<figure class="post__image post__image--center"><img loading="lazy"  src="https://homolova.sk/media/posts/10/bro2-2.png" alt="" width="144" height="116" sizes="(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)" srcset="https://homolova.sk/media/posts/10/responsive/bro2-2-xs.png 300w ,https://homolova.sk/media/posts/10/responsive/bro2-2-sm.png 480w ,https://homolova.sk/media/posts/10/responsive/bro2-2-md.png 768w ,https://homolova.sk/media/posts/10/responsive/bro2-2-lg.png 1024w"></figure>
+<p><em>In the next part we will explore topics around climate and conflict.</em> <em>Want to to get the rest of the series in your inbox? <a href="https://hi-im-ada.beehiiv.com/subscribe" target="_blank" rel="noopener">Sign up for my newsletter</a>!</em></p>
             ]]>
         </content>
     </entry>
