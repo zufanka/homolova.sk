@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Stay in touch!</title>
+ 
+ <style>
+    /* General body styling */
+    body {
+      font-family: Jet-brains, monospace;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #32222a;
+    }
+
+    /* Styling for the container */
+    #touch {
+      display: flex;
+      gap: 200px; /* Space between columns */
+    }
+
+    /* Styling for individual columns */
+    #touch > div {
+      display: flex;
+      flex-direction: column;
+      align-items: start; /* Align headers and QR codes on the left */
+    }
+
+    /* Headers styling */
+    h2 {
+      margin: 0;
+      margin-bottom: 10px; /* Space between the header and QR code */
+      font-size: 2.5rem;
+      color: #FFF;
+    }
+
+    /* QR Code image styling */
+    img {
+      width: 350px; /* Adjust size as needed */
+      height: auto;
+      display: block;
+    }
+ </style>
+ 
+</head>
+<body>
+  <div id="touch"/>
+    <div>
+      <h2>LinkedIN 👩‍💻</h2>
+      <img src="img/linkedinqr.png">
+    </div>
+    <div>
+      <h2>Newsletter ✨</h2>
+      <img src="img/newsletterqr.png">
+    </div>
+  </div>
+</body>
+</html>
