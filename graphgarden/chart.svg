@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1311" height="630" viewBox="0 0 1311 630">
+<rect width="100%" height="100%" fill="white"/>
+<g transform="translate(625.5,600)">
+<line x1="-625.5" y1="0" x2="625.5" y2="0" stroke="black" stroke-width="1" />
+<line x1="0" y1="0" x2="0" y2="-570" stroke="black" stroke-width="1" stroke-dasharray="3,3" />
+<g transform="translate(1151, -570)">
+<rect width="100" height="90" fill="white" stroke="black" stroke-width="0.5" opacity="0.8" />
+<rect x="5" y="5" width="15" height="15" fill="#8884d8" />
+<text x="25" y="17" font-size="12">absolutely true</text>
+<rect x="5" y="25" width="15" height="15" fill="#83a6ed" />
+<text x="25" y="37" font-size="12">largery true</text>
+<rect x="5" y="45" width="15" height="15" fill="#8dd1e1" />
+<text x="25" y="57" font-size="12">not really true</text>
+<rect x="5" y="65" width="15" height="15" fill="#82ca9d" />
+<text x="25" y="77" font-size="12">not true at all</text>
+</g>
+<rect x="-291.8099352051836" y="-570" width="291.8099352051836" height="41.45454545454546" fill="#8884d8" stroke="white" stroke-width="0.5" />
+<text x="-145.9049676025918" y="-549.2727272727273" text-anchor="middle" font-size="11" fill="white">21.6</text>
+<rect x="-617.3941684665226" y="-570" width="617.3941684665226" height="41.45454545454546" fill="#83a6ed" stroke="white" stroke-width="0.5" />
+<text x="-308.6970842332613" y="-549.2727272727273" text-anchor="middle" font-size="11" fill="white">45.7</text>
+<rect x="0" y="-570" width="151.30885529157663" height="41.45454545454546" fill="#8dd1e1" stroke="white" stroke-width="0.5" />
+<text x="75.65442764578832" y="-549.2727272727273" text-anchor="middle" font-size="11" fill="white">11.2</text>
+<rect x="151.30885529157663" y="-570" width="266.1414686825054" height="41.45454545454546" fill="#82ca9d" stroke="white" stroke-width="0.5" />
+<text x="284.3795896328293" y="-549.2727272727273" text-anchor="middle" font-size="11" fill="white">19.7</text>
+<text x="-5" y="-549.2727272727273" text-anchor="end" alignment-baseline="middle" font-size="12">I am fully occupied with family responsibilities.</text>
+<rect x="-279.65118790496757" y="-518.1818181818181" width="279.65118790496757" height="41.45454545454546" fill="#8884d8" stroke="white" stroke-width="0.5" />
+<text x="-139.82559395248379" y="-497.4545454545454" text-anchor="middle" font-size="11" fill="white">20.7</text>
+<rect x="-621.4470842332613" y="-518.1818181818181" width="621.4470842332613" height="41.45454545454546" fill="#83a6ed" stroke="white" stroke-width="0.5" />
+<text x="-310.72354211663065" y="-497.4545454545454" text-anchor="middle" font-size="11" fill="white">46</text>
+<rect x="0" y="-518.1818181818181" width="149.95788336933043" height="41.45454545454546" fill="#8dd1e1" stroke="white" stroke-width="0.5" />
+<text x="74.97894168466522" y="-497.4545454545454" text-anchor="middle" font-size="11" fill="white">11.1</text>
+<rect x="149.95788336933043" y="-518.1818181818181" width="272.8963282937365" height="41.45454545454546" fill="#82ca9d" stroke="white" stroke-width="0.5" />
+<text x="286.40604751619867" y="-497.4545454545454" text-anchor="middle" font-size="11" fill="white">20.2</text>
+<text x="-5" y="-497.4545454545454" text-anchor="end" alignment-baseline="middle" font-size="12">I have never been asked or approached.</text>
+<rect x="-345.84881209503243" y="-466.3636363636364" width="345.84881209503243" height="41.45454545454546" fill="#8884d8" stroke="white" stroke-width="0.5" />
+<text x="-172.92440604751621" y="-445.6363636363636" text-anchor="middle" font-size="11" fill="white">25.6</text>
+<rect x="-406.64254859611225" y="-466.3636363636364" width="406.64254859611225" height="41.45454545454546" fill="#83a6ed" stroke="white" stroke-width="0.5" />
+<text x="-203.32127429805612" y="-445.6363636363636" text-anchor="middle" font-size="11" fill="white">30.1</text>
+<rect x="0" y="-466.3636363636364" width="263.43952483801297" height="41.45454545454546" fill="#8dd1e1" stroke="white" stroke-width="0.5" />
+<text x="131.71976241900649" y="-445.6363636363636" text-anchor="middle" font-size="11" fill="white">19.5</text>
+<rect x="263.43952483801297" y="-466.3636363636364" width="305.3196544276458" height="41.45454545454546" fill="#82ca9d" stroke="white" stroke-width="0.5" />
+<text x="416.09935205183587" y="-445.6363636363636" text-anchor="middle" font-size="11" fill="white">22.6</text>
+<text x="-5" y="-445.6363636363636" text-anchor="end" alignment-baseline="middle" font-size="12">I have never thought about it.</text>
+<rect x="-310.72354211663065" y="-414.5454545454545" width="310.72354211663065" height="41.45454545454546" fill="#8884d8" stroke="white" stroke-width="0.5" />
+<text x="-155.36177105831533" y="-393.81818181818176" text-anchor="middle" font-size="11" fill="white">23</text>
+<rect x="-293.16090712742977" y="-414.5454545454545" width="293.16090712742977" height="41.45454545454546" fill="#83a6ed" stroke="white" stroke-width="0.5" />
+<text x="-146.58045356371488" y="-393.81818181818176" text-anchor="middle" font-size="11" fill="white">21.7</text>
+<rect x="0" y="-414.5454545454545" width="274.2473002159827" height="41.45454545454546" fill="#8dd1e1" stroke="white" stroke-width="0.5" />
+<text x="137.12365010799135" y="-393.81818181818176" text-anchor="middle" font-size="11" fill="white">20.3</text>
+<rect x="274.2473002159827" y="-414.5454545454545" width="439.06587473002156" height="41.45454545454546" fill="#82ca9d" stroke="white" stroke-width="0.5" />
+<text x="493.78023758099346" y="-393.81818181818176" text-anchor="middle" font-size="11" fill="white">32.5</text>
+<text x="-5" y="-393.81818181818176" text-anchor="end" alignment-baseline="middle" font-size="12">There are no activities nearby that interest me.</text>
+<rect x="-335.0410367170626" y="-362.7272727272727" width="335.0410367170626" height="41.45454545454546" fill="#8884d8" stroke="white" stroke-width="0.5" />
+<text x="-167.5205183585313" y="-341.99999999999994" text-anchor="middle" font-size="11" fill="white">24.8</text>
+<rect x="-197.24190064794814" y="-362.7272727272727" width="197.24190064794814" height="41.45454545454546" fill="#83a6ed" stroke="white" stroke-width="0.5" />
+<text x="-98.62095032397407" y="-341.99999999999994" text-anchor="middle" font-size="11" fill="white">14.6</text>
+<rect x="0" y="-362.7272727272727" width="299.91576673866086" height="41.45454545454546" fill="#8dd1e1" stroke="white" stroke-width="0.5" />
+<text x="149.95788336933043" y="-341.99999999999994" text-anchor="middle" font-size="11" fill="white">22.2</text>
+<rect x="299.91576673866086" y="-362.7272727272727" width="491.7537796976241" height="41.45454545454546" fill="#82ca9d" stroke="white" stroke-width="0.5" />
+<text x="545.792656587473" y="-341.99999999999994" text-anchor="middle" font-size="11" fill="white">36.4</text>
+<text x="-5" y="-341.99999999999994" text-anchor="end" alignment-baseline="middle" font-size="12">I am not well-informed about the opportunities.</text>
+<rect x="-233.7181425485961" y="-310.9090909090909" width="233.7181425485961" height="41.45454545454546" fill="#8884d8" stroke="white" stroke-width="0.5" />
+<text x="-116.85907127429805" y="-290.18181818181813" text-anchor="middle" font-size="11" fill="white">17.3</text>
+<rect x="-258.03563714902805" y="-310.9090909090909" width="258.03563714902805" height="41.45454545454546" fill="#83a6ed" stroke="white" stroke-width="0.5" />
+<text x="-129.01781857451402" y="-290.18181818181813" text-anchor="middle" font-size="11" fill="white">19.1</text>
+<rect x="0" y="-310.9090909090909" width="176.97732181425482" height="41.45454545454546" fill="#8dd1e1" stroke="white" stroke-width="0.5" />
+<text x="88.48866090712741" y="-290.18181818181813" text-anchor="middle" font-size="11" fill="white">13.1</text>
+<rect x="176.97732181425482" y="-310.9090909090909" width="656.5723542116631" height="41.45454545454546" fill="#82ca9d" stroke="white" stroke-width="0.5" />
+<text x="505.26349892008636" y="-290.18181818181813" text-anchor="middle" font-size="11" fill="white">48.6</text>
+<text x="-5" y="-290.18181818181813" text-anchor="end" alignment-baseline="middle" font-size="12">I cannot reconcile it with my job.</text>
+<rect x="-159.414686825054" y="-259.090909090909" width="159.414686825054" height="41.45454545454546" fill="#8884d8" stroke="white" stroke-width="0.5" />
+<text x="-79.707343412527" y="-238.3636363636363" text-anchor="middle" font-size="11" fill="white">11.8</text>
+<rect x="-260.7375809935205" y="-259.090909090909" width="260.7375809935205" height="41.45454545454546" fill="#83a6ed" stroke="white" stroke-width="0.5" />
+<text x="-130.36879049676025" y="-238.3636363636363" text-anchor="middle" font-size="11" fill="white">19.3</text>
+<rect x="0" y="-259.090909090909" width="258.03563714902805" height="41.45454545454546" fill="#8dd1e1" stroke="white" stroke-width="0.5" />
+<text x="129.01781857451402" y="-238.3636363636363" text-anchor="middle" font-size="11" fill="white">19.1</text>
+<rect x="258.03563714902805" y="-259.090909090909" width="647.1155507559395" height="41.45454545454546" fill="#82ca9d" stroke="white" stroke-width="0.5" />
+<text x="581.5934125269978" y="-238.3636363636363" text-anchor="middle" font-size="11" fill="white">47.9</text>
+<text x="-5" y="-238.3636363636363" text-anchor="end" alignment-baseline="middle" font-size="12">I am not the right age.</text>
+<rect x="-114.83261339092871" y="-207.2727272727272" width="114.83261339092871" height="41.45454545454546" fill="#8884d8" stroke="white" stroke-width="0.5" />
+<text x="-57.41630669546436" y="-186.54545454545448" text-anchor="middle" font-size="11" fill="white">8.5</text>
+<rect x="-216.15550755939523" y="-207.2727272727272" width="216.15550755939523" height="41.45454545454546" fill="#83a6ed" stroke="white" stroke-width="0.5" />
+<text x="-108.07775377969762" y="-186.54545454545448" text-anchor="middle" font-size="11" fill="white">16</text>
+<rect x="0" y="-207.2727272727272" width="166.16954643628512" height="41.45454545454546" fill="#8dd1e1" stroke="white" stroke-width="0.5" />
+<text x="83.08477321814256" y="-186.54545454545448" text-anchor="middle" font-size="11" fill="white">12.3</text>
+<rect x="166.16954643628512" y="-207.2727272727272" width="829.4967602591792" height="41.45454545454546" fill="#82ca9d" stroke="white" stroke-width="0.5" />
+<text x="580.9179265658747" y="-186.54545454545448" text-anchor="middle" font-size="11" fill="white">61.4</text>
+<text x="-5" y="-186.54545454545448" text-anchor="end" alignment-baseline="middle" font-size="12">I feel unable due to illness or disability.</text>
+<rect x="-156.71274298056153" y="-155.45454545454538" width="156.71274298056153" height="41.45454545454546" fill="#8884d8" stroke="white" stroke-width="0.5" />
+<text x="-78.35637149028076" y="-134.72727272727266" text-anchor="middle" font-size="11" fill="white">11.6</text>
+<rect x="-132.3952483801296" y="-155.45454545454538" width="132.3952483801296" height="41.45454545454546" fill="#83a6ed" stroke="white" stroke-width="0.5" />
+<text x="-66.1976241900648" y="-134.72727272727266" text-anchor="middle" font-size="11" fill="white">9.8</text>
+<rect x="0" y="-155.45454545454538" width="318.829373650108" height="41.45454545454546" fill="#8dd1e1" stroke="white" stroke-width="0.5" />
+<text x="159.414686825054" y="-134.72727272727266" text-anchor="middle" font-size="11" fill="white">23.6</text>
+<rect x="318.829373650108" y="-155.45454545454538" width="717.366090712743" height="41.45454545454546" fill="#82ca9d" stroke="white" stroke-width="0.5" />
+<text x="677.5124190064795" y="-134.72727272727266" text-anchor="middle" font-size="11" fill="white">53.1</text>
+<text x="-5" y="-134.72727272727266" text-anchor="end" alignment-baseline="middle" font-size="12">I cannot afford it financially.</text>
+<rect x="-137.79913606911444" y="-103.63636363636357" width="137.79913606911444" height="41.45454545454546" fill="#8884d8" stroke="white" stroke-width="0.5" />
+<text x="-68.89956803455722" y="-82.90909090909084" text-anchor="middle" font-size="11" fill="white">10.2</text>
+<rect x="-101.3228941684665" y="-103.63636363636357" width="101.3228941684665" height="41.45454545454546" fill="#83a6ed" stroke="white" stroke-width="0.5" />
+<text x="-50.66144708423325" y="-82.90909090909084" text-anchor="middle" font-size="11" fill="white">7.5</text>
+<rect x="0" y="-103.63636363636357" width="347.1997840172786" height="41.45454545454546" fill="#8dd1e1" stroke="white" stroke-width="0.5" />
+<text x="173.5998920086393" y="-82.90909090909084" text-anchor="middle" font-size="11" fill="white">25.7</text>
+<rect x="347.1997840172786" y="-103.63636363636357" width="736.27969762419" height="41.45454545454546" fill="#82ca9d" stroke="white" stroke-width="0.5" />
+<text x="715.3396328293736" y="-82.90909090909084" text-anchor="middle" font-size="11" fill="white">54.5</text>
+<text x="-5" y="-82.90909090909084" text-anchor="end" alignment-baseline="middle" font-size="12">I feel like I cannot make a contribution.</text>
+<rect x="-39.17818574514038" y="-51.818181818181756" width="39.17818574514038" height="41.45454545454546" fill="#8884d8" stroke="white" stroke-width="0.5" />
+<text x="-19.58909287257019" y="-31.090909090909026" text-anchor="middle" font-size="11" fill="white">2.9</text>
+<rect x="-36.47624190064795" y="-51.818181818181756" width="36.47624190064795" height="41.45454545454546" fill="#83a6ed" stroke="white" stroke-width="0.5" />
+<text x="-18.238120950323975" y="-31.090909090909026" text-anchor="middle" font-size="11" fill="white">2.7</text>
+<rect x="0" y="-51.818181818181756" width="225.61231101511876" height="41.45454545454546" fill="#8dd1e1" stroke="white" stroke-width="0.5" />
+<text x="112.80615550755938" y="-31.090909090909026" text-anchor="middle" font-size="11" fill="white">16.7</text>
+<rect x="225.61231101511876" y="-51.818181818181756" width="1025.3876889848812" height="41.45454545454546" fill="#82ca9d" stroke="white" stroke-width="0.5" />
+<text x="738.3061555075593" y="-31.090909090909026" text-anchor="middle" font-size="11" fill="white">75.9</text>
+<text x="-5" y="-31.090909090909026" text-anchor="end" alignment-baseline="middle" font-size="12">I have had bad experiences.</text>
+<line x1="0" y1="0" x2="0" y2="-570" stroke="black" stroke-width="1" />
+</g>
+</svg>

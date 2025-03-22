@@ -5,16 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Data Visualization Tool</title>
   
-  <!-- React and ReactDOM -->
-  <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
-  
-  <!-- Babel for JSX -->
-  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  
-  <!-- Recharts -->
-  <script src="https://unpkg.com/prop-types/prop-types.min.js"></script>
-  <script src="https://unpkg.com/recharts/umd/Recharts.min.js"></script>
+  <!-- Chart.js and plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   
   <!-- PapaParse for CSV -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
@@ -26,14 +19,143 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-gray-100">
-  <div id="root"></div>
+  <div class="p-4 max-w-4xl mx-auto">
+    <h1 class="text-2xl font-bold mb-4">Data Visualization Tool</h1>
+    <p class="text-gray-600 mb-4">Upload CSV, visualize data, and download as SVG or CSV</p>
+    
+    <!-- CSV Upload Section -->
+    <div class="mb-6 p-4 border border-gray-300 rounded bg-gray-50">
+      <h2 class="text-lg font-semibold mb-3">Upload Data</h2>
+      
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Upload CSV File</label>
+        <input 
+          type="file" 
+          id="csv-upload"
+          accept=".csv"
+          class="block w-full text-sm text-gray-500 
+            file:mr-4 file:py-2 file:px-4 
+            file:rounded file:border-0 
+            file:text-sm file:font-semibold 
+            file:bg-blue-50 file:text-blue-700 
+            hover:file:bg-blue-100"
+        >
+      </div>
+      
+      <div id="column-selectors" class="grid grid-cols-1 md:grid-cols-2 gap-4 hidden">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Name/Category Column</label>
+          <select id="name-column" class="border border-gray-300 rounded px-3 py-2 w-full"></select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Value Column</label>
+          <select id="value-column" class="border border-gray-300 rounded px-3 py-2 w-full"></select>
+        </div>
+        
+        <!-- Empty stacked options container - moved to visualization options -->
+        <div id="stacked-options" class="hidden">
+        </div>
+      </div>
+    </div>
+    
+    <!-- Visualization Options -->
+    <div class="mb-6 p-4 border border-gray-300 rounded bg-gray-50">
+      <h2 class="text-lg font-semibold mb-3">Visualization Options</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Chart Type</label>
+          <select id="chart-type" class="border border-gray-300 rounded px-3 py-2 w-full">
+            <option value="bar">Bar Chart</option>
+            <option value="horizontalBar">Horizontal Bar Chart</option>
+            <option value="stackedBar">Stacked Bar Chart</option>
+            <option value="stackedHorizontalBar">Stacked Horizontal Bar Chart</option>
+            <option value="pie">Pie Chart</option>
+            <option value="line">Line Chart</option>
+            <option value="doughnut">Doughnut Chart</option>
+          </select>
+        </div>
+        <div>
+          <div class="flex items-center mt-2">
+            <input type="checkbox" id="diverging-enabled" class="mr-2">
+            <label for="diverging-enabled" class="text-sm font-medium text-gray-700">
+              Enable Diverging Chart
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Stacked chart options -->
+      <div class="mt-4">
+        <!-- Regular stacked options -->
+        <div id="regular-stack-options" class="hidden">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Additional Stack Columns (select multiple)</label>
+          <div class="relative">
+            <select id="stack-columns" multiple class="border border-gray-300 rounded px-3 py-2 w-full h-24"></select>
+            <div class="text-xs text-gray-500 mt-1">Hold Ctrl/Cmd to select multiple columns</div>
+          </div>
+        </div>
+        
+        <!-- Diverging options -->
+        <div id="diverging-options" class="hidden mt-2">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Left Side Columns (Negative)</label>
+              <div class="relative">
+                <select id="left-columns" multiple class="border border-gray-300 rounded px-3 py-2 w-full h-24"></select>
+                <div class="text-xs text-gray-500 mt-1">Hold Ctrl/Cmd to select multiple columns</div>
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Right Side Columns (Positive)</label>
+              <div class="relative">
+                <select id="right-columns" multiple class="border border-gray-300 rounded px-3 py-2 w-full h-24"></select>
+                <div class="text-xs text-gray-500 mt-1">Hold Ctrl/Cmd to select multiple columns</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Visualization -->
+    <div class="mb-6">
+      <h2 class="text-lg font-semibold mb-3">Visualization</h2>
+      <div class="bg-white p-4 rounded border border-gray-300">
+        <canvas id="chart-canvas" height="400"></canvas>
+      </div>
+    </div>
+    
+    <!-- Download Options -->
+    <div class="flex gap-4 justify-start mb-6">
+      <button id="download-svg" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        Download as SVG
+      </button>
+      <button id="download-csv" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        Download as CSV
+      </button>
+    </div>
+    
+    <!-- Data Table -->
+    <div>
+      <h2 class="text-lg font-semibold mb-3">Data Table</h2>
+      <div class="overflow-x-auto">
+        <table id="data-table" class="min-w-full bg-white border border-gray-300">
+          <thead>
+            <tr>
+              <th class="py-2 px-4 border-b">Name</th>
+              <th class="py-2 px-4 border-b">Value</th>
+              <th class="py-2 px-4 border-b">Action</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <!-- Data rows will be inserted here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
   
-  <!-- Load the React component -->
-  <script type="text/babel" src="dataVisualizer.js"></script>
-  
-  <!-- Initialize the component -->
-  <script type="text/babel">
-    ReactDOM.render(<DataVisualizer />, document.getElementById('root'));
-  </script>
+  <!-- Main JavaScript -->
+  <script src="dataVisualizer.js"></script>
 </body>
 </html>
