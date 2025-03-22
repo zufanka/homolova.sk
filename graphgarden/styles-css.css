@@ -1,0 +1,104 @@
+/* Custom styles for the Data Visualization Tool */
+
+/* Improve table responsiveness */
+.overflow-x-auto {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Better focus styles for form controls */
+select:focus,
+input:focus,
+button:focus {
+  outline: 2px solid rgba(59, 130, 246, 0.5);
+  outline-offset: 2px;
+}
+
+/* Animation for hover effects */
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Additional styling for the chart container */
+.recharts-wrapper {
+  margin: 0 auto;
+}
+
+/* Make sure the SVG doesn't overflow on small screens */
+svg {
+  max-width: 100%;
+}
+
+/* Add a subtle shadow to the chart container */
+#chartRef {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Improved styling for the chart area */
+.recharts-surface {
+  border-radius: 4px;
+}
+
+/* Make the reference line more visible */
+.recharts-reference-line line {
+  stroke-width: 2px;
+}
+
+/* Improve tooltip appearance */
+.recharts-tooltip-wrapper {
+  border-radius: 6px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.recharts-default-tooltip {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 10px 14px !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Custom file input styling */
+input[type="file"] {
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .flex-col {
+    gap: 1rem;
+  }
+  
+  .grid-cols-1 {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Hover effects for table rows */
+tbody tr:hover {
+  background-color: rgba(243, 244, 246, 0.8) !important;
+}
+
+/* Add subtle animation to chart elements */
+.recharts-layer {
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Improve legend readability */
+.recharts-legend-item-text {
+  font-weight: 500;
+}
+
+/* Add some padding to the page */
+body {
+  padding: 1rem;
+}
+
+/* Style the CSV file input */
+input[type="file"]::file-selector-button {
+  transition: background-color 0.2s ease-in-out;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #dbeafe !important;
+}
