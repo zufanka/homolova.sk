@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta property="og:title" content="🌱 Chart garden">
+  <meta property="og:description" content="Plant CSVs, harvest SVGs">
+  <meta property="og:image" content="/img/meta.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chart Garden</title>
   
@@ -131,6 +134,18 @@
         <input type="checkbox" id="show-data-values" class="mr-2">
         <label for="show-data-values" class="text-sm font-medium text-gray-700">
           Show numbers on data points in export
+        </label>
+      </div>
+      <div class="flex items-center mb-2">
+        <input type="checkbox" id="show-x-axis-numbers" class="mr-2">
+        <label for="show-x-axis-numbers" class="text-sm font-medium text-gray-700">
+          Show numbers on X axis
+        </label>
+      </div>
+      <div class="flex items-center mb-2">
+        <input type="checkbox" id="show-y-axis-numbers" class="mr-2">
+        <label for="show-y-axis-numbers" class="text-sm font-medium text-gray-700">
+          Show numbers on Y axis
         </label>
       </div>
       <button id="download-svg" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">

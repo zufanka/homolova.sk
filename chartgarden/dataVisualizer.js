@@ -16,7 +16,9 @@ let chartConfig = {
   divergingEnabled: false,
   leftColumns: [],  // For diverging charts (negative values)
   rightColumns: [],  // For diverging charts (positive values)
-  showDataValues: false  // Whether to show data values on export
+  showDataValues: false,  // Whether to show data values on export
+  showXAxisNumbers: false, // Whether to show numbers on X axis
+  showYAxisNumbers: false  // Whether to show numbers on Y axis
 };
 
 // Colors for charts
@@ -42,6 +44,8 @@ const divergingOptions = document.getElementById('diverging-options');
 const leftColumnsSelect = document.getElementById('left-columns');
 const rightColumnsSelect = document.getElementById('right-columns');
 const showDataValuesCheckbox = document.getElementById('show-data-values');
+const showXAxisNumbersCheckbox = document.getElementById('show-x-axis-numbers');
+const showYAxisNumbersCheckbox = document.getElementById('show-y-axis-numbers');
 const downloadSvgBtn = document.getElementById('download-svg');
 const tableBody = document.getElementById('table-body');
 const chartCanvas = document.getElementById('chart-canvas');
@@ -87,6 +91,12 @@ function resetFormElements() {
   // Reset show data values checkbox
   showDataValuesCheckbox.checked = false;
   chartConfig.showDataValues = false;
+  
+  // Reset axis numbers checkboxes
+  showXAxisNumbersCheckbox.checked = false;
+  chartConfig.showXAxisNumbers = false;
+  showYAxisNumbersCheckbox.checked = false;
+  chartConfig.showYAxisNumbers = false;
   
   // Reset stack column selections
   chartConfig.stackColumns = [];
@@ -203,6 +213,16 @@ function setupEventListeners() {
   // Show data values checkbox
   showDataValuesCheckbox.addEventListener('change', (e) => {
     chartConfig.showDataValues = e.target.checked;
+  });
+  
+  // Show X axis numbers checkbox
+  showXAxisNumbersCheckbox.addEventListener('change', (e) => {
+    chartConfig.showXAxisNumbers = e.target.checked;
+  });
+  
+  // Show Y axis numbers checkbox
+  showYAxisNumbersCheckbox.addEventListener('change', (e) => {
+    chartConfig.showYAxisNumbers = e.target.checked;
   });
   
   // Download button
@@ -755,11 +775,13 @@ function downloadSVG() {
         
         // Grid line
         svg += '<line x1="0" y1="' + yPos + '" x2="' + chartWidth + '" y2="' + yPos + 
-               '" stroke="#e0e0e0" stroke-width="1" />\n';
+               '" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="3,3" />\n';
         
-        // Tick value
-        svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
-               yValue + '</text>\n';
+        // Tick value - only show if Y axis numbers are enabled
+        if (chartConfig.showYAxisNumbers) {
+          svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
+                 yValue + '</text>\n';
+        }
       }
       
       // X-axis
@@ -802,7 +824,10 @@ function downloadSVG() {
           const color = COLORS[index % COLORS.length];
           
           svg += '<rect x="' + barX + '" y="' + (-barHeight) + '" width="' + barWidth + '" height="' + barHeight + '" fill="' + color + '" />\n';
-          svg += '<text x="' + (barX + barWidth/2) + '" y="15" text-anchor="middle" font-size="12" transform="rotate(-45 ' + (barX + barWidth/2) + ',15)">' + label + '</text>\n';
+          // Only show X axis labels if X axis numbers are enabled
+          if (chartConfig.showXAxisNumbers) {
+            svg += '<text x="' + (barX + barWidth/2) + '" y="15" text-anchor="middle" font-size="12" transform="rotate(-45 ' + (barX + barWidth/2) + ',15)">' + label + '</text>\n';
+          }
           
           // Only show data value if enabled
           if (chartConfig.showDataValues) {
@@ -869,6 +894,35 @@ function downloadSVG() {
         // Add a midpoint line
         const midpointX = chartWidth * 0.5;
         
+        // Add X-axis labels (numbers) - only if X axis numbers are enabled
+        if (chartConfig.showXAxisNumbers) {
+          // Add numbers at regular intervals for a clean appearance
+          const xTickValues = [-80, -60, -40, -20, 0, 20, 40, 60, 80, 100];
+          
+          // Calculate the scale factor for converting values to pixels
+          const scaleFactor = chartWidth / (maxTotal * 2); // Double maxTotal for both sides
+          
+          // Add each tick value
+          xTickValues.forEach(tickValue => {
+            // Convert the tick value to a pixel position, with 0 at the midpoint
+            const xPos = midpointX + (tickValue * scaleFactor);
+            
+            // Only add if it's within the chart bounds
+            if (xPos >= 0 && xPos <= chartWidth) {
+              // Add full vertical gridline for this X position
+              // Skip the 0 position since we already have a midpoint line
+              if (tickValue !== 0) {
+                svg += '<line x1="' + xPos + '" y1="0" x2="' + xPos + '" y2="' + (-chartHeight) + 
+                      '" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="3,3" />\n';
+              }
+              
+              // Add the number label
+              svg += '<text x="' + xPos + '" y="15" text-anchor="middle" font-size="10">' + 
+                    tickValue + '</text>\n';
+            }
+          });
+        }
+        
         // Grid lines for y axis
         const yTickCount = 5;
         const yTickStep = chartHeight / yTickCount;
@@ -881,15 +935,19 @@ function downloadSVG() {
           
           // Grid lines spanning the chart width
           svg += '<line x1="0" y1="' + yPos + '" x2="' + chartWidth + '" y2="' + yPos + 
-                '" stroke="#e0e0e0" stroke-width="1" />\n';
+                '" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="3,3" />\n';
           
-          // Tick values on left side (behind the axis)
-          svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
-                tickValue + '</text>\n';
+          // Tick values on left side (behind the axis) - only show if Y axis numbers are enabled
+          if (chartConfig.showYAxisNumbers) {
+            svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
+                  tickValue + '</text>\n';
+          }
                 
-          // Add tick values at the midpoint
-          svg += '<text x="' + (midpointX + 5) + '" y="' + yPos + '" text-anchor="start" alignment-baseline="middle" font-size="10">' + 
-                tickValue + '</text>\n';
+          // Add tick values at the midpoint - only show if Y axis numbers are enabled
+          if (chartConfig.showYAxisNumbers) {
+            svg += '<text x="' + (midpointX + 5) + '" y="' + yPos + '" text-anchor="start" alignment-baseline="middle" font-size="10">' + 
+                  tickValue + '</text>\n';
+          }
         }
         
         // We need to define barHeight and barSpacing here before using them
@@ -917,11 +975,13 @@ function downloadSVG() {
           
           // Grid line
           svg += '<line x1="0" y1="' + yPos + '" x2="' + chartWidth + '" y2="' + yPos + 
-                 '" stroke="#e0e0e0" stroke-width="1" />\n';
+                 '" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="3,3" />\n';
           
-          // Tick value
-          svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
-                 yValue + '</text>\n';
+          // Tick value - only show if Y axis numbers are enabled
+          if (chartConfig.showYAxisNumbers) {
+            svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
+                   yValue + '</text>\n';
+          }
         }
         
         // X-axis
@@ -981,7 +1041,7 @@ function downloadSVG() {
             
             // Add a mid-point reference line (divider) if not already added
             svg += '<line x1="' + midpointX + '" y1="0" x2="' + midpointX + '" y2="' + (-chartHeight) + 
-                   '" stroke="black" stroke-width="1" stroke-dasharray="3,3" />\n';
+                   '" stroke="black" stroke-width="1" />\n';
             
             // Draw left columns (from midpoint leftward)
             // Stack from the midpoint leftward in the exact order of selection
@@ -1079,11 +1139,13 @@ function downloadSVG() {
           
           // Grid line
           svg += '<line x1="0" y1="' + yPos + '" x2="' + chartWidth + '" y2="' + yPos + 
-                '" stroke="#e0e0e0" stroke-width="1" />\n';
+                '" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="3,3" />\n';
           
-          // Y-axis tick value
-          svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
-                tickValue + '</text>\n';
+          // Y-axis tick value - only show if Y axis numbers are enabled
+          if (chartConfig.showYAxisNumbers) {
+            svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
+                  tickValue + '</text>\n';
+          }
         }
         
       } else {
@@ -1154,7 +1216,7 @@ function downloadSVG() {
                 
                 // Grid line
                 svg += '<line x1="0" y1="' + yPos + '" x2="' + chartWidth + '" y2="' + yPos + 
-                      '" stroke="#e0e0e0" stroke-width="1" />\n';
+                      '" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="3,3" />\n';
                 
                 // Tick value
                 svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
@@ -1168,7 +1230,7 @@ function downloadSVG() {
                 
                 // Grid line
                 svg += '<line x1="0" y1="' + yPos + '" x2="' + chartWidth + '" y2="' + yPos + 
-                      '" stroke="#e0e0e0" stroke-width="1" />\n';
+                      '" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="3,3" />\n';
                 
                 // Tick value
                 svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
@@ -1265,9 +1327,11 @@ function downloadSVG() {
             });
           }
           
-          // Label for the bar
-          svg += '<text x="' + (barX + barWidth/2) + '" y="15" text-anchor="middle" font-size="12" transform="rotate(-45 ' + 
-                 (barX + barWidth/2) + ',15)">' + label + '</text>\n';
+          // Label for the bar - only show if X axis numbers are enabled
+          if (chartConfig.showXAxisNumbers) {
+            svg += '<text x="' + (barX + barWidth/2) + '" y="15" text-anchor="middle" font-size="12" transform="rotate(-45 ' + 
+                   (barX + barWidth/2) + ',15)">' + label + '</text>\n';
+          }
         });
         
         // Y-axis
@@ -1282,7 +1346,7 @@ function downloadSVG() {
           
           // Grid line
           svg += '<line x1="0" y1="' + yPos + '" x2="' + chartWidth + '" y2="' + yPos + 
-                '" stroke="#e0e0e0" stroke-width="1" />\n';
+                '" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="3,3" />\n';
           
           // Y-axis tick value
           svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
@@ -1320,7 +1384,7 @@ function downloadSVG() {
         
         // Grid line
         svg += '<line x1="0" y1="' + yPos + '" x2="' + chartWidth + '" y2="' + yPos + 
-               '" stroke="#e0e0e0" stroke-width="1" />\n';
+               '" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="3,3" />\n';
         
         // Tick value
         svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
@@ -1356,8 +1420,10 @@ function downloadSVG() {
         
         svg += '<circle cx="' + x + '" cy="' + y + '" r="4" fill="#8884d8" />\n';
         
-        // X-axis labels
-        svg += '<text x="' + x + '" y="15" text-anchor="middle" font-size="12" transform="rotate(-45 ' + x + ',15)">' + label + '</text>\n';
+        // X-axis labels - only show if X axis numbers are enabled
+        if (chartConfig.showXAxisNumbers) {
+          svg += '<text x="' + x + '" y="15" text-anchor="middle" font-size="12" transform="rotate(-45 ' + x + ',15)">' + label + '</text>\n';
+        }
         
         // Value labels (if enabled)
         if (chartConfig.showDataValues) {
