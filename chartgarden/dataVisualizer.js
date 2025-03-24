@@ -15,7 +15,8 @@ let chartConfig = {
   stackColumns: [],  // For stacked charts
   divergingEnabled: false,
   leftColumns: [],  // For diverging charts (negative values)
-  rightColumns: []  // For diverging charts (positive values)
+  rightColumns: [],  // For diverging charts (positive values)
+  showDataValues: false  // Whether to show data values on export
 };
 
 // Colors for charts
@@ -40,12 +41,29 @@ const regularStackOptions = document.getElementById('regular-stack-options');
 const divergingOptions = document.getElementById('diverging-options');
 const leftColumnsSelect = document.getElementById('left-columns');
 const rightColumnsSelect = document.getElementById('right-columns');
+const showDataValuesCheckbox = document.getElementById('show-data-values');
 const downloadSvgBtn = document.getElementById('download-svg');
 const tableBody = document.getElementById('table-body');
 const chartCanvas = document.getElementById('chart-canvas');
 
+// Add event listener to window for page refresh 
+window.addEventListener('pageshow', (event) => {
+  // pageshow fires on initial load and when navigating back to the page
+  // Check if the page is from cache (such as when using back/forward buttons)
+  if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+    // Reset all form elements if page was loaded from cache
+    resetFormElements();
+    // Re-render the chart with default settings
+    renderChart();
+    renderDataTable();
+  }
+});
+
 // Initialize the application
 function init() {
+  // Reset all form elements to default state
+  resetFormElements();
+  
   // Render the initial chart
   renderChart();
   
@@ -54,6 +72,33 @@ function init() {
   
   // Setup event listeners
   setupEventListeners();
+}
+
+// Reset all form elements to their default state
+function resetFormElements() {
+  // Reset chart type dropdown to default 'bar'
+  chartTypeSelect.value = 'bar';
+  chartConfig.chartType = 'bar';
+  
+  // Reset diverging chart checkbox
+  divergingEnabled.checked = false;
+  chartConfig.divergingEnabled = false;
+  
+  // Reset show data values checkbox
+  showDataValuesCheckbox.checked = false;
+  chartConfig.showDataValues = false;
+  
+  // Reset stack column selections
+  chartConfig.stackColumns = [];
+  chartConfig.leftColumns = [];
+  chartConfig.rightColumns = [];
+  
+  // Hide all stack-related elements
+  regularStackOptions.classList.add('hidden');
+  divergingOptions.classList.add('hidden');
+  
+  // Reset file input
+  csvUpload.value = '';
 }
 
 // Set up all event listeners
@@ -153,6 +198,11 @@ function setupEventListeners() {
     updateLeftColumnsOptions();
     
     renderChart();
+  });
+  
+  // Show data values checkbox
+  showDataValuesCheckbox.addEventListener('change', (e) => {
+    chartConfig.showDataValues = e.target.checked;
   });
   
   // Download button
@@ -397,10 +447,22 @@ function renderChart() {
   if (chartConfig.chartType === 'stackedBar' || chartConfig.chartType === 'stackedHorizontalBar') {
     // Handle both regular stacked and diverging stacked charts
     if (chartConfig.divergingEnabled) {
-      // For diverging charts, handle left and right sides separately
+      // For diverging charts, handle left and right sides with precise control over order
       
-      // Left columns (negative values)
-      chartConfig.leftColumns.forEach((column, index) => {
+      // Define the exact order of colors we want to use
+      // For a true diverging effect, we need to render the first selected column farthest from center
+      
+      // Process left columns in original selection order
+      // In Chart.js, the stacking order is determined by the order of datasets
+      // Since Chart.js renders datasets in reverse order (last dataset is at bottom/left),
+      // we need to add them in reverse order to get the first selected to be outermost
+      
+      // Create a shallow copy and reverse to change the stacking order without changing color assignment
+      [...chartConfig.leftColumns].reverse().forEach((column, revIndex) => {
+        // Calculate the original index to maintain color consistency
+        const originalIndex = chartConfig.leftColumns.length - 1 - revIndex;
+        const colorIndex = originalIndex % COLORS.length;
+        
         const columnData = data.map(item => {
           // Make left side values negative for diverging
           const value = item[column] || 0;
@@ -410,41 +472,40 @@ function renderChart() {
         datasets.push({
           label: column + ' (Left)',
           data: columnData,
-          backgroundColor: COLORS[index % COLORS.length],
-          borderColor: COLORS[index % COLORS.length],
+          backgroundColor: COLORS[colorIndex],
+          borderColor: COLORS[colorIndex],
           borderWidth: 1
         });
       });
       
-      // Right columns (positive values)
+      // Right columns also need to be in order that makes the first selected outermost
+      // Unlike left columns, we need to add right columns in original order
+      // This creates a "mirror" stacking effect where the first selections are on the outside
       chartConfig.rightColumns.forEach((column, index) => {
+        // Continue color sequence after leftColumns
+        const colorIndex = (index + chartConfig.leftColumns.length) % COLORS.length;
+        
         datasets.push({
           label: column + ' (Right)',
           data: data.map(item => item[column] || 0),
-          backgroundColor: COLORS[(index + chartConfig.leftColumns.length) % COLORS.length],
-          borderColor: COLORS[(index + chartConfig.leftColumns.length) % COLORS.length],
+          backgroundColor: COLORS[colorIndex],
+          borderColor: COLORS[colorIndex],
           borderWidth: 1
         });
       });
       
     } else {
       // Regular stacked chart
-      // First dataset is the main value
-      datasets.push({
-        label: chartConfig.valueKey,
-        data: values,
-        backgroundColor: COLORS[0],
-        borderColor: COLORS[0],
-        borderWidth: 1
-      });
+      // Create datasets in the exact order of selection
+      const allStackColumns = [chartConfig.valueKey, ...chartConfig.stackColumns];
       
-      // Add additional datasets for each stack column
-      chartConfig.stackColumns.forEach((column, index) => {
+      // Create datasets in the order they were selected
+      allStackColumns.forEach((column, index) => {
         datasets.push({
           label: column,
-          data: data.map(item => item[column]),
-          backgroundColor: COLORS[(index + 1) % COLORS.length],
-          borderColor: COLORS[(index + 1) % COLORS.length],
+          data: data.map(item => item[column] || 0),
+          backgroundColor: COLORS[index % COLORS.length],
+          borderColor: COLORS[index % COLORS.length],
           borderWidth: 1
         });
       });
@@ -567,18 +628,47 @@ function downloadSVG() {
     const width = canvas.width;
     const height = canvas.height;
     
-    // Create the SVG container
-    let svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + width + '" height="' + height + '" viewBox="0 0 ' + width + ' ' + height + '">\n';
+    // Get chart scales and axes info from Chart.js
+    const chartScales = chart.scales;
+    const xScale = chartScales.x;
+    const yScale = chartScales.y;
     
-    // Add white background
+    // Define base padding for chart elements
+    const basePadding = 30; // Original padding used throughout the code
+    
+    // Add additional padding for labels, legends, and axes that might be outside the chart area
+    const extraPadding = {
+      left: 80,    // Extra space for y-axis labels on the left
+      right: 120,  // Extra space for right side legends and labels
+      top: 50,     // Extra space for title or top legends
+      bottom: 80   // Extra space for x-axis labels, especially when rotated
+    };
+    
+    // Calculate the expanded dimensions to include everything
+    const totalWidth = width + extraPadding.left + extraPadding.right;
+    const totalHeight = height + extraPadding.top + extraPadding.bottom;
+    
+    // Create the SVG container with the expanded size
+    let svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + totalWidth + '" height="' + totalHeight + 
+              '" viewBox="0 0 ' + totalWidth + ' ' + totalHeight + '">\n';
+    
+    // Add white background for the entire expanded area
     svg += '<rect width="100%" height="100%" fill="white"/>\n';
+    
+    // Adjust the transform to account for the extra padding
+    const transformX = basePadding + extraPadding.left;
+    const transformY = basePadding + extraPadding.top;
+    
+    // For calculations throughout the function
+    const chartWidth = width - basePadding * 2;
+    const chartHeight = height - basePadding * 2;
     
     // Different SVG generation based on chart type
     if (chartConfig.chartType === 'pie' || chartConfig.chartType === 'doughnut') {
       // For pie/doughnut charts
-      const centerX = width / 2;
-      const centerY = height / 2;
-      const radius = Math.min(centerX, centerY) * 0.7;
+      const centerX = totalWidth / 2;
+      const centerY = totalHeight / 2;
+      const radius = Math.min(width, height) / 2 * 0.7; // Use original canvas dimensions for radius calculation
       const innerRadius = chartConfig.chartType === 'doughnut' ? radius * 0.5 : 0;
       
       // Calculate total for percentages
@@ -621,7 +711,7 @@ function downloadSVG() {
         const color = COLORS[index % COLORS.length];
         svg += '<path d="' + path + '" fill="' + color + '" stroke="white" stroke-width="1" />\n';
         
-        // Add label if there's enough space
+        // Always add name label if there's enough space
         if (percentage > 0.05) {
           const labelAngle = startAngle + (endAngle - startAngle) / 2;
           const labelRadius = (radius + innerRadius) / 2 + 20;
@@ -629,6 +719,13 @@ function downloadSVG() {
           const labelY = Math.sin(labelAngle) * labelRadius;
           const name = item[chartConfig.nameKey];
           svg += '<text x="' + labelX + '" y="' + labelY + '" text-anchor="middle" alignment-baseline="middle" font-size="12" fill="black">' + name + '</text>\n';
+          
+          // Add value if enabled and there's enough space
+          if (chartConfig.showDataValues && percentage > 0.08) {
+            const valueX = Math.cos(labelAngle) * (labelRadius - 15);
+            const valueY = Math.sin(labelAngle) * (labelRadius - 15);
+            svg += '<text x="' + valueX + '" y="' + valueY + '" text-anchor="middle" alignment-baseline="middle" font-size="11" fill="black">' + value + '</text>\n';
+          }
         }
         
         startAngle = endAngle;
@@ -644,12 +741,26 @@ function downloadSVG() {
       
       // Calculate scales
       const maxValue = Math.max(...values, 0);
-      const padding = 30;
-      const chartWidth = width - padding * 2;
-      const chartHeight = height - padding * 2;
       
       // Draw axes
-      svg += '<g transform="translate(' + padding + ',' + (height - padding) + ')">\n';
+      svg += '<g transform="translate(' + transformX + ',' + (totalHeight - transformY) + ')">\n';
+      
+      // Draw grid lines for y axis
+      const yTickCount = 5;
+      const yTickStep = chartHeight / yTickCount;
+      
+      for (let i = 0; i <= yTickCount; i++) {
+        const yPos = -i * yTickStep;
+        const yValue = Math.round((i / yTickCount) * maxValue);
+        
+        // Grid line
+        svg += '<line x1="0" y1="' + yPos + '" x2="' + chartWidth + '" y2="' + yPos + 
+               '" stroke="#e0e0e0" stroke-width="1" />\n';
+        
+        // Tick value
+        svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
+               yValue + '</text>\n';
+      }
       
       // X-axis
       svg += '<line x1="0" y1="0" x2="' + chartWidth + '" y2="0" stroke="black" stroke-width="1" />\n';
@@ -668,7 +779,11 @@ function downloadSVG() {
           
           svg += '<rect x="0" y="' + barY + '" width="' + barWidth + '" height="' + barHeight + '" fill="' + color + '" />\n';
           svg += '<text x="-5" y="' + (barY + barHeight/2) + '" text-anchor="end" alignment-baseline="middle" font-size="12">' + label + '</text>\n';
-          svg += '<text x="' + (barWidth + 5) + '" y="' + (barY + barHeight/2) + '" text-anchor="start" alignment-baseline="middle" font-size="12">' + barValue + '</text>\n';
+          
+          // Only show value if enabled
+          if (chartConfig.showDataValues) {
+            svg += '<text x="' + (barWidth + 5) + '" y="' + (barY + barHeight/2) + '" text-anchor="start" alignment-baseline="middle" font-size="12">' + barValue + '</text>\n';
+          }
         });
         
         // Y-axis
@@ -688,7 +803,11 @@ function downloadSVG() {
           
           svg += '<rect x="' + barX + '" y="' + (-barHeight) + '" width="' + barWidth + '" height="' + barHeight + '" fill="' + color + '" />\n';
           svg += '<text x="' + (barX + barWidth/2) + '" y="15" text-anchor="middle" font-size="12" transform="rotate(-45 ' + (barX + barWidth/2) + ',15)">' + label + '</text>\n';
-          svg += '<text x="' + (barX + barWidth/2) + '" y="' + (-barHeight - 5) + '" text-anchor="middle" font-size="12">' + barValue + '</text>\n';
+          
+          // Only show data value if enabled
+          if (chartConfig.showDataValues) {
+            svg += '<text x="' + (barX + barWidth/2) + '" y="' + (-barHeight - 5) + '" text-anchor="middle" font-size="12">' + barValue + '</text>\n';
+          }
         });
         
         // Y-axis
@@ -736,23 +855,74 @@ function downloadSVG() {
         maxTotal = Math.max(...totals, 0);
       }
       
-      const padding = 30;
-      const chartWidth = width - padding * 2;
-      const chartHeight = height - padding * 2;
+      // Define centerX for all horizontal chart types
+      const centerX = chartWidth / 2;
       
       // Draw axes based on chart type
       if (isDiverging && isHorizontal) {
-        // For diverging horizontal charts, we need to center the coordinate system
-        const centerX = chartWidth / 2;
-        svg += '<g transform="translate(' + centerX + ',' + (height - padding) + ')">\n';
+        // For diverging horizontal charts, align at the left edge rather than center
+        svg += '<g transform="translate(' + transformX + ',' + (totalHeight - transformY) + ')">\n';
         
-        // X-axis spanning both directions
-        svg += '<line x1="' + (-centerX) + '" y1="0" x2="' + centerX + '" y2="0" stroke="black" stroke-width="1" />\n';
-        // Center reference line
-        svg += '<line x1="0" y1="0" x2="0" y2="' + (-chartHeight) + '" stroke="black" stroke-width="1" stroke-dasharray="3,3" />\n';
+        // X-axis spanning the width
+        svg += '<line x1="0" y1="0" x2="' + chartWidth + '" y2="0" stroke="black" stroke-width="1" />\n';
+        
+        // Add a midpoint line
+        const midpointX = chartWidth * 0.5;
+        
+        // Grid lines for y axis
+        const yTickCount = 5;
+        const yTickStep = chartHeight / yTickCount;
+      
+        for (let i = 0; i <= yTickCount; i++) {
+          const yPos = -i * yTickStep;
+          
+          // Calculate appropriate percentage of maxTotal
+          const tickValue = Math.round((i / yTickCount) * maxTotal);
+          
+          // Grid lines spanning the chart width
+          svg += '<line x1="0" y1="' + yPos + '" x2="' + chartWidth + '" y2="' + yPos + 
+                '" stroke="#e0e0e0" stroke-width="1" />\n';
+          
+          // Tick values on left side (behind the axis)
+          svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
+                tickValue + '</text>\n';
+                
+          // Add tick values at the midpoint
+          svg += '<text x="' + (midpointX + 5) + '" y="' + yPos + '" text-anchor="start" alignment-baseline="middle" font-size="10">' + 
+                tickValue + '</text>\n';
+        }
+        
+        // We need to define barHeight and barSpacing here before using them
+        const barHeight = chartHeight / labels.length * 0.8;
+        const barSpacing = chartHeight / labels.length * 0.2;
+        
+        // Add horizontal grid lines for each bar
+        labels.forEach((label, idx) => {
+          const barY = -chartHeight + idx * (barHeight + barSpacing) + barHeight/2;
+          // Horizontal gridline extending through this bar's position
+          svg += '<line x1="0" y1="' + barY + '" x2="' + chartWidth + '" y2="' + barY + 
+                '" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="3,3" />\n';
+        });
       } else {
         // For regular charts or vertical diverging
-        svg += '<g transform="translate(' + padding + ',' + (height - padding) + ')">\n';
+        svg += '<g transform="translate(' + transformX + ',' + (totalHeight - transformY) + ')">\n';
+        
+        // Draw grid lines for y axis
+        const yTickCount = 5;
+        const yTickStep = chartHeight / yTickCount;
+        
+        for (let i = 0; i <= yTickCount; i++) {
+          const yPos = -i * yTickStep;
+          const yValue = Math.round((i / yTickCount) * maxTotal);
+          
+          // Grid line
+          svg += '<line x1="0" y1="' + yPos + '" x2="' + chartWidth + '" y2="' + yPos + 
+                 '" stroke="#e0e0e0" stroke-width="1" />\n';
+          
+          // Tick value
+          svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
+                 yValue + '</text>\n';
+        }
         
         // X-axis
         svg += '<line x1="0" y1="0" x2="' + chartWidth + '" y2="0" stroke="black" stroke-width="1" />\n';
@@ -763,15 +933,41 @@ function downloadSVG() {
         const barHeight = chartHeight / labels.length * 0.8;
         const barSpacing = chartHeight / labels.length * 0.2;
         
-        // Legend at the top
-        svg += '<g transform="translate(' + (chartWidth - 100) + ', ' + (-chartHeight) + ')">\n';
-        svg += '<rect width="100" height="' + (allColumns.length * 20 + 10) + '" fill="white" stroke="black" stroke-width="0.5" opacity="0.8" />\n';
+        // Legend at the top - structured to match the selection order
+        svg += '<g transform="translate(' + (chartWidth - 150) + ', ' + (-chartHeight) + ')">\n';
         
-        allColumns.forEach((col, idx) => {
-          const color = COLORS[idx % COLORS.length];
-          svg += '<rect x="5" y="' + (idx * 20 + 5) + '" width="15" height="15" fill="' + color + '" />\n';
-          svg += '<text x="25" y="' + (idx * 20 + 17) + '" font-size="12">' + col + '</text>\n';
-        });
+        // Calculate exact height based on the columns we'll show
+        const legendHeight = isDiverging ? 
+          (chartConfig.leftColumns.length + chartConfig.rightColumns.length) * 20 + 10 :
+          allColumns.length * 20 + 10;
+        
+        svg += '<rect width="150" height="' + legendHeight + '" fill="white" stroke="black" stroke-width="0.5" opacity="0.8" />\n';
+        
+        if (isDiverging) {
+          // For diverging chart, maintain the specific order of selection for the legend
+          // First left columns (in original selection order)
+          chartConfig.leftColumns.forEach((col, idx) => {
+            const color = COLORS[idx % COLORS.length];
+            svg += '<rect x="5" y="' + (idx * 20 + 5) + '" width="15" height="15" fill="' + color + '" />\n';
+            svg += '<text x="25" y="' + (idx * 20 + 17) + '" font-size="12">' + col + ' (Left)</text>\n';
+          });
+          
+          // Then right columns
+          chartConfig.rightColumns.forEach((col, idx) => {
+            const rowIndex = idx + chartConfig.leftColumns.length;
+            const colorIndex = (idx + chartConfig.leftColumns.length) % COLORS.length;
+            const color = COLORS[colorIndex];
+            svg += '<rect x="5" y="' + (rowIndex * 20 + 5) + '" width="15" height="15" fill="' + color + '" />\n';
+            svg += '<text x="25" y="' + (rowIndex * 20 + 17) + '" font-size="12">' + col + ' (Right)</text>\n';
+          });
+        } else {
+          // For regular stacked chart - use the order defined in allColumns
+          allColumns.forEach((col, idx) => {
+            const color = COLORS[idx % COLORS.length];
+            svg += '<rect x="5" y="' + (idx * 20 + 5) + '" width="15" height="15" fill="' + color + '" />\n';
+            svg += '<text x="25" y="' + (idx * 20 + 17) + '" font-size="12">' + col + '</text>\n';
+          });
+        }
         
         svg += '</g>\n';
         
@@ -780,65 +976,84 @@ function downloadSVG() {
           let currentX = 0;
           
           if (isDiverging) {
-            // For diverging chart, start from the middle (x=0)
-            currentX = 0;
+            // For diverging chart, use the mid-point divider we defined earlier
+            const midpointX = chartWidth * 0.5; // Middle of the chart width
             
-            // Draw left columns (negative values)
+            // Add a mid-point reference line (divider) if not already added
+            svg += '<line x1="' + midpointX + '" y1="0" x2="' + midpointX + '" y2="' + (-chartHeight) + 
+                   '" stroke="black" stroke-width="1" stroke-dasharray="3,3" />\n';
+            
+            // Draw left columns (from midpoint leftward)
+            // Stack from the midpoint leftward in the exact order of selection
+            // This ensures the first selected column is always the furthest left
             let leftStackPosition = 0;
-            [...chartConfig.leftColumns].forEach((col, colIndex) => {
+            
+            // Process the selected left columns in reverse order for stacking
+            // This way, the first selected item will be at the outermost left position
+            [...chartConfig.leftColumns].reverse().forEach((col, revIndex) => {
+              // Calculate the original index in the non-reversed array
+              const colIndex = chartConfig.leftColumns.length - 1 - revIndex;
+              
               const value = data[index][col] || 0;
-              const barWidth = (value / maxTotal) * chartWidth;
-              const barX = -leftStackPosition - barWidth; // Stack from right to left
+              const barWidth = (value / maxTotal) * chartWidth * 0.5; // Use half the width for each side
               const barY = -chartHeight + index * (barHeight + barSpacing);
+              // Match the color to the dataset for this column
               const color = COLORS[colIndex % COLORS.length];
+              
+              // Position bars to grow from the midpoint leftward
+              const barX = midpointX - leftStackPosition - barWidth;
               
               svg += '<rect x="' + barX + '" y="' + barY + '" width="' + barWidth + 
                      '" height="' + barHeight + '" fill="' + color + '" stroke="white" stroke-width="0.5" />\n';
               
-              // Only add text if there's enough space
-              if (barWidth > 30) {
+              // Only add text if enabled and there's enough space
+              if (chartConfig.showDataValues && barWidth > 30) {
                 svg += '<text x="' + (barX + barWidth/2) + '" y="' + (barY + barHeight/2) + 
                        '" text-anchor="middle" font-size="11" fill="white">' + value + '</text>\n';
               }
               
-              leftStackPosition += barWidth; // Update stacking position for next column
+              leftStackPosition += barWidth; // Stack from right to left
             });
             
-            // Reset currentX to start right columns from zero
-            currentX = 0;
+            // Draw right columns (from midpoint rightward)
+            currentX = midpointX; // Start at the midpoint
             
-            // Draw right columns (positive values)
+            // Process right columns in forward order (unlike left columns)
+            // This way, the first item will be closest to the midpoint
             chartConfig.rightColumns.forEach((col, colIndex) => {
               const value = data[index][col] || 0;
-              const barWidth = (value / maxTotal) * chartWidth;
+              const barWidth = (value / maxTotal) * chartWidth * 0.5; // Use half the width for each side
               const barY = -chartHeight + index * (barHeight + barSpacing);
+              // Match the color to the dataset for this column
               const color = COLORS[(colIndex + chartConfig.leftColumns.length) % COLORS.length];
               
               svg += '<rect x="' + currentX + '" y="' + barY + '" width="' + barWidth + 
                      '" height="' + barHeight + '" fill="' + color + '" stroke="white" stroke-width="0.5" />\n';
               
-              // Only add text if there's enough space
-              if (barWidth > 30) {
+              // Only add text if enabled and there's enough space
+              if (chartConfig.showDataValues && barWidth > 30) {
                 svg += '<text x="' + (currentX + barWidth/2) + '" y="' + (barY + barHeight/2) + 
                        '" text-anchor="middle" font-size="11" fill="white">' + value + '</text>\n';
               }
               
-              currentX += barWidth;
+              currentX += barWidth; // Stack from left to right
             });
           } else {
             // For regular stacked chart
-            // Draw each segment for this data point
+            // Draw each segment for this data point in the exact order of selection
+            // allColumns already contains [valueKey, ...stackColumns] in the correct order
             allColumns.forEach((col, colIndex) => {
               const value = data[index][col] || 0;
               const barWidth = (value / maxTotal) * chartWidth;
               const barY = -chartHeight + index * (barHeight + barSpacing);
+              // Use the same color index as in the datasets for consistency
               const color = COLORS[colIndex % COLORS.length];
               
               svg += '<rect x="' + currentX + '" y="' + barY + '" width="' + barWidth + 
                      '" height="' + barHeight + '" fill="' + color + '" stroke="white" stroke-width="0.5" />\n';
               
-              // Only add text if there's enough space
-              if (barWidth > 30) {
+              // Only add text if enabled and there's enough space
+              if (chartConfig.showDataValues && barWidth > 30) {
                 svg += '<text x="' + (currentX + barWidth/2) + '" y="' + (barY + barHeight/2) + 
                        '" text-anchor="middle" font-size="11" fill="white">' + value + '</text>\n';
               }
@@ -847,28 +1062,70 @@ function downloadSVG() {
             });
           }
           
-          // Label for the bar
+          // Label for the bar - place behind the Y axis for all horizontal charts
           svg += '<text x="-5" y="' + ((-chartHeight + index * (barHeight + barSpacing)) + barHeight/2) + 
-                 '" text-anchor="end" alignment-baseline="middle" font-size="12">' + label + '</text>\n';
+                '" text-anchor="end" alignment-baseline="middle" font-size="12">' + label + '</text>\n';
         });
         
         // Y-axis
         svg += '<line x1="0" y1="0" x2="0" y2="' + (-chartHeight) + '" stroke="black" stroke-width="1" />\n';
+        
+        // Horizontal grid lines for easier reading
+        const yTickCount = 5;
+        const yTickStep = chartHeight / yTickCount;
+        for (let i = 1; i <= yTickCount; i++) {
+          const yPos = -i * yTickStep;
+          const tickValue = Math.round((i / yTickCount) * maxTotal);
+          
+          // Grid line
+          svg += '<line x1="0" y1="' + yPos + '" x2="' + chartWidth + '" y2="' + yPos + 
+                '" stroke="#e0e0e0" stroke-width="1" />\n';
+          
+          // Y-axis tick value
+          svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
+                tickValue + '</text>\n';
+        }
         
       } else {
         // Vertical stacked bars
         const barWidth = chartWidth / labels.length * 0.8;
         const barSpacing = chartWidth / labels.length * 0.2;
         
-        // Legend at the top
-        svg += '<g transform="translate(' + (chartWidth - 100) + ', ' + (-chartHeight) + ')">\n';
-        svg += '<rect width="100" height="' + (allColumns.length * 20 + 10) + '" fill="white" stroke="black" stroke-width="0.5" opacity="0.8" />\n';
+        // Legend at the top - structured to match the selection order
+        svg += '<g transform="translate(' + (chartWidth - 150) + ', ' + (-chartHeight) + ')">\n';
         
-        allColumns.forEach((col, idx) => {
-          const color = COLORS[idx % COLORS.length];
-          svg += '<rect x="5" y="' + (idx * 20 + 5) + '" width="15" height="15" fill="' + color + '" />\n';
-          svg += '<text x="25" y="' + (idx * 20 + 17) + '" font-size="12">' + col + '</text>\n';
-        });
+        // Calculate exact height based on the columns we'll show
+        const legendHeight = isDiverging ? 
+          (chartConfig.leftColumns.length + chartConfig.rightColumns.length) * 20 + 10 :
+          allColumns.length * 20 + 10;
+        
+        svg += '<rect width="150" height="' + legendHeight + '" fill="white" stroke="black" stroke-width="0.5" opacity="0.8" />\n';
+        
+        if (isDiverging) {
+          // For diverging chart, maintain the specific order of selection for the legend
+          // First left columns (in original selection order)
+          chartConfig.leftColumns.forEach((col, idx) => {
+            const color = COLORS[idx % COLORS.length];
+            svg += '<rect x="5" y="' + (idx * 20 + 5) + '" width="15" height="15" fill="' + color + '" />\n';
+            svg += '<text x="25" y="' + (idx * 20 + 17) + '" font-size="12">' + col + ' (Left)</text>\n';
+          });
+          
+          // Then right columns
+          chartConfig.rightColumns.forEach((col, idx) => {
+            const rowIndex = idx + chartConfig.leftColumns.length;
+            const colorIndex = (idx + chartConfig.leftColumns.length) % COLORS.length;
+            const color = COLORS[colorIndex];
+            svg += '<rect x="5" y="' + (rowIndex * 20 + 5) + '" width="15" height="15" fill="' + color + '" />\n';
+            svg += '<text x="25" y="' + (rowIndex * 20 + 17) + '" font-size="12">' + col + ' (Right)</text>\n';
+          });
+        } else {
+          // For regular stacked chart - use the order defined in allColumns
+          allColumns.forEach((col, idx) => {
+            const color = COLORS[idx % COLORS.length];
+            svg += '<rect x="5" y="' + (idx * 20 + 5) + '" width="15" height="15" fill="' + color + '" />\n';
+            svg += '<text x="25" y="' + (idx * 20 + 17) + '" font-size="12">' + col + '</text>\n';
+          });
+        }
         
         svg += '</g>\n';
         
@@ -878,31 +1135,78 @@ function downloadSVG() {
           
           if (isDiverging) {
             // For diverging chart
-            // Add a zero reference line
+            // Add a zero reference line and Y-axis gridlines
             if (index === 0) {
-              // Add a horizontal reference line at the middle
-              const zeroY = -chartHeight / 2;
+              // Add grid lines for Y axis on both sides of the zero line
+              const yTickCount = 5;
+              const halfChartHeight = chartHeight / 2;
+              const yTickStep = halfChartHeight / yTickCount;
+              
+              // Middle zero line
+              const zeroY = -halfChartHeight;
               svg += '<line x1="0" y1="' + zeroY + '" x2="' + chartWidth + '" y2="' + zeroY + 
                      '" stroke="black" stroke-width="1" stroke-dasharray="3,3" />\n';
+                     
+              // Gridlines below zero (negative values)
+              for (let i = 1; i <= yTickCount; i++) {
+                const yPos = zeroY + (i * yTickStep);
+                const tickValue = Math.round((i / yTickCount) * maxTotal);
+                
+                // Grid line
+                svg += '<line x1="0" y1="' + yPos + '" x2="' + chartWidth + '" y2="' + yPos + 
+                      '" stroke="#e0e0e0" stroke-width="1" />\n';
+                
+                // Tick value
+                svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
+                      tickValue + '</text>\n';
+              }
+              
+              // Gridlines above zero (positive values)
+              for (let i = 1; i <= yTickCount; i++) {
+                const yPos = zeroY - (i * yTickStep);
+                const tickValue = Math.round((i / yTickCount) * maxTotal);
+                
+                // Grid line
+                svg += '<line x1="0" y1="' + yPos + '" x2="' + chartWidth + '" y2="' + yPos + 
+                      '" stroke="#e0e0e0" stroke-width="1" />\n';
+                
+                // Tick value
+                svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
+                      tickValue + '</text>\n';
+              }
+              
+              // Add vertical gridlines for each bar position
+              for (let i = 0; i < labels.length; i++) {
+                const barXPos = i * (barWidth + barSpacing) + barWidth/2;
+                svg += '<line x1="' + barXPos + '" y1="0" x2="' + barXPos + '" y2="' + (-chartHeight) + 
+                      '" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="3,3" />\n';
+              }
             }
             
             // Calculate zero line position - middle of the chart height
             const zeroY = -chartHeight / 2;
             
             // Draw left columns (down from zero - negative)
+            // In exact order of selection
             let negativeHeight = 0;
             
-            chartConfig.leftColumns.forEach((col, colIndex) => {
+            // For vertical stacking, we need to consider the visual effect
+            // In a diverging chart, we want the first selected column to be the outermost
+            // We need to reverse the order for the left columns to match what we do in the Chart.js rendering
+            [...chartConfig.leftColumns].reverse().forEach((col, revIndex) => {
+              // Get the original index to maintain color consistency
+              const colIndex = chartConfig.leftColumns.length - 1 - revIndex;
               const value = data[index][col] || 0;
               const segmentHeight = (value / maxTotal) * (chartHeight / 2); // Half height for each direction
+              // Match color to the dataset for this column
               const color = COLORS[colIndex % COLORS.length];
               
               svg += '<rect x="' + barX + '" y="' + (zeroY + negativeHeight) + 
                      '" width="' + barWidth + '" height="' + segmentHeight + 
                      '" fill="' + color + '" stroke="white" stroke-width="0.5" />\n';
               
-              // Only add text if there's enough space
-              if (segmentHeight > 20) {
+              // Only add text if enabled and there's enough space
+              if (chartConfig.showDataValues && segmentHeight > 20) {
                 svg += '<text x="' + (barX + barWidth/2) + '" y="' + (zeroY + negativeHeight + segmentHeight/2) + 
                        '" text-anchor="middle" font-size="11" fill="white">' + value + '</text>\n';
               }
@@ -911,19 +1215,24 @@ function downloadSVG() {
             });
             
             // Draw right columns (up from zero - positive)
+            // In exact order of selection
             let positiveHeight = 0;
             
+            // For right columns, we need to consider the stack direction
+            // In a consistent diverging chart, we want the first selected column to be the outermost
+            // For consistency, process the columns in original order
             chartConfig.rightColumns.forEach((col, colIndex) => {
               const value = data[index][col] || 0;
               const segmentHeight = (value / maxTotal) * (chartHeight / 2);
+              // Match color to the dataset for this column
               const color = COLORS[(colIndex + chartConfig.leftColumns.length) % COLORS.length];
               
               svg += '<rect x="' + barX + '" y="' + (zeroY - positiveHeight - segmentHeight) + 
                      '" width="' + barWidth + '" height="' + segmentHeight + 
                      '" fill="' + color + '" stroke="white" stroke-width="0.5" />\n';
               
-              // Only add text if there's enough space
-              if (segmentHeight > 20) {
+              // Only add text if enabled and there's enough space
+              if (chartConfig.showDataValues && segmentHeight > 20) {
                 svg += '<text x="' + (barX + barWidth/2) + '" y="' + (zeroY - positiveHeight - segmentHeight/2) + 
                        '" text-anchor="middle" font-size="11" fill="white">' + value + '</text>\n';
               }
@@ -931,21 +1240,23 @@ function downloadSVG() {
               positiveHeight += segmentHeight;
             });
           } else {
-            // For regular stacked chart
+            // For regular stacked chart in the order of column selection
             let currentHeight = 0;
             
-            // Draw each segment for this data point
+            // Draw each segment for this data point in the exact order of selection
+            // allColumns already contains [valueKey, ...stackColumns] in the correct order
             allColumns.forEach((col, colIndex) => {
               const value = data[index][col] || 0;
               const segmentHeight = (value / maxTotal) * chartHeight;
+              // Use the same color index as in the datasets for consistency
               const color = COLORS[colIndex % COLORS.length];
               
               svg += '<rect x="' + barX + '" y="' + (-currentHeight - segmentHeight) + 
                      '" width="' + barWidth + '" height="' + segmentHeight + 
                      '" fill="' + color + '" stroke="white" stroke-width="0.5" />\n';
               
-              // Only add text if there's enough space
-              if (segmentHeight > 20) {
+              // Only add text if enabled and there's enough space
+              if (chartConfig.showDataValues && segmentHeight > 20) {
                 svg += '<text x="' + (barX + barWidth/2) + '" y="' + (-currentHeight - segmentHeight/2) + 
                        '" text-anchor="middle" font-size="11" fill="white">' + value + '</text>\n';
               }
@@ -961,6 +1272,29 @@ function downloadSVG() {
         
         // Y-axis
         svg += '<line x1="0" y1="0" x2="0" y2="' + (-chartHeight) + '" stroke="black" stroke-width="1" />\n';
+        
+        // Add horizontal gridlines for vertical bars
+        const yTickCount = 5;
+        const yTickStep = chartHeight / yTickCount;
+        for (let i = 1; i <= yTickCount; i++) {
+          const yPos = -i * yTickStep;
+          const tickValue = Math.round((i / yTickCount) * maxTotal);
+          
+          // Grid line
+          svg += '<line x1="0" y1="' + yPos + '" x2="' + chartWidth + '" y2="' + yPos + 
+                '" stroke="#e0e0e0" stroke-width="1" />\n';
+          
+          // Y-axis tick value
+          svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
+                tickValue + '</text>\n';
+        }
+        
+        // Add vertical gridlines at each bar position
+        labels.forEach((label, idx) => {
+          const barX = idx * (barWidth + barSpacing) + barWidth/2;
+          svg += '<line x1="' + barX + '" y1="0" x2="' + barX + '" y2="' + (-chartHeight) + 
+                '" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="3,3" />\n';
+        });
       }
       
       svg += '</g>\n';
@@ -972,15 +1306,36 @@ function downloadSVG() {
       
       // Calculate scales
       const maxValue = Math.max(...values, 0);
-      const padding = 30;
-      const chartWidth = width - padding * 2;
-      const chartHeight = height - padding * 2;
       
       // Draw axes
-      svg += '<g transform="translate(' + padding + ',' + (height - padding) + ')">\n';
+      svg += '<g transform="translate(' + transformX + ',' + (totalHeight - transformY) + ')">\n';
       
-      // X-axis
+      // Draw grid lines for both axes
+      const yTickCount = 5;
+      const yTickStep = chartHeight / yTickCount;
+      
+      for (let i = 0; i <= yTickCount; i++) {
+        const yPos = -i * yTickStep;
+        const yValue = Math.round((i / yTickCount) * maxValue);
+        
+        // Grid line
+        svg += '<line x1="0" y1="' + yPos + '" x2="' + chartWidth + '" y2="' + yPos + 
+               '" stroke="#e0e0e0" stroke-width="1" />\n';
+        
+        // Tick value
+        svg += '<text x="-5" y="' + yPos + '" text-anchor="end" alignment-baseline="middle" font-size="10">' + 
+               yValue + '</text>\n';
+      }
+      
+      // X-axis with ticks
       svg += '<line x1="0" y1="0" x2="' + chartWidth + '" y2="0" stroke="black" stroke-width="1" />\n';
+      
+      // Add vertical grid lines for each data point
+      labels.forEach((label, index) => {
+        const x = index * (chartWidth / (labels.length - 1));
+        svg += '<line x1="' + x + '" y1="0" x2="' + x + '" y2="' + (-chartHeight) + 
+               '" stroke="#e0e0e0" stroke-width="1" stroke-dasharray="3,3" />\n';
+      });
       
       // Y-axis
       svg += '<line x1="0" y1="0" x2="0" y2="' + (-chartHeight) + '" stroke="black" stroke-width="1" />\n';
@@ -1004,8 +1359,10 @@ function downloadSVG() {
         // X-axis labels
         svg += '<text x="' + x + '" y="15" text-anchor="middle" font-size="12" transform="rotate(-45 ' + x + ',15)">' + label + '</text>\n';
         
-        // Value labels
-        svg += '<text x="' + x + '" y="' + (y - 10) + '" text-anchor="middle" font-size="12">' + values[index] + '</text>\n';
+        // Value labels (if enabled)
+        if (chartConfig.showDataValues) {
+          svg += '<text x="' + x + '" y="' + (y - 10) + '" text-anchor="middle" font-size="12">' + values[index] + '</text>\n';
+        }
       });
       
       svg += '</g>\n';
