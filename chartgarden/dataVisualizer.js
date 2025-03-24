@@ -20,8 +20,8 @@ let chartConfig = {
 
 // Colors for charts
 const COLORS = [
-  '#8884d8', '#83a6ed', '#8dd1e1', '#82ca9d', 
-  '#a4de6c', '#d0ed57', '#ffc658', '#ff8a65'
+  '#DF8E99', '#E39162', '#83B171', '#53AFDC', 
+  '#9A9EEC', '#C198BD', '#90A6CA', '#A5A5A5'
 ];
 
 // Chart instance
@@ -41,7 +41,6 @@ const divergingOptions = document.getElementById('diverging-options');
 const leftColumnsSelect = document.getElementById('left-columns');
 const rightColumnsSelect = document.getElementById('right-columns');
 const downloadSvgBtn = document.getElementById('download-svg');
-const downloadCsvBtn = document.getElementById('download-csv');
 const tableBody = document.getElementById('table-body');
 const chartCanvas = document.getElementById('chart-canvas');
 
@@ -156,9 +155,8 @@ function setupEventListeners() {
     renderChart();
   });
   
-  // Download buttons
+  // Download button
   downloadSvgBtn.addEventListener('click', downloadSVG);
-  downloadCsvBtn.addEventListener('click', downloadCSV);
 }
 
 // Handle CSV file upload
@@ -1026,20 +1024,6 @@ function downloadSVG() {
   }
 }
 
-// Download data as CSV
-function downloadCSV() {
-  const csv = Papa.unparse(data);
-  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-  const url = URL.createObjectURL(blob);
-  
-  const link = document.createElement('a');
-  link.setAttribute('href', url);
-  link.setAttribute('download', 'data.csv');
-  
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
 
 // Initialize the application when DOM is loaded
 document.addEventListener('DOMContentLoaded', init);
