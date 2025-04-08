@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualization Workshop - Tell Stories with Charts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #6B73FF 0%, #000DFF 50%, #0085FF 100%);
+        }
+        .chart-icon {
+            transition: all 0.3s ease;
+        }
+        .chart-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Hero Section -->
+    <div class="gradient-bg text-white py-20 px-4">
+        <div class="container mx-auto max-w-6xl flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Tell Stories with Data</h1>
+                <p class="text-xl mb-8 opacity-90">Transform your charts from confusing to crystal clear in this hands-on visualization workshop</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#register" class="bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg text-center transition duration-300">
+                        Book Your Spot
+                    </a>
+                    <a href="#learn-more" class="border-2 border-white hover:bg-white hover:text-blue-600 font-bold py-3 px-6 rounded-lg text-center transition duration-300">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative w-64 h-64">
+                    <div class="absolute top-0 left-0 bg-white bg-opacity-20 rounded-xl w-24 h-24 flex items-center justify-center animate-float">
+                        <i class="fas fa-chart-pie text-4xl text-white"></i>
+                    </div>
+                    <div class="absolute top-10 right-0 bg-white bg-opacity-20 rounded-xl w-20 h-20 flex items-center justify-center animate-float" style="animation-delay: 0.5s;">
+                        <i class="fas fa-chart-bar text-3xl text-white"></i>
+                    </div>
+                    <div class="absolute bottom-0 left-10 bg-white bg-opacity-20 rounded-xl w-28 h-28 flex items-center justify-center animate-float" style="animation-delay: 1s;">
+                        <i class="fas fa-chart-line text-5xl text-white"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- What You'll Learn -->
+    <div id="learn-more" class="py-16 px-4 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">What You'll Learn</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="feature-card bg-white p-8 rounded-xl shadow-lg border border-gray-100 transition duration-300">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-lightbulb text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-center text-gray-800">Key Principles</h3>
+                    <p class="text-gray-600 text-center">Understand the fundamentals of effective data visualization that tells a story rather than just showing numbers.</p>
+                </div>
+                
+                <div class="feature-card bg-white p-8 rounded-xl shadow-lg border border-gray-100 transition duration-300">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-chart-simple text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-center text-gray-800">Right Chart Selection</h3>
+                    <p class="text-gray-600 text-center">Learn which chart types work best for different kinds of data and different storytelling objectives.</p>
+                </div>
+                
+                <div class="feature-card bg-white p-8 rounded-xl shadow-lg border border-gray-100 transition duration-300">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-palette text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-center text-gray-800">Visual Design</h3>
+                    <p class="text-gray-600 text-center">Master the use of colors, text, and annotations to create clarity and focus in your visualizations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Who It's For -->
+    <div class="py-16 px-4 bg-gray-50">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Who This Workshop Is For</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-table text-blue-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800">Data Analysts</h3>
+                    </div>
+                    <p class="text-gray-600">Struggling to turn Excel findings into compelling visualizations that stakeholders will understand.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-edit text-purple-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800">Editors</h3>
+                    </div>
+                    <p class="text-gray-600">Wanting to assess whether charts effectively convey messages in reports and publications.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-paint-brush text-green-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800">Designers</h3>
+                    </div>
+                    <p class="text-gray-600">Skilled at aesthetics but challenged when creating clear narratives with data.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-blue-50 border border-blue-100 rounded-lg p-6 max-w-3xl mx-auto">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-info-circle text-blue-500 text-2xl mt-1"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold text-blue-800">No Prior Knowledge Required</h3>
+                        <p class="text-blue-700 mt-1">Familiarity with Excel is helpful but not essential. We'll start with the basics and build up.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Workshop Format -->
+    <div class="py-16 px-4 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Workshop Format</h2>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                        <div class="flex items-center mb-6">
+                            <div class="w-14 h-14 gradient-bg rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-clock text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">1.5-2 Hour Online Session</h3>
+                        </div>
+                        
+                        <div class="flex items-center mb-6">
+                            <div class="w-14 h-14 gradient-bg rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-laptop text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Interactive & Practical</h3>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-14 h-14 gradient-bg rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-question-circle text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Includes Q&A Session</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-xl border border-gray-200">
+                        <h3 class="text-xl font-bold mb-4 text-gray-800">What You'll Need</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                                <span>Some time to focus and learn</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                                <span>A bit of money for the workshop fee</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                                <span>Paper and colored pencils for exercises</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-3"></i>
+                                <span>Optional: Basic Excel knowledge (not required)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upcoming Dates -->
+    <div id="register" class="py-16 px-4 bg-gray-50">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Upcoming Workshop Dates</h2>
+            
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="gradient-bg p-6 text-white">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold">Data Visualization Workshop</h3>
+                                <p class="opacity-90">Tell Stories with Charts</p>
+                            </div>
+                            <div class="bg-white bg-opacity-20 rounded-full w-12 h-12 flex items-center justify-center">
+                                <i class="fas fa-calendar-alt text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-calendar-day text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">10 April 2024</h4>
+                                <p class="text-gray-600">16:30 - 18:30 (GMT)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center mb-8">
+                            <div class="w-16 h-16 gradient-bg rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-users text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Limited Participation</h4>
+                                <p class="text-gray-600">Small group for personalized attention</p>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="block w-full gradient-bg hover:opacity-90 text-white font-bold py-4 px-6 rounded-lg text-center transition duration-300">
+                            Book Your Ticket Now
+                        </a>
+                        
+                        <div class="mt-6 text-center">
+                            <a href="#" class="text-blue-600 hover:underline font-medium">
+                                <i class="fas fa-video mr-2"></i> Check out free tutorials
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="py-16 px-4 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">What Participants Say</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Sarah J.</h4>
+                            <p class="text-gray-500 text-sm">Data Analyst</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"This workshop completely changed how I present data to my team. The simple principles I learned made my charts 10x more effective at communicating insights."</p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-purple-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Michael T.</h4>
+                            <p class="text-gray-500 text-sm">Editor</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"As someone with no design background, I was amazed at how quickly I could create professional-looking visualizations after this workshop. The hands-on exercises were incredibly valuable."</p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-xl font-bold mb-4">Data Visualization Workshop</h3>
+                    <p class="text-gray-400 max-w-md">Transform your data into compelling stories with our hands-on visualization workshop. Learn the principles that make charts effective communication tools.</p>
+                </div>
+                
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Free Tutorials</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Upcoming Workshops</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-blue-600 flex items-center justify-center transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-blue-800 flex items-center justify-center transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-pink-600 flex items-center justify-center transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Data Visualization Workshop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation for chart icons in the hero section
+        document.addEventListener('DOMContentLoaded', function() {
+            const chartIcons = document.querySelectorAll('.chart-icon');
+            
+            chartIcons.forEach((icon, index) => {
+                // Apply different animation delays
+                icon.style.animationDelay = `${index * 0.2}s`;
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
