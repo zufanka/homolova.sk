@@ -18,7 +18,7 @@ export default async function handler(req, res) {
   const API_KEY = process.env.BEEHIIV_API_KEY;
   const PUBLICATIONS = {
     'ada-essays': process.env.ADA_ESSAYS_PUB_ID,
-    'the-pond': process.env.v
+    'the-pond': process.env.POND_PUB_ID
   };
 
   if (!API_KEY) {
