@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subscribe to Ada's Newsletters</title>
-    <style>
+<style>
         * {
             box-sizing: border-box;
             margin: 0;
@@ -12,21 +12,23 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'JetBrains Mono', monospace;
+            background: linear-gradient(135deg, #19191f 0%, #1d1f2a 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            color: #ffffff;
         }
 
         .form-container {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(20, 20, 20, 0.95);
             backdrop-filter: blur(10px);
+            border: 1px solid #333;
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             max-width: 500px;
             width: 100%;
             animation: slideUp 0.6s ease-out;
@@ -44,7 +46,7 @@
         }
 
         h1 {
-            color: #333;
+            color: #ffffff;
             text-align: center;
             margin-bottom: 30px;
             font-size: 2rem;
@@ -58,24 +60,30 @@
         label {
             display: block;
             margin-bottom: 8px;
-            color: #555;
+            color: #cccccc;
             font-weight: 500;
         }
 
         input[type="email"] {
             width: 100%;
             padding: 15px;
-            border: 2px solid #e1e5e9;
+            border: 2px solid #444;
             border-radius: 12px;
             font-size: 16px;
             transition: all 0.3s ease;
-            background: #fff;
+            background: #1a1a1a;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         input[type="email"]:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #ff6b35;
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
+        }
+
+        input[type="email"]::placeholder {
+            color: #666;
         }
 
         .checkbox-group {
@@ -87,19 +95,22 @@
             align-items: flex-start;
             margin-bottom: 15px;
             padding: 15px;
-            background: #f8f9fa;
+            background: #222;
+            border: 1px solid #333;
             border-radius: 12px;
             transition: all 0.3s ease;
         }
 
         .checkbox-item:hover {
-            background: #e9ecef;
+            background: #2a2a2a;
+            border-color: #ff6b35;
         }
 
         .checkbox-item input[type="checkbox"] {
             margin-right: 12px;
             margin-top: 2px;
             transform: scale(1.2);
+            accent-color: #ff6b35;
         }
 
         .newsletter-info {
@@ -108,20 +119,20 @@
 
         .newsletter-title {
             font-weight: 600;
-            color: #333;
+            color: #ffffff;
             margin-bottom: 4px;
         }
 
         .newsletter-description {
             font-size: 14px;
-            color: #666;
+            color: #aaa;
             line-height: 1.4;
         }
 
         .submit-btn {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ff6b35 0%, #cc4a1a 100%);
             color: white;
             border: none;
             border-radius: 12px;
@@ -131,11 +142,12 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
         }
 
         .submit-btn:active {
@@ -157,15 +169,15 @@
         }
 
         .success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+            border: 1px solid #28a745;
         }
 
         .error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+            background: rgba(220, 53, 69, 0.2);
+            color: #dc3545;
+            border: 1px solid #dc3545;
         }
 
         @media (max-width: 480px) {
