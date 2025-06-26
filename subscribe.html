@@ -129,6 +129,17 @@
             line-height: 1.4;
         }
 
+        .newsletter-link {
+            color: #ff6b35;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .newsletter-link:hover {
+            color: #ff8a5b;
+            text-decoration: underline;
+        }
+
         .submit-btn {
             width: 100%;
             padding: 15px;
@@ -206,7 +217,7 @@
                     <input type="checkbox" id="newsletter1" name="newsletters" value="ada-essays" checked>
                     <div class="newsletter-info">
                         <div class="newsletter-title">Hi! It's Ada ^^</div>
-                        <div class="newsletter-description">Bi-weekly data essays exploring insights and stories hidden in numbers</div>
+                        <div class="newsletter-description">Bi-weekly data essays exploring insights and stories hidden in numbers<br><a class="newsletter-link" target="_blank" href="https://hi-im-ada.beehiiv.com/">Read it here</a></div>
                     </div>
                 </div>
 
@@ -214,7 +225,7 @@
                     <input type="checkbox" id="newsletter2" name="newsletters" value="the-pond" checked>
                     <div class="newsletter-info">
                         <div class="newsletter-title">🪷 The Pond 🪷</div>
-                        <div class="newsletter-description">Data training, tips, and techniques for aspiring data professionals</div>
+                        <div class="newsletter-description">Data training, tips, and techniques for aspiring data professionals<br><a class="newsletter-link" target="_blank" href="https://datafrosch.beehiiv.com/">Read it here</a></div>
                     </div>
                 </div>
             </div>
@@ -285,20 +296,21 @@
             }
         });
 
-        // Removed the subscribeToPublication function since we're using serverless
-
         function showMessage(text, type) {
             const messageDiv = document.getElementById('message');
             messageDiv.innerHTML = `<div class="message ${type}">${text}</div>`;
         }
 
-        // Add some interactive effects
+        // Add interactive effects - fixed to exclude link clicks
         document.querySelectorAll('.checkbox-item').forEach(item => {
             item.addEventListener('click', function(e) {
-                if (e.target.type !== 'checkbox') {
-                    const checkbox = this.querySelector('input[type="checkbox"]');
-                    checkbox.checked = !checkbox.checked;
+                // Don't toggle checkbox if user clicked on a link
+                if (e.target.tagName === 'A' || e.target.type === 'checkbox') {
+                    return;
                 }
+                
+                const checkbox = this.querySelector('input[type="checkbox"]');
+                checkbox.checked = !checkbox.checked;
             });
         });
     </script>
