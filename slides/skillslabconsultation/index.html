@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Skills Lab Consultation</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/night.css">
+
+		<style type="text/css">
+			section { text-align: left; }
+			section strong {
+    			color: #FE7F6E;
+			}
+			section em, i {
+    			color: #84C5E6; 
+			}
+			.reveal img {
+				max-width: 60%;
+				text-align: center;
+			}
+
+		</style>
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background="img/frontpic.jpg"></section>
+				<section 
+				data-background="img/frontpic.jpg"
+				data-background-opacity="0.3"
+				data-markdown
+				data-transition="none">
+				# The Beast
+				</section>
+				<section data-markdown
+				data-transition="none">
+					<script type="text/template">
+						## The Beast
+						(as we lovingly call it internally) is a **relationship discovery engine**. It performs iterative, multi-lingual *online searches*, eats *arbitrary local files* (books, articles, datasets) and uses graphRAG to create a *Knowledge Graph*.
+						---
+						## The Beast
+						is meant to be **starting point** for any investigation focusing on *connections* between people and organisations.
+						---
+						# The Value Proposition
+						---
+						## Jobs
+						1. **Map out** (non-)obvious **connections** between entities (e.g., political affiliations, financial links) from diverse sources.
+						---
+						## Jobs
+						2. Collect information from **multiple** structured and unstructured **sources**
+						---
+						## Jobs
+						3. Quickly **generate a starting point** for an investigation
+						---
+						## Pains
+						1. Data across **various separate sources** and formats (internal and external databases, local files, online articles)
+						---
+						## Pains
+						2. **Too much sources** to keep track of
+						---
+						## Pains
+						3. **Large time investment**
+						---
+						## Gains
+						1. Making a verifiable **quick starting point** for research
+						---
+						## Gains
+						2. **Reduced** human time investment
+						---
+						## Gains
+						3. Access to **more connections** due to insights from local language searches
+						---
+						## Stakeholders
+						- any journalist in the Follow The Money newsroom
+						---
+						# The Components
+						---
+						1. **Online search** : text model with search as tool
+						2. **Graph creation** : GraphRAG (nano-graphrag) & Graph database (possibly neo4j)
+						3. **Local File Processing** : text model
+						4. **QA** : part of RAG
+						5. **Platform** : local or hosted
+						---
+						# Areas of support
+						---
+						- **Scaling**: we ran tests with 10 entities, but we would like to run it on a 1000. How to design the backend to be able to hold huge networks? Or how to keep the networks small?
+						---
+						- **Entity Resolution**: there are many duplicated nodes (one person appearing multiple times). We need to automatically merge these duplicates within the graphRAG framework.
+						---
+						- **Reliance on external APIs**: API calls cost money. Making graph for one person with GPT4ocan cost up to $1.
+
+					</script>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
