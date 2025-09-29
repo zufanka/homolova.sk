@@ -83,18 +83,18 @@
 						# The Components
 						---
 						1. **Online search** : text model with search as tool
-						2. **Graph creation** : GraphRAG (nano-graphrag) & Graph database (possibly neo4j)
-						3. **Local File Processing** : text model
-						4. **QA** : part of RAG
+						2. **Graph creation** : GraphRAG & Graph database (possibly neo4j)
+						3. **Local File Processing** : markdownify everything
+						4. **QA** : text model
 						5. **Platform** : local or hosted
 						---
 						# Areas of support
 						---
-						- **Scaling**: we ran tests with 10 entities, but we would like to run it on a 1000. How to design the backend to be able to hold huge networks? Or how to keep the networks small?
+						- **Scaling**: we ran tests with 10 entities, but we would like to run it on a 1000. How to design the backend to be able to hold huge networks? Or how to keep the networks small enough?
 						---
-						- **Entity Resolution**: there are many duplicated nodes (one person appearing multiple times). We need to automatically merge these duplicates within the graphRAG framework.
+						- **Deduplication**: there are many duplicated nodes (one person appearing multiple times). How do we automatically merge these?
 						---
-						- **Reliance on external APIs**: API calls cost money. Making graph for one person with GPT4ocan cost up to $1.
+						- **Reliance on external APIs**: API calls cost money. Making graph for one person with GPT4o can cost up to $1. How to solve this? openrouter.ai? Local models?
 
 					</script>
 				</section>
