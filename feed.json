@@ -10,6 +10,24 @@
     },
     "items": [
         {
+            "id": "https://homolova.sk/blog/let-it-snow-3/",
+            "url": "https://homolova.sk/blog/let-it-snow-3/",
+            "title": "Let it snow!",
+            "summary": "It all started when the squirrel woke up with an unusually cold nose. It slowly unfurled from its nest of dried moss and leaves, then&hellip;",
+            "content_html": "\n  <p>\n    It all started when the squirrel woke up with an unusually cold nose. It slowly unfurled from its nest of dried moss and leaves, then hopped onto the nearest tree branch. The air smelled crisp, and a soft mist hung low in the morning forest.\n  </p>",
+            "image": "https://homolova.sk/media/posts/28/1_squirrel_sleeping.jpg",
+            "author": {
+                "name": "Ada Homolova"
+            },
+            "tags": [
+                   "squirrels",
+                   "short story",
+                   "forest"
+            ],
+            "date_published": "2025-12-21T22:10:47+01:00",
+            "date_modified": "2025-12-21T22:30:09+01:00"
+        },
+        {
             "id": "https://homolova.sk/blog/the-inner-autumn/",
             "url": "https://homolova.sk/blog/the-inner-autumn/",
             "title": "The inner autumn",

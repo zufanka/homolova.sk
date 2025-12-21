@@ -3,12 +3,41 @@
     <title>Hi! I&#x27;m Ada</title>
     <link href="https://homolova.sk/feed.xml" rel="self" />
     <link href="https://homolova.sk" />
-    <updated>2025-11-28T13:10:42+01:00</updated>
+    <updated>2025-12-21T22:30:09+01:00</updated>
     <author>
         <name>Ada Homolova</name>
     </author>
     <id>https://homolova.sk</id>
 
+    <entry>
+        <title>Let it snow!</title>
+        <author>
+            <name>Ada Homolova</name>
+        </author>
+        <link href="https://homolova.sk/blog/let-it-snow-3/"/>
+        <id>https://homolova.sk/blog/let-it-snow-3/</id>
+        <media:content url="https://homolova.sk/media/posts/28/1_squirrel_sleeping.jpg" medium="image" />
+            <category term="squirrels"/>
+            <category term="short story"/>
+            <category term="forest"/>
+
+        <updated>2025-12-21T22:10:47+01:00</updated>
+            <summary type="html">
+                <![CDATA[
+                        <img src="https://homolova.sk/media/posts/28/1_squirrel_sleeping.jpg" alt="" />
+                    It all started when the squirrel woke up with an unusually cold nose. It slowly unfurled from its nest of dried moss and leaves, then&hellip;
+                ]]>
+            </summary>
+        <content type="html">
+            <![CDATA[
+                    <p><img src="https://homolova.sk/media/posts/28/1_squirrel_sleeping.jpg" class="type:primaryImage" alt="" /></p>
+                
+  <p>
+    It all started when the squirrel woke up with an unusually cold nose. It slowly unfurled from its nest of dried moss and leaves, then hopped onto the nearest tree branch. The air smelled crisp, and a soft mist hung low in the morning forest.
+  </p>
+            ]]>
+        </content>
+    </entry>
     <entry>
         <title>The inner autumn</title>
         <author>
