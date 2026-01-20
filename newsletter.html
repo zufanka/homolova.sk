@@ -4,17 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Primary Meta Tags -->
+    <title>Subscribe to Ada's Newsletters | Personal Essays & Data Analysis</title>
+    <meta name="title" content="Subscribe to Ada's Newsletters | Personal Essays & Data Analysis">
+    <meta name="description" content="Join Ada Homolova's newsletters: 'Hi! It's Ada' for personal essays with research and data analysis, and 'The Pond' for data training tips and techniques for aspiring data professionals.">
+    <meta name="keywords" content="newsletter, data analysis, personal essays, data science, data journalism, data training, Ada Homolova">
+    <meta name="author" content="Ada Homolova">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://homolova.sk/newsletter.html">
+
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://homolova.sk/">
-    <meta property="og:title" content="Subscribe to Ada's newsletters">
-    <meta property="og:description" content="Personal essays, and data analysis">
-    <meta property="og:image" content="https://homolova.sk/media/posts/20/responsive/visualelectric-1748548407717-lg.jpg">
+    <meta property="og:url" content="https://homolova.sk/newsletter.html">
+    <meta property="og:title" content="Subscribe to Ada's Newsletters | Personal Essays & Data Analysis">
+    <meta property="og:description" content="Join Ada Homolova's newsletters: 'Hi! It's Ada' for personal essays with research and data analysis, and 'The Pond' for data training tips and techniques for aspiring data professionals.">
+    <meta property="og:image" content="https://homolova.sk/img/newsletter.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Subscribe to Ada's newsletters">
-    <meta property="og:site_name" content="homolova.sk">
+    <meta property="og:image:alt" content="Subscribe to Ada Homolova's Newsletters - Personal Essays and Data Analysis training">
+    <meta property="og:site_name" content="Ada Homolova">
     <meta property="og:locale" content="en_US">
-    <title>Subscribe to Ada's Newsletters</title>
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://homolova.sk/newsletter.html">
+    <meta name="twitter:title" content="Subscribe to Ada's Newsletters | Personal Essays & Data Analysis">
+    <meta name="twitter:description" content="Join Ada Homolova's newsletters: 'Hi! It's Ada' for personal essays with research and data analysis, and 'The Pond' for data training tips and techniques for aspiring data professionals.">
+    <meta name="twitter:image" content="https://homolova.sk/img/newsletter.jpg">
+    <meta name="twitter:image:alt" content="Subscribe to Ada Homolova's Newsletters - Personal Essays and Data Analysis training">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Subscribe to Ada's Newsletters",
+        "description": "Join Ada Homolova's newsletters for personal essays with research and data analysis, plus data training tips for aspiring data professionals.",
+        "url": "https://homolova.sk/newsletter.html",
+        "author": {
+            "@type": "Person",
+            "name": "Ada Homolova",
+            "url": "https://homolova.sk"
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "Ada Homolova"
+        },
+        "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": {
+                        "@type": "CreativeWork",
+                        "name": "Hi! It's Ada",
+                        "description": "Personal essays, often accompanied by research and data analysis",
+                        "url": "https://homolova.sk/blog/"
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "item": {
+                        "@type": "CreativeWork",
+                        "name": "The Pond",
+                        "description": "Data training, tips, and techniques for aspiring data professionals",
+                        "url": "https://datafrosch.beehiiv.com/"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
 <style>
         * {
             box-sizing: border-box;
@@ -59,9 +121,35 @@
         h1 {
             color: #ffffff;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             font-size: 2rem;
             font-weight: 600;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #aaa;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
         }
 
         .form-group {
@@ -214,40 +302,48 @@
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h1>💌 Subscribe to My Newsletters</h1>
-        
-        <form id="subscriptionForm">
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required placeholder="your@email.com">
-            </div>
+    <main role="main" aria-label="Newsletter subscription">
+        <article class="form-container" itemscope itemtype="https://schema.org/WebPage">
+            <header>
+                <h1 itemprop="name">Subscribe to My Newsletters</h1>
+                <p class="subtitle" itemprop="description">Personal essays, data analysis, and training for aspiring data professionals</p>
+            </header>
 
-            <div class="checkbox-group">
-                <div class="checkbox-item">
-                    <input type="checkbox" id="newsletter1" name="newsletters" value="ada-essays" checked>
-                    <div class="newsletter-info">
-                        <div class="newsletter-title">Hi! It's Ada ^^</div>
-                        <div class="newsletter-description">Personal essays, often accompanied by research and data analysis.<br><a class="newsletter-link" target="_blank" href="https://homolova.sk/blog/">Read it here</a></div>
-                    </div>
+            <form id="subscriptionForm" aria-label="Newsletter subscription form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com" autocomplete="email" aria-required="true" aria-describedby="email-hint">
+                    <span id="email-hint" class="sr-only">Enter your email address to subscribe</span>
                 </div>
 
-                <div class="checkbox-item">
-                    <input type="checkbox" id="newsletter2" name="newsletters" value="the-pond" checked>
-                    <div class="newsletter-info">
-                        <div class="newsletter-title">🪷 The Pond 🪷</div>
-                        <div class="newsletter-description">Data training, tips, and techniques for aspiring data professionals<br><a class="newsletter-link" target="_blank" href="https://datafrosch.beehiiv.com/">Read it here</a></div>
+                <fieldset class="checkbox-group" aria-label="Available newsletters">
+                    <legend class="sr-only">Choose newsletters to subscribe to</legend>
+
+                    <div class="checkbox-item" itemscope itemtype="https://schema.org/CreativeWork">
+                        <input type="checkbox" id="newsletter1" name="newsletters" value="ada-essays" checked aria-describedby="newsletter1-desc">
+                        <div class="newsletter-info">
+                            <div class="newsletter-title" itemprop="name">Hi! It's Ada ^^</div>
+                            <div class="newsletter-description" id="newsletter1-desc" itemprop="description">Personal essays, often accompanied by research and data analysis.<br><a class="newsletter-link" target="_blank" rel="noopener" href="https://homolova.sk/blog/" itemprop="url">Read it here</a></div>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <button type="submit" class="submit-btn" id="submitBtn">
-                Subscribe Now
-            </button>
-        </form>
+                    <div class="checkbox-item" itemscope itemtype="https://schema.org/CreativeWork">
+                        <input type="checkbox" id="newsletter2" name="newsletters" value="the-pond" checked aria-describedby="newsletter2-desc">
+                        <div class="newsletter-info">
+                            <div class="newsletter-title" itemprop="name">The Pond</div>
+                            <div class="newsletter-description" id="newsletter2-desc" itemprop="description">Data training, tips, and techniques for aspiring data professionals<br><a class="newsletter-link" target="_blank" rel="noopener" href="https://datafrosch.beehiiv.com/" itemprop="url">Read it here</a></div>
+                        </div>
+                    </div>
+                </fieldset>
 
-        <div id="message"></div>
-    </div>
+                <button type="submit" class="submit-btn" id="submitBtn" aria-label="Subscribe to selected newsletters">
+                    Subscribe Now
+                </button>
+            </form>
+
+            <div id="message" role="status" aria-live="polite"></div>
+        </article>
+    </main>
 
     <script>
         // Configuration for serverless function
