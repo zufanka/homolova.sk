@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://homolova.sk/sitemap.xml
+# LLMs: https://homolova.sk/llms.txt

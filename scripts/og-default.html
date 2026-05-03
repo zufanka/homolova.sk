@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&display=block" rel="stylesheet" />
+  <style>
+    html, body { margin: 0; padding: 0; }
+    body {
+      width: 1200px;
+      height: 630px;
+      background: #fdf5f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bowlby One', system-ui, sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .ghost {
+      position: absolute;
+      top: -40px;
+      right: -60px;
+      font-size: 360px;
+      line-height: 0.85;
+      letter-spacing: -0.04em;
+      color: #ff8bb8;
+      opacity: 0.18;
+      text-transform: uppercase;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .mark {
+      position: relative;
+      font-size: 200px;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #ff8bb8;
+      -webkit-text-stroke: 6px #020202;
+      paint-order: stroke fill;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="ghost">READ READ READ</div>
+  <div class="mark">Hey it's<br />Ada</div>
+</body>
+</html>

@@ -1,0 +1,242 @@
+---
+title: "Eating capitalism"
+date: "2025-10-05"
+slug: "eating-capitalism"
+summary: "How our food got hijacked by profits and is now having its way with our bodies"
+newsletterMode: "full"
+featuredImage: "headerimage.jpg"
+titleFill: "#ffec00"
+tags:
+  - "essay"
+  - "data"
+---
+
+
+<p>I am passionate about food. I love making it, eating it and feeding it to others especially.</p>
+
+
+<p>But passion has a shadow side: obsession. I used to eat until I couldn’t sneeze (this is true), because even taking a deep breath would hurt my belly. I turned to food for comfort, for emotional support, or simply out of boredom.</p>
+
+
+<p>One day, I stepped on the scale and saw the number 90 staring back at me. That moment of shock sent me on a long journey to change my relationship with food.</p>
+
+
+<p>That was ten years and 25 kilos ago. So today I want to share one of the things I’ve discovered along the way: how our current economic system shapes our relationship with food and how in turn, that relationship shapes our bodies.</p>
+<p> </p>
+
+
+<img src="./media/burger-2.png" alt="" width="151" height="124">
+
+
+<p>During my final years of high school, I worked part-time at McDonald’s and honestly, I had a fantastic time. The colleagues were great, and for post-communist Slovakia, the pay was decent.</p>
+
+
+<p>It also gave me a peak behind the curtain of the fast food industry.</p>
+
+
+<p>McDonald’s likes to promote the idea that its food can be part of a healthy, balanced diet. But in reality, it doesn’t meet any of the criteria: meals that are limited in calories, made with healthy fats and whole grains, low in salt and sugar, rich in essential nutrients and fiber, and built around fresh, unprocessed ingredients.</p>
+
+
+<p>In truth, there was hardly anything fresh in the entire kitchen except the tomato and cucumber slices we had to grab from the local supermarket. And it gets worse.</p>
+
+
+<p>Burger patties arrived in giant plastic bags from who-knows-where. Frozen gray discs that only got their brown color after a couple of minutes on the grill. In fact, nearly everything was frozen and varying shades of gray before it was deep fried.</p>
+
+
+<p>But the most disturbing I found the eggs: they came in already peeled, in big plastic buckets filled with greenish water. To this day, I have no idea what it was. We put them on the Caesar salads. The McDonalds website by the way <a href="https://www.mcdonalds.com/gb/en-gb/help/faq/which-items-on-your-menu-are-healthy.html" target="_blank" rel="noopener">lists the salads</a> as one of the "healthy" options, along apple slices and orange juice.</p>
+
+
+<p>I stopped eating the food within a couple of months of working there.</p>
+
+
+<h2><strong>Tortilla, Reimagined</strong></h2>
+
+
+<p>Real food is nothing like what I saw in the kitchen of McDonalds. For example, all you need to make a basic tortilla is wheat flour, salt, water, and oil.</p>
+
+
+<p>Now compare that simple ingredient list to the ones on these random <a href="https://at-en.openfoodfacts.org/product/9100000828787/spar-wraps" target="_blank" rel="noopener">Spar wraps</a>: <strong><em>wheat flour</em></strong><em>, </em><strong><em>water</em></strong><em>, rapeseed </em><strong><em>oil</em></strong><em>, glycerin, dextrose, mono- and diglycerides of fatty acids, </em><strong><em>iodized salt</em></strong><em>, malic acid.</em></p>
+
+
+<p>You’ve probably heard the term "ultra-processed food" or UPF. It’s not just a fast-food chain problem. Our supermarkets too are full of them.</p>
+
+
+<p>To show you what I mean, let’s dive into some <a href="https://openfoodfacts.org/" target="_blank" rel="noopener">Open Food Facts</a> data. Many products today come with a Nutri-Score: a five-color label designed to help us choose more nutritious options. There’s also another widely used system that classifies food based on how processed it is. It’s called the <a href="https://ecuphysicians.ecu.edu/wp-content/pv-uploads/sites/78/2021/07/NOVA-Classification-Reference-Sheet.pdf" target="_blank" rel="noopener">NOVA classification</a> and it divides food into four groups:</p>
+
+
+<p><strong>Group 1</strong>: <em>Unprocessed</em> or <em>minimally</em> processed foods. Think fresh apples, lentils, milk, plain yoghurt, or fresh meat.<br><strong>Group 2</strong>: <em>Processed</em> <em>culinary ingredients</em> used to season and cook food, like olive oil, salt, honey, or butter. These are also based on natural or minimally processed foods.<br><strong>Group 3</strong>: <em>Processed</em> foods such as cheese, canned vegetables, or packaged bread.<br><strong>Group 4</strong>: <em>Ultra-processed</em> foods are the most industrially altered, often containing additives, flavorings, emulsifiers, and too much salt or sugar.</p>
+<p> </p>
+
+
+<source media="(max-width: 360px) and (min-resolution: 2dppx)"><source media="(max-width: 360px)"><source media="(max-width: 430px) and (min-resolution: 2dppx)"><source media="(max-width: 430px)">
+<figure><img src="./media/cereal.png" alt="">
+<figcaption>Group 2 contains only ingredients and is therefore not in this visualisation</figcaption>
+</figure>
+
+<p>As you see, I am not even talking about the obvious culprits: snacks like crisps or microwave dinners. Also items you would usually consider healthy can be UPFs: your breakfast cereal, coconut yogurt, pesto, canned beans, hummus, tofu, or pasta sauce.</p>
+
+
+
+
+<p>So how do you recognize an ultra-processed food? It's actually not that hard. They are usually products with five and more ingredients, often with too much salt or sugar and containing things you wouldn't find in your own kitchen, like <em>glycerine, potassium tartrates, disodium diphosphate,</em> or <em>soy lecithin</em>.</p>
+
+
+<p>They are not real food, but industrially manufactured substances pretending to be food.</p>
+
+
+<source media="(max-width: 360px) and (min-resolution: 2dppx)"><source media="(max-width: 360px)"><source media="(max-width: 430px) and (min-resolution: 2dppx)"><source media="(max-width: 430px)">
+<figure><img src="./media/Gemini_Generated_Image_6bvzp76bvzp76bvz.png" alt="">
+<figcaption>This is not food.</figcaption>
+</figure>
+
+<p>Now that you know how to spot them, let's talk about why it matters.</p>
+
+
+
+
+<h2>Starving microbes and obesity epidemics</h2>
+
+
+<p>Did you know that more than half of you… isn’t you?</p>
+
+
+<p>Most of the cells living in our bodies are microbes and the majority lives in our bellies. Gut health is a big deal. A healthy gut microbiome helps digest food, regulate our immune systems, and even influences our mood and mental health. But they rely on us as much as we rely on them. What we eat directly affects their well-being. For example if we don't feed them fiber, they might starve. Or even worse they might <a href="https://med.stanford.edu/news/insights/2025/07/ultra-processed-food--five-things-to-know.html" target="_blank" rel="noopener">start eating the lining of our own intestines</a>. Yikes.</p>
+
+
+<p>UPFs are energy-dense, but nutrition-poor. Eating them can <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11901572/" target="_blank" rel="noopener">disrupt the happy times in our bellies</a> and even encourage growth of harmful bacteria. Imbalances in our gut microbiome has been linked to a wide range of diagnoses you don't want, such as <a href="https://www.bbc.com/news/health-43674270" target="_blank" rel="noopener">allergies, Parkinsons</a>, diabetes, irritable bowels, even cancer.</p>
+
+
+<p>As usual, science lags a few steps behind industry. But the evidence is mounting. <a href="https://www.bmj.com/content/384/bmj-2023-077310" target="_blank" rel="noopener">Research shows strong links</a> between UPF consumption and chronic illness. Not necessarily because of one single harmful additive (though the sugar substitute <em>aspartame</em> was recently labeled as possibly carcinogenic), but because of the sheer volume of additives we now regularly consume. It’s this cocktail effect that lands us in an iffy territory.</p>
+
+
+<img src="./media/countries_upf.png" alt="">
+
+
+<p>The rising percentage of UPFs in the diet is also strongly correlated with rising body fat levels in general population. One major driver of this trend is simple: we're eating more. And that increase in calorie intake is <a href="https://www.pnas.org/doi/10.1073/pnas.2420902122" target="_blank" rel="noopener">likely linked to rising UPF consumption</a>, which may disrupt appetite regulation and promote overeating. With obesity comes another long list of companion conditions: heart disease, stroke, high blood pressure, diabetes, arthritis, depression.</p>
+
+
+<p>“But Ada,” you might say, “is it really <em>that</em> bad? If it were, why would they sell so much of it? Why would it be everywhere?” Here is where our economical system comes into play. Shareholders of food companies don’t profit when we eat apples and cabbage. They make money when cheap ingredients can be turned into branded, shelf-stable products, designed to bypass our body’s natural stop signals and keep us coming back for more.</p>
+
+
+<img src="./media/molecule.png" alt="" width="199" height="142">
+
+
+<h2>The Business of Bliss</h2>
+
+
+<p>I remember when the first McDonald’s opened in Bratislava. Except for a few animal activists, we all welcomed it with open arms.</p>
+
+
+<p>It wasn’t about the food. It was about what it represented: democracy, modernity, and access to the Western world. It was deeply emotional. It was a taste of freedom.</p>
+
+
+<p>That emotion, the ability to attach identity, meaning, and memory to a product is exactly what companies understand and leverage. Take those Coca-Cola bottles with names of people printed on the labels. Those mean nothing to the company, it's just statistics. But they mean something to us: real people we love. And that bottle has their name on it.</p>
+
+
+<p>If you look closely, Coca-Cola isn’t really advertising bubbly sugar water at all. Their campaigns are about "Open Happiness" and "Taste the Feeling". The imagery is all about joy, friendship, family and human connection. The message is: you crave meaning, so here have some sugar.</p>
+
+
+<source media="(max-width: 360px) and (min-resolution: 2dppx)"><source media="(max-width: 360px)"><source media="(max-width: 430px) and (min-resolution: 2dppx)"><source media="(max-width: 430px)">
+<figure><img src="./media/Coca-Cola_poster__Belfast__July_2016__-_geograph.org.uk_-_Albert_Bridge.jpg" alt="">
+<figcaption>by Albert Bridge</figcaption>
+</figure>
+And sugar is a one powerful ingredient. It triggers a big release of dopamine. And when we lean on that mechanism too often, it becomes a loop: the more we consume, the more we crave.
+
+
+
+<p>Have you ever heard of the <a href="https://en.wikipedia.org/wiki/Hyperpalatable_food" target="_blank" rel="noopener">hyperpalatable foods</a>? These are foods engineered in labs to hit the <a href="https://en.wikipedia.org/wiki/Bliss_point_(food)" target="_blank" rel="noopener">'bliss point'</a>: that irresistible ratio of sugar, salt and fat that keeps our brains begging for more. It's the reason you (or at least me) <a href="https://edition.cnn.com/2019/03/19/health/bliss-point-addictive-food/index.html" target="_blank" rel="noopener">can't eat just one cookie</a>. These foods are designed not to nourish but to override your body’s natural signals. They bypass fullness. They encourage compulsive eating. They are profitable not because they’re good for us, but because they’re designed to be irresistible and they keep us coming back.</p>
+
+
+<p>Food in our current economic system isn’t nourishment, it’s a commodity. A revenue stream. A product optimized for "stomach share", meaning: “the amount of digestive space that any one company’s brand can grab from the competition.” (from the 2014 book <a href="https://www.amazon.com/Salt-Sugar-Fat-Giants-Hooked/dp/0812982193" target="_blank" rel="noopener">Salt Sugar Fat: How the Food Giants Hooked Us</a> ). That’s the metric. Not your well-being, not public health.</p>
+
+
+<p>Food companies spend a lot of money on this. They test what sugar ratio six-year-old kids like best so they can make the most addictive pudding. This ice cream brand even blatantly takes advantage of our brain’s love of sugar to claim it’s "scientifically proven" that ice cream makes us happy.</p>
+
+
+<source media="(max-width: 360px) and (min-resolution: 2dppx)"><source media="(max-width: 360px)"><source media="(max-width: 430px) and (min-resolution: 2dppx)"><source media="(max-width: 430px)">
+<figure><img src="./media/icecream.png" alt="">
+<figcaption>Screenshot from gigi-gelato.com</figcaption>
+</figure>
+
+<p>There is no regard for a better life for us, only for making more money.</p>
+
+
+
+
+<p>And these products are <em>everywhere</em>. The golden arches of McDonald's have become such a familiar part of the global landscape they are almost invisible. This constant, repeated exposure reinforces a sense of comfort and normalcy. Therefore we do not even question whether these products should be everywhere. We simply accept their presence as a given.</p>
+
+
+<source media="(max-width: 360px) and (min-resolution: 2dppx)"><source media="(max-width: 360px)"><source media="(max-width: 430px) and (min-resolution: 2dppx)"><source media="(max-width: 430px)">
+<figure><img src="./media/signal-2025-10-04-144610.jpeg" alt="">
+<figcaption>Your options at the train station, 6:00 AM</figcaption>
+</figure>
+
+<p>Food companies have us by the proverbial balls. So we keep associating chocolate with comfort, soft drinks with good times, and crisps with celebration.</p>
+
+
+
+
+<h2>Eat food. Not too much. Mostly plants.</h2>
+
+
+<p>Food is such an important part our lives: it's our nourishment, culture, self-care. It’s our time with family and friends. We eat every day. Every bite becomes part of us. <strong></strong>And yet it’s being hijacked by corporations that latch onto our emotions and manipulate our biology.</p>
+
+
+<p>We like to believe the system we live in protects us from choices that are harmful to us. But if think about it for a moment—no carrot, apple or bag of lentils has a sticker screaming: “Now packed with fiber!”.</p>
+
+
+<p>Michael Pollan, author of <a href="https://michaelpollan.com/books/" target="_blank" rel="noopener">several books on food</a>, put it this way: “<em>Eat food. Not too much. Mostly plants.</em>”. It’s the most elegant motto I came across until now. It also aligns with big scale studies, like the <a href="https://www.thelancet.com/article/S0140-6736(19)30041-8/fulltext" target="_blank" rel="noopener">Global Burden of Disease Study</a>, that found that eating unprocessed plant foods like fruits, vegetables, legumes, nuts, seeds, and whole grains, while also limiting processed foods high in added salt and sugar will prevent us from getting ill.</p>
+
+
+<p>Therefore, I think it’s time we take the matter into our own hands. And it starts with reading.</p>
+
+
+<p>Next time when buying anything from the supermarket, read the ingredients list first. Then choose products with fewer and recognizable ingredients. And don’t be fooled by labels boasting how healthy something is. If a product has to tell you it’s full of nutrition, it probably isn’t.</p>
+
+
+<p>Stock up on basic ingredients that have a long shelf life on their own. Things like spices, seeds, nuts and nut butters, legumes, and grains. You can turn them into just about anything: veggie burgers, fritters, side dishes, spreads, soups, stews, mashes.</p>
+
+
+<p>You don’t need a <a href="https://world.openfoodfacts.org/product/3292070006564/guacamole-extra-l-atelier-blini" target="_blank" rel="noopener">plastic tub of guacamole</a> (<em>avocado,</em> <em><strong>ascorbic acid</strong></em><em>,</em> <em><strong>citric acid</strong></em><em>, red pepper, onion, salt, jalapeno pepper, coriander, concentrated lime juice,</em> <em><strong>xanthan gum</strong></em><em>, dehydrated onion, dehydrated cumin, dehydrated pepper,</em><em> <strong>potassium sorbate</strong></em><em>,</em> <em><strong>chili</strong></em> <em></em><em><strong>sauce</strong></em>). You are perfectly capable of <a href="https://www.allrecipes.com/recipe/14064/easy-guacamole/" target="_blank" rel="noopener">whipping it up yourself</a>.</p>
+
+
+<p>And let yourself be surprised! For example, I recently realized that not only chickpeas and tahini, but almost any combination of a legume and nut butter makes a hummus-like spread. Some of my favorites: French lentils and hazelnut butter. Or red lentils and cashew butter. 🤤 This way I can easily avoid all the extra sodium carbonate, citric acid, and potassium sorbate of <a href="https://world.openfoodfacts.org/product/7290104507045/sabra-houmous-extra" target="_blank" rel="noopener">store-bought hummus</a>. Moreover—it is way cheaper.</p>
+
+
+<p>And you can make it as crazy as you like. I buy nuts, seeds, legumes and grains like rice, wheat, spelt, rye and oats in big bulks and use an <a href="https://soulyrested.com/2024/03/25/grain-mill/" target="_blank" rel="noopener">electric grain mill</a> to grind my own flour. I also have a cereal flaker to squish oats for my own breakfast.</p>
+
+
+<p>Buying in bulk is even cheaper. For example wholesale organic red lentils in 5 kg paper bags that last me a year are two thirds of the price (€3.1/kg) of what I would pay at the supermarket (€4.98/kg). The organic basmati rice is half the price.</p>
+
+
+<p>Looking for food in places other than the supermarket has also led me to new discoveries, so now I regularly cook with grains like <a href="https://en.wikipedia.org/wiki/Einkorn" target="_blank" rel="noopener">einkorn</a>, millet or barley.</p>
+
+
+<source media="(max-width: 360px) and (min-resolution: 2dppx)"><source media="(max-width: 360px)"><source media="(max-width: 430px) and (min-resolution: 2dppx)"><source media="(max-width: 430px)">
+<figure><img src="./media/pantry.jpeg" alt="">
+<figcaption>My pantry</figcaption>
+</figure>
+
+<p>And if you don't know how to cook something you like, go online, or ask a chatbot. The prompt I use often is : <em>"I have a carrot, lentils and rice. I feel like a light dish for a summer lunch. Give me 5 ideas of what to make. Feel free to suggest additional ingredients to the ones I have."</em> Or reach out, ask a friend, ask your mom!</p>
+
+
+
+
+<p>It all doesn't need to be perfect. Taking small steps such as being aware and curious, reading labels, cooking simple meals and trying out new recipes, is all it takes. So bit by bit, we can take food back from the corporations and return it to where it belongs: in our own hands, on our own terms.</p>
+<p> </p>
+
+
+<img src="./media/swirl.png" alt="" width="202" height="103">
+
+
+<p>In this essay, I’ve been talking about food. But it’s also a metaphor for everything we consume that’s deceptively delicious but low in nourishment. Take a closer look at the entertainment you feed your eyes and ears, or the beauty products you put onto your skin.</p>
+
+
+<p>You’ll start to notice the same patterns: flashy packaging, feel-good messaging, immediate gratification, designed more to hook us than to help us. These systems aren’t limited to the grocery store. They’re everywhere.</p>
+<p>---</p>
+
+
+
+<p><em>Thank you to my early draft readers: Johan, JJ, Siem, and the Open Food Facts community for thinking with me about the analysis of the data.</em></p>
+
+

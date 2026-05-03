@@ -1,0 +1,50 @@
+---
+title: "Make search your own!"
+date: "2024-12-12"
+slug: "make-search-your-own"
+summary: "Internet search sucks. The good news is you don’t have to keep 'Googling'. Take my hand into the expanding lands of internet search."
+newsletterMode: "full"
+featuredImage: "peacock.png"
+tags:
+  - "essay"
+---
+
+<p>Internet search sucks. It's not just my personal opinion.</p>
+<p><img src="./media/googleisgettingworse.png" alt="screenshots of articles about google getting worse" width="1200" height="1200"></p>
+<p>If you don't trust the media, maybe you do trust the Germans: their university researchers came to the same sad conclusion <i>“that higher-ranked pages are on average more optimized, more monetized [...] and they show signs of lower text quality”,</i> reads their recent <a href="https://downloads.webis.de/publications/papers/bevendorff_2024a.pdf">paper</a>.</p>
+<p>Maybe you recognize this from recipe websites. While the recipe is the part you are really interested in, at some point in history recipe pages started to bloat. Now you need to plow through a pile of text and pictures before you can even take a look at  the recipe itself. This additional clutter helps individual recipe pages rank better in search results: "When I’m writing, I try to tell a story that has a hook as well as please[s] the Google algorithm,", <a href="https://mashable.com/article/why-are-there-long-stories-on-food-blogs?test_uuid=01iI2GpryXngy77uIpA3Y4B&amp;test_variant=b">says this food blogger</a>. But what Google wants to show is not necessarily what everybody wants to read. Such ‘optimisation’ then gives birth to projects like <a href="https://www.justtherecipe.com/">justtherecipe.com</a> - a website and app that only extracts the recipe from any given website.</p>
+<p>Pessimists say that the internet is only going to <a href="https://xeiaso.net/blog/birth-death-seo/">get more cluttered</a>. With the dawn of generative AI, we will swim in more and more low quality content. The internet <a href="https://github.com/rspeer/wordfreq/blob/master/SUNSET.md">will never be the same</a> as it was when populated just by us  - the humans. And as much as I love robots, they also produce text that can contradict itself in consecutive sentences;  in a much worse case it can make you <a href="https://fortune.com/2023/09/03/ai-written-mushroom-hunting-guides-sold-on-amazon-potentially-deadly/">poison yourself with mushrooms</a>. The bots are also capable of making us forget what a baby peacock looks like.</p>
+<p><img src="./media/notalwaysbabypeacock.jpg" alt="" width="921" height="996"></p>
+<p>So how do we search for high quality content in waters made murky by SEO optimization and generative AI? For me a  search engine is like a map, and I have to keep reminding myself that like a map it only ever shows part of the landscape.</p>
+<p>Google has been steadily <a href="https://gs.statcounter.com/search-engine-market-share#monthly-200901-202409">holding about 90%</a> of the search engine market for at least the last 15 years. But the good news is you don’t have to keep on only <i>Googling.</i> The key to any healthy diet is variety. So take my hand into the (expanding) possibilities of searching the web.</p>
+<p>Every day I use a couple of different search engines. All of them are designed with a different approach to indexing the web.</p>
+<h2>Keyword search</h2>
+<h3>Ecosia</h3>
+<p><a href="https://www.ecosia.org/"><i>Ecosia</i></a> is my default search engine. I use it when I know what I am searching for: company names, people, wikipedia articles, documentation. Under the hood it uses two of the big boys : <i>Google</i> and <i>Microsoft Bing</i>. The search is therefore still not better than Google, but their business is. <i>Ecosia</i> is the largest not-for-profit search engine that puts 100% of their revenues into <a href="https://blog.ecosia.org/ecosia-financial-reports-tree-planting-receipts/">planting trees</a>.</p>
+<p>As well as search, <i>Ecosia</i> also offers a free <a href="https://www.ecosia.org/chat">AI chat feature</a>, based on GPT-3. This one I use for translations and when I need definitions of some terms or phenomena. I also use it for basic recipes, and tweaks for recipes (especially for baking - which I still find mesmerizing).</p>
+<h3>Google</h3>
+<p><a href="https://www.google.com/"><i>Google</i></a> is not completely out of my system, but I currently use it only when I can not find things via Ecosia. Google is amazingly good at finding out where to buy things online, so I do my infrequent online shopping ventures on <i>Google</i>.</p>
+<h3>Marginalia</h3>
+<p><a href="https://search.marginalia.nu/"><i>Marginalia</i></a> is what I like to see as a serendipity search engine: you never know what you will get. The index is built by Swedish developer, Viktor Löfgren, mostly on grant money (he also has a <a href="https://www.patreon.com/marginalia_nu">patreon</a>). It  focuses on “small obscure websites and non-commercial content”, as the author puts it. </p>
+<p>What I love about <i>Marginalia</i> is that when I searched for a recipe for a crumble, instead of one of the sterile over-optimized recipe pages, I discovered the Kitchen Projects substack, where somebody called Nicola Lamb documents their <a href="https://kitchenprojects.substack.com/p/plum-crumble-pie">experiments in crumble baking</a>. Next to the recipe, she also shares explanations of how baking with fruit works. If this doesn’t give you warm fuzzy feelings for the internet, I don’t know what will.</p>
+<figure><img src="./media/nicolalammcrumbleexperiments.jpg" alt="Pie thickeners, by Nicola Lamb" width="1200" height="1600">
+<figcaption>
+<p><i>Pie thickeners, by Nicola Lamb</i></p>
+</figcaption>
+</figure>
+<p>I use <i>Marginalia</i> if I am interested in anything related to craft (cooking, basket weaving) or if I feel like online exploration outside the social media ecosystem. Their rainbow <a href="https://search.marginalia.nu/explore/random">‘random’</a> button is perfect for that.</p>
+<h2>Embeddings search</h2>
+<p>LLMs are also taking over internet search. There are new search engines that let you chat with the search results and even formulate new questions based on the previous search.</p>
+<p>Two examples of these are Exa and Perplexity. I have discovered them only recently but use them regularly to discover material around a certain topic for my work related searches. </p>
+<h3>Perplexity</h3>
+<p><a href="http://perplexity.ai"><i>Perplexity</i></a> lets you chat with the internet. The interface is very user friendly and includes all the search results the robot is basing its answer on. But be careful here, because LLM models do hallucinate and as <a href="https://www.wired.com/story/perplexity-is-a-bullshit-machine/">WIRED reported</a>: “it falsely claimed that WIRED had reported that a specific police officer in California had committed a crime”. It is therefore more suitable for general overview questions rather than in-depth search.</p>
+<h3>Exa</h3>
+<p>Where <i>perplexity</i> makes you chat with the internet directly, <a href="https://exa.ai/search"><i>Exa</i></a> <i></i>returns actual search results first, that you can then chat with if you like, so resembling an actual search engine more closely. It also (automatically) alternates between keyword search and embeddings-based search depending on what you ask. This is a good call, as keyword search is <a href="https://www.wired.com/story/ai-energy-demands-water-impact-internet-hyper-consumption-era/">less thirsty for resources</a>. I also like <i>Exa’</i>s focus on using LLMs to return relevant search results.</p>
+<h2>Premium</h2>
+<h3>Kagi</h3>
+<p><a href="https://kagi.com/"><i>Kagi</i></a> is the only search engine in the list that you need to pay for - if you want to do more than 100 searches a month. In return they won’t run ads or sell your data. You can personalize their keyword search;  they also offer an AI bot feature where you can choose from a dozen LLMs . </p>
+<p>As I don’t have premium access, I use <i>Kagi</i> sparingly, for the most in depth part of any research. The search results are very good and it helps me find things that I could not find using any of the other search engines.</p>
+<p>—</p>
+<p>This list is personal, and by no means exhaustive. I for example don’t use the most famous privacy oriented alternative to Google, <a href="https://duckduckgo.com/">DuckDuckGO</a>. There also exists a little army of <a href="https://www.are.na/elan-kiderman-ullendorff/search-engines-for-wandering">small ‘folk’ search engine</a> like <i>Marginalia.</i> This list is very much a work in progress and a living active process. </p>
+<p>The Internet morphs and changes. Looking ahead to 2034 the internet will be at least as different from now as now is different from how things were in 2014. Therefore we need to keep our strategies for navigating it flexible too.</p>
+<p>Have other search engines you use and love? I would love to hear about them!</p>

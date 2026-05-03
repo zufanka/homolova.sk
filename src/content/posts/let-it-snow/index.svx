@@ -1,0 +1,23 @@
+---
+title: "Let it snow!"
+date: "2025-12-23"
+slug: "let-it-snow"
+summary: "A winter tale from the forest."
+newsletterMode: "teaser"
+newsletterImage: "1_squirrel_sleeping.jpg"
+newsletterTeaser: "A short illustrated story for the winter solstice — best read on the web."
+featuredImage: "1_squirrel_sleeping.jpg"
+fullBleed: true
+headerFill: "#c9b896"
+footerBg: "#ebe7dc"
+footerAccent: "#c9b896"
+tags:
+  - "fiction"
+---
+
+<script>
+  import LetItSnow from './LetItSnow.svelte';
+</script>
+
+<LetItSnow />
+

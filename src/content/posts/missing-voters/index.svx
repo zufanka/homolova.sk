@@ -1,0 +1,24 @@
+---
+title: "The Missing Voters"
+date: "2026-02-08"
+slug: "missing-voters"
+summary: "11.8 million EU citizens pay taxes to governments they cannot vote for. A data essay about mobile Europeans and their missing right to vote."
+newsletterMode: "teaser"
+newsletterImage: "/posts/missing-voters/social_preview.jpg"
+newsletterTeaser: "A data essay about mobile Europeans — EU citizens living in another EU country — and how they are effectively disenfranchised from national elections."
+featuredImage: "eupassports.webp"
+fullBleed: true
+headerFill: "#d45d5d"
+titleFill: "#d45d5d"
+footerBg: "#eaeae6"
+footerAccent: "#d45d5d"
+tags:
+  - "essay"
+  - "data"
+---
+
+<script>
+  import MissingVoters from './MissingVoters.svelte';
+</script>
+
+<MissingVoters />

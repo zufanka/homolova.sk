@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ada Homolova — redesign prototype</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Roboto:wght@400;500;600&family=Roboto+Slab:wght@500;700&display=swap"
+  rel="stylesheet"
+/>
+
+<style>
+  :root {
+    --bg: #ffffff;
+    --ink: #020202;
+    --pink: #ff8bb8;
+    --mint: #02f585;
+    --blue: #5b8bee;
+    --yellow: #ffec00;
+
+    --muted: #666;
+    --body: #222;
+    --body-soft: #444;
+
+    --border: 1.5px solid var(--ink);
+
+    --display: "Bowlby One", system-ui, sans-serif;
+    --slab: "Roboto Slab", Georgia, serif;
+    --sans: "Roboto", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- nav ---------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg);
+    border-bottom: var(--border);
+  }
+  .nav__inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav__mark {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+  }
+  .nav__links {
+    display: flex;
+    gap: 28px;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .nav__links a {
+    position: relative;
+    padding-bottom: 2px;
+  }
+  .nav__links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 6px;
+    background: var(--mint);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 180ms ease-out;
+    z-index: -1;
+  }
+  .nav__links a:hover::after { transform: scaleX(1); }
+  .nav__links .sep { color: var(--ink); opacity: .35; }
+
+  /* ---------- main wrap ---------- */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- intro ---------- */
+  .intro {
+    position: relative;
+    padding: 96px 0 80px;
+    max-width: 640px;
+  }
+  .intro__ghost {
+    position: absolute;
+    top: 40px;
+    right: -40px;
+    font-family: var(--display);
+    font-size: clamp(120px, 22vw, 240px);
+    line-height: 0.85;
+    color: var(--pink);
+    opacity: 0.18;
+    letter-spacing: -0.04em;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    text-transform: uppercase;
+  }
+  .intro__body {
+    position: relative;
+    z-index: 1;
+    font-size: 22px;
+    line-height: 1.45;
+    color: var(--body);
+  }
+  .intro__body a.inline {
+    color: var(--ink);
+    border-bottom: 2px solid var(--pink);
+    padding-bottom: 1px;
+    font-weight: 500;
+  }
+  .intro__body a.inline:hover { background: var(--pink); }
+
+  .intro__sub {
+    margin-top: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--slab);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 12px;
+  }
+  .intro__sub .dot { width: 8px; height: 8px; background: var(--ink); border-radius: 50%; }
+
+  /* fade in */
+  .fadein { opacity: 0; transform: translateY(8px); animation: fadein 700ms 80ms ease-out forwards; }
+  .fadein.delay { animation-delay: 240ms; }
+  @keyframes fadein { to { opacity: 1; transform: none; } }
+
+  /* ---------- four-dot pattern ---------- */
+  .dots {
+    display: inline-grid;
+    grid-template-columns: repeat(2, 14px);
+    grid-template-rows: repeat(2, 14px);
+    gap: 6px;
+  }
+  .dots i {
+    display: block;
+    width: 14px; height: 14px;
+    background: var(--ink);
+    border-radius: 50%;
+  }
+  .divider {
+    display: flex;
+    justify-content: center;
+    padding: 36px 0;
+  }
+
+  /* parallax dot decoration */
+  .deco-dots {
+    position: absolute;
+    z-index: 0;
+    opacity: .85;
+    will-change: transform;
+    grid-template-columns: repeat(2, 10px);
+    grid-template-rows: repeat(2, 10px);
+    gap: 5px;
+  }
+  .deco-dots i { width: 10px; height: 10px; }
+  .deco-dots--a { top: 60px; right: 16px; }
+  .deco-dots--b { left: -8px; top: 40%; }
+
+  /* ---------- featured post ---------- */
+  .featured {
+    position: relative;
+    margin: 24px 0 120px;
+  }
+  .featured__wrap {
+    position: relative;
+    max-width: 720px;
+  }
+  .featured__shadow {
+    position: absolute;
+    inset: 0;
+    background: var(--pink);
+    border: var(--border);
+    transform: translate(56px, 56px);
+    z-index: 0;
+    overflow: hidden;
+  }
+  .featured__shadow img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .featured__card {
+    position: relative;
+    z-index: 1;
+    background: var(--bg);
+    border: var(--border);
+    padding: 40px;
+    display: block;
+    transition: transform 180ms ease-out;
+  }
+  .featured__card:hover { transform: translate(-2px, -2px); }
+
+  .meta-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .meta-date {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+  .label-slab {
+    font-family: var(--slab);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 11px;
+    background: var(--yellow);
+    border: 1.5px solid var(--ink);
+    padding: 4px 8px;
+  }
+
+  .display-title {
+    font-family: var(--display);
+    font-size: 64px;
+    line-height: 0.95;
+    letter-spacing: 0.005em;
+    text-transform: uppercase;
+    margin: 0 0 22px;
+    color: var(--pink);
+    -webkit-text-stroke: 2px var(--ink);
+    text-shadow:
+      -1px -1px 0 var(--ink),
+       1px -1px 0 var(--ink),
+      -1px  1px 0 var(--ink),
+       1px  1px 0 var(--ink);
+  }
+
+  .featured__desc {
+    font-size: 18px;
+    color: var(--body);
+    max-width: 56ch;
+    margin: 0;
+  }
+
+  /* ---------- feed ---------- */
+  .feed {
+    margin: 24px 0 96px;
+  }
+  .feed__head {
+    font-family: var(--slab);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 12px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .feed__head .bar { flex: 1; height: 2px; background: var(--ink); }
+
+  .post {
+    position: relative;
+    display: grid;
+    grid-template-columns: 110px 1fr 168px;
+    gap: 28px;
+    align-items: center;
+    padding: 22px 24px;
+    border: var(--border);
+    background: var(--bg);
+    transition: transform 160ms ease-out;
+  }
+  .post__thumb {
+    display: block;
+    width: 168px;
+    height: 110px;
+    border: 1.5px solid var(--ink);
+    overflow: hidden;
+    background: var(--pink);
+  }
+  .post__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .post::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--pink);
+    transform: translate(0, 0);
+    z-index: -1;
+    opacity: 0;
+    transition: transform 160ms ease-out, opacity 160ms ease-out;
+  }
+  .post:hover { transform: translate(-2px, -2px); }
+  .post:hover::before { transform: translate(6px, 6px); opacity: 1; }
+
+  .post .meta-date { white-space: nowrap; }
+  .post__title {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.15;
+    margin: 0 0 6px;
+    letter-spacing: -0.005em;
+  }
+  .post__desc {
+    font-size: 16px;
+    color: var(--body-soft);
+    margin: 0;
+  }
+
+  .post + .post { margin-top: 18px; }
+
+  /* color accent rotation per card shadow */
+  .post.accent-mint::before  { background: var(--mint); }
+  .post.accent-blue::before   { background: var(--blue); }
+  .post.accent-yellow::before { background: var(--yellow); }
+
+  /* ---------- footer ---------- */
+  footer {
+    border-top: var(--border);
+    margin-top: 32px;
+    background: var(--bg);
+  }
+  .footer__inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 28px 24px 64px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: space-between;
+    font-size: 14px;
+    color: var(--body-soft);
+  }
+  .footer__inner a { border-bottom: 2px solid var(--pink); padding-bottom: 1px; }
+  .footer__inner a:hover { background: var(--pink); color: var(--ink); }
+
+  /* ---------- subscribe button (wobble on hover) ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: var(--border);
+    background: var(--pink);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+  }
+  .btn:hover { animation: wobble 480ms ease-in-out; }
+  @keyframes wobble {
+    0%   { transform: translateX(0); }
+    25%  { transform: translateX(-3px); }
+    50%  { transform: translateX(3px); }
+    75%  { transform: translateX(-2px); }
+    100% { transform: translateX(0); }
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 720px) {
+    .intro { padding: 64px 0 56px; }
+    .intro__body { font-size: 19px; }
+    .intro__ghost { font-size: 28vw; right: -8px; top: 80px; }
+
+    .featured__card { padding: 28px; }
+    .featured__shadow { transform: translate(20px, 20px); }
+    .display-title { font-size: 40px; }
+
+    .post {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 20px;
+    }
+    .post__title { font-size: 22px; }
+    .post__thumb {
+      width: 100%;
+      height: 180px;
+      order: -1;
+    }
+
+    .deco-dots { display: none; }
+  }
+
+  /* curved scroll text */
+  .scroll-curve {
+    position: absolute;
+    right: -8px;
+    top: 240px;
+    width: 140px;
+    height: 140px;
+    z-index: 0;
+    opacity: .85;
+  }
+  .scroll-curve text {
+    font-family: var(--slab);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    fill: var(--ink);
+  }
+  @media (max-width: 720px) { .scroll-curve { display: none; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="/" class="nav__mark">Ada Homolova ✶</a>
+    <div class="nav__links">
+      <a href="/work">work</a>
+      <span class="sep">·</span>
+      <a href="/cv">cv</a>
+      <span class="sep">·</span>
+      <a href="/rss.xml">rss</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="intro__ghost" aria-hidden="true">READ READ READ</div>
+
+    <p class="intro__body fadein">
+      Hi, I'm <strong>Ada Homolova</strong>. I'm a data journalist working on
+      stories about Europe, democracy and the numbers behind them — this is
+      <a href="#subscribe" class="inline">a newsletter on data and the EU</a>,
+      sent when there's something worth saying.
+    </p>
+
+    <div class="fadein delay" style="margin-top: 24px;">
+      <a href="#subscribe" class="btn">→ subscribe</a>
+    </div>
+
+  </section>
+
+  <!-- FEATURED POST -->
+  <section class="featured">
+    <div class="featured__wrap fadein delay">
+      <div class="featured__shadow" aria-hidden="true">
+        <img src="https://placehold.co/720x480/FF8BB8/020202?text=Featured+visualisation" alt="" />
+      </div>
+      <a href="/posts/missing-voters" class="featured__card">
+        <div class="meta-row">
+          <span class="meta-date">2026 · 02 · 08</span>
+          <span class="label-slab">Latest · Data essay</span>
+        </div>
+        <h1 class="display-title">The&nbsp;Missing<br/>Voters</h1>
+        <p class="featured__desc">
+          11.8 million EU citizens pay taxes to governments they cannot vote
+          for. Five maps and one stubborn democratic gap, traced across two
+          decades of European migration.
+        </p>
+      </a>
+    </div>
+
+    <span class="dots deco-dots deco-dots--b" data-parallax="-0.08" aria-hidden="true">
+      <i></i><i></i><i></i><i></i>
+    </span>
+  </section>
+
+  <!-- FEED -->
+  <section class="feed">
+    <div class="feed__head">
+      <span>More posts</span>
+      <span class="bar"></span>
+      <span class="dots" style="grid-template-columns: repeat(2, 8px); grid-template-rows: repeat(2, 8px); gap: 4px;">
+        <i style="width:8px;height:8px"></i>
+        <i style="width:8px;height:8px"></i>
+        <i style="width:8px;height:8px"></i>
+        <i style="width:8px;height:8px"></i>
+      </span>
+    </div>
+
+    <a href="#" class="post accent-mint">
+      <span class="meta-date">2026 · 01 · 22</span>
+      <div>
+        <h2 class="post__title">Charting a year of European elections</h2>
+        <p class="post__desc">A small atlas of turnout, swing, and the patterns that didn't make the headlines.</p>
+      </div>
+      <span class="post__thumb"><img src="https://placehold.co/336x220/02F585/020202?text=Election+atlas" alt="" /></span>
+    </a>
+
+<a href="#" class="post accent-blue">
+      <span class="meta-date">2025 · 12 · 15</span>
+      <div>
+        <h2 class="post__title">The Mobile Europeans dashboard, revisited</h2>
+        <p class="post__desc">Updated numbers for cross-border workers, with a new view by sector.</p>
+      </div>
+      <span class="post__thumb"><img src="https://placehold.co/336x220/5B8BEE/FFFFFF?text=Dashboard" alt="" /></span>
+    </a>
+
+<a href="#" class="post accent-yellow">
+      <span class="meta-date">2025 · 11 · 03</span>
+      <div>
+        <h2 class="post__title">Chartgarden: a place for the half-finished</h2>
+        <p class="post__desc">An evolving collection of small charts that didn't fit anywhere else.</p>
+      </div>
+      <span class="post__thumb"><img src="https://placehold.co/336x220/FFEC00/020202?text=Chartgarden" alt="" /></span>
+    </a>
+
+<a href="#" class="post">
+      <span class="meta-date">2025 · 09 · 10</span>
+      <div>
+        <h2 class="post__title">Notes from the EU data doolhof</h2>
+        <p class="post__desc">What it took to find a single number across twenty-seven statistical agencies.</p>
+      </div>
+      <span class="post__thumb"><img src="https://placehold.co/336x220/FF8BB8/020202?text=EU+data+maze" alt="" /></span>
+    </a>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer__inner">
+    <span>© 2026 Ada Homolova</span>
+    <span>
+      <a href="mailto:adriana@homolova.sk">adriana@homolova.sk</a>
+      &nbsp;·&nbsp;
+      <a href="#">mastodon</a>
+      &nbsp;·&nbsp;
+      <a href="#">github</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+  // light parallax for decorative dots
+  const parallaxEls = document.querySelectorAll('[data-parallax]');
+  function onScroll() {
+    const y = window.scrollY;
+    parallaxEls.forEach(el => {
+      const rate = parseFloat(el.dataset.parallax) || 0;
+      el.style.transform = `translateY(${y * rate}px)`;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
+
+</body>
+</html>
