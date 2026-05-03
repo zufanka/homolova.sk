@@ -301,6 +301,15 @@
   }
   .footer__inner a:hover { background: var(--footer-accent, var(--pink)); color: var(--ink); }
 
+  @media (max-width: 540px) {
+    .footer__inner {
+      flex-direction: column-reverse;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+    }
+  }
+
   main.bare {
     max-width: none;
     margin: 0;

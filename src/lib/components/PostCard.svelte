@@ -71,7 +71,8 @@
   .card__meta {
     display: flex;
     align-items: center;
-    gap: 14px;
+    flex-wrap: wrap;
+    gap: 10px 14px;
     margin-bottom: 18px;
   }
   .card__date {
@@ -79,6 +80,7 @@
     font-size: 14px;
     color: var(--muted);
     letter-spacing: 0.02em;
+    white-space: nowrap;
   }
   .card__tags {
     display: inline-flex;

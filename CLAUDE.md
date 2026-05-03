@@ -49,6 +49,26 @@ Both share the site's nav, footer, and typography via a root layout. No more dis
 - **Screenshot is manual** per post (referenced in frontmatter as `newsletterImage`). Automate with Playwright later if volume justifies it.
 - **beehiiv's hosted shadow site is ignored.** Never linked from homolova.sk. Canonical URL in beehiiv settings points to our post. beehiiv is just the send engine.
 
+## Subscribe form (`/newsletter`)
+
+The form on `/newsletter` posts to a tiny serverless function — **not** part of this repo, because GitHub Pages can't run server code.
+
+- **Source:** `~/Projects/homolova-newsletter-api/` (separate folder, separate Vercel project, not coupled to the SvelteKit deploy).
+- **Deployed to:** Vercel project `homolova-sk` → `https://homolova-sk.vercel.app/api/subscribe`. The endpoint URL is hardcoded in `src/routes/newsletter/+page.svelte`.
+- **What the function does:** validates email, drops honeypot submissions, then calls `POST https://api.beehiiv.com/v2/publications/{pubId}/subscriptions` once per selected newsletter.
+- **Required env vars on the Vercel project** (values live only in Vercel, never in git):
+  - `BEEHIIV_API_KEY` — single key covers both publications (same beehiiv account). Marked Sensitive.
+  - `ADA_ESSAYS_PUB_ID` — publication ID for "Hi! It's Ada".
+  - `POND_PUB_ID` — publication ID for "The Pond".
+- **Double opt-in:** the function passes `double_opt_override: "on"` in the beehiiv request body. **Don't remove this** — beehiiv's API silently bypasses DOI by default, so without that flag confirmation emails stop being sent and subscribers go straight to "active." The publication-level DOI setting alone does **not** apply to API-created subscribers.
+- **Redeploying after a change:**
+  ```bash
+  cd ~/Projects/homolova-newsletter-api
+  npx vercel --prod
+  ```
+  The Vercel project is **not** connected to a git repo — deploys are CLI-only. (Intentional: keeps it decoupled from the SvelteKit GitHub Actions pipeline.)
+- **CORS:** function allows `https://homolova.sk`, `https://www.homolova.sk`, `http://localhost:5173`. Add new origins there if needed.
+
 ## Post frontmatter schema
 
 ```yaml
@@ -118,6 +138,7 @@ In dev, the `serveStaticIndex` plugin in `vite.config.ts` rewrites `/posts/<slug
 ## Paths
 
 - This repo: `~/Projects/homolova-sk/`
+- Subscribe API (separate Vercel project): `~/Projects/homolova-newsletter-api/`
 - Old Publii source (reference only): `~/Documents/Publii/sites/hi-im-ada/input/`
 - Old Publii build output: `~/Documents/Publii/sites/hi-im-ada/output/`
 
