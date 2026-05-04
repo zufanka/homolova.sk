@@ -183,4 +183,12 @@
     padding-left: 1rem;
     color: var(--muted);
   }
+  .prose :global(a) {
+    border-bottom: 2px solid var(--pink);
+    padding-bottom: 1px;
+    transition: background 160ms ease-out;
+  }
+  .prose :global(a:hover) {
+    background: var(--pink);
+  }
 </style>

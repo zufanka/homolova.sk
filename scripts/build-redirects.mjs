@@ -16,16 +16,17 @@ const postSlugs = readdirSync(POSTS_DIR, { withFileTypes: true })
 // Map of old-Publii path → destination on the new site.
 const redirects = new Map();
 
-// /blog/<slug>/ → /posts/<slug>/ for every migrated post
+// /blog/<slug>/ → /posts/<slug> for every migrated post
+// (no trailing slash — site uses `trailingSlash = 'never'`)
 for (const slug of postSlugs) {
-  redirects.set(`blog/${slug}/index.html`, `/posts/${slug}/`);
+  redirects.set(`blog/${slug}/index.html`, `/posts/${slug}`);
 }
 // the one Publii post that didn't migrate
 redirects.set('blog/is-craftsmanship-overrated/index.html', '/');
 // blog index
 redirects.set('blog/index.html', '/');
 // the standalone interactive at its old root path
-redirects.set('missingvoters/index.html', '/posts/missing-voters/');
+redirects.set('missingvoters/index.html', '/posts/missing-voters');
 // dropped Publii pages → CV (closest equivalent)
 redirects.set('projects/index.html', '/cv');
 redirects.set('portfolio/index.html', '/cv');
