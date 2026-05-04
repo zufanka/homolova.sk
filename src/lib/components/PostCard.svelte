@@ -51,10 +51,8 @@
     display: block;
     border: var(--border);
     background: var(--card);
-    transition: transform 180ms ease-out;
     color: inherit;
   }
-  .card:hover { transform: translate(-2px, -2px); }
 
   .card__image {
     display: block;

@@ -139,7 +139,7 @@
     <div class="hero-content">
       <h1>Let it snow</h1>
       <p class="hero-subtitle">A winter tale from the forest</p>
-      <p class="hero-author">by <a href="https://homolova.sk/hello">Ada Homolova</a></p>
+      <p class="hero-author">by <a target="_blank" rel="noopener" href="https://homolova.sk/hello">Ada Homolova</a></p>
     </div>
     <div class="hero-image">
       <img src={m('squirrel_sleeping.png')} alt="A squirrel sleeping in its nest" />

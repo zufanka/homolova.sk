@@ -74,7 +74,7 @@
       <p class="subtitle">
         11.8 million EU citizens pay taxes to governments they cannot vote for.
       </p>
-      <p class="byline">by <a target="_blank" href="https://homolova.sk/hello">Ada Homolova</a> · 8 February 2026</p>
+      <p class="byline">by <a target="_blank" rel="noopener" href="https://homolova.sk/hello">Ada Homolova</a> · 8 February 2026</p>
       <div class="scroll-hint">
         <span>Scroll to explore</span>
         <svg width="20" height="24" viewBox="0 0 20 24" fill="none">
