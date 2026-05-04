@@ -26,7 +26,7 @@
   <header class="hello__hero">
     <h1>Ada Homolova</h1>
     <p class="hello__lede">
-      I'm a freelance data journalist with over 10 years of experience in data
+      A freelance data journalist with over 10 years of experience in data
       &amp; investigative journalism, cross-border reporting, and teaching
       &amp; mentoring.
     </p>
@@ -54,11 +54,7 @@
       <p>
         I was the initiator and project leader of a data visualisation tool for public spending
         networks. We set out to visualise all the public spending in Europe as a graph. See how it
-        worked in this <a href="https://www.youtube.com/watch?v=xsIUoBfdhEw" target="_blank" rel="noopener">YouTube video</a>,
-        or have a look at the version we made for
-        <a href="https://defence.tenders.exposed/" target="_blank" rel="noopener">defence tenders</a>
-        (in collaboration with the
-        <a href="https://www.govtransparency.eu" target="_blank" rel="noopener">Government Transparency Institute</a>).
+        worked in this <a href="https://www.youtube.com/watch?v=xsIUoBfdhEw" target="_blank" rel="noopener">YouTube video</a>.
       </p>
     </article>
   </section>
@@ -69,15 +65,15 @@
     <article class="role">
       <h3>Dataharvest</h3>
       <p>
-        💪 Since 2020 I have been the coordinator of the data skills training at the
-        <a href="https://dataharvest.eu" target="_blank" rel="noopener">Dataharvest</a> conference.
+        💪 Coordinator of the data skills training at the
+        <a href="https://dataharvest.eu" target="_blank" rel="noopener">Dataharvest</a> conference Since 2020.
       </p>
     </article>
 
     <article class="role">
       <h3>University of Gothenburg</h3>
       <p>
-        🐍 Between 2020 and 2024 I was a guest lecturer on Python programming for master students of
+        🐍 Between 2020 and 2024, a guest lecturer on Python programming for master students of
         the Investigative Journalism (MIJ) program.
       </p>
     </article>
@@ -85,7 +81,7 @@
     <article class="role">
       <h3>IJ4EU</h3>
       <p>
-        💪 Since 2022 I have been a mentor for the recipients of the
+        💪 Between 2022 and 2024 a mentor for the recipients of the
         <a href="https://investigativejournalismforeu.net/" target="_blank" rel="noopener">cross-border investigative grants</a>,
         helping them up their data game.
       </p>
@@ -96,17 +92,21 @@
     <h2>🤝 Clients</h2>
 
     <article class="role">
-      <h3>Correctiv.Europe</h3>
+      <h3>CORRECTIV.Europe</h3>
       <p>
-        Since 2026 I have been collaborating with
-        <a href="https://correctiv.org" target="_blank" rel="noopener">Correctiv</a>'s European desk.
+        Since 2026 I make data driven stories with <a href="https://correctiv.org/en/europe/" target="_blank" rel="noopener">CORRECTIV.Europe</a> for and with a network of European regional journalists.
+        🧑🏻‍🤝‍🧑🏼 <a
+          href="https://correctiv.org/en/europe/2026/04/21/half-of-europes-towns-and-villages-have-fewer-residents-than-60-years-ago/"
+          target="_blank"
+          rel="noopener"
+        >Half of Europe’s towns and villages have fewer residents than 60 years ago</a> (2026)<br />
       </p>
     </article>
 
     <article class="role">
       <h3>Follow The Money</h3>
       <p>
-        Since 2022 I have been regularly publishing with Follow The Money as part of the Brussels desk.
+        Publishing with Follow The Money as part of the Brussels desk since 2022.
       </p>
       <p>
         💰 <a
@@ -125,8 +125,7 @@
     <article class="role">
       <h3>Lost in Europe</h3>
       <p>
-        In 2020–2021 I worked with
-        <a href="https://lostineurope.eu/" target="_blank" rel="noopener">a European team of journalists</a>
+        Between 2020 and 2021 worked with <a href="https://lostineurope.eu/" target="_blank" rel="noopener">a European team of journalists</a>
         reporting on migration, especially children missing in migration. The story with most impact I
         worked on quantified the number of missing children in European asylum centres. It was initially
         published in 9 outlets and was republished as far as Russia, Syria and South America.
@@ -141,7 +140,7 @@
     </article>
 
     <article class="role">
-      <h3>Arena for Journalism in Europe</h3>
+      <h3>Cities for rent (Arena for Journalism in Europe)</h3>
       <p>
         🏆 Won the
         <a href="https://www.europeanpressprize.com/laureate/cities-for-rent/" target="_blank" rel="noopener">European Press Prize</a>
@@ -218,7 +217,7 @@
     <article class="role">
       <h3>Pointer (KRO-NCRV)</h3>
       <p>
-        In 2019 I was briefly employed by
+        In 2019 briefly employed by
         <a href="https://pointer.kro-ncrv.nl/" target="_blank" rel="noopener">Pointer</a>,
         a pioneer data newsroom of the Dutch broadcaster KRO-NCRV. We combined the expertise of data
         specialists, coders and designers for each story. Examples (in Dutch):
@@ -245,7 +244,7 @@
     <article class="role">
       <h3>Investico</h3>
       <p>
-        Between 2014 and 2018 I worked as data journalist with the independent platform for
+        Between 2014 and 2018 worked as data journalist with the independent platform for
         structural investigative journalism. Example story (in Dutch):
       </p>
       <p>
@@ -260,7 +259,7 @@
     <article class="role">
       <h3>OneWorld</h3>
       <p>
-        Between 2014 and 2018 I worked as data journalist with a small Dutch magazine focused on
+        Between 2014 and 2018 worked as data journalist with a small Dutch magazine focused on
         sustainability and human rights. Examples (in Dutch):
       </p>
       <p>
