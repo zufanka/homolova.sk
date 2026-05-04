@@ -95,6 +95,8 @@
       <h3>CORRECTIV.Europe</h3>
       <p>
         Since 2026 I make data driven stories with <a href="https://correctiv.org/en/europe/" target="_blank" rel="noopener">CORRECTIV.Europe</a> for and with a network of European regional journalists.
+        </p>
+        <p>
         🧑🏻‍🤝‍🧑🏼 <a
           href="https://correctiv.org/en/europe/2026/04/21/half-of-europes-towns-and-villages-have-fewer-residents-than-60-years-ago/"
           target="_blank"
