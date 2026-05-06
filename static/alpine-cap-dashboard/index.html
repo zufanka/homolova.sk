@@ -488,12 +488,23 @@ function buildTable(initialData) {
 
   // Tabulator 6.x requires events via .on(); constructor-option callbacks no longer fire.
   TABLE.on("tableBuilt", () => { TABLE_READY = true; refresh(); });
+  let _wasEmpty = false, _redrawPending = false;
   TABLE.on("dataFiltered", (_filters, rows) => {
     syncSelectedScheme();
     refresh(rows.map(r => r.getData()));
-    // Tabulator's virtual scroll can leave the body blank after a 0-result
-    // filter is removed; force a redraw so rows reappear.
-    if (rows.length) TABLE.redraw(true);
+    // Tabulator's virtual scroll leaves the body blank when a 0-result filter
+    // is removed — force a redraw on that 0-→non-zero transition. Defer to
+    // the next frame: calling redraw(true) synchronously from inside this
+    // event re-enters Tabulator's row pipeline and intermittently throws
+    // `e.getElement().setAttribute is not a function`.
+    if (_wasEmpty && rows.length && !_redrawPending) {
+      _redrawPending = true;
+      requestAnimationFrame(() => {
+        _redrawPending = false;
+        try { TABLE.redraw(true); } catch (e) { console.warn("Tabulator redraw failed:", e); }
+      });
+    }
+    _wasEmpty = rows.length === 0;
   });
   TABLE.on("rowClick", (_e, row) => toggleDetail(row));
 }
