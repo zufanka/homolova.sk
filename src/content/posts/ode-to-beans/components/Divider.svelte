@@ -4,12 +4,20 @@
   filenames (without extension) from public/images/beans/ to vary it.
 -->
 <script>
+  // Eagerly resolve every PNG in ../img/beans/ to a Vite-built URL at compile
+  // time. Keyed by filename (without extension) for lookup from props.
+  const beanImages = Object.fromEntries(
+    Object.entries(
+      import.meta.glob('../img/beans/*.png', { eager: true, query: '?url', import: 'default' }),
+    ).map(([path, url]) => [path.match(/([^/]+)\.png$/)[1], url]),
+  );
+
   let { beans = ['red-lentils', 'chickpeas', 'dupuy'] } = $props();
 </script>
 
 <div class="divider" aria-hidden="true">
   {#each beans as bean}
-    <img src={`/images/beans/${bean}.png`} alt="" />
+    <img src={beanImages[bean]} alt="" />
   {/each}
 </div>
 

@@ -12,6 +12,7 @@
   import { onMount } from 'svelte';
   import * as d3 from 'd3';
   import { legumeColors } from '../palette.js';
+  import csvRaw from '../data/food-emissions-treemap.csv?raw';
 
   let svgEl = $state();
   let wrapEl = $state();
@@ -21,14 +22,13 @@
 
   const GROUP_ORDER = ['Animal-linked', 'Plant for humans', 'Supply chain'];
 
-  onMount(async () => {
-    const raw = await d3.csv('/data/food-emissions-treemap.csv', (d) => ({
+  onMount(() => {
+    rows = d3.csvParse(csvRaw, (d) => ({
       group: d.group,
       leaf: d.leaf,
       value: +d.value_pct,
       note: d.note || '',
     }));
-    rows = raw;
 
     const ro = new ResizeObserver((entries) => {
       const r = entries[0].contentRect;
@@ -81,6 +81,18 @@
       .append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
 
+    // Fit an SVG <text> to a max pixel width: measure once, then apply
+    // textLength + lengthAdjust='spacingAndGlyphs' to compress if needed.
+    // Compressing only when needed keeps wide columns at natural metrics.
+    const fitText = (sel, maxW) => {
+      const node = sel.node();
+      if (!node) return;
+      const actual = node.getComputedTextLength();
+      if (actual > maxW && maxW > 0) {
+        sel.attr('textLength', maxW).attr('lengthAdjust', 'spacingAndGlyphs');
+      }
+    };
+
     let xCursor = 0;
     GROUP_ORDER.forEach((groupName) => {
       const groupCells = (grouped.get(groupName) || []).sort(
@@ -92,8 +104,8 @@
 
       const col = g.append('g').attr('transform', `translate(${xCursor},0)`);
 
-      // group header (above column)
-      col
+      // group header (above column) — compress if it would overflow the column
+      const header = col
         .append('text')
         .attr('x', 0)
         .attr('y', -28)
@@ -104,6 +116,7 @@
         .style('letter-spacing', '0.1em')
         .style('text-transform', 'uppercase')
         .text(groupName);
+      fitText(header, colW);
 
       col
         .append('text')
@@ -131,42 +144,39 @@
 
         cellGroup.append('title').text(`${cell.leaf} — ${cell.value}% of food emissions`);
 
-        // inline labels when there is room
-        if (cellH >= 36 && colW >= 90) {
-          cellGroup
+        const padL = 10;
+        const padR = 6;
+        const innerW = Math.max(0, colW - padL - padR);
+
+        // inline labels when there is room (need both height and a usable width).
+        // 48px is the smallest cell that fits leaf (baseline y=22) + value (y=40,
+        // 14px font) without the value descender clipping the cell bottom.
+        if (cellH >= 48 && innerW >= 70) {
+          const leafLabel = cellGroup
             .append('text')
-            .attr('x', 10)
+            .attr('x', padL)
             .attr('y', 22)
             .attr('fill', 'var(--text-on-dark)')
             .style('font-family', 'var(--sans)')
             .style('font-size', colW > 200 ? '14px' : '12px')
             .style('font-weight', '600')
             .text(cell.leaf);
+          fitText(leafLabel, innerW);
 
           cellGroup
             .append('text')
-            .attr('x', 10)
+            .attr('x', padL)
             .attr('y', colW > 200 ? 44 : 40)
             .attr('fill', 'var(--text-on-dark)')
             .style('font-family', 'var(--sans)')
             .style('font-size', colW > 200 ? '18px' : '14px')
             .style('font-weight', '700')
             .text(`${cell.value}%`);
-
-          if (cell.note && colW > 220 && cellH > 84) {
-            cellGroup
-              .append('text')
-              .attr('x', 10)
-              .attr('y', 64)
-              .attr('fill', 'var(--text-on-dark-muted)')
-              .style('font-family', 'var(--sans)')
-              .style('font-size', '11px')
-              .style('font-style', 'italic')
-              .text(cell.note);
-          }
-        } else if (cellH >= 18) {
-          // compact: just leaf + value on one line
-          cellGroup
+        } else if (cellH >= 18 && innerW >= 40) {
+          // compact: just leaf + value on one line, fitted to the cell width.
+          // Below 40px usable width text becomes unreadable — fall back to
+          // the rect-only block and let the hover tooltip do the work.
+          const compact = cellGroup
             .append('text')
             .attr('x', 8)
             .attr('y', cellH / 2 + 4)
@@ -175,6 +185,7 @@
             .style('font-size', '11px')
             .style('font-weight', '600')
             .text(`${cell.leaf} · ${cell.value}%`);
+          fitText(compact, Math.max(0, colW - 12));
         }
 
         yCursor += cellH + cellGap;

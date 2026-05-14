@@ -11,6 +11,7 @@
   import { onMount } from 'svelte';
   import * as d3 from 'd3';
   import { legumeColors, chart as chartTokens } from '../palette.js';
+  import csvRaw from '../data/landuse-water.csv?raw';
 
   let svgEl = $state();
   let wrapEl = $state();
@@ -18,14 +19,13 @@
   let height = $state(560);
   let rows = $state([]);
 
-  onMount(async () => {
-    const raw = await d3.csv('/data/landuse-water.csv', (d) => ({
+  onMount(() => {
+    rows = d3.csvParse(csvRaw, (d) => ({
       product: d.product,
       kind: d.kind, // 'animal' | 'plant' | 'plant-legume'
       land: +d.land_use_m2,
       water: +d.freshwater_l,
     }));
-    rows = raw;
 
     const ro = new ResizeObserver((entries) => {
       const r = entries[0].contentRect;

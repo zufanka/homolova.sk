@@ -9,6 +9,7 @@
   import { onMount } from 'svelte';
   import * as d3 from 'd3';
   import { legumeColors, chart as chartTokens } from '../palette.js';
+  import csvRaw from '../data/protein_prices_mpreis.csv?raw';
 
   let svgEl = $state();
   let wrapEl = $state();
@@ -24,8 +25,8 @@
     beef: 'Beef',
   };
 
-  onMount(async () => {
-    const raw = await d3.csv('/data/protein_prices_mpreis.csv', (d) => ({
+  onMount(() => {
+    const raw = d3.csvParse(csvRaw, (d) => ({
       category: d.category,
       subtype: d.subtype,
       name: d.name,

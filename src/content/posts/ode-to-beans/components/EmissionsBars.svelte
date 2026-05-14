@@ -10,6 +10,7 @@
   import { onMount } from 'svelte';
   import * as d3 from 'd3';
   import { legumeColors, chart as chartTokens } from '../palette.js';
+  import csvRaw from '../data/food-emissions-supply-chain.csv?raw';
 
   let svgEl = $state();
   let wrapEl = $state();
@@ -32,8 +33,8 @@
 
   const STAGES = ['Land use change', 'Farm', 'Animal feed', 'Processing', 'Transport', 'Retail', 'Packaging', 'Losses'];
 
-  onMount(async () => {
-    const raw = await d3.csv('/data/food-emissions-supply-chain.csv');
+  onMount(() => {
+    const raw = d3.csvParse(csvRaw);
     const byEntity = new Map(raw.map((r) => [r.Entity, r]));
 
     rows = FOODS.map((f) => {

@@ -8,6 +8,7 @@
   import { onMount } from 'svelte';
   import * as d3 from 'd3';
   import { legumeColors, chart as chartTokens } from '../palette.js';
+  import csvRaw from '../data/livewell_plates_adults_19-64.csv?raw';
 
   let svgEl = $state();
   let wrapEl = $state();
@@ -15,8 +16,8 @@
   let height = $state(540);
   let rows = $state([]);
 
-  onMount(async () => {
-    const raw = await d3.csv('/data/livewell_plates_adults_19-64.csv', (d) => ({
+  onMount(() => {
+    const raw = d3.csvParse(csvRaw, (d) => ({
       name: d['Food group'],
       include: d.include === '1',
       current: +d['Current (g/d)'],

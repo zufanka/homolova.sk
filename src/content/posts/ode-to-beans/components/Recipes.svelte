@@ -4,6 +4,9 @@
 -->
 <script>
   import { slide } from 'svelte/transition';
+  import redLentilSoupImg from '../img/recipes/red-lentil-soup.png';
+  import kitchariImg from '../img/recipes/kitchari.png';
+  import hummusImg from '../img/recipes/hummus.png';
 
   const recipes = [
     {
@@ -11,7 +14,7 @@
       title: 'Red lentil soup',
       emoji: '🥣',
       servings: 'for 2 persons',
-      image: '/images/recipes/red-lentil-soup.png',
+      image: redLentilSoupImg,
       ingredients: [
         {
           heading: null,
@@ -53,7 +56,7 @@
       title: 'Kitchari',
       emoji: '🍲',
       servings: 'for 2 persons',
-      image: '/images/recipes/kitchari.png',
+      image: kitchariImg,
       ingredients: [
         {
           heading: 'For the base',
@@ -102,7 +105,7 @@
       title: 'Hummus: three different ones',
       emoji: '🫘',
       servings: 'for 200 g hummus',
-      image: '/images/recipes/hummus.png',
+      image: hummusImg,
       ingredients: [
         {
           heading: '1. Chickpea hummus — the classic',

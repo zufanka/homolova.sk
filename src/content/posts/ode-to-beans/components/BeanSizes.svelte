@@ -12,6 +12,15 @@
   import { beanFacts } from '../data/beans.js';
   import { chart as chartTokens } from '../palette.js';
 
+  // Eagerly resolve every PNG in ../img/beans/ to a Vite-built URL at compile
+  // time. Keyed by the filename including extension so we can look up by the
+  // `image` field on each bean.
+  const beanImages = Object.fromEntries(
+    Object.entries(
+      import.meta.glob('../img/beans/*.png', { eager: true, query: '?url', import: 'default' }),
+    ).map(([path, url]) => [path.match(/([^/]+)$/)[1], url]),
+  );
+
   let svgEl = $state();
   let wrapEl = $state();
   let width = $state(380);
@@ -210,7 +219,7 @@
     // Bean image, centered on the row baseline
     row
       .append('image')
-      .attr('href', (d) => `/images/beans/${d.image}`)
+      .attr('href', (d) => beanImages[d.image])
       .attr('width', (d) => d.sz)
       .attr('height', (d) => d.sz)
       .attr('preserveAspectRatio', 'xMidYMid meet')

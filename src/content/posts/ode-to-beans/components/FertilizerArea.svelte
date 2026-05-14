@@ -13,6 +13,7 @@
   import { onMount } from 'svelte';
   import * as d3 from 'd3';
   import { legumeColors, chart as chartTokens } from '../palette.js';
+  import csvRaw from '../data/world-population-with-and-without-fertilizer.csv?raw';
 
   let svgEl = $state();
   let wrapEl = $state();
@@ -20,20 +21,17 @@
   let height = $state(440);
   let series = $state([]);
 
-  onMount(async () => {
-    const raw = await d3.csv(
-      '/data/world-population-with-and-without-fertilizer.csv',
-      (d) => ({
-        year: +d.Year,
-        total: +d['World population'],
-        without: d['World population supported without synthetic fertilizer']
-          ? +d['World population supported without synthetic fertilizer']
-          : null,
-        fed: d['World population fed by synthetic fertilizer']
-          ? +d['World population fed by synthetic fertilizer']
-          : null,
-      }),
-    );
+  onMount(() => {
+    const raw = d3.csvParse(csvRaw, (d) => ({
+      year: +d.Year,
+      total: +d['World population'],
+      without: d['World population supported without synthetic fertilizer']
+        ? +d['World population supported without synthetic fertilizer']
+        : null,
+      fed: d['World population fed by synthetic fertilizer']
+        ? +d['World population fed by synthetic fertilizer']
+        : null,
+    }));
     series = raw
       .filter((d) => d.without != null && d.fed != null)
       .filter((d) => d.year >= 1900);

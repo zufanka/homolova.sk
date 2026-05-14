@@ -11,6 +11,13 @@
   import LivewellPlates from './components/LivewellPlates.svelte';
   import BeanSizes from './components/BeanSizes.svelte';
   import Recipes from './components/Recipes.svelte';
+  import mungNote from './img/cover/notes/mung-note.png';
+  import adzukiNote from './img/cover/notes/adzuki-note.png';
+  import blackBeanNote from './img/cover/notes/black-bean-note.png';
+  import favaNote from './img/cover/notes/fava-note.png';
+  import borlottiNote from './img/cover/notes/borlotti-note.png';
+  import kidneyNote from './img/cover/notes/kidney-note.png';
+  import chickpeaNote from './img/cover/notes/chickpea-note.png';
 
   // Parallax: every [data-parallax] element gets translateY(scrollY * rate).
   // Writing into a CSS var so the rotate transform on the same element survives.
@@ -49,13 +56,13 @@
   <article>
     <header class="hero">
       <div class="hero-notes" aria-hidden="true">
-        <img class="note note--1" src="/images/cover/notes/mung-note.png"       alt="" data-parallax="0.08"  />
-        <img class="note note--2" src="/images/cover/notes/adzuki-note.png"     alt="" data-parallax="-0.05" />
-        <img class="note note--3" src="/images/cover/notes/black-bean-note.png" alt="" data-parallax="0.12"  />
-        <img class="note note--4" src="/images/cover/notes/fava-note.png"       alt="" data-parallax="-0.10" />
-        <img class="note note--5" src="/images/cover/notes/borlotti-note.png"   alt="" data-parallax="0.15"  />
-        <img class="note note--6" src="/images/cover/notes/kidney-note.png"     alt="" data-parallax="-0.08" />
-        <img class="note note--7" src="/images/cover/notes/chickpea-note.png"   alt="" data-parallax="0.10"  />
+        <img class="note note--1" src={mungNote}      alt="" data-parallax="0.08"  />
+        <img class="note note--2" src={adzukiNote}    alt="" data-parallax="-0.05" />
+        <img class="note note--3" src={blackBeanNote} alt="" data-parallax="0.12"  />
+        <img class="note note--4" src={favaNote}      alt="" data-parallax="-0.10" />
+        <img class="note note--5" src={borlottiNote}  alt="" data-parallax="0.15"  />
+        <img class="note note--6" src={kidneyNote}    alt="" data-parallax="-0.08" />
+        <img class="note note--7" src={chickpeaNote}  alt="" data-parallax="0.10"  />
       </div>
       <div class="hero-content">
         <p class="kicker">Data essay</p>
