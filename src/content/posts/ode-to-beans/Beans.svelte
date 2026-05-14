@@ -58,9 +58,10 @@
         <img class="note note--7" src="/images/cover/notes/chickpea-note.png"   alt="" data-parallax="0.10"  />
       </div>
       <div class="hero-content">
-        <p class="kicker"><span>Data-essay</span></p>
-        <h1>An ode to legumes</h1>
+        <p class="kicker">Data essay</p>
+        <h1>An ode to beans</h1>
         <p class="dek">Even small seeds can reshape large systems.</p>
+        <p class="byline">by <a href="/hello">Ada Homolova</a> · 15 May 2026</p>
         <p class="scroll-hint"><span>Scroll</span><span class="scroll-arrow" aria-hidden="true">↓</span></p>
       </div>
     </header>
@@ -426,6 +427,10 @@
     line-height: 1.55;
     color: var(--text-on-light);
     background: var(--surface-parchment);
+    /* padding-bottom traps the final child's margin-bottom inside .beans-root
+       so the parchment bg extends all the way to the footer (otherwise the
+       margin collapses out and the body's white bg shows through). */
+    padding-bottom: 1px;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -524,9 +529,9 @@
   .hero {
     position: relative;
     width: 100%;
-    min-height: 62vh;
+    min-height: 90vh;
     margin: 0;
-    padding: 2vh 1.5rem 3vh;
+    padding: 6rem 1.5rem 3vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -596,40 +601,38 @@
     .note--4 { top: 30%; left: 1%;   width: clamp(32px, 8vw,    44px); }
     .note--7 { top: 38%; right: 1%;  width: clamp(28px, 7vw,    38px); }
   }
-  .kicker {
+  /* p.kicker / p.scroll-hint / p.dek all need element+class specificity
+     to beat `.beans-root :global(p)` (0,2,1 once scoped). */
+  p.kicker {
     font-family: var(--sans);
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.28em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--color-kidney);
-    margin: 0 0 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.9rem;
+    color: #999;
+    margin: 0 0 2.5rem;
   }
-  .kicker::before,
-  .kicker::after {
-    content: '';
-    width: 28px;
-    height: 1.5px;
-    background: currentColor;
-    opacity: 0.55;
-  }
-  .kicker span {
-    transform: translateY(0.5px);
-  }
-  .dek {
+  /* p.dek beats the broader `.beans-root :global(p)` rule's specificity,
+     so font-size, margin: 0 auto (centering), and italic actually apply. */
+  p.dek {
     font-family: var(--serif);
-    font-size: clamp(1.15rem, 1.75vw, 1.4rem);
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
     font-style: italic;
     line-height: 1.45;
-    color: var(--text-on-light-muted);
+    color: var(--text-on-light);
     max-width: 32ch;
     margin: 0 auto;
   }
-  .scroll-hint {
+  p.byline {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: #888;
+    margin: 2.5rem 0 0;
+  }
+  p.byline :global(a) {
+    color: inherit;
+  }
+  p.scroll-hint {
     font-family: var(--sans);
     font-size: 0.72rem;
     font-weight: 500;
