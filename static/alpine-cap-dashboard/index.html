@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CAP money in the Alps — businesses, 2023–2024</title>
+<title>CAP money in the Alps — recipients, 2023–2024</title>
 
 <link rel="stylesheet" href="https://unpkg.com/tabulator-tables@6.3.0/dist/css/tabulator_simple.min.css">
 <script src="https://unpkg.com/tabulator-tables@6.3.0/dist/js/tabulator.min.js"></script>
@@ -31,65 +31,11 @@
   header h1 { font-size: 1.6rem; font-weight: 600; margin: 0 0 .3rem; }
   header p { color: var(--muted); margin: 0; max-width: 75ch; font-size: 0.92rem; }
 
-  /* filter strip */
-  .filters {
-    background: var(--panel);
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 0.7rem 0.9rem;
-    margin: 0.9rem 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.9rem;
-    align-items: flex-end;
-  }
-  .filters .field { display: flex; flex-direction: column; gap: 4px; }
-  .filters label {
-    font-size: 0.72rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 600;
-  }
-  .filters input[type="text"], .filters input[type="number"] {
-    padding: 5px 8px;
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    font: inherit;
-    background: white;
-    min-width: 160px;
-  }
-  .filters .chips { display: flex; gap: 4px; }
-  .chip {
-    display: inline-block;
-    padding: 4px 10px;
-    font-size: 0.82rem;
-    background: white;
-    border: 1px solid var(--rule);
-    border-radius: 14px;
-    cursor: pointer;
-    user-select: none;
-    line-height: 1.2;
-  }
-  .chip.on { background: var(--accent); color: white; border-color: var(--accent); }
-  .filters .reset {
-    margin-left: auto;
-    background: transparent;
-    border: 1px solid var(--rule);
-    padding: 4px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font: inherit;
-    color: var(--muted);
-  }
-  .filters .reset:hover { color: var(--ink); border-color: var(--ink); }
-
-  /* KPI strip */
   .kpis {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0.5rem;
-    margin-bottom: 0.9rem;
+    margin: 0.9rem 0;
   }
   @media (max-width: 900px) { .kpis { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 500px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
@@ -106,7 +52,6 @@
   .kpi .value { font-size: 1.2rem; font-weight: 600; margin-top: 2px; }
   .kpi .sub { font-size: 0.72rem; color: var(--muted); }
 
-  /* card / table */
   .card {
     background: var(--panel);
     border: 1px solid var(--rule);
@@ -114,14 +59,29 @@
     padding: 0.8rem 1rem;
     margin-bottom: 0.9rem;
   }
-  .card h2 { font-size: 0.95rem; margin: 0 0 0.6rem; font-weight: 600; }
-  .card .small { font-size: 0.78rem; color: var(--muted); margin: -0.4rem 0 0.6rem; }
-
   .table-wrap { padding: 0; }
-  .table-wrap h2 { padding: 0.6rem 0.9rem 0; margin-bottom: 0; }
-  .table-wrap .small { padding: 0 0.9rem; }
+  .table-wrap .header-row {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding: 0.6rem 0.9rem 0;
+  }
+  .table-wrap h2 { font-size: 0.95rem; padding: 0; margin: 0; font-weight: 600; }
+  .table-wrap .small { font-size: 0.78rem; color: var(--muted); padding: 0 0.9rem; margin: 0.3rem 0; }
 
-  /* Tabulator look */
+  .reset {
+    background: transparent;
+    border: 1px solid var(--rule);
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font: inherit;
+    color: var(--muted);
+  }
+  .reset:hover { color: var(--ink); border-color: var(--ink); }
+
+  #status {
+    font-size: 0.85rem; color: var(--muted); padding: 0.4rem 0.9rem;
+  }
+
   .tabulator { font-family: inherit; font-size: 0.85rem; border: 0; }
   .tabulator .tabulator-header { background: #f6f4ee; border-bottom: 1px solid var(--rule); }
   .tabulator .tabulator-header .tabulator-col {
@@ -130,10 +90,6 @@
   .tabulator-row.tabulator-row-even { background-color: #fbfaf6; }
   .tabulator-row.tabulator-selectable:hover { background-color: var(--accent-soft) !important; cursor: pointer; }
 
-  .archetype-chip {
-    display: inline-block; padding: 1px 6px; border-radius: 10px;
-    font-size: 0.74rem; background: #eee; color: #333;
-  }
   .scheme-pill {
     display: inline-block;
     padding: 1px 6px;
@@ -145,9 +101,6 @@
   }
   .scheme-pill code { background: transparent; padding: 0; font-weight: 600; }
   .tabulator .tabulator-cell { white-space: normal; }
-  .archetype-chip.alm { background: #d1fae5; color: #064e3b; }
-  .archetype-chip.coop { background: #dbeafe; color: #1e3a8a; }
-  .archetype-chip.company { background: #fef3c7; color: #78350f; }
 
   .footnote {
     font-size: 0.82rem; color: var(--muted); line-height: 1.55;
@@ -183,14 +136,12 @@
 <div class="wrap">
 
 <header>
-  <h1>CAP money in the Alps — businesses, 2023–2024</h1>
+  <h1>CAP money in the Alps — recipients, 2023–2024</h1>
   <p>Direct and rural-development payments under the EU Common Agricultural Policy
-     to companies, cooperatives and alpine-pasture associations whose registered
-     seat is inside the Alpine Convention perimeter. Excludes natural persons and
-     pure public bodies.</p>
+     to recipients whose registered seat is inside the Alpine Convention perimeter.
+     All recipient types are included; anonymised entries are excluded.</p>
 </header>
 
-<!-- KPI STRIP -->
 <div class="kpis">
   <div class="kpi"><div class="label">Recipients</div>
     <div class="value" id="kpi-n">—</div>
@@ -206,10 +157,9 @@
     <div class="value" id="kpi-top1">—</div></div>
 </div>
 
-<!-- TABLE = main deliverable -->
 <div class="card table-wrap">
-  <div style="display:flex; align-items:baseline; justify-content:space-between; padding: 0.6rem 0.9rem 0;">
-    <h2 style="padding:0; margin:0;">Recipients</h2>
+  <div class="header-row">
+    <h2>Recipients</h2>
     <button class="reset" id="clear-filters">Clear all filters</button>
   </div>
   <p class="small">
@@ -217,6 +167,7 @@
     Click any row to expand a per-recipient breakdown.
     KPIs reflect the filtered table.
   </p>
+  <div id="status">Loading…</div>
   <div id="table"></div>
 </div>
 
@@ -225,21 +176,7 @@
     <summary>Methodology &amp; data sources</summary>
     <p><strong>Scope.</strong> Only recipients registered in
        <a href="https://www.atlas.alpconv.org/" target="_blank">Alpine Convention 2024 perimeter</a>
-       (1,010 AT Gemeinden + 1,648 IT comuni). Natural persons and anonymised
-       small recipients excluded. Pure administrative public bodies (ministries,
-       comuni, regions, universities, churches, mountain communities) excluded.</p>
-    <p><strong>Alpine-pasture flag (🐄).</strong> No central registry exists, so the flag is
-       inferred from two signals. <em>(1) Name match.</em> The recipient name is matched against
-       a regex chain for nine known collective alm forms — <em>Almgemeinschaft, Agrargemeinschaft,
-       Interessentschaft, Eigenverwaltung B.N.R., ASUC, Regola, Magnifica Comunità, Comunella,
-       Malga</em>. <em>(2) Austria-only payment-profile fallback.</em> An Austrian recipient is also
-       flagged if its CAP money looks like an alpine farm even when the name didn't match: BISS &gt; 0,
-       ANC (mountain compensation) &gt; 0, agri-environment &gt; 0, and (ANC + agri-env) &gt;
-       3 × BISS. The intuition: alpine farms get tiny BISS (low €/ha rate × little area) but big ANC
-       and ÖPUL top-ups, so that ratio is a fingerprint. Italy uses only signal (1), because IT data
-       doesn't separate ANC from BISS as cleanly. The flag therefore leans toward false negatives —
-       e.g., a <em>Soc. Agr. … S.r.l.</em> running an alpine pasture would be classified
-       <em>company</em>, not alm.</p>
+       (1,010 AT Gemeinden + 1,648 IT comuni). All recipient types included; anonymised excluded.</p>
     <p><strong>Schemes vs. categories.</strong> The row-detail drawer shows the same money at two
        levels of detail. <em>Schemes (Annex IX code &amp; name)</em> are the raw line items as they
        appear in the transparency files — the specific EU-regulation measure code each payment was
@@ -249,12 +186,19 @@
        sectoral, etc.) so AT and IT payments can be compared on a common axis.
        The schemes view is the audit trail back to the source data; the category view is the
        cross-country comparison view.</p>
+    <p><strong>Mountain class.</strong> Municipalities are classified as
+       <code>T</code> (totally mountainous), <code>P</code> (partially mountainous) or
+       <code>NM</code> (non-mountain) using the Allegato B (Law 991/1952) surface-share rule:
+       <code>T</code> if ≥ 80 % of the territory is above 600 m, <code>P</code> if ≥ 33 % (or
+       ≥ 10 % with the administrative centre itself above 600 m), <code>NM</code> otherwise.
+       Italy uses ISTAT's 2021 altimetric tables. Austria has no equivalent national table, so
+       we derive the same statistics ourselves from the Copernicus GLO-90 DEM (90 m resolution)
+       run over the AT Gemeinde polygons of the Alpine Convention layer.</p>
     <p><strong>Sources.</strong> AMA <em>Transparenzdatenbank</em> for Austria;
        AGEA <em>Trasparenza</em> CSV for Italy; ISTAT
        <a href="https://www.istat.it/classificazione/principali-statistiche-geografiche-sui-comuni/" target="_blank">altimetric tables (Dec 2021)</a>
-       for the IT mountain class T / P / NM derived from the Allegato B (Law 991/1952) rule.
-       Per-ha rates from the BMLUK and EU Commission's Austria CAP Strategic Plan factsheet (Sept 2025) and
-       <a href="https://www.masaf.gov.it/flex/cm/pages/ServeBLOB.php/L/IT/IDPagina/18870" target="_blank">MASAF / Pianeta PSR</a>.</p>
+       for IT; <a href="https://spacedata.copernicus.eu/collections/copernicus-digital-elevation-model" target="_blank">Copernicus GLO-90 DEM</a>
+       for AT (via the public AWS bucket).</p>
   </details>
 </div>
 
@@ -265,32 +209,62 @@ const DATA_URL = "./dashboard_data.json";
 
 const fmtEUR0 = n => n == null || isNaN(n) ? "—" : "€" + Math.round(n).toLocaleString("en-US");
 const fmtEUR1 = n => n == null || isNaN(n) ? "—" : "€" + n.toLocaleString("en-US", {maximumFractionDigits: 2});
-const fmtNum = n => n == null || isNaN(n) ? "—" : n.toLocaleString("en-US", {maximumFractionDigits: 1});
 const fmtPct = n => n == null || isNaN(n) ? "—" : (n*100).toFixed(1) + " %";
 
-const ARCHETYPE_LABELS = {
-  almgemeinschaft: "Almgemeinschaft",
-  agrargemeinschaft: "Agrargemeinschaft",
-  bringungsgemeinschaft: "Bringungsgemeinschaft",
-  interessentschaft: "Interessentschaft",
-  eigenverwaltung: "Eigenverwaltung B.N.R.",
-  asuc: "ASUC",
-  regola: "Regola",
-  magnifica_comunita: "Magnifica Comunità",
-  comunella: "Comunella",
-  malga: "Malga / Pascolo",
-  cooperative: "Cooperative",
-  producer_organisation: "Producer org.",
-  association: "Association",
-  foundation: "Foundation",
-  company: "Company",
-  unknown_entity: "Other entity",
+// Annex IX intervention codes → English short names. Keep in sync with
+// build_data.py's ANNEX_IX_NAMES_EN.
+const ANNEX_IX_NAMES = {
+  "I.1":  "Basic income support for sustainability (BISS)",
+  "I.2":  "Complementary redistributive income support (CRISS)",
+  "I.3":  "Complementary income support for young farmers",
+  "I.4":  "Schemes for the climate, environment and animal welfare (eco-schemes)",
+  "I.5":  "Crop-specific payment for cotton",
+  "I.6":  "Coupled income support",
+  "II.1":  "Basic payment scheme (BPS)",
+  "II.4":  "Greening payment (climate- and environment-friendly practices)",
+  "II.6":  "Young farmers payment",
+  "II.7":  "Voluntary coupled support",
+  "II.9":  "Small farmers scheme",
+  "II.10": "Reimbursement of carried-over funds (financial discipline)",
+  "II.11": "Other direct payments",
+  "III.1": "Sectoral intervention — fruit and vegetables",
+  "III.2": "Sectoral intervention — apiculture",
+  "III.3": "Sectoral intervention — wine",
+  "III.5": "Sectoral intervention — olive oil and table olives",
+  "III.6": "Sectoral intervention — other sectors",
+  "IV.3":  "School fruit, vegetables and milk scheme",
+  "IV.4":  "Exceptional market measures",
+  "IV.5":  "Aid in the fruit and vegetables sector",
+  "IV.6":  "Support in the wine sector",
+  "IV.7":  "Aid in the apiculture sector",
+  "V.1":  "Environmental, climate and other management commitments",
+  "V.2":  "Natural or other area-specific constraints",
+  "V.3":  "Area-specific disadvantages from mandatory requirements",
+  "V.4":  "Investments (including in irrigation)",
+  "V.5":  "Setting up of young farmers, new farmers and rural business start-ups",
+  "V.6":  "Risk management tools",
+  "V.7":  "Cooperation",
+  "V.8":  "Knowledge exchange and information",
+  "VI.1":  "Knowledge transfer and information actions (M1)",
+  "VI.2":  "Advisory services, farm management and relief (M2)",
+  "VI.3":  "Quality schemes for agricultural products (M3)",
+  "VI.4":  "Investments in physical assets (M4)",
+  "VI.5":  "Restoring production potential / disaster prevention (M5)",
+  "VI.6":  "Farm and business development (M6)",
+  "VI.7":  "Basic services and village renewal (M7)",
+  "VI.8":  "Investments in forest development and viability (M8)",
+  "VI.15": "Agri-environment-climate (M10)",
+  "VI.16": "Organic farming (M11)",
+  "VI.17": "Natura 2000 and Water Framework Directive payments (M12)",
+  "VI.18": "Areas with natural or other specific constraints (ANC, M13)",
+  "VI.19": "Animal welfare (M14)",
+  "VI.21": "Cooperation (M16)",
+  "VI.22": "Risk management (M17)",
+  "VI.22 ter": "Risk management — sector-specific income stabilisation",
+  "VI.24": "LEADER / community-led local development (M19)",
+  "VI.25": "Technical assistance (legacy M20)",
+  "IX.1":  "Technical assistance",
 };
-
-const ALPINE_PASTURE = new Set([
-  "almgemeinschaft","agrargemeinschaft","interessentschaft","eigenverwaltung",
-  "asuc","regola","magnifica_comunita","comunella","malga"
-]);
 
 const BUCKET_LABELS = {
   biss: "BISS — basic income (per ha)",
@@ -317,63 +291,46 @@ const BUCKET_LABELS = {
   other: "Other",
 };
 
-const BUCKET_ORDER = [
-  "biss","criss","young_farmer","eco_schemes","coupled","direct_other",
-  "agri_environment","anc","organic","animal_welfare","natura2000",
-  "investment","cooperation","leader","basic_services",
-  "sectoral","rdp_other","direct_legacy","rdp_legacy","tech_assistance",
-  "small_farmer","other"
-];
-
-let RAW = null;
+let RAW = [];
 let TABLE = null;
 let TABLE_READY = false;
-let SCHEME_VALUES = {};   // { code: "code — name" } — populated in init()
-let SELECTED_SCHEME = ""; // current Schemes header-filter value
+let SCHEME_VALUES = { "": "— any —" };
+let SELECTED_SCHEME = "";
 
-// ---------------------------------------------------------------------------
 async function init() {
+  setStatus("Loading dashboard_data.json…");
   const resp = await fetch(DATA_URL);
-  if (!resp.ok) {
-    document.body.insertAdjacentHTML("afterbegin",
-      "<div style='color:red;padding:1rem'>Failed to load dashboard_data.json</div>");
-    return;
-  }
-  const payload = await resp.json();
-  RAW = payload.rows;
+  if (!resp.ok) { setStatus("Failed to load dashboard_data.json"); return; }
+  RAW = await resp.json();
+  setStatus(`${RAW.length.toLocaleString()} rows loaded`);
 
-  // Collect every (code, name) pair seen in any recipient's schemes, sort by
-  // code, and feed it to the Schemes header-filter dropdown.
-  const codeToName = {};
-  for (const r of RAW) {
-    for (const s of (r.schemes || [])) {
-      if (s.code && !codeToName[s.code]) codeToName[s.code] = s.name || "";
-    }
-  }
-  SCHEME_VALUES = { "": "— any —" };
-  for (const code of Object.keys(codeToName).sort()) {
-    const name = codeToName[code];
+  const seen = new Set();
+  for (const r of RAW) for (const s of (r.schemes || [])) if (s.code) seen.add(s.code);
+  for (const code of [...seen].sort()) {
+    const name = ANNEX_IX_NAMES[code] || "";
     SCHEME_VALUES[code] = name ? `${code} — ${name}` : code;
   }
 
   buildTable(RAW);
 
   document.getElementById("clear-filters").addEventListener("click", () => {
+    if (!TABLE) return;
     TABLE.clearFilter(true);
     TABLE.clearHeaderFilter();
     refresh();
   });
 }
 
+function setStatus(msg) {
+  document.getElementById("status").textContent = msg;
+}
+
 function refresh(rows) {
   if (!TABLE_READY) return;
-  // Tabulator's dataFiltered event passes the freshly-filtered row components.
-  // Otherwise (initial render, clear-all) read straight from the table.
   if (!rows) rows = TABLE.getData("active");
   renderKPIs(rows);
 }
 
-// ---------------------------------------------------------------------------
 function renderKPIs(rows) {
   const n = rows.length;
   const total = rows.reduce((s,r) => s + (r.saldo || 0), 0);
@@ -386,14 +343,13 @@ function renderKPIs(rows) {
 
   document.getElementById("kpi-n").textContent = n.toLocaleString();
   document.getElementById("kpi-n-sub").textContent =
-    `of ${RAW.length.toLocaleString()} business-years total`;
+    `of ${RAW.length.toLocaleString()} total`;
   document.getElementById("kpi-total").textContent = fmtEUR0(total);
   document.getElementById("kpi-median").textContent = fmtEUR0(median);
   document.getElementById("kpi-mean").textContent = fmtEUR0(mean);
   document.getElementById("kpi-top1").textContent = fmtPct(top1share);
 }
 
-// ---------------------------------------------------------------------------
 function buildTable(initialData) {
   TABLE = new Tabulator("#table", {
     data: initialData,
@@ -403,14 +359,11 @@ function buildTable(initialData) {
     paginationSize: 50,
     paginationSizeSelector: [25, 50, 100, 250, 500],
     initialSort: [{column: "saldo", dir: "desc"}],
-    rowFormatter: row => {
-      if (row.getData().alpine_pasture_likely)
-        row.getElement().style.background = "#fff7ed";
-    },
     columns: [
-      { title: "Country", field: "country", width: 80, headerFilter: "list",
+      { title: "Country", field: "country", width: 80, hozAlign: "center", headerFilter: "list",
         headerFilterParams: { values: { "": "—", AT: "AT", IT: "IT" }, clearable: true } },
       { title: "Year", field: "year", width: 75, hozAlign: "center", headerFilter: "list",
+        headerFilterFunc: "=",
         headerFilterParams: { values: { "": "—", "2023": "2023", "2024": "2024" }, clearable: true } },
       { title: "Recipient", field: "name", widthGrow: 3, headerFilter: "input",
         formatter: cell => {
@@ -420,25 +373,15 @@ function buildTable(initialData) {
       },
       { title: "Municipality", field: "lau_name", widthGrow: 1.4, headerFilter: "input" },
       { title: "PLZ", field: "plz", width: 80, headerFilter: "input" },
-      { title: "Archetype", field: "archetype", widthGrow: 1.4,
+      { title: "Mountain class", field: "mountain_class", width: 110, hozAlign: "center",
         headerFilter: "list",
         headerFilterParams: {
-          values: { "": "— any —", ...ARCHETYPE_LABELS },
+          values: { "": "— any —", T: "T (totally mountainous)", P: "P (partially mountainous)", NM: "NM (non-mountain)" },
           clearable: true,
-          autocomplete: true,
-          listOnEmpty: true,
-        },
-        formatter: cell => {
-          const v = cell.getValue();
-          const cls = ALPINE_PASTURE.has(v) ? "alm"
-                    : (v === "cooperative" ? "coop"
-                    : (v === "company" ? "company" : ""));
-          return `<span class="archetype-chip ${cls}">${ARCHETYPE_LABELS[v] || v}</span>`;
-        }
-      },
+        } },
       { title: "Total €", field: "saldo", width: 115, sorter: "number", hozAlign: "right",
         formatter: cell => fmtEUR0(cell.getValue()),
-        headerFilter: "number", headerFilterPlaceholder: "≥ €" ,
+        headerFilter: "number", headerFilterPlaceholder: "≥ €",
         headerFilterFunc: ">=" },
       { title: "Selected scheme €", field: "_scheme_amt", width: 145,
         hozAlign: "right", headerSort: true, headerSortStartingDir: "desc",
@@ -473,30 +416,20 @@ function buildTable(initialData) {
           const list = cell.getValue() || [];
           if (!list.length) return "<span style='color:var(--muted)'>—</span>";
           return list.map(s => {
-            const title = ((s.name || "") + " — " + fmtEUR0(s.amt)).replace(/"/g, "&quot;");
+            const title = escapeHtml((ANNEX_IX_NAMES[s.code] || "") + " — " + fmtEUR0(s.amt));
             return `<span class="scheme-pill" title="${title}">` +
-                   `<code>${s.code}</code> ${fmtEUR0(s.amt)}</span>`;
+                   `<code>${escapeHtml(s.code)}</code> ${fmtEUR0(s.amt)}</span>`;
           }).join(" ");
         }
       },
-      { title: "Alm?", field: "alpine_pasture_likely", width: 65, hozAlign: "center",
-        headerFilter: "list",
-        headerFilterParams: { values: { "": "—", "1": "yes", "0": "no" }, clearable: true },
-        formatter: cell => cell.getValue() ? "🐄" : "" },
     ],
   });
 
-  // Tabulator 6.x requires events via .on(); constructor-option callbacks no longer fire.
   TABLE.on("tableBuilt", () => { TABLE_READY = true; refresh(); });
   let _wasEmpty = false, _redrawPending = false;
   TABLE.on("dataFiltered", (_filters, rows) => {
     syncSelectedScheme();
     refresh(rows.map(r => r.getData()));
-    // Tabulator's virtual scroll leaves the body blank when a 0-result filter
-    // is removed — force a redraw on that 0-→non-zero transition. Defer to
-    // the next frame: calling redraw(true) synchronously from inside this
-    // event re-enters Tabulator's row pipeline and intermittently throws
-    // `e.getElement().setAttribute is not a function`.
     if (_wasEmpty && rows.length && !_redrawPending) {
       _redrawPending = true;
       requestAnimationFrame(() => {
@@ -509,9 +442,6 @@ function buildTable(initialData) {
   TABLE.on("rowClick", (_e, row) => toggleDetail(row));
 }
 
-// Mirror the Schemes header-filter into SELECTED_SCHEME, retitle the
-// "Selected scheme €" column, and re-render that column's cells. Sort by it
-// automatically the first time a scheme is picked.
 function syncSelectedScheme() {
   const f = TABLE.getHeaderFilters().find(h => h.field === "schemes");
   const newSel = f ? (f.value || "") : "";
@@ -536,21 +466,22 @@ function toggleDetail(row) {
   const max = Math.max(...buckets.map(b => b[1]), 1);
   const schemes = r.schemes || [];
   const schemeMax = Math.max(...schemes.map(s => s.amt), 1);
+  const locality = (r.lau_name || "")
+    + (r.plz ? ` (${r.plz})` : "")
+    + (r.mountain_class ? ` — mountain class ${r.mountain_class}` : "");
   const html = `
     <div class="recipient-detail">
       <dl>
-        <dt>Recipient</dt><dd><strong>${r.name}</strong></dd>
-        <dt>Municipality</dt><dd>${r.lau_name} ${r.plz ? "(" + r.plz + ")" : ""} — LAU id <code>${r.lau_id}</code></dd>
-        <dt>Mountain class</dt><dd>${r.mountain_class || "n/a (Austria)"}</dd>
-        <dt>Archetype</dt><dd>${ARCHETYPE_LABELS[r.archetype] || r.archetype}</dd>
-        <dt>Year</dt><dd>${r.year}</dd>
+        <dt>Recipient</dt><dd><strong>${escapeHtml(r.name || "")}</strong></dd>
+        <dt>Country / year</dt><dd>${escapeHtml(r.country || "")} ${escapeHtml(String(r.year || ""))}</dd>
+        <dt>Municipality</dt><dd>${escapeHtml(locality)} — LAU id <code>${escapeHtml(r.lau_id || "")}</code></dd>
         <dt>Total CAP</dt><dd>${fmtEUR1(r.saldo)}</dd>
       </dl>
       <div class="buckets">
         <strong>Schemes (Annex IX code &amp; name):</strong><br>
         ${schemes.map(s =>
           `<div><span class="bar" style="width:${(s.amt/schemeMax*200).toFixed(0)}px"></span>` +
-          `<code>${s.code}</code> ${s.name || ""}: ${fmtEUR0(s.amt)}</div>`
+          `<code>${escapeHtml(s.code)}</code> ${escapeHtml(ANNEX_IX_NAMES[s.code] || "")}: ${fmtEUR0(s.amt)}</div>`
         ).join("") || "<div style='color:var(--muted)'>No scheme detail</div>"}
       </div>
       <div class="buckets">
@@ -562,6 +493,12 @@ function toggleDetail(row) {
       </div>
     </div>`;
   el.insertAdjacentHTML("beforeend", html);
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  }[c]));
 }
 
 init();
