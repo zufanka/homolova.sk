@@ -404,9 +404,6 @@ function buildTable(initialData) {
         headerFilterParams: {
           values: SCHEME_VALUES,
           clearable: true,
-          autocomplete: true,
-          listOnEmpty: true,
-          placeholderEmpty: "type code or name…",
         },
         headerFilterFunc: (term, _val, data) => {
           if (!term) return true;
@@ -426,18 +423,22 @@ function buildTable(initialData) {
   });
 
   TABLE.on("tableBuilt", () => { TABLE_READY = true; refresh(); });
-  let _wasEmpty = false, _redrawPending = false;
+  let _redrawPending = false;
   TABLE.on("dataFiltered", (_filters, rows) => {
     syncSelectedScheme();
     refresh(rows.map(r => r.getData()));
-    if (_wasEmpty && rows.length && !_redrawPending) {
+    // Tabulator's paginated row renderer fails to repaint the visible page
+    // after coming back from a 0-row filter result — KPIs update but the
+    // table stays empty. Force a full redraw on the next frame. Deferred so
+    // we don't re-enter Tabulator's pipeline mid-event, and guarded so we
+    // don't queue multiple redraws within one frame.
+    if (!_redrawPending) {
       _redrawPending = true;
       requestAnimationFrame(() => {
         _redrawPending = false;
         try { TABLE.redraw(true); } catch (e) { console.warn("Tabulator redraw failed:", e); }
       });
     }
-    _wasEmpty = rows.length === 0;
   });
   TABLE.on("rowClick", (_e, row) => toggleDetail(row));
 }
@@ -448,12 +449,22 @@ function syncSelectedScheme() {
   if (newSel === SELECTED_SCHEME) return;
   const wasEmpty = !SELECTED_SCHEME;
   SELECTED_SCHEME = newSel;
+  // Update the title in place. Calling column.updateDefinition() rebuilds the
+  // column DOM, which leaves any sorter pointing at this column with a stale
+  // reference — the next filter-driven sort pass then crashes inside Tabulator
+  // (e.getElement().setAttribute is not a function), aborting the row render
+  // mid-pipeline so KPIs update but the table stays stale.
   const col = TABLE.getColumn("_scheme_amt");
-  col.updateDefinition({
-    title: SELECTED_SCHEME ? `${SELECTED_SCHEME} €` : "Selected scheme €",
-  });
+  const titleEl = col && col.getElement().querySelector(".tabulator-col-title");
+  if (titleEl) {
+    titleEl.textContent = SELECTED_SCHEME ? `${SELECTED_SCHEME} €` : "Selected scheme €";
+  }
   if (SELECTED_SCHEME && wasEmpty) {
-    TABLE.setSort("_scheme_amt", "desc");
+    // Defer: setSort from inside dataFiltered re-enters Tabulator's pipeline.
+    requestAnimationFrame(() => {
+      try { TABLE.setSort("_scheme_amt", "desc"); }
+      catch (e) { console.warn("setSort failed:", e); }
+    });
   }
 }
 
