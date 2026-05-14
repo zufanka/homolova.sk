@@ -28,6 +28,10 @@ export interface PostFrontmatter {
   footerAccent?: string;
   /** If set, the post is an index-only entry that links out — no /posts/<slug>/ page is rendered. */
   externalUrl?: string;
+  /** If true, hide from homepage feed, RSS, and sitemap. The /posts/<slug>/ page
+   *  still prerenders and is reachable by anyone with the link — use for sharing
+   *  in-progress posts with proofreaders. */
+  draft?: boolean;
 }
 
 export type LayoutMeta = Pick<
@@ -121,7 +125,9 @@ const all: { meta: PostFrontmatter; mod: PostModule; featuredImageUrl?: string }
   );
 
 export function listPosts(): PostSummary[] {
-  return all.map(({ meta, featuredImageUrl }) => ({ ...meta, featuredImageUrl }));
+  return all
+    .filter(({ meta }) => !meta.draft)
+    .map(({ meta, featuredImageUrl }) => ({ ...meta, featuredImageUrl }));
 }
 
 export function getPost(

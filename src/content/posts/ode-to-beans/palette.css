@@ -1,0 +1,201 @@
+/* ============================================================
+   Legume Palette — Design Tokens
+   Extracted from legume illustration series
+   For use in Svelte + D3 data story projects
+   ============================================================
+   Usage in Svelte:
+     import './legume-palette.css';   (in your root +layout.svelte)
+
+   Usage in D3:
+     const c = getComputedStyle(document.documentElement);
+     const inkBlack = c.getPropertyValue('--color-black-bean').trim();
+   ============================================================ */
+
+:root {
+
+  /* ----------------------------------------------------------
+     CATEGORICAL COLORS — one per legume
+     Use for categorical data series, chart bars, line strokes,
+     map regions, legend swatches, and pill/tag labels.
+  ---------------------------------------------------------- */
+
+  --color-black-bean:     #1A1A1A;   /* Black beans       — Haricots Noirs    */
+  --color-kidney:         #7B2D2D;   /* Kidney beans      — Haricots Rogbons  */
+  --color-adzuki:         #9B4A2A;   /* Adzuki beans      — Haricots Adzuki   */
+  --color-coral-lentil:   #D95C2A;   /* Red lentils       — Lentilles Corail  */
+  --color-amber-dal:      #C8872A;   /* Moong dal         — Moong Dal         */
+  --color-chickpea:       #C4BC8A;   /* Chickpeas         — Pois Chiches      */
+  --color-mung:           #4A6B3A;   /* Mung beans        — Mung Beans        */
+  --color-du-puy:         #5C7A4A;   /* Du Puy lentils    — Lentilles du Puy  */
+
+  /* Shorthand ordered list — useful for D3 ordinal scale:
+     scaleOrdinal(schemeLegume)
+     See JS helper at the bottom of this file. */
+  --color-series-1: var(--color-black-bean);
+  --color-series-2: var(--color-kidney);
+  --color-series-3: var(--color-coral-lentil);
+  --color-series-4: var(--color-amber-dal);
+  --color-series-5: var(--color-chickpea);
+  --color-series-6: var(--color-mung);
+  --color-series-7: var(--color-du-puy);
+  --color-series-8: var(--color-adzuki);
+
+
+  /* ----------------------------------------------------------
+     SEQUENTIAL RAMP — WARM
+     Single-variable data (choropleth, heatmap, intensity).
+     --seq-warm-1 = lowest / lightest → --seq-warm-7 = highest / darkest
+  ---------------------------------------------------------- */
+
+  --seq-warm-1: #F5EDE0;
+  --seq-warm-2: #E8C89A;
+  --seq-warm-3: #D4975A;
+  --seq-warm-4: #C8872A;
+  --seq-warm-5: #B0621A;
+  --seq-warm-6: #8B3D15;
+  --seq-warm-7: #5C2010;
+
+
+  /* ----------------------------------------------------------
+     SEQUENTIAL RAMP — COOL (GREEN)
+     Contrast partner to warm ramp.
+     Use for a second variable, or diverging scales
+     (warm = positive/high, cool = negative/low).
+  ---------------------------------------------------------- */
+
+  --seq-cool-1: #EFF0E8;
+  --seq-cool-2: #C8CEAA;
+  --seq-cool-3: #A0AD80;
+  --seq-cool-4: #6F8C5A;
+  --seq-cool-5: #4A6B3A;
+  --seq-cool-6: #324A28;
+  --seq-cool-7: #1E2E18;
+
+
+  /* ----------------------------------------------------------
+     BACKGROUND & SURFACE TONES
+     Use for page background, card surfaces, grid lines,
+     annotation boxes, and tooltip backgrounds.
+  ---------------------------------------------------------- */
+
+  --surface-parchment:  #F5EDE0;   /* Page background — matches illustration bg */
+  --surface-cream:      #EDE5D5;   /* Card / panel background                   */
+  --surface-linen:      #E4DBC8;   /* Secondary card, hover state               */
+  --surface-stone:      #D3CEBC;   /* Borders, dividers, grid lines             */
+  --surface-dark:       #3A2E22;   /* Dark mode base / dark panel background    */
+
+
+  /* ----------------------------------------------------------
+     TEXT ON SURFACES
+     For labels and annotation text placed on the surfaces above.
+  ---------------------------------------------------------- */
+
+  --text-on-light:      #2C1A0E;   /* Body text on parchment/cream/linen        */
+  --text-on-light-muted:#6B5040;   /* Secondary / muted text on light surfaces  */
+  --text-on-dark:       #F0EBE0;   /* Body text on dark surface                 */
+  --text-on-dark-muted: #B8A898;   /* Secondary / muted text on dark surface    */
+
+
+  /* ----------------------------------------------------------
+     CHART TYPOGRAPHY
+  ---------------------------------------------------------- */
+
+  --chart-font:         'system-ui', sans-serif;
+  --chart-font-size-xs: 10px;   /* tick labels, small annotations */
+  --chart-font-size-sm: 12px;   /* axis labels, legend labels      */
+  --chart-font-size-md: 14px;   /* chart title, callout text       */
+  --chart-font-weight-normal: 400;
+  --chart-font-weight-bold:   500;
+
+  --chart-label-spacing: 0.06em;  /* letter-spacing for uppercase category labels */
+
+
+  /* ----------------------------------------------------------
+     CHART ANATOMY
+     Spacing and structural values for consistent chart layout.
+  ---------------------------------------------------------- */
+
+  --chart-grid-color:     #D3CEBC;   /* matches --surface-stone            */
+  --chart-axis-color:     #6B5040;   /* matches --text-on-light-muted      */
+  --chart-tooltip-bg:     #F5EDE0;   /* matches --surface-parchment        */
+  --chart-tooltip-border: #D3CEBC;
+  --chart-bar-radius:     4px;
+  --chart-dot-radius:     5px;
+  --chart-stroke-width:   2px;
+
+}
+
+
+/* ============================================================
+   UTILITY CLASSES
+   Optional — use directly in Svelte templates.
+   e.g. <span class="tag tag--kidney">Kidney beans</span>
+============================================================ */
+
+.legume-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: var(--chart-label-spacing);
+  text-transform: uppercase;
+}
+
+.tag--black-bean    { background: var(--color-black-bean);   color: var(--text-on-dark); }
+.tag--kidney        { background: var(--color-kidney);        color: var(--text-on-dark); }
+.tag--adzuki        { background: var(--color-adzuki);        color: var(--text-on-dark); }
+.tag--coral-lentil  { background: var(--color-coral-lentil);  color: var(--text-on-dark); }
+.tag--amber-dal     { background: var(--color-amber-dal);     color: var(--text-on-light); }
+.tag--chickpea      { background: var(--color-chickpea);      color: var(--text-on-light); }
+.tag--mung          { background: var(--color-mung);          color: var(--text-on-dark); }
+.tag--du-puy        { background: var(--color-du-puy);        color: var(--text-on-dark); }
+
+
+/* ============================================================
+   SVELTE + D3 USAGE EXAMPLES (as comments)
+
+   --- 1. Import in +layout.svelte ---
+   <script>
+     import '$lib/styles/legume-palette.css';
+   </script>
+
+   --- 2. D3 ordinal color scale ---
+   import { scaleOrdinal } from 'd3-scale';
+
+   const style = getComputedStyle(document.documentElement);
+   const get = (v) => style.getPropertyValue(v).trim();
+
+   export const schemeLegume = [
+     get('--color-black-bean'),
+     get('--color-kidney'),
+     get('--color-coral-lentil'),
+     get('--color-amber-dal'),
+     get('--color-chickpea'),
+     get('--color-mung'),
+     get('--color-du-puy'),
+     get('--color-adzuki'),
+   ];
+
+   export const colorScale = scaleOrdinal(schemeLegume);
+
+   --- 3. D3 sequential scale (warm ramp) ---
+   import { scaleSequential } from 'd3-scale';
+   import { interpolateRgb } from 'd3-interpolate';
+
+   export const warmScale = scaleSequential(
+     interpolateRgb(
+       get('--seq-warm-1'),
+       get('--seq-warm-7')
+     )
+   ).domain([0, 1]);
+
+   --- 4. Chart background ---
+   svg.style('background', get('--surface-parchment'));
+
+   --- 5. Grid lines ---
+   g.selectAll('.grid-line')
+     .style('stroke', get('--chart-grid-color'))
+     .style('stroke-width', '0.5px');
+
+============================================================ */

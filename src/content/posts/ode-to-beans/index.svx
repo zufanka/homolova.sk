@@ -1,0 +1,25 @@
+---
+title: "An ode to legumes"
+date: "2026-05-15"
+slug: "ode-to-beans"
+draft: true
+summary: "Even small seeds can reshape large systems."
+newsletterMode: "teaser"
+newsletterImage: "/images/cover/ode-to-beans.jpg"
+newsletterTeaser: "A data essay on why legumes matter — and how to actually eat them."
+featuredImage: "/images/cover/ode-to-beans.jpg"
+fullBleed: true
+headerFill: "#D95C2A"
+titleFill: "#D95C2A"
+footerBg: "#F5EDE0"
+footerAccent: "#D95C2A"
+tags:
+  - "essay"
+  - "data"
+---
+
+<script>
+  import Beans from './Beans.svelte';
+</script>
+
+<Beans />

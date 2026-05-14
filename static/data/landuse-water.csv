@@ -1,0 +1,11 @@
+product,kind,land_use_m2,ghg_kg_co2eq,freshwater_l
+Beans & lentils,plant-legume,15.57,1.79,435.7
+Peas,plant-legume,7.46,0.98,396.6
+Nuts,plant,12.96,0.43,4133.8
+Tofu,plant,3.52,3.16,148.6
+Beef,animal,326.21,99.48,1451.2
+Pork,animal,17.36,12.31,1795.8
+Chicken,animal,12.22,9.87,660.0
+Cheese,animal,87.79,23.88,5605.2
+Eggs,animal,6.27,4.67,577.7
+Fish (farmed),animal,8.41,13.63,3691.3

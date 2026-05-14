@@ -1,0 +1,34 @@
+category,subtype,name,package,price_eur,price_per_kg_eur,price_per_piece_eur,protein_g_per_100g,protein_g_per_egg,price_per_100g_protein_eur,url
+legume,lentil,Bio Rote Linsen,400g,2.19,5.48,,25.0,,2.19,https://www.mpreis.at/shop/p/alnatura-bio-rote-linsen-365255
+legume,lentil,Bio Berglinsen,400g,2.39,5.98,,25.0,,2.39,https://www.mpreis.at/shop/p/alnatura-bio-berglinsen-365247
+legume,lentil,Bio Gelbe Linsen,500g,2.99,5.98,,25.0,,2.39,https://www.mpreis.at/shop/p/alnatura-bio-gelbe-linsen-365249
+legume,lentil,Bio Teller Linsen,400g,2.99,7.48,,25.0,,2.99,https://www.mpreis.at/shop/p/alnatura-bio-teller-linsen-365753
+legume,lentil,Bio Beluga Linsen,500g,3.99,7.98,,25.0,,3.19,https://www.mpreis.at/shop/p/alnatura-bio-beluga-linsen-365246
+legume,chickpea,Bio Kichererbsen,500g,2.99,5.98,,19.3,,3.1,https://www.mpreis.at/shop/p/alnatura-bio-kichererbsen-365252
+legume,bean,Wachtelbohnen,500g,2.99,5.98,,21.4,,2.79,https://www.mpreis.at/shop/p/goldpack-wachtelbohnen-264154
+chicken,breast,Hühnerbrustfilet,per kg,18.49,18.49,,22.5,,8.22,https://www.mpreis.at/shop/p/m-huehnerbrustfilet-748017
+chicken,breast,Hühnerbrustfilet,per kg,12.99,12.99,,22.5,,5.77,https://www.mpreis.at/shop/p/jeden-tag-huehnerbrustfilet-241810
+chicken,breast,Hühnerfiletschnitzel,per kg,18.99,18.99,,22.5,,8.44,https://www.mpreis.at/shop/p/m-huehnerfiletschnitzel-748014
+chicken,drumstick,Hühner Unterkeulen,per kg,11.99,11.99,,19.3,,6.21,https://www.mpreis.at/shop/p/m-huehner-unterkeulen-748018
+chicken,thigh,Hühner Oberkeulenschnitzel,per kg,13.99,13.99,,18.6,,7.52,https://www.mpreis.at/shop/p/m-huehner-oberkeulenschnitzel-748021
+chicken,wing,Hühner Flügel,per kg,10.49,10.49,,18.3,,5.73,https://www.mpreis.at/shop/p/m-huehner-fluegel-748016
+chicken,whole,Hendl bratfertig,per kg,6.99,6.99,,18.6,,3.76,https://www.mpreis.at/shop/p/m-hendl-bratfertig-748020
+chicken,whole,Poularde,per kg,5.29,5.29,,18.6,,2.84,https://www.mpreis.at/shop/p/jeden-tag-poularde-241812
+pork,tenderloin,Premium Schweinefilet,per kg,17.99,17.99,,20.9,,8.61,https://www.mpreis.at/shop/p/m-premium-schweinefilet-731352
+pork,loin,Schweine Karreerose Premium,per kg,11.99,11.99,,20.7,,5.79,https://www.mpreis.at/shop/p/m-schweine-karreerose-premium-754952
+pork,diced,Schweine Geschnetzeltes,per kg,11.99,11.99,,20.5,,5.85,https://www.mpreis.at/shop/p/m-schweine-geschnetzeltes-731240
+pork,shoulder,Schweine Schulterbraten,per kg,8.99,8.99,,17.4,,5.17,https://www.mpreis.at/shop/p/m-schweine-schulterbraten-731101
+pork,belly,Schweine Bauch im Ganzen,per kg,9.99,9.99,,9.3,,10.74,https://www.mpreis.at/shop/p/m-schweine-bauch-im-ganzen-731500
+pork,chop,Schweine Kotelette 2 Stück,per kg,9.99,9.99,,20.7,,4.83,https://www.mpreis.at/shop/p/m-schweine-kotelette-2-stueck-731309
+beef,goulash,Rinds Gulasch,per kg,18.99,18.99,,20.4,,9.31,https://www.mpreis.at/shop/p/m-rinds-gulasch-732301
+beef,tafelspitz,Rinds Tafelspitz,per kg,26.99,26.99,,21.3,,12.67,https://www.mpreis.at/shop/p/m-rinds-tafelspitz-732202
+beef,boiling,Rinds Tellerfleisch,per kg,18.99,18.99,,20.0,,9.49,https://www.mpreis.at/shop/p/m-rinds-tellerfleisch-732400
+beef,diced,Rinds Geschnetzeltes,per kg,18.99,18.99,,21.0,,9.04,https://www.mpreis.at/shop/p/m-rinds-geschnetzeltes-732350
+beef,roast,Rinds Gusto,per kg,19.99,19.99,,21.0,,9.52,https://www.mpreis.at/shop/p/m-rinds-gusto-732250
+beef,shank,Rinds Beinfleisch,per kg,14.99,14.99,,20.0,,7.5,https://www.mpreis.at/shop/p/m-rinds-beinfleisch-732500
+beef,schnitzel,Rinder Schnitzel,per kg,15.99,15.99,,22.0,,7.27,https://www.mpreis.at/shop/p/rinder-schnitzel-736049
+egg,free-range-10,Freilandeier 15er,15 pcs,5.89,,0.393,,6.5,6.05,https://www.mpreis.at/shop/p/m-freilandeier-15er-500192
+egg,free-range-10,Eier Freilandhaltung L 10er-Packung,10 pcs,4.69,,0.469,,6.5,7.22,https://www.mpreis.at/shop/p/hoermann-eier-freilandhaltung-l-10er-packung-500023
+egg,barn-10,Eier Bodenhaltung M 10er-Packung,10 pcs,2.79,,0.279,,6.0,4.65,https://www.mpreis.at/shop/p/jeden-tag-eier-bodenhaltung-m-10er-packung-500132
+egg,organic-10,Bio-Eier 10er,10 pcs,5.29,,0.529,,6.3,8.4,https://www.mpreis.at/shop/p/m-bio-bio-eier-10er-500186
+egg,organic-6,Bio Eier M/L 6er-Packung,6 pcs,3.99,,0.665,,6.3,10.56,https://www.mpreis.at/shop/p/bio-vom-berg-bio-eier-ml-6er-packung-500167
