@@ -77,7 +77,7 @@
       <p>
         A single plant family can simultaneously reduce emissions, improve soil health and
         provide some of the cheapest protein available. It's legumes! Roughly one quarter protein and one quarter carbohydrates,
-        rich in fiber and low in fat, they become complete proteins when paired with grains such as rice or wheat.
+        rich in fiber and low in fat. Paired with grains like rice or wheat, they become a complete protein, providing all nine essential amino acids.
       </p>
       <p>
         Growing up on sour lentil stews and rich bean soups, this essay is born from
@@ -93,14 +93,14 @@
           rel="noopener"
         >more and more animal products</a>, even as the environmental consequences of
         industrial livestock farming become harder to ignore. Our current food production eats deeply
-        into our carbon budget, diminishes water and soil health and reduces forests coverage. Animals are pushed through systems
+        into our carbon budget, diminishes water and soil health and reduces forest coverage. Animals are pushed through systems
         designed primarily for efficiency and scale. All of this puts our future food
         security in danger.
       </p>
       <p>
         Yet despite this, the European agricultural policy directs <a href="https://foodrise.org.uk/CAPCrossroads/" target="_blank">three times more
         subsidies</a> to the production of animal-sourced foods than to plant-based foods.
-        Millions of taxpayers money are being poured into green-washing
+        Millions of taxpayer money are being poured into green-washing
         <a
           href="https://www.desmog.com/2025/11/25/meps-call-for-review-eu-food-scheme-misleading-claims/"
           target="_blank"
@@ -165,10 +165,9 @@
 
     <section class="prose">
       <p>
-        In terms of greenhouse gases it's methane from cow burps. These alone account for
-        roughly 33 to 43% of agricultural emissions. Then there is CO₂ released from the
-        deforestation for pasture and feed crops, and the nitrous oxide from synthetic
-        fertilisers.
+      Food production emits three main greenhouse gases: methane, CO₂, and nitrous oxide.
+      Methane mainly comes from cow burps and manure, CO₂ from decomposing plant matter and deforestation
+      for pasture and feed crops, and nitrous oxide from synthetic fertilisers.
       </p>
       <p>
         Modern agriculture depends heavily on nitrogen fertiliser.
@@ -183,10 +182,10 @@
 
     <section class="prose">
       <p>
-        This has some real consequences. We experienced food prices go up when the fertilizer trade was disrupted after the invasion of Ukraine.
+        This has some real consequences. We saw food prices go up when the fertilizer trade was disrupted after the invasion of Ukraine.
         And now the scenario is repeating in the Strait of Hormuz debacle.
       </p>
-      <p>So how could the world look like if we swap some of our protein sources?</p>
+      <p>So what could the world look like if we swapped some of our protein sources?</p>
     </section>
 
     <section class="chapter"><h2>Jack and the Beanstalk</h2></section>
@@ -248,7 +247,7 @@
         This matters even more in a world shaped by climate instability and geopolitical
         shocks. Modern agriculture depends heavily on fossil fuels, mined nutrients and
         global fertilizer trade. Legumes, by contrast remain comparatively resilient when
-        these systems fail or become expensive.
+        these systems fail or costs rise.
       </p>
       <p>And they do all this while remaining one of the cheapest protein sources available.</p>
     </section>
@@ -357,12 +356,12 @@
       Larger beans generally benefit from a full 8-hour soak before cooking. I don't eat those that much though.
       </p>
       <p>
-        And finally, use spices. From the Indian cuisine: ginger, turmeric, cumin, fennel
+        And finally, unleash the power <a href="https://en.wikipedia.org/wiki/Antiflatulent" target="_blank">antiflatulents</a> and <a href="https://en.wikipedia.org/wiki/Carminative" target="_blank">carminatives</a> in the form of spices.
+        From the Indian cuisine: ginger, turmeric, cumin, fennel
         and asafoetida are beneficial. From the Japanese seaweed such as kombu, or from
         the European we know the 'bean herb', mountain savory. While kombu and asafoetida
         prevent fermentation, ginger, fennel, cumin, and savory relax the gut and
         stimulate digestive enzymes.
-      </p>
     </section>
 
     <Divider />
