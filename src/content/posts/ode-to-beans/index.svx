@@ -1,12 +1,12 @@
 ---
-title: "An ode to legumes"
+title: "An ode to beans"
 date: "2026-05-15"
 slug: "ode-to-beans"
 draft: true
 summary: "Even small seeds can reshape large systems."
 newsletterMode: "teaser"
 newsletterImage: "/posts/ode-to-beans/ode-to-beans.jpg"
-newsletterTeaser: "A data essay on why legumes matter — and how to actually eat them."
+newsletterTeaser: "A data essay on why legumes matter, and how to comfortably eat them."
 featuredImage: "ode-to-beans.jpg"
 fullBleed: true
 headerFill: "#D95C2A"

@@ -143,7 +143,7 @@
 
     const lines = [
       { key: 'total', label: 'World population', color: 'var(--text-on-light)', weight: 700, strokeWidth: 2.5 },
-      { key: 'without', label: 'Does not depend on synthetic fertilizer', color: colors.duPuy, weight: 600, strokeWidth: 2 },
+      { key: 'without', label: 'Independent of synthetic fertilizer', color: colors.duPuy, weight: 600, strokeWidth: 2 },
       { key: 'fed', label: 'Depends on synthetic fertilizer', color: colors.coralLentil, weight: 600, strokeWidth: 2 },
     ];
 
@@ -188,9 +188,12 @@
 
     if (isMobile) {
       // Top legend on narrow screens — stacked vertically so long labels fit.
+      // Offset by -margin.left so it aligns with the figure's left edge
+      // (i.e. the title/subtitle) rather than the indented plot area, which
+      // also reclaims that width so long labels don't get clipped.
       const legend = g
         .append('g')
-        .attr('transform', `translate(0, ${-legendHeight + legendTopPad})`);
+        .attr('transform', `translate(${-margin.left + 2}, ${-legendHeight + legendTopPad})`);
       lines.forEach((ln, i) => {
         const item = legend
           .append('g')

@@ -1,9 +1,9 @@
-group,leaf,value_pct,note
-Animal-linked,Livestock & fisheries,30,"Enteric fermentation, manure, pasture, fish farms"
-Animal-linked,Land use for livestock,16,
-Animal-linked,Crops for animal feed,6,
-Plant for humans,Crops for human food,21,
-Plant for humans,Land use for human food,8,
+group,leaf,value_pct,
+Animals,Livestock & fisheries,30,
+Animals,Land use,16,
+Animals,Crops for feed,6,
+Food for humans,Crops,21,
+Food for humans,Land use,8,
 Supply chain,Transport,6,
 Supply chain,Packaging,5,
 Supply chain,Processing,4,

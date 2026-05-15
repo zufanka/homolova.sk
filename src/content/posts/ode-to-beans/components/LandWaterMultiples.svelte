@@ -54,6 +54,16 @@
     const colors = legumeColors();
     const tokens = chartTokens();
 
+    // On narrow screens the two side scales get so short that the bottom
+    // axis tick labels visually merge. Drop the axes there and move the
+    // unit labels up under the side headers instead.
+    const isMobile = width < 560;
+    const fitW = (sel, maxW) => {
+      if (maxW > 0 && sel.node().getComputedTextLength() > maxW) {
+        sel.attr('textLength', maxW).attr('lengthAdjust', 'spacingAndGlyphs');
+      }
+    };
+
     const sorted = [...rows].sort((a, b) => d3.descending(a.land, b.land));
     const isAnimal = (d) => d.kind === 'animal';
     const colorFor = (d) => (isAnimal(d) ? colors.kidney : colors.duPuy);
@@ -89,8 +99,10 @@
 
     // side headers
     const headerY = -28;
-    g.append('text')
-      .attr('x', sideW - 12)
+    const luHeaderX = sideW - 12;
+    const luHeader = g
+      .append('text')
+      .attr('x', luHeaderX)
       .attr('y', headerY)
       .attr('text-anchor', 'end')
       .attr('fill', 'var(--text-on-light)')
@@ -100,8 +112,10 @@
       .style('letter-spacing', '0.1em')
       .style('text-transform', 'uppercase')
       .text('← Land use');
-    g.append('text')
-      .attr('x', sideW + centerW + 12)
+    const fwHeaderX = sideW + centerW + 12;
+    const fwHeader = g
+      .append('text')
+      .attr('x', fwHeaderX)
       .attr('y', headerY)
       .attr('fill', 'var(--text-on-light)')
       .style('font-family', 'var(--sans)')
@@ -110,6 +124,38 @@
       .style('letter-spacing', '0.1em')
       .style('text-transform', 'uppercase')
       .text('Freshwater →');
+    // Squish each header to fit if it would run past its viewBox edge on
+    // narrow screens instead of being clipped. In this group's coordinate
+    // space the viewBox spans [-margin.left, width - margin.left]; the
+    // land header is end-anchored (grows left), the water header start-
+    // anchored (grows right).
+    const luMaxW = luHeaderX - -margin.left - 4;
+    const fwMaxW = width - margin.left - fwHeaderX - 4;
+    fitW(luHeader, luMaxW);
+    fitW(fwHeader, fwMaxW);
+
+    // On mobile, the unit lives under its side header (bottom axis dropped).
+    if (isMobile) {
+      const luUnit = g
+        .append('text')
+        .attr('x', luHeaderX)
+        .attr('y', headerY + 15)
+        .attr('text-anchor', 'end')
+        .attr('fill', tokens.axis)
+        .style('font-family', 'var(--sans)')
+        .style('font-size', '10px')
+        .text('m² per kg of food');
+      const fwUnit = g
+        .append('text')
+        .attr('x', fwHeaderX)
+        .attr('y', headerY + 15)
+        .attr('fill', tokens.axis)
+        .style('font-family', 'var(--sans)')
+        .style('font-size', '10px')
+        .text('litres per kg of food');
+      fitW(luUnit, luMaxW);
+      fitW(fwUnit, fwMaxW);
+    }
 
     // food labels in center column
     g.selectAll('text.food')
@@ -184,6 +230,7 @@
           : `${(d.water / 1000).toFixed(1)}k`,
       );
 
+    if (!isMobile) {
     // axes — land reversed so 0 sits at the inside edge
     const xLandAxis = xLand.copy().range([sideW, 0]);
     g.append('g')
@@ -235,6 +282,7 @@
       .style('font-family', 'var(--sans)')
       .style('font-size', '11px')
       .text('litres per kg of food');
+    }
   }
 </script>
 

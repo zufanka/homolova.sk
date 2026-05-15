@@ -356,7 +356,7 @@
       Larger beans generally benefit from a full 8-hour soak before cooking. I don't eat those that much though.
       </p>
       <p>
-        And finally, unleash the power <a href="https://en.wikipedia.org/wiki/Antiflatulent" target="_blank">antiflatulents</a> and <a href="https://en.wikipedia.org/wiki/Carminative" target="_blank">carminatives</a> in the form of spices.
+        And finally, unleash the power of <a href="https://en.wikipedia.org/wiki/Antiflatulent" target="_blank">antiflatulents</a> and <a href="https://en.wikipedia.org/wiki/Carminative" target="_blank">carminatives</a> in the form of spices.
         From the Indian cuisine: ginger, turmeric, cumin, fennel
         and asafoetida are beneficial. From the Japanese seaweed such as kombu, or from
         the European we know the 'bean herb', mountain savory. While kombu and asafoetida

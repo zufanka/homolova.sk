@@ -325,7 +325,10 @@
     gap: 1.5rem;
     border-top: 1px dashed var(--surface-stone);
   }
-  .card-body h3 {
+  /* .recipes prefix keeps this above the article-wide
+     `.beans-root :global(h3)` rule (otherwise a specificity tie resolved
+     by stylesheet order — fragile — would blow these up to heading size). */
+  .recipes .card-body h3 {
     font-family: var(--sans);
     font-weight: 600;
     font-size: 0.78rem;
@@ -356,7 +359,10 @@
   .card-body ol li {
     margin: 0.35rem 0;
   }
-  .footer-note {
+  /* Selector kept at .card-body specificity so it beats the article-wide
+     `.beans-root :global(p)` rule, which would otherwise blow this note
+     up to body-prose size and drop the italic/muted styling. */
+  .card-body .footer-note {
     font-family: var(--serif);
     font-style: italic;
     font-size: 0.95rem;

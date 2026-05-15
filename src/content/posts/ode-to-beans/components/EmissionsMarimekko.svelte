@@ -19,8 +19,10 @@
   let width = $state(900);
   let height = $state(520);
   let rows = $state([]);
+  // Cells too narrow to label inline (value shown in-cell, name listed below).
+  let breakdownGroups = $state([]);
 
-  const GROUP_ORDER = ['Animal-linked', 'Plant for humans', 'Supply chain'];
+  const GROUP_ORDER = ['Animals', 'Food for humans', 'Supply chain'];
 
   onMount(() => {
     rows = d3.csvParse(csvRaw, (d) => ({
@@ -56,12 +58,12 @@
 
     const colors = legumeColors();
     const groupColor = {
-      'Animal-linked': colors.kidney,
-      'Plant for humans': colors.duPuy,
-      'Supply chain': colors.chickpea,
+      'Animals': colors.kidney,
+      'Food for humans': colors.duPuy,
+      'Supply chain': colors.adzuki,
     };
 
-    const margin = { top: 56, right: 16, bottom: 28, left: 16 };
+    const margin = { top: 74, right: 16, bottom: 12, left: 16 };
     const columnGap = 8;
     const cellGap = 2;
     const w = Math.max(0, width - margin.left - margin.right);
@@ -81,18 +83,144 @@
       .append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
 
-    // Fit an SVG <text> to a max pixel width: measure once, then apply
-    // textLength + lengthAdjust='spacingAndGlyphs' to compress if needed.
-    // Compressing only when needed keeps wide columns at natural metrics.
-    const fitText = (sel, maxW) => {
-      const node = sel.node();
-      if (!node) return;
-      const actual = node.getComputedTextLength();
-      if (actual > maxW && maxW > 0) {
-        sel.attr('textLength', maxW).attr('lengthAdjust', 'spacingAndGlyphs');
+    // Hidden text node reused to measure strings at a given font size, so we
+    // can word-wrap labels to the exact column width instead of compressing
+    // them with textLength (which looked squeezed on narrow screens).
+    const measurer = g
+      .append('text')
+      .attr('visibility', 'hidden')
+      .style('font-family', 'var(--sans)')
+      .style('font-weight', '600');
+    const measure = (str, fs) => {
+      measurer.style('font-size', `${fs}px`).text(str);
+      return measurer.node().getComputedTextLength();
+    };
+    const wrap = (str, maxW, fs) => {
+      const words = str.split(/\s+/);
+      const lines = [];
+      let cur = '';
+      for (const word of words) {
+        const trial = cur ? `${cur} ${word}` : word;
+        if (!cur || measure(trial, fs) <= maxW) {
+          cur = trial;
+        } else {
+          lines.push(cur);
+          cur = word;
+        }
       }
+      if (cur) lines.push(cur);
+      return lines;
+    };
+    const maxLineW = (lines, fs) =>
+      d3.max(lines, (l) => measure(l, fs)) ?? 0;
+
+    // Word-wrap an uppercase group header to the column width instead of
+    // compressing it. Measures with the header's own weight/spacing, then
+    // restores the measurer to the body-label defaults.
+    const wrapHeader = (str, maxW) => {
+      measurer
+        .style('font-size', '11px')
+        .style('font-weight', '700')
+        .style('letter-spacing', '0.1em');
+      const words = str.toUpperCase().split(/\s+/);
+      const lines = [];
+      let cur = '';
+      for (const wd of words) {
+        const trial = cur ? `${cur} ${wd}` : wd;
+        measurer.text(trial);
+        if (!cur || measurer.node().getComputedTextLength() <= maxW) {
+          cur = trial;
+        } else {
+          lines.push(cur);
+          cur = wd;
+        }
+      }
+      if (cur) lines.push(cur);
+      measurer.style('font-weight', '600').style('letter-spacing', null);
+      return lines;
     };
 
+    // Render a wrapped leaf label + value stacked at the top of a cell, or a
+    // single fitted "leaf · value" line, or (last resort) a centred value.
+    // Returns true when the leaf name was shown, false when only the value was.
+    const labelCell = (cellGroup, cell, colW, cellH) => {
+      const padL = 10;
+      const padR = 6;
+      const innerW = Math.max(0, colW - padL - padR);
+      const big = colW > 200;
+
+      const valueOnly = () => {
+        if (cellH < 14 || colW < 22) return;
+        cellGroup
+          .append('text')
+          .attr('x', colW / 2)
+          .attr('y', cellH / 2)
+          .attr('text-anchor', 'middle')
+          .attr('dominant-baseline', 'central')
+          .attr('fill', 'var(--text-on-dark)')
+          .style('font-family', 'var(--sans)')
+          .style('font-size', big ? '15px' : '13px')
+          .style('font-weight', '700')
+          .text(`${cell.value}%`);
+      };
+
+      // 1. Wrapped leaf name + value, shrinking the font until the block fits.
+      const sizes = big ? [14, 13, 12, 11] : [12, 11, 10];
+      for (const fs of sizes) {
+        const lineH = fs + 3;
+        const lines = wrap(cell.leaf, innerW, fs);
+        const valueFs = Math.round(fs * 1.3);
+        const blockH = lines.length * lineH + valueFs + 6;
+        if (blockH <= cellH - 8 && maxLineW(lines, fs) <= innerW && innerW > 0) {
+          let y = fs + 6;
+          for (const line of lines) {
+            cellGroup
+              .append('text')
+              .attr('x', padL)
+              .attr('y', y)
+              .attr('fill', 'var(--text-on-dark)')
+              .style('font-family', 'var(--sans)')
+              .style('font-size', `${fs}px`)
+              .style('font-weight', '600')
+              .text(line);
+            y += lineH;
+          }
+          cellGroup
+            .append('text')
+            .attr('x', padL)
+            .attr('y', y + valueFs - 4)
+            .attr('fill', 'var(--text-on-dark)')
+            .style('font-family', 'var(--sans)')
+            .style('font-size', `${valueFs}px`)
+            .style('font-weight', '700')
+            .text(`${cell.value}%`);
+          return true;
+        }
+      }
+
+      // 2. Short cell but wide enough for one fitted "leaf · value" line.
+      const oneLine = `${cell.leaf} · ${cell.value}%`;
+      for (const fs of [12, 11, 10]) {
+        if (cellH >= fs + 8 && measure(oneLine, fs) <= innerW && innerW > 0) {
+          cellGroup
+            .append('text')
+            .attr('x', padL)
+            .attr('y', cellH / 2 + fs / 3)
+            .attr('fill', 'var(--text-on-dark)')
+            .style('font-family', 'var(--sans)')
+            .style('font-size', `${fs}px`)
+            .style('font-weight', '600')
+            .text(oneLine);
+          return true;
+        }
+      }
+
+      // 3. Too narrow for any word — value in the cell, name listed below.
+      valueOnly();
+      return false;
+    };
+
+    const hidden = [];
     let xCursor = 0;
     GROUP_ORDER.forEach((groupName) => {
       const groupCells = (grouped.get(groupName) || []).sort(
@@ -104,19 +232,22 @@
 
       const col = g.append('g').attr('transform', `translate(${xCursor},0)`);
 
-      // group header (above column) — compress if it would overflow the column
-      const header = col
-        .append('text')
-        .attr('x', 0)
-        .attr('y', -28)
-        .attr('fill', 'var(--text-on-light)')
-        .style('font-family', 'var(--sans)')
-        .style('font-size', '11px')
-        .style('font-weight', '700')
-        .style('letter-spacing', '0.1em')
-        .style('text-transform', 'uppercase')
-        .text(groupName);
-      fitText(header, colW);
+      // group header (above column) — wrap onto multiple lines if it would
+      // overflow the column, rather than compressing it.
+      const headerLines = wrapHeader(groupName, colW);
+      headerLines.forEach((line, li) => {
+        const baseline = -30 - (headerLines.length - 1 - li) * 15;
+        col
+          .append('text')
+          .attr('x', 0)
+          .attr('y', baseline)
+          .attr('fill', 'var(--text-on-light)')
+          .style('font-family', 'var(--sans)')
+          .style('font-size', '11px')
+          .style('font-weight', '700')
+          .style('letter-spacing', '0.1em')
+          .text(line);
+      });
 
       col
         .append('text')
@@ -144,48 +275,18 @@
 
         cellGroup.append('title').text(`${cell.leaf} — ${cell.value}% of food emissions`);
 
-        const padL = 10;
-        const padR = 6;
-        const innerW = Math.max(0, colW - padL - padR);
-
-        // inline labels when there is room (need both height and a usable width).
-        // 48px is the smallest cell that fits leaf (baseline y=22) + value (y=40,
-        // 14px font) without the value descender clipping the cell bottom.
-        if (cellH >= 48 && innerW >= 70) {
-          const leafLabel = cellGroup
-            .append('text')
-            .attr('x', padL)
-            .attr('y', 22)
-            .attr('fill', 'var(--text-on-dark)')
-            .style('font-family', 'var(--sans)')
-            .style('font-size', colW > 200 ? '14px' : '12px')
-            .style('font-weight', '600')
-            .text(cell.leaf);
-          fitText(leafLabel, innerW);
-
-          cellGroup
-            .append('text')
-            .attr('x', padL)
-            .attr('y', colW > 200 ? 44 : 40)
-            .attr('fill', 'var(--text-on-dark)')
-            .style('font-family', 'var(--sans)')
-            .style('font-size', colW > 200 ? '18px' : '14px')
-            .style('font-weight', '700')
-            .text(`${cell.value}%`);
-        } else if (cellH >= 18 && innerW >= 40) {
-          // compact: just leaf + value on one line, fitted to the cell width.
-          // Below 40px usable width text becomes unreadable — fall back to
-          // the rect-only block and let the hover tooltip do the work.
-          const compact = cellGroup
-            .append('text')
-            .attr('x', 8)
-            .attr('y', cellH / 2 + 4)
-            .attr('fill', 'var(--text-on-dark)')
-            .style('font-family', 'var(--sans)')
-            .style('font-size', '11px')
-            .style('font-weight', '600')
-            .text(`${cell.leaf} · ${cell.value}%`);
-          fitText(compact, Math.max(0, colW - 12));
+        const named = labelCell(cellGroup, cell, colW, cellH);
+        if (!named) {
+          hidden.push({
+            group: groupName,
+            leaf: cell.leaf,
+            value: cell.value,
+            color,
+            isLast: groupName === GROUP_ORDER[GROUP_ORDER.length - 1],
+            // geometry in `g` space, for the right-rail callout connectors
+            rightX: xCursor + colW,
+            midY: yCursor + cellH / 2,
+          });
         }
 
         yCursor += cellH + cellGap;
@@ -194,16 +295,76 @@
       xCursor += colW + columnGap;
     });
 
-    // bottom note explaining the axis
-    g.append('text')
-      .attr('x', w / 2)
-      .attr('y', h + 22)
-      .attr('text-anchor', 'middle')
-      .attr('fill', 'var(--text-on-light-muted)')
-      .style('font-family', 'var(--sans)')
-      .style('font-size', '11px')
-      .style('font-style', 'italic')
-      .text('Column width = share of total food emissions · cell height = share within group');
+    // Right-rail callouts for cells too narrow to label in the last column
+    // (Supply chain): a connector leaves the cell's right edge, runs down a
+    // rail at the chart's right edge, and ends in a tag stacked below.
+    const railCells = hidden.filter((d) => d.isLast);
+    const otherCells = hidden.filter((d) => !d.isLast);
+
+    let extraH = 0;
+    if (railCells.length > 0) {
+      const tagH = 24;
+      const tagGap = 8;
+      const topGap = 26;
+      const railX = w; // right boundary of the column area
+      const tagsTop = h + topGap;
+
+      const layer = g.append('g');
+      railCells.forEach((d, i) => {
+        d.tagY = tagsTop + i * (tagH + tagGap) + tagH / 2;
+        const label = `${d.leaf} ${d.value}%`;
+        const tagW = measure(label, 12) + 22;
+        const tagX = railX - tagW; // tag right edge sits on the rail
+
+        layer
+          .append('path')
+          .attr('d', `M${d.rightX},${d.midY} H${railX} V${d.tagY} H${tagX + tagW}`)
+          .attr('fill', 'none')
+          .attr('stroke', d.color)
+          .attr('stroke-width', 1.5)
+          .attr('opacity', 0.65);
+        layer
+          .append('circle')
+          .attr('cx', d.rightX)
+          .attr('cy', d.midY)
+          .attr('r', 2.5)
+          .attr('fill', d.color);
+
+        const tag = layer
+          .append('g')
+          .attr('transform', `translate(${tagX},${d.tagY - tagH / 2})`);
+        tag
+          .append('rect')
+          .attr('width', tagW)
+          .attr('height', tagH)
+          .attr('rx', 5)
+          .attr('fill', d.color);
+        tag
+          .append('text')
+          .attr('x', tagW / 2)
+          .attr('y', tagH / 2)
+          .attr('text-anchor', 'middle')
+          .attr('dominant-baseline', 'central')
+          .attr('fill', 'var(--text-on-dark)')
+          .style('font-family', 'var(--sans)')
+          .style('font-size', '12px')
+          .style('font-weight', '600')
+          .text(label);
+      });
+      extraH = topGap + railCells.length * (tagH + tagGap) + 6;
+      svg.attr('viewBox', `0 0 ${width} ${height + extraH}`);
+    }
+
+    measurer.remove();
+
+    // Any other too-narrow cells (rare, non-last column) fall back to text.
+    breakdownGroups = GROUP_ORDER
+      .map((name) => ({
+        name,
+        color: groupColor[name],
+        items: otherCells.filter((d) => d.group === name),
+      }))
+      .filter((d) => d.items.length > 0);
   }
 </script>
 
@@ -213,6 +374,12 @@
     <span class="title">Animal-linked sources account for more than half of food emissions</span>
   </figcaption>
   <svg bind:this={svgEl}></svg>
+  {#each breakdownGroups as bg}
+    <p class="breakdown">
+      <strong style="color:{bg.color}">{bg.name}</strong>
+      {#each bg.items as it, i}{i > 0 ? ' · ' : ' — '}{it.leaf} {it.value}%{/each}
+    </p>
+  {/each}
   <p class="source">
     Total food emissions ≈ 26% of global GHG (52.3 Gt CO₂-eq, 2010 avg). Source:
     <a
@@ -237,6 +404,16 @@
     width: 100%;
     height: auto;
     display: block;
+  }
+  .breakdown {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--text-on-light);
+    margin: 0.4rem 0 0;
+  }
+  .breakdown strong {
+    font-weight: 700;
   }
   /* caption styles inherited from .chart .cap rules in app.css */
 </style>
