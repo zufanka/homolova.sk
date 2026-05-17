@@ -2,7 +2,6 @@
 title: "An ode to beans"
 date: "2026-05-15"
 slug: "ode-to-beans"
-draft: true
 summary: "Even small seeds can reshape large systems."
 newsletterMode: "teaser"
 newsletterImage: "/posts/ode-to-beans/ode-to-beans.jpg"
