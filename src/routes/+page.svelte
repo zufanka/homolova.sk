@@ -18,8 +18,14 @@
 {/if}
 
 <section class="feed">
-  {#each rest as post (post.slug)}
+  {#each rest as post, i (post.slug)}
     <PostCard {post} variant="compact" />
+    {#if i === 1}
+      <aside class="inbox-banner">
+        <span class="inbox-banner__copy">Ada in your inbox</span>
+        <a href="/newsletter" class="inbox-banner__cta">subscribe →</a>
+      </aside>
+    {/if}
   {/each}
 </section>
 
@@ -35,6 +41,35 @@
     max-width: 720px;
     margin: 32px auto 64px;
   }
+
+  .inbox-banner {
+    margin-top: 8px;
+    padding: 14px 20px;
+    border: var(--border);
+    background: var(--pink);
+    box-shadow: 4px 4px 0 var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .inbox-banner__copy {
+    font-family: var(--display);
+    text-transform: uppercase;
+    font-size: clamp(15px, 2.2vw, 18px);
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .inbox-banner__cta {
+    border-bottom: 3px solid var(--ink);
+    padding: 0 2px 1px;
+    font-weight: 600;
+    font-size: 15px;
+    white-space: nowrap;
+    transition: background 160ms ease-out;
+  }
+  .inbox-banner__cta:hover { background: var(--ink); color: var(--pink); }
 
   .feed {
     max-width: 720px;
