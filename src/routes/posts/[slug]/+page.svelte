@@ -66,13 +66,13 @@
     margin-bottom: 3rem;
   }
   .hero-inner {
-    max-width: 42rem;
+    max-width: var(--measure);
     margin: 0 auto;
     padding: 1.75rem 1.25rem 0;
   }
   .post-hero__image {
     margin: 0 auto 1.75rem;
-    max-width: 42rem;
+    max-width: var(--measure);
     padding: 0 1.25rem;
     box-sizing: content-box;
   }
@@ -123,7 +123,7 @@
     line-height: 1.5;
   }
   .prose {
-    max-width: 42rem;
+    max-width: var(--measure);
     margin: 0 auto;
     padding: 0 1.25rem 4rem;
   }

@@ -185,6 +185,10 @@
     --body-soft: #444;
     --border: 1.5px solid var(--ink);
     --container: 60rem;
+    /* Single source of truth for the content column so the nav, homepage
+       feed, and article/about prose all line up vertically. */
+    --measure: 42rem;
+    --gutter: 1.25rem;
     --display: 'Bowlby One', system-ui, sans-serif;
     --slab: 'Roboto Slab', Georgia, serif;
     --sans: 'Roboto', system-ui, sans-serif;
@@ -235,10 +239,15 @@
     align-items: center;
   }
 
+  .subnav {
+    /* mirror main's outer gutter so the nav keeps pace with the content
+       column on narrow viewports */
+    padding: 0 24px;
+  }
   .subnav__inner {
-    max-width: 768px;
+    max-width: var(--measure);
     margin: 0 auto;
-    padding: 0 24px 18px;
+    padding: 0 var(--gutter) 18px;
     display: flex;
     gap: 16px;
     font-size: 14px;

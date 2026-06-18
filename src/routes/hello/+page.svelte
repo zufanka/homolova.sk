@@ -287,9 +287,9 @@
 
 <style>
   .hello {
-    max-width: 42rem;
+    max-width: var(--measure);
     margin: 0 auto;
-    padding: 0 1.25rem 4rem;
+    padding: 0 var(--gutter) 4rem;
   }
   .hello__hero {
     margin: 2.5rem 0 2rem;

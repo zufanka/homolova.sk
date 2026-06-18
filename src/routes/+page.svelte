@@ -38,8 +38,9 @@
   @keyframes fadein { to { opacity: 1; transform: none; } }
 
   .featured {
-    max-width: 720px;
+    max-width: var(--measure);
     margin: 32px auto 64px;
+    padding: 0 var(--gutter);
   }
 
   .inbox-banner {
@@ -72,8 +73,9 @@
   .inbox-banner__cta:hover { background: var(--ink); color: var(--pink); }
 
   .feed {
-    max-width: 720px;
+    max-width: var(--measure);
     margin: 24px auto 96px;
+    padding: 0 var(--gutter);
     display: flex;
     flex-direction: column;
     gap: 24px;
