@@ -12,6 +12,11 @@
   Copied 2026-07-29 from squares_fig.html, mtime 2026-07-29 15:50:53,
   75,960 bytes, md5 0948aaa1334d15692a12f598a6a5774d.
 
+  ONE DEVIATION from the generated file: the figure-level <figcaption> ("Prague's
+  core holds 1,052 of these squares…") is deleted here — the post's prose says
+  the same thing right above the figure. Only the A/B/C labels and their
+  per-square read-outs remain. Delete it again after any re-copy.
+
   The SVG is inline rather than an <img> because its captions are real text —
   selectable, translatable, and readable by a screen reader — and because the
   figure inherits the page's colour variables.
@@ -35,7 +40,6 @@
       <figcaption><b class="sqg">0% green</b><b class="sqc">16.2% car</b><span class="sqp">3,840 residents</span></figcaption>
     </figure>
     </div>
-    <figcaption>Prague’s core holds 1,052 of these squares, and its median resident’s square is <b class="sqg">14% green</b> and <b class="sqc">11% car</b>. 8% of its residents live in a square like <b>C</b>, which holds none. The overview carries the green only — a 12&nbsp;m street is a third of a pixel at that size — so the car surface is left to the three enlargements. Shapes are the simplified geometry the maps below draw; the percentages are measured on the full-resolution outlines.</figcaption>
   </figure>
 <style>
   .sqfig {

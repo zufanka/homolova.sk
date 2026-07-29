@@ -35,7 +35,7 @@
 
   <div class="listcol">
     <div class="legend">
-      <span><i style="background:#0a6b40"></i>Urban green space</span>
+      <span><i style="background:#0a6b40"></i>Urban green</span>
       <span><i style="background:#7d4a9e"></i>Car infrastructure</span>
       <span><i style="background:#c3d9e8"></i>Water</span>
     </div>
@@ -43,14 +43,7 @@
     <SortButtons />
     <Ranking {rows} />
     <p class="axis-note">
-      Bars are each core's population-weighted median 500&nbsp;m square: green grows left
-      from the centre line, car space grows right, both as a share of that square's land.
-      <!-- The prototype appended a sentence here naming the shared scale ("One scale
-           across every row and both states — X% of a square fills half the spine.").
-           The scale is computed inside the ranking, so that sentence belongs to
-           <Ranking /> and is emitted there. -->
-      No green = the share of residents whose own square holds none. † = parking
-      under-mapped in OpenStreetMap
+      Source: OpenStreetMap. † = parking under-mapped in OpenStreetMap.
     </p>
   </div>
 </div>
@@ -61,7 +54,10 @@
       display: grid;
       gap: 1.8rem;
       align-items: start;
-      grid-template-columns: minmax(20rem, 1fr) minmax(0, 1.7fr);
+      /* the list needs ~23rem before the ranking's diverging spine (a 1fr
+         column between four fixed ones) gets squeezed to nothing — hence the
+         raised minimum and the gentler ratio against the map */
+      grid-template-columns: minmax(23rem, 1fr) minmax(0, 1.5fr);
       --map-h: min(66vh, 40rem);
     }
     /* the list is the narrow left column, the map the wide right one — but the

@@ -1,8 +1,9 @@
 <script lang="ts">
   /**
-   * The ranked list of capitals: one diverging-spine chart, two states, three
-   * sort keys. Sits under `<SortButtons />`, which is its column header and its
-   * sort control, and under `<StateToggle />`, which switches the state.
+   * The ranked list of capitals: one diverging-spine chart, two states, four
+   * sort keys, each sortable both ways. Sits under `<SortButtons />`, which is
+   * its column header and its sort control, and under `<StateToggle />`, which
+   * switches the state.
    *
    * The bar lengths always encode the same thing — each core's
    * population-weighted median 500 m square: green grows left from the central
@@ -16,7 +17,7 @@
   import { flip } from 'svelte/animate';
   import { cubicOut } from 'svelte/easing';
   import { prefersReducedMotion } from 'svelte/motion';
-  import { view } from './state.svelte';
+  import { view, SORT_DEFAULT_DIR, type SortKey, type SortDir } from './state.svelte';
   import type { CityRow, Metrics } from './types';
 
   let { rows }: { rows: CityRow[] } = $props();
@@ -40,10 +41,18 @@
    * into a flat tie; holding green and car to the same rule keeps the order
    * fixed across the switch, so the bars visibly grow in place rather than
    * growing and reshuffling at once.
+   *
+   * Each comparator is written in its key's default direction; the other
+   * direction is that same comparator negated, which carries the tie-breakers
+   * with it so the reversed list is an exact mirror rather than a re-sort.
    */
   const ordered = $derived.by(() => {
     const key = view.sortKey;
-    return rows.slice().sort((a, b) => {
+    const sign = view.sortDir === SORT_DEFAULT_DIR[key] ? 1 : -1;
+    const cmp = (a: CityRow, b: CityRow) => {
+      if (key === 'city') {
+        return a.city.localeCompare(b.city);
+      }
       if (key === 'zero') {
         return (
           b.now.zeroGreen - a.now.zeroGreen ||
@@ -55,7 +64,8 @@
         return b.now.medGreen - a.now.medGreen || b.now.medCar - a.now.medCar;
       }
       return b.now.medCar - a.now.medCar || b.now.medGreen - a.now.medGreen;
-    });
+    };
+    return rows.slice().sort((a, b) => sign * cmp(a, b));
   });
 
   /**
@@ -81,9 +91,16 @@
     );
   }
 
-  const SORT_NAME = { zero: 'no green', green: 'green', car: 'car infrastructure' };
+  /** Each key names itself and both of its directions, so the spoken status can
+   *  be assembled from the state alone. */
+  const SORT_NAME: Record<SortKey, { of: string } & Record<SortDir, string>> = {
+    zero: { of: 'no green', desc: 'largest first', asc: 'smallest first' },
+    green: { of: 'green', desc: 'largest first', asc: 'smallest first' },
+    car: { of: 'car infrastructure', desc: 'largest first', asc: 'smallest first' },
+    city: { of: 'city name', desc: 'Z to A', asc: 'A to Z' }
+  };
   const status = $derived(
-    `Ranked by ${SORT_NAME[view.sortKey]}, largest first. ` +
+    `Ranked by ${SORT_NAME[view.sortKey].of}, ${SORT_NAME[view.sortKey][view.sortDir]}. ` +
       (converted ? 'Showing the converted scenario.' : 'Showing the cities as measured.')
   );
 
@@ -130,10 +147,6 @@
       </li>
     {/each}
   </ol>
-
-  <p class="scale-note">
-    One scale across every row and both states — {fmt1(scale)}% of a square fills half the spine.
-  </p>
 </div>
 
 <style>
@@ -265,14 +278,6 @@
     margin-right: 0.1rem;
   }
 
-  .scale-note {
-    max-width: var(--measure, 42rem);
-    margin: 0.9rem 0 0;
-    font-size: 0.83rem;
-    line-height: 1.5;
-    color: var(--muted, #666);
-  }
-
   .sr-only {
     position: absolute;
     width: 1px;
@@ -284,6 +289,30 @@
     clip-path: inset(50%);
     white-space: nowrap;
     border: 0;
+  }
+
+  /* Between the 900 px stack point and a roomy desktop the list column is only
+     ~23rem wide, and the four fixed columns would eat all of it — the spine
+     would render at zero width. Tighten them so the bar always has room.
+     Keep in step with the same query in SortButtons.svelte. */
+  @media (min-width: 900px) and (max-width: 1200px) {
+    .row {
+      grid-template-columns: 1.2rem 5.4rem minmax(0, 1fr) 5.2rem 4.2rem;
+      gap: 0.45rem;
+    }
+    .city {
+      font-size: 0.82rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .figs,
+    .zero {
+      font-size: 0.75rem;
+    }
+    .ha {
+      min-width: 2rem;
+    }
   }
 
   @media (max-width: 640px) {

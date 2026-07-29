@@ -1,38 +1,82 @@
 <script lang="ts">
   /**
-   * The ranking's column header, which doubles as its sort control: the green /
-   * car labels sit over the diverging spine, the "No green" label over the third
-   * number. Writes `view.sortKey`; `Ranking.svelte` reorders on it.
+   * The ranking's column header, which doubles as its sort control: the city
+   * label sits over the names, the green / car labels over the diverging spine,
+   * the "No green" label over the third number. Writes `view.sortKey` and
+   * `view.sortDir`; `Ranking.svelte` reorders on them.
    *
    * Sits directly above `<Ranking />` and shares its five-column grid — the two
    * grids are declared separately because the components are siblings, so
    * `.rank-head` here and `.row` in `Ranking.svelte` must be kept in step.
    */
-  import { view, type SortKey } from './state.svelte';
+  import { view, SORT_DEFAULT_DIR, type SortKey, type SortDir } from './state.svelte';
 
-  const set = (k: SortKey) => () => (view.sortKey = k);
+  const on = (k: SortKey) => view.sortKey === k;
+
+  /** Clicking the active key flips it; any other key arrives in its own default. */
+  const nextDir = (k: SortKey): SortDir =>
+    on(k) ? (view.sortDir === 'desc' ? 'asc' : 'desc') : SORT_DEFAULT_DIR[k];
+
+  const set = (k: SortKey) => () => {
+    const dir = nextDir(k);
+    view.sortKey = k;
+    view.sortDir = dir;
+  };
+
+  /**
+   * Each column's two directions in its own terms. The buttons are labelled
+   * with what the next click does, not with what is already showing, so the
+   * active key's label reads as the reversal it offers.
+   */
+  const PHRASE: Record<SortKey, Record<SortDir, string>> = {
+    city: { asc: 'city name, A to Z', desc: 'city name, Z to A' },
+    green: {
+      desc: "the median square's green share, largest first",
+      asc: "the median square's green share, smallest first"
+    },
+    car: {
+      desc: "the median square's car share, largest first",
+      asc: "the median square's car share, smallest first"
+    },
+    zero: {
+      desc: 'the share of residents whose square holds no green, largest first',
+      asc: 'the share of residents whose square holds no green, smallest first'
+    }
+  };
+  const action = (k: SortKey) => `Rank by ${PHRASE[k][nextDir(k)]}`;
 </script>
 
 <div class="rank-head">
   <span></span>
-  <span></span>
+  <button
+    type="button"
+    class="sortbtn sn"
+    class:on={on('city')}
+    class:asc={on('city') && view.sortDir === 'asc'}
+    aria-pressed={on('city')}
+    title={action('city')}
+    aria-label={action('city')}
+    onclick={set('city')}>City</button
+  >
   <span class="rh-bar" role="group" aria-label="Rank the list by">
     <button
       type="button"
       class="sortbtn sg"
-      class:on={view.sortKey === 'green'}
-      aria-pressed={view.sortKey === 'green'}
-      title="Rank by the median square's green share, largest first"
-      aria-label="Rank by the median square's green share, largest first"
+      class:on={on('green')}
+      class:asc={on('green') && view.sortDir === 'asc'}
+      aria-pressed={on('green')}
+      title={action('green')}
+      aria-label={action('green')}
       onclick={set('green')}>Green</button
     >
     <button
       type="button"
       class="sortbtn sc"
-      class:on={view.sortKey === 'car'}
-      aria-pressed={view.sortKey === 'car'}
-      title="Rank by the median square's car share, largest first"
-      aria-label="Rank by the median square's car share, largest first"
+      class:on={on('car')}
+      class:asc={on('car') && view.sortDir === 'asc'}
+      aria-pressed={on('car')}
+      title={action('car')}
+      aria-label={action('car')}
       onclick={set('car')}>Car</button
     >
   </span>
@@ -40,10 +84,11 @@
   <button
     type="button"
     class="sortbtn sz"
-    class:on={view.sortKey === 'zero'}
-    aria-pressed={view.sortKey === 'zero'}
-    title="Rank by the share of residents whose square holds no green, largest first"
-    aria-label="Rank by the share of residents whose square holds no green, largest first"
+    class:on={on('zero')}
+    class:asc={on('zero') && view.sortDir === 'asc'}
+    aria-pressed={on('zero')}
+    title={action('zero')}
+    aria-label={action('zero')}
     onclick={set('zero')}>No green</button
   >
 </div>
@@ -83,6 +128,14 @@
     color: var(--muted, #666);
     white-space: nowrap;
   }
+  /* flush left, without the usual side padding, so the label and its underline
+     start exactly where the city names in the rows below start */
+  .sortbtn.sn {
+    justify-self: start;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: left;
+  }
   .sortbtn.sg {
     justify-self: end;
   }
@@ -107,12 +160,33 @@
   .sortbtn.on.sc {
     border-bottom-color: var(--pk-asphalt, #7d4a9e);
   }
-  .sortbtn.on.sz {
+  .sortbtn.on.sz,
+  .sortbtn.on.sn {
     border-bottom-color: var(--ink, #020202);
   }
-  /* ▾ = ranked by this column, largest first */
+  /* ▾ = ranked by this column, top of the column first; ▴ = the reverse */
   .sortbtn.on::after {
     content: ' \25BE';
+  }
+  .sortbtn.on.asc::after {
+    content: ' \25B4';
+  }
+
+  /* narrow-desktop tightening — keep in step with the same query in
+     Ranking.svelte, or the header stops lining up with the rows. The labels
+     shrink too: GREEN gains a ▾ when it is the active sort, and at full size
+     the pair would spill out of the bar column into "green / car". CITY rides
+     the same shrink and clears its 5.4rem column with its marker on. */
+  @media (min-width: 900px) and (max-width: 1200px) {
+    .rank-head {
+      grid-template-columns: 1.2rem 5.4rem minmax(0, 1fr) 5.2rem 4.2rem;
+      gap: 0.45rem;
+      font-size: 0.66rem;
+    }
+    .sortbtn {
+      font-size: 0.62rem;
+      padding: 0.1rem 0.2rem 0.05rem;
+    }
   }
 
   @media (max-width: 640px) {
