@@ -1,0 +1,438 @@
+---
+title: "What if we got rid of cars?"
+date: "2026-07-29"
+slug: "what-if-we-got-rid-of-cars"
+summary: "Park vs parking in 39 European capitals"
+newsletterMode: "teaser"
+newsletterImage: "/posts/what-if-we-got-rid-of-cars/parking-to-park-areal.jpg"
+featuredImage: "parking-to-park.jpg"
+newsletterTeaser: "In the median European capital, cars get more ground than parks. I measured every road, parking lot and park in 39 capitals to find out how much green is on the table."
+draft: true
+fullBleed: true
+tags:
+  - "data"
+---
+
+<script lang="ts">
+  import { cities, figures } from './parking/cities';
+  import SquaresFigure from './parking/SquaresFigure.svelte';
+  import Board from './parking/Board.svelte';
+  import TreesAreCool from './parking/TreesAreCool.svelte';
+
+  // Capitals whose parking data OpenStreetMap under-maps, listed at the foot of
+  // the method section. The prototype built this string at runtime (#methodDynamic);
+  // here it is derived from the same rows the ranking reads.
+  const flagged = cities.filter((c) => c.thin || c.sparse);
+</script>
+
+<!-- Live figures come from `figures` in ./parking/cities.ts:
+       nCities        number of capitals (39)
+       medShare       median % of municipal residents living in the core
+       medGreen       median capital's median square: % of its land that is green
+       medCarSh       ditto, % that is car infrastructure
+       medZero        median capital: % of residents whose square has no green
+       medGreenAfter / medCarAfter / medZeroAfter   the same three, converted
+       carWins        capitals whose median square holds more car than green
+       flipCount      how many of those the conversion turns around
+     Eight figures below are RETIRED — the per-resident m² numbers no longer
+     exist in the payload. They render as loud orange ⟨name?⟩ placeholders and
+     the sentences around them need rewriting before publishing. -->
+
+<article class="pp">
+  <section class="intro">
+    <p class="kicker">Trees vs cars in {figures.nCities} European capitals</p>
+    <h1>What if we got rid of cars?</h1>
+    <p class="stand">
+      It's getting hot in here and not in the good way.
+    </p>
+    <p>
+      Only accross 27 EU countries, more than 16,000 people died
+      <a href="https://www.scientificamerican.com/article/europes-heat-waves-are-killing-thousands-and-wringing-its-soils-dry/">because of the
+      heat stress</a> of the 2026 June heatwave. One in three of the
+      deaths driven by cities' own heat islands
+      <a href="https://doi.org/10.1016/S0140-6736(22)02585-5">would be prevented
+      by raising tree coverage</a>. Yet Europe is short of the green that
+      does the cooling. More than 8 in 10 Europeans living in cities
+      <a href="https://www.nature.com/articles/s41467-026-71523-8">don't have
+      enough trees and parks around them</a>, and 1 in 5 has essentially none.
+    </p>
+    <p>
+      While ground in cities is scarce and valuable, there is one type of
+      infrastructure we do allocate a lot of space to: cars. So I
+      measured every road, surface parking lot and park in
+      {figures.nCities} European capitals' urban cores to
+      quantify it. In the median capital, an inhabitant gets
+      <strong><span class="figmiss">⟨medCar?⟩</span> m² of car infrastructure and only
+      <span class="figmiss">⟨medUgs?⟩</span> m² of parks</strong>; in
+      {figures.carWins} of {figures.nCities}
+      capitals, cars get more ground than parks.
+    </p>
+  </section>
+  <section class="squares">
+    <h2>500 metres at a time</h2>
+    <p class="note">
+      Every core here is cut into 500&nbsp;m squares — a five-minute walk across —
+      and each square is measured on its own: how much of its land is green you can
+      walk into, how much is carriageway and surface parking. Squares that are more
+      water than land, or that hang off the edge of the core, are dropped. A city's
+      figure is then its median square, weighted by the people who live in it, so a
+      forest on the rim cannot stand in for a park downtown.
+    </p>
+    <div class="legend">
+      <span><i style="background:#0a6b40"></i>Urban green space</span>
+      <span><i style="background:#7d4a9e"></i>Roads</span>
+      <span><i style="background:#6d3f96"></i>Surface parking</span>
+      <span><i style="background:#c3d9e8"></i>Water</span>
+    </div>
+    <SquaresFigure />
+  </section>
+  <section class="board">
+    <div class="board-head">
+      <h2>Parks vs parking</h2>
+      <p class="note">
+        Urban green = spaces the public can enter and use for relief from heat: parks, gardens, cemeteries, forests, woods and nature reserves, private and public.<br>
+        The NOW / CONVERTED buttons switch the list and the map between the city as
+        measured and the scenario: every surface parking lot plus 60% of the calm
+        streets given back as green.<br>
+        The HEAT button on the map lays each city's modelled summer heat island over its streets.
+      </p>
+    </div>
+    <Board rows={cities} />
+  </section>
+  <section class="why">
+    <h2>Why trees are cool</h2>
+    <p>
+      Any surface can bounce energy back to the sky, store it, heat the air with
+      it, or spend it evaporating water. Asphalt cannot evaporate water, so it heats the air more than anything.
+      That is how an urban heat island emerges.
+    </p>
+    <TreesAreCool />
+    <p>
+      Asphalt's own surface can swing between roughly 40°C and 60°C on a sunny
+      day, and it keeps releasing that stored heat into the air well after
+      sunset. This is why cities stay hotter than the surrounding countryside,
+      and it's what makes them suffocating in a heatwave.
+    </p>
+    <p>
+      Trees, on the other hand, <a href="https://theconversation.com/can-trees-really-cool-our-cities-down-44099">cool the city down</a>. Their shade prevents asphalt
+      from absorbing the heat in the first place, and they use the energy they
+      absorb to evaporate water. It's basically tree sweating. This way, trees roughly
+      <a href="https://www.nature.com/articles/s41467-026-71825-x">halve the
+      urban heat island effect</a>.
+    </p>
+  </section>
+  <section class="why">
+    <h2>It's not that crazy</h2>
+    <p>
+      So how much green is actually on the table? Run one scenario on the ground I
+      measured: turn every surface parking lot plus 60% of the calm local streets
+      into green space, and leave the arterials alone. This is arithmetic on the
+      measured ground, not a plan. Across the
+      {figures.nCities} capitals it hands back a median of
+      <strong><span class="figmiss">⟨medGain?⟩</span> m² of green per resident</strong>,
+      lifting the median from <span class="figmiss">⟨medUgs?⟩</span> to
+      <span class="figmiss">⟨medUgsAfter?⟩</span> m² — past the median car allocation of
+      <span class="figmiss">⟨medCar?⟩</span> m², so the typical capital itself crosses
+      from losing ground to cars to beating them. Of the
+      {figures.carWins} capitals where cars currently out-measure
+      parks, <strong>{figures.flipCount}</strong> would flip. The
+      biggest single gain is Reykjavík's 29 m² a head; the smallest is Paris's
+      1.8, because Paris has almost no surface parking left to reclaim.
+    </p>
+    <p>
+      That last point is not hypothetical. When cities close streets or pull out
+      parking, a chunk of the traffic doesn't reroute, it disappears, a phenomenon
+      known as
+      <a href="https://www.researchgate.net/publication/248177303_Traffic_Evaporation_-_What_Really_Happens_When_Road_Space_Is_Reallocated">"traffic
+      evaporation"</a>. Pontevedra, in western Spain,
+      <a href="https://www.politico.eu/article/pontevedra-city-pioneer-europe-car-free-future/">banned
+      most cars</a> from its center in 1999, the longest-running proof we have:
+      traffic fell 53%, air pollution 67%, and the last traffic death was 15 years
+      ago. Oslo
+      <a href="https://www.fastcompany.com/90294948/what-happened-when-oslo-decided-to-make-its-downtown-basically-car-free">cleared
+      cars</a> from its downtown core and turned the parking into benches, bike
+      lanes and pocket parks; in my numbers Oslo is one of the
+      {figures.flipCount} that flip, from 11.9 to 21.8 m² of green,
+      just past its 20.2 of car. Paris is removing 70,000 on-street parking spots
+      and <a href="https://www.leparisien.fr/info-paris-ile-de-france-oise/transports/stationnement-a-paris-24-000-places-supprimees-en-six-ans-loin-des-70-000-promises-07-02-2026-ET2CCP54MBE2HE6343TMW2YG3E.php">24,000
+      were gone</a> by early 2026 — which is why it already runs the leanest car
+      footprint of all {figures.nCities}, 5.9 m² a head, and already
+      keeps more green than car space.
+    </p>
+    <p>
+      None of this needs the cars gone tomorrow. But the asphalt they sit on does
+      nothing for a city in a heatwave, and the measurements say what the streets
+      already show: give a median European capital its parking and a share of its
+      quiet streets back as green, and it goes from
+      <span class="figmiss">⟨medUgs?⟩</span> m² a head to
+      <span class="figmiss">⟨medUgsAfter?⟩</span>, from losing to cars to beating them. So
+      — what if we got rid of cars?
+    </p>
+  </section>
+  <section class="method">
+    <h2>How this was measured</h2>
+    <div class="mgrid">
+      <div>
+        <h3>Green, cars, people</h3>
+        <p>
+          Green is counted in <strong>two tiers</strong>. The headline, urban green
+          space, is what a resident can actually walk into: OpenStreetMap polygons
+          of parks, gardens, recreation grounds, commons, village greens, dog parks
+          and cemeteries — the same public recreational categories the EU's
+          <a href="https://land.copernicus.eu/en/products/urban-atlas">Urban
+          Atlas</a> calls "green urban areas", and the same OSM tags used to
+          monitor <a href="https://www.mdpi.com/2073-445X/13/12/2174">UN SDG
+          11.7.1</a> — plus nature reserves, and forest and wood together, since
+          which of the two tags a mapper reaches for is a national convention, not
+          a real distinction. Dissolved so overlaps count once, open water
+          subtracted, and nothing under 0.5&nbsp;ha — the size at which the
+          <a href="https://www.who.int/europe/publications/i/item/WHO-EURO-2016-3352-43111-60341">WHO's
+          evidence review</a> starts counting a green space at all.
+        </p>
+        <p class="pad">
+          What the headline still refuses: verge grass (no one's park), meadow,
+          grassland, heath, scrub and gated allotments. The second tier,
+          <strong>all green</strong>, adds every excluded category back in — kept
+          in the published data — so the exclusion is auditable, not hidden. The
+          <a href="https://www.eea.europa.eu/en/analysis/publications/who-benefits-from-nature-in-cities-social-inequalities-in-access-to-urban-green-and-blue-spaces-across-europe">EEA
+          reports a similar split</a>: total green infrastructure averages 42% of a
+          European city's area, publicly accessible green space 3%.
+        </p>
+        <p class="pad">
+          Car infrastructure is every carriageway plus every surface parking area,
+          dissolved together so overlaps count once. Roads are buffered from OSM
+          centrelines: the tagged <code>width</code> where present, otherwise
+          lanes × 3.25 m, otherwise
+          <a href="https://www.cogitatiopress.com/urbanplanning/article/view/1209">defaults
+          per road class</a>. Kerb-to-kerb means sidewalks and separated cycle tracks are
+          excluded by construction; painted bike and bus lanes are included — a small
+          car-favouring simplification. Where cities publish their own carriageway
+          inventories the method lands within a few percent (Madrid 100%, Brussels
+          99%, Stockholm 97%); Paris's exceptional street geometry needed a width
+          calibration against the city's official road plan. Multi-storey and
+          underground parking is excluded: this measures ground.
+        </p>
+        <p class="pad">
+          The three headline figures live on a <strong>500&nbsp;m grid</strong>
+          laid across each urban core — squares that are more water than land, or
+          that hang off the core's edge, are dropped. Every square left gets its
+          own green share and car share of its land, and its resident count from
+          GHS-POP; both medians are population-weighted, squares sorted by value
+          until cumulative population crosses half. "No green" is the share of a
+          core's residents standing in a square with no green in it at all. The
+          converted state re-runs all three with every surface parking lot and 60%
+          of the calm-street area moved from car to green, arterials untouched —
+          and it skips the 0.5&nbsp;ha floor the headline applies elsewhere: the
+          median surface lot is 469&nbsp;m², 96.6% of lots fall under that
+          threshold, and enforcing it would leave only about a third of the
+          converted area standing — survival from 12% (Tirana) to 64% (Madrid).
+        </p>
+        <p class="pad">
+          Residents are the EU JRC's GHS-POP 2025 grid summed inside the identical
+          urban-core polygon that the green and the asphalt are measured in — the
+          numerator and denominator can never refer to different places. Land
+          areas exclude water via GHS-LAND, so Helsinki is judged on its land, not
+          its sea. Water itself comes from OSM water polygons plus the
+          OSM-coastline ocean product, and is subtracted from every green area:
+          a bay inside a nature reserve is not green space.
+        </p>
+      </div>
+      <div>
+        <h3>Why the urban core, and honestly</h3>
+        <p>
+          Everything here is measured inside each capital's <strong>urban
+          centre</strong> — the EU/UN Degree of Urbanisation definition (GHS-SMOD):
+          the contiguous dense settlement, intersected with the municipal boundary —
+          and divided by the residents of that same area. Administrative city limits
+          are a trap this page refuses: Belgrade's "city" is a 3,200 km² district,
+          Madrid's includes two regional nature parks, Zagreb's a mountain. Under
+          each city's name we state what share of the municipal population lives in
+          the core being measured; in compact capitals it is nearly everyone, in
+          sprawling ones (Vilnius, Belgrade) a quarter to a third live outside it —
+          their streets and green are excluded together with them, numerator and
+          denominator alike.
+        </p>
+      </div>
+      <div>
+        <h3>What could be wrong</h3>
+        <p>
+          OpenStreetMap's road network is close to complete everywhere in Europe, so
+          the road figures travel well. Parking completeness still varies by country:
+          cities marked † have thin parking data, and every parking figure is a
+          floor, not a ceiling. Kerbside mapping conventions differ the most.
+        </p>
+        <p class="pad">
+          GHS-POP is a modelled 2025 estimate anchored to censuses, not a census:
+          at municipal level it runs within ~5% of registers in most capitals and
+          about −12% in Bratislava, whose unregistered residents no source counts
+          well; core-level populations inherit those biases. Valletta is so small
+          that its per-person figures carry real grid noise. The urban-centre
+          outline itself is a 1 km grid, so the core's edge is blocky — features
+          are clipped to it exactly, but a park straddling the edge counts only
+          in part.
+        </p>
+        <p class="pad">
+          And the deliberate asymmetry, now running the other way: the headline
+          green is strict — no verge grass, no meadow, no allotments, no patch
+          under 0.5&nbsp;ha — while car space is merely conservative (carriageway
+          only, no sidewalks, parking under-mapped in several countries). Both
+          exclusion lists are disclosed: everything cut from the green headline is
+          still measured and kept in the published data.
+          If anything, the green side is now the floor too — a page that
+          once leaned green now leans honest.
+        </p>
+        {#if flagged.length}
+          <p class="pad">Cities with thin parking data (†):
+            {#each flagged as c, i}<strong>{c.city}</strong>{i < flagged.length - 1 ? ', ' : '.'}{/each}
+          </p>
+        {/if}
+      </div>
+    </div>
+    <p class="credit">
+      Geometry © OpenStreetMap contributors, ODbL (incl. ocean polygons via
+      osmdata.openstreetmap.de). Population, land &amp; urban centres: EU JRC GHSL
+      (GHS-POP R2023A, GHS-LAND R2022A, GHS-SMOD R2023A).
+      Urban heat island: Copernicus C3S / VITO UrbClim intensity model via the
+      EEA, CC BY 4.0.
+      Paris road widths calibrated against Ville de Paris open data (Plan de
+      Voirie). Analysis and code by Ada Homolová.
+    </p>
+  </section>
+</article>
+
+<style>
+  /* Everything here is scoped to this post's component. The three colour
+     variables the piece needs (park / asphalt / parking purple) hang off .pp
+     rather than :root so they cannot leak into the rest of the site; the
+     typography and neutral variables (--display, --slab, --measure,
+     --container, --orange, --muted, --body, --body-soft, --card, --ink)
+     already exist site-wide in +layout.svelte with the same values the
+     prototype used. Fonts come from @fontsource in the root layout — the
+     prototype's base64-inlined @font-face blocks are gone. */
+  .pp {
+    --parking: #6d3f96;
+    --park: #0a6b40;
+    --asphalt: #7d4a9e;
+    --plate: #fdf5f0;
+    max-width: 84rem;
+    margin: 0 auto;
+    padding: 2.5rem var(--gutter) 4rem;
+  }
+  .pp :global(section) {
+    margin-bottom: clamp(3rem, 7vw, 5.5rem);
+  }
+
+  .pp :global(h1) {
+    font-family: var(--display);
+    font-size: clamp(2rem, 6vw, 3.9rem);
+    line-height: 1.02;
+    margin: 0.4rem 0 0;
+    text-wrap: balance;
+  }
+  .pp :global(h2) {
+    font-family: var(--display);
+    font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+    line-height: 1.1;
+    margin: 0 0 0.5rem;
+  }
+  .pp :global(h3) {
+    font-family: var(--slab);
+    font-size: 1rem;
+    margin: 0 0 0.35rem;
+  }
+
+  .kicker {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0;
+  }
+  .intro { max-width: var(--measure); }
+  .stand {
+    font-family: var(--slab);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    line-height: 1.5;
+    color: var(--body);
+    margin: 1.1rem 0 0;
+  }
+  .note {
+    max-width: var(--measure);
+    color: var(--body-soft);
+    font-size: 0.94rem;
+    margin: 0 0 1.1rem;
+  }
+  .board-head { margin-bottom: 1rem; }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 0 0 0.7rem;
+  }
+  .legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .legend i {
+    width: 0.85rem;
+    height: 0.85rem;
+    border: 1.5px solid var(--ink);
+    display: block;
+    flex: none;
+  }
+
+  .squares { max-width: var(--container); }
+
+  .why { max-width: var(--measure); }
+  .why :global(p) { color: var(--body); }
+  .pp :global(figcaption) {
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--muted);
+    margin-top: 0.9rem;
+    max-width: var(--measure);
+  }
+  .pp :global(figcaption a),
+  .why :global(a),
+  .mgrid :global(a),
+  .intro :global(a) {
+    border-bottom: 1.5px solid var(--orange);
+  }
+
+  .method { max-width: var(--container); }
+  .mgrid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  }
+  .mgrid :global(p) {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--body-soft);
+    margin: 0;
+  }
+  .mgrid :global(p.pad) { margin-top: 0.7rem; }
+  .mgrid :global(code) {
+    font-size: 0.85em;
+    background: var(--plate);
+    padding: 0 0.2em;
+  }
+  /* an unresolved figure — the number it named no longer exists in the payload.
+     Deliberately loud: the sentence around it needs rewriting before publishing. */
+  .figmiss {
+    color: var(--orange);
+    border-bottom: 1.5px dashed var(--orange);
+    font-weight: 700;
+  }
+  .credit {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin: 1.6rem 0 0;
+  }
+</style>
