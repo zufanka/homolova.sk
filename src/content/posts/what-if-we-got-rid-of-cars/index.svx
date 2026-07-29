@@ -26,6 +26,7 @@ tags:
   // Vite resolves and fingerprints the file; the same illustration is the
   // post's featuredImage, where posts.ts resolves it the same way.
   import heroImage from './media/parking-to-park.jpg?url';
+  import aerialImage from './media/parking-to-park-areal.jpg?url';
   // This post's display face, loaded only with this post — the rest of the site
   // keeps Bowlby One. @font-face blocks carry unicode-range per subset, so the
   // browser fetches the latin file only. To make it the site's face instead,
@@ -191,16 +192,36 @@ tags:
     <Board rows={cities} />
   </section>
 
+  <section class="why closing">
+    <p>
+      Making our cities livable is all about the choices we make. In Paris, even
+      when opposition exists, not many people want to go back to the
+      <a href="https://www.newstatesman.com/international-politics/2026/03/mayor-hidalgo-helped-paris-breathe-again">car
+      dominated city it used to be</a>. From this experiment we see that if we
+      dedicated all the surface parking and 60% of the small streets in a city to
+      green, none of the residents would live far from urban green.
+    </p>
+  </section>
+
+  <figure class="aerial">
+    <img
+      src={aerialImage}
+      alt="Two aerial sketches of the same few blocks. On the left, wide roads and
+           rows of surface parking between the buildings; on the right, the same
+           streets and lots drawn over with trees, lawns and paths, the river
+           edged in green."
+      loading="lazy"
+      decoding="async"
+    />
+  </figure>
+
   <section class="method">
     <h2>How this was measured</h2>
     <p>
-      Green is counted in <strong>two tiers</strong>. The headline, urban green
-      space, is what a resident can actually walk into: OpenStreetMap polygons of
-      parks, gardens, recreation grounds, commons, village greens, dog parks and
-      cemeteries — the same public recreational categories the EU's
-      <a href="https://land.copernicus.eu/en/products/urban-atlas">Urban
+      Urban green = OpenStreetMap polygons of parks, gardens, recreation grounds, commons, village greens, dog parks and
+      cemeteries, the same public recreational categories the EU's <a href="https://land.copernicus.eu/en/products/urban-atlas">Urban
       Atlas</a> calls "green urban areas", and the same OSM tags used to monitor
-      <a href="https://www.mdpi.com/2073-445X/13/12/2174">UN SDG 11.7.1</a> —
+      <a href="https://www.mdpi.com/2073-445X/13/12/2174">UN SDG 11.7.1</a>,
       plus nature reserves, and forest and wood together. Dissolved so overlaps
       count once, open water subtracted, and nothing under 0.5&nbsp;ha (the size
       at which the
@@ -210,7 +231,7 @@ tags:
       out of the calculation.
     </p>
     <p>
-      Car infrastructure is every carriageway plus every surface parking area,
+      Car infrastructure = every carriageway plus every surface parking area,
       dissolved together so overlaps count once. Roads are buffered from OSM
       centrelines: the tagged <code>width</code> where present, otherwise
       lanes × 3.25 m, otherwise
@@ -373,7 +394,9 @@ tags:
     margin: 1.1rem 0 0;
   }
   .intro :global(p) { color: var(--body); }
-  /* body prose inside the wide board section keeps the reading measure */
+  /* .body-copy is what the board section's own paragraphs wear: the section
+     spans the full 84rem for the chart, so its prose has to opt back in to the
+     reading measure the way .intro / .why / .method get it for free */
   .body-copy { color: var(--body); }
   .note {
     max-width: var(--measure);
@@ -386,6 +409,29 @@ tags:
      the column drops under ~23rem. The prose inside it keeps the reading
      measure via .body-copy instead. */
   .board-head { margin-bottom: 1rem; }
+  /* The before/after aerial, closing the argument before the method notes.
+     Same treatment as the hero: no frame, no caption, the drawing just fades
+     in and out of the page. Here it is a mask rather than a scrim, so the
+     <img> keeps its alt text and the fade works whatever sits behind it. The
+     drawing is 1200px wide, so 62rem stops it being blown up past native. */
+  .aerial {
+    margin: clamp(1rem, 4vw, 3rem) auto clamp(2rem, 6vw, 4rem);
+    max-width: 62rem;
+  }
+  .aerial img {
+    display: block;
+    width: 100%;
+    height: auto;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0,
+      #000 14%,
+      #000 86%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(to bottom, transparent 0, #000 14%, #000 86%, transparent 100%);
+  }
+
   /* the Prague figure draws at 46rem internally, so the block is centred at
      that width rather than at the container's */
   .squares { margin: 1.6rem auto; max-width: 46rem; }

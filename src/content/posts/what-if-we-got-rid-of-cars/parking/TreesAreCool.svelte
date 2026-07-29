@@ -109,9 +109,12 @@
     background: #5aa8d8;
     color: var(--ink);
   }
+  /* the same purple the maps and the ranking give car infrastructure — heating
+     the air is what the asphalt does, so it wears the asphalt's colour. Ink on
+     it only reaches 3.3:1, so these labels flip to white. */
   .ebseg.air {
-    background: var(--orange);
-    color: var(--ink);
+    background: var(--asphalt, #7d4a9e);
+    color: #fff;
   }
   .ebseg.ground {
     background: var(--ink);
@@ -144,7 +147,7 @@
     background: #5aa8d8;
   }
   .eblegend i.air {
-    background: var(--orange);
+    background: var(--asphalt, #7d4a9e);
   }
   .eblegend i.ground {
     background: var(--ink);
