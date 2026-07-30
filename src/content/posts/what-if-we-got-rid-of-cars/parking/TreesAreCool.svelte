@@ -8,10 +8,13 @@
   sum to the same 850 W/m² and the two columns are directly comparable.
 -->
 <figure class="energy">
+  <p class="ebintro">
+    850 W/m² of midday summer sunshine, with clear skies. Park at 50% canopy,
+    well watered — because a water-stressed tree stops sweating.
+  </p>
   <div class="ebgrid">
     <div class="ebcol">
       <h3 class="asphalt-h">Asphalt</h3>
-      <p class="ebsub">Midday, clear July sky</p>
       <div class="ebstack">
         <div class="ebseg sky" style="height:76.5px">
           <span>Back to the sky</span><span>250 W/m²</span>
@@ -26,7 +29,6 @@
     </div>
     <div class="ebcol">
       <h3 class="planted">Planted park</h3>
-      <p class="ebsub">50% canopy, well watered</p>
       <div class="ebstack">
         <div class="ebseg sky" style="height:82.6px">
           <span>Back to the sky</span><span>270 W/m²</span>
@@ -41,15 +43,8 @@
       </div>
     </div>
   </div>
-  <div class="eblegend">
-    <span><i class="sky"></i>Back to the sky</span>
-    <span><i class="water"></i>Evaporating water</span>
-    <span><i class="air"></i>Heating the air</span>
-    <span><i class="ground"></i>Stored in the ground</span>
-    <span class="tot">Both bars = 850 W/m² of arriving sunlight</span>
-  </div>
   <figcaption>
-    Typical midday summer values, compiled from
+    Compiled from
     <a
       href="https://journals.ametsoc.org/view/journals/apme/41/7/1520-0450_2002_041_0792_thfiua_2.0.co_2.xml"
       >Grimmond &amp; Oke (2002)</a
@@ -67,23 +62,38 @@
     margin: 1.8rem 0;
     max-width: none;
   }
+  .ebintro {
+    font-size: 0.82rem;
+    font-weight: 400;
+    /* Correct in isolation, but the host post's ".why :global(p)" rule
+       currently reaches through the component boundary and out-specifies
+       this (it targets every <p>, including ones inside child components,
+       and beats a single-class selector like .ebintro on specificity).
+       This will resolve once that rule moves to container inheritance
+       (.why { color: var(--body) }) on the post side — no change needed
+       here when that lands. */
+    color: var(--muted);
+    margin: 0 0 1rem;
+    max-width: var(--measure);
+  }
   .ebgrid {
     display: grid;
     gap: 1.2rem;
     grid-template-columns: 1fr 1fr;
   }
+  .ebcol {
+    /* Grid items default to min-width: auto, which floors a track at its
+       content's min-content size. The segment labels below used to be
+       nowrap, giving them a wide min-content width, so without this the
+       columns refused to shrink past that and blew out the grid on narrow
+       viewports. */
+    min-width: 0;
+  }
   .ebcol h3 {
     font-family: var(--display);
     font-size: 1rem;
-    margin: 0;
+    margin: 0 0 0.6rem;
     color: var(--ink);
-  }
-  .ebsub {
-    font-size: 0.76rem;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: var(--muted);
-    margin: 0.2rem 0 0.6rem;
   }
   .ebstack {
     display: flex;
@@ -94,12 +104,30 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 0.4rem;
     padding: 0 0.5rem;
     border: 1.5px solid var(--ink);
     font-size: 0.78rem;
     font-weight: 500;
+    line-height: 1.2;
     overflow: hidden;
+  }
+  /* The label can wrap onto a second line as columns narrow — every
+     labelled segment is tall enough to fit two lines at this font size.
+     The value stays on one line; it's short and needs the room less. */
+  .ebseg > span:first-child {
+    min-width: 0;
+    white-space: normal;
+  }
+  .ebseg > span:last-child {
+    flex: none;
     white-space: nowrap;
+  }
+  @media (max-width: 480px) {
+    .ebseg {
+      font-size: 0.68rem;
+      padding: 0 0.35rem;
+    }
   }
   .ebseg.sky {
     background: var(--card);
@@ -119,42 +147,6 @@
   .ebseg.ground {
     background: var(--ink);
     color: #fff;
-  }
-  .eblegend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem 1.1rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    margin-top: 0.9rem;
-  }
-  .eblegend span {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-  .eblegend i {
-    width: 0.85rem;
-    height: 0.85rem;
-    border: 1.5px solid var(--ink);
-    display: block;
-    flex: none;
-  }
-  .eblegend i.sky {
-    background: var(--card);
-  }
-  .eblegend i.water {
-    background: #5aa8d8;
-  }
-  .eblegend i.air {
-    background: var(--asphalt, #7d4a9e);
-  }
-  .eblegend i.ground {
-    background: var(--ink);
-  }
-  .eblegend .tot {
-    color: var(--muted);
-    font-weight: 400;
   }
   figcaption {
     font-size: 0.78rem;

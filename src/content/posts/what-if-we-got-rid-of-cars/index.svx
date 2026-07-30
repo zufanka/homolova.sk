@@ -23,6 +23,7 @@ tags:
   import SquaresFigure from './parking/SquaresFigure.svelte';
   import Board from './parking/Board.svelte';
   import TreesAreCool from './parking/TreesAreCool.svelte';
+  import GreenRule from './parking/GreenRule.svelte';
   // Vite resolves and fingerprints the file; the same illustration is the
   // post's featuredImage, where posts.ts resolves it the same way.
   import heroImage from './media/parking-to-park.jpg?url';
@@ -66,12 +67,10 @@ tags:
       windows open, the heat would not leave the flat. I did not sleep that night.
     </p>
     <p>
-      I have come across multiple articles about how Europe should embrace
-      air-conditioning, but to me that seems to be symptom relief rather than
-      grabbing the problem by the roots. The problem being how we build our
-      cities, the materials we use and what choices do we make in allocating
-      space. In this essay I will explore what would happen if we swapped car
-      infrastructure for trees.
+     I have come across multiple articles about how Europe should embrace air conditioning,
+     but to me that seems to be symptom relief rather than grabbing the problem by the roots.
+    The real issue being in how we design our cities, the materials we build with, and how we choose to allocate urban space.
+    In this essay, I explore what might happen if we replaced car infrastructure with trees.
     </p>
   </section>
 
@@ -86,15 +85,14 @@ tags:
     <p>
       Asphalt's own surface can swing between roughly 40°C and 60°C on a sunny
       day, and it keeps releasing that stored heat into the air well after
-      sunset. This is why cities stay hotter than the surrounding countryside,
-      and it's what makes them suffocating in a heatwave.
+      sunset. This is what makes cities suffocating in a heatwave.
     </p>
     <p>
       Trees, on the other hand, <a href="https://theconversation.com/can-trees-really-cool-our-cities-down-44099">cool
       the city down</a>. Their shade prevents asphalt from absorbing the heat in
-      the first place, and they use the energy they absorb to evaporate water.
-      It's basically tree sweating. This way, trees roughly
-      <a href="https://www.nature.com/articles/s41467-026-71825-x">halve the
+      the first place, and they use the energy they absorb to evaporate water in
+      a process called <em>evapotranspiration</em>. It's trees sweating! 
+      And by sweating, they can roughly <a href="https://www.nature.com/articles/s41467-026-71825-x">halve the
       urban heat island effect</a>.
     </p>
   </section>
@@ -108,17 +106,18 @@ tags:
       <a href="https://www.nature.com/articles/s41467-026-71523-8">looked at 862
       European cities</a> to see how many adhere to the 3-30-300 rule: 3 trees
       visible from every home, 30% neighborhood canopy cover, and a park within
-      300 meters. They found that fewer than 15% of the population live in areas
-      that meet all three criteria, while 21% live in areas that meet none of
+      300 meters. They found that 15% of the population live in areas
+      that meet <b>all</b> three criteria, while even more (21%) live in areas that meet <b>none</b> of
       them.
     </p>
     <p>
       While ground in cities is scarce and valuable, there is one type of
-      infrastructure we do allocate a lot of space to: cars. So what if we
-      replaced car infrastructure with trees? Turns out, good things happen.
+      infrastructure we do allocate a lot of space to: cars.
+      So what if we removed some
+      of that car infrastructure?
     </p>
     <p>
-      Pontevedra, in western Spain,
+      Turns out, good things happen. Pontevedra, in western Spain,
       <a href="https://www.politico.eu/article/pontevedra-city-pioneer-europe-car-free-future/">banned
       most cars</a> from its center in 1999. Traffic fell 53%, air pollution 67%,
       and the last traffic death was 15 years ago. Oslo
@@ -132,18 +131,15 @@ tags:
       converting interior streets into space for pedestrians, bicycles and trees.
     </p>
     <p>
-      And cities don't really need cars to keep running. In fact, they often work
-      better without them. Time and time again when a city has closed off streets
-      or removed parking spots, a significant portion of the
+      In fact, cities they work better without cars. Time and time again when a city has closed off streets
+      or removed parking spots, instead of increased congestion, the
       <a href="https://www.researchgate.net/publication/248177303_Traffic_Evaporation_-_What_Really_Happens_When_Road_Space_Is_Reallocated">cars
-      simply vanish</a>. Conversely, more road might alleviate congestion for a
-      while, but in the end will just
-      <a href="https://www.tomtom.com/newsroom/explainers-and-insights/induced-demand-explained/">lead
-      to more cars on the road</a>.
+      simply vanish</a>. And trees, they are good for us. Being around trees has been linked to a 
+      range of health benefits, including lower blood pressure, less stress, a slower heart rate and lower rates of diabetes.
+      It's an act of wellness and the Japanese have the word for it: <a href="https://en.wikipedia.org/wiki/Shinrin-yoku">森林浴</a> 森林 = forest, 浴 = bath.
     </p>
     <p>
-      And trees are just
-      <a href="https://en.wikipedia.org/wiki/Shinrin-yoku">good for us</a>.
+     So what would happen if we sacrificed cars to trees?
     </p>
   </section>
 
@@ -157,7 +153,10 @@ tags:
         parking) and how much is <em>urban green</em>, spaces you can enter and
         use for relief from heat: parks, gardens, cemeteries, forests, woods and
         nature reserves, private and public of at least 0.5&nbsp;ha (see also the
-        methodology below). For example: Prague's urban core holds 1,052 of these
+        methodology below). 
+      </p>
+      <p class="body-copy">
+        For example: Prague's urban core holds 1,052 of these
         squares, and its median resident's square is <b class="sqg">14% green</b>
         and <b class="sqc">11% car</b>. 8% of its residents live in a square like
         <b>C</b>, which holds none.
@@ -172,16 +171,9 @@ tags:
       <SquaresFigure />
     </div>
     <p class="body-copy">
-      From these squares, I have calculated a typical (median) square per city. I
-      sorted every square by its green share, lowest to highest and adding up the
-      residents. Where the total residents passes half the city, that square's
-      value became the city's figure. This means that a forest on the city's
-      outskirts cannot substitute for a park in the downtown area. The third
-      figure, "no green", is the share of residents whose own square holds no
-      green at all.
-    </p>
-    <p class="body-copy">
-      Helsinki, Prague and Stockholm come on top.
+      To find a typical value for each city, I looked at all its squares and ordered them from the least green to the most green.
+      Instead of giving every square the same importance, I gave more weight to squares where more people live.
+      This way, a big forest on the edge of the city doesn't matter as much as a small park that many people can walk to.
     </p>
     <p class="note">
       <strong>Click HEAT</strong> to see the city's modelled summer heat island
@@ -469,8 +461,15 @@ tags:
     font-variant-numeric: tabular-nums;
   }
 
-  .why { max-width: var(--measure); }
-  .why :global(p) { color: var(--body); }
+  /* .why holds child components (<TreesAreCool />), so the body colour goes on
+     the container and inherits down rather than on a `.why :global(p)`
+     descendant selector. That selector reached through the component boundary
+     and restyled the child's own paragraphs too — and at 0,2,1 it out-specified
+     the component's own single-class rules, so the child could not win its own
+     colours back. color inherits, so this still reaches this section's prose;
+     it just stops leaking into a child's internals. Don't reintroduce
+     `.why :global(p)` here. */
+  .why { max-width: var(--measure); color: var(--body); }
   .pp :global(figcaption) {
     font-size: 0.78rem;
     line-height: 1.5;
