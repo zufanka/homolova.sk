@@ -10,50 +10,43 @@
 <figure class="energy">
   <p class="ebintro">
     850 W/m² of midday summer sunshine, with clear skies. Park at 50% canopy,
-    well watered — because a water-stressed tree stops sweating.
+    well watered — a water-stressed tree stops sweating.
   </p>
   <div class="ebgrid">
     <div class="ebcol">
       <h3 class="asphalt-h">Asphalt</h3>
       <div class="ebstack">
-        <div class="ebseg sky" style="height:76.5px">
-          <span>Back to the sky</span><span>250 W/m²</span>
+        <div class="ebseg sky" style="height:107.1px">
+          <span>Reflected and radiated away</span><span>350 W/m²</span>
         </div>
-        <div class="ebseg air" style="height:128.5px">
-          <span>Heating the air</span><span>420 W/m²</span>
+        <div class="ebseg air" style="height:91.8px">
+          <span>Heating the air</span><span>300 W/m²</span>
         </div>
-        <div class="ebseg ground" style="height:55.1px">
-          <span>Into the ground</span><span>180 W/m²</span>
+        <div class="ebseg ground" style="height:61.2px">
+          <span>Into the ground</span><span>200 W/m²</span>
         </div>
       </div>
     </div>
     <div class="ebcol">
       <h3 class="planted">Planted park</h3>
       <div class="ebstack">
-        <div class="ebseg sky" style="height:82.6px">
-          <span>Back to the sky</span><span>270 W/m²</span>
+        <div class="ebseg sky" style="height:84.15px">
+          <span>Reflected and radiated away</span><span>275 W/m²</span>
         </div>
-        <div class="ebseg water" style="height:107.1px">
-          <span>Evaporating water</span><span>350 W/m²</span>
+        <div class="ebseg water" style="height:122.4px">
+          <span>Evaporating water</span><span>400 W/m²</span>
         </div>
-        <div class="ebseg air" style="height:61.2px">
-          <span>Heating the air</span><span>200 W/m²</span>
+        <div class="ebseg air" style="height:38.25px">
+          <span>Heating the air</span><span>125 W/m²</span>
         </div>
-        <div class="ebseg ground" style="height:9.2px"></div>
+        <div class="ebseg ground" style="height:15.3px">50 W/m²</div>
       </div>
     </div>
   </div>
   <figcaption>
-    Compiled from
-    <a
-      href="https://journals.ametsoc.org/view/journals/apme/41/7/1520-0450_2002_041_0792_thfiua_2.0.co_2.xml"
-      >Grimmond &amp; Oke (2002)</a
-    >
-    and
-    <a
-      href="https://rmets.onlinelibrary.wiley.com/doi/pdf/10.1002/1097-0088(200007)20:9%3C1033::AID-JOC508%3E3.0.CO;2-U"
-      >Spronken-Smith &amp; Oke (2000)</a
-    >. Illustrative, not a single measurement.
+Illustrative values for clear-sky midday summer conditions at mid-latitudes<br>
+Sources: Oke et al. (2017);  Anandakumar (1999) Spronken-Smith et al. (2000).<br>
+The asphalt "reflected and radiated" figure is mostly heat radiated, not reflected light.
   </figcaption>
 </figure>
 

@@ -12,22 +12,17 @@
    * hardcoded here: re-running the model with a new maximum changes the bar
    * with no code change.
    *
-   * Takes no props — it reads `view.heat` (the toggle) and the `heat` store
-   * that `<CityMap />` fills from the loaded geometry, so it can sit anywhere
-   * under the map.
+   * Takes no props for its data — it reads `heat` (the toggle) off the view of
+   * the instrument it is nested in, plus the `heat` store that `<CityMap />`
+   * fills from the loaded geometry, so it can sit anywhere under the map.
    */
-  import { view } from './state.svelte';
+  import { useView } from './state.svelte';
   import { heat } from './map/heat.svelte';
   import { fmt1 } from './map/format';
 
-  let {
-    /** True for the copy `<CityMap />` renders inside its full-screen overlay.
-     *  The inline copy stands down while full screen is open so the key is not
-     *  duplicated. */
-    fullscreen = false
-  }: { fullscreen?: boolean } = $props();
+  const view = useView();
 
-  const shown = $derived(view.heat && fullscreen === view.fullscreen);
+  const shown = $derived(view.heat);
   const info = $derived(heat.info);
   const scaleTop = $derived(info?.scale?.[1] ?? 0);
   const peak = $derived(info?.max ?? null);
@@ -39,7 +34,7 @@
 </script>
 
 {#if shown}
-  <div class="uhikey" class:fs={fullscreen}>
+  <div class="uhikey">
     {#if !heat.available}
       <span>No heat-island model for {heat.city} — outside the EEA/UrbClim coverage.</span>
     {:else if info}
@@ -76,11 +71,14 @@
     margin: 0.4rem 0 0;
   }
   /* the ramp runs the full width of the map box, so distance along it reads as
-     temperature directly; both ends are labelled on the bar itself */
+     temperature directly; both ends are labelled on the bar itself. It follows
+     the plate out past the column when the layout publishes a `--map-bleed`,
+     while the wording around it stays inside the column. */
   .uhiramp {
     position: relative;
     display: block;
-    width: 100%;
+    width: auto;
+    margin-inline: calc(-1 * var(--map-bleed, 0px));
     height: 1.15rem;
     border: 1.5px solid var(--ink);
     box-sizing: border-box;
@@ -138,10 +136,9 @@
   }
 
   @media (max-width: 899px) {
-    /* inline on small screens the map is pinned to the bottom of the viewport:
-       keep the key to one line (ramp + this city's peak); full screen shows the
-       full wording */
-    .uhikey:not(.fs) .uhilong {
+    /* on small screens the key has to earn its space against the map itself:
+       keep it to one line (ramp + this city's peak) and drop the provenance */
+    .uhilong {
       display: none;
     }
   }

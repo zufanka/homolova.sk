@@ -2,14 +2,26 @@
   /**
    * The ranking's column header, which doubles as its sort control: the city
    * label sits over the names, the green / car labels over the diverging spine,
-   * the "No green" label over the third number. Writes `view.sortKey` and
-   * `view.sortDir`; `Ranking.svelte` reorders on them.
+   * the "No green" label over the third number. Writes `sortKey` and `sortDir`
+   * on the view of whichever instrument it is nested in; that instrument's
+   * `<Ranking />` reorders on them.
    *
    * Sits directly above `<Ranking />` and shares its five-column grid — the two
    * grids are declared separately because the components are siblings, so
-   * `.rank-head` here and `.row` in `Ranking.svelte` must be kept in step.
+   * `.rank-head` here and `.row` in `Ranking.svelte` must be kept in step, and
+   * both narrow down off the one `rankcols` container query. Nothing in either
+   * file may narrow on a viewport query: the two conditions would not fire
+   * together, and a header cell may not be hidden with `display: none`, which
+   * would shift every cell after it a column left. Both mistakes have the same
+   * symptom — a label sitting over the wrong numbers.
    */
-  import { view, SORT_DEFAULT_DIR, type SortKey, type SortDir } from './state.svelte';
+  import { useView, SORT_DEFAULT_DIR, type SortKey, type SortDir } from './state.svelte';
+
+  const view = useView();
+
+  /** Only read to size the no-green column identically to `<Ranking />` — see
+   *  `.rank-head.converted` below. */
+  const converted = $derived(view.stateKey === 'scenario');
 
   const on = (k: SortKey) => view.sortKey === k;
 
@@ -46,7 +58,7 @@
   const action = (k: SortKey) => `Rank by ${PHRASE[k][nextDir(k)]}`;
 </script>
 
-<div class="rank-head">
+<div class="rank-head" class:converted>
   <span></span>
   <button
     type="button"
@@ -172,38 +184,63 @@
     content: ' \25B4';
   }
 
-  /* narrow-desktop tightening — keep in step with the same query in
-     Ranking.svelte, or the header stops lining up with the rows. The labels
-     shrink too: GREEN gains a ▾ when it is the active sort, and at full size
-     the pair would spill out of the bar column into "green / car". CITY rides
-     the same shrink and clears its 5.4rem column with its marker on. */
-  @media (min-width: 900px) and (max-width: 1200px) {
+  /* Narrow-column tightening. The template, the gap and the inline padding are
+     copied verbatim from `.row` in Ranking.svelte — the two grids are separate
+     because the components are siblings, so the only thing keeping a label over
+     its own column is that these five values match, character for character.
+
+     One query, and a container query, for both files. Ranking used to narrow on
+     `@media (max-width: 640px)` while this file narrowed on the container: a
+     viewport query and a container query never fire together, so at any width
+     where only one applied the two templates disagreed and every label slid a
+     column sideways. There is now a single condition and both grids answer it
+     at the same instant.
+
+     The labels shrink with the columns: GREEN gains a ▾ when it is the active
+     sort, and at full size the pair would spill out of the bar column into
+     "green / car".
+
+     Nothing here may `display: none` a header cell. A hidden grid item is
+     removed from the flow, so the cells after it shift one column left — that
+     is what used to park NO GREEN over the figures. Use `visibility` if a cell
+     ever has to go.
+
+     The fourth and fifth values below are `var()`s, not literals, for one
+     further reason particular to this pair: once the converted state drops
+     the arrow from NO GREEN, that column no longer needs the room "81%"
+     needs, and the freed width is handed to green/car instead. `--figs-w-
+     narrow` / `--zero-w-narrow` carry that split; `.rank-head.converted` sets
+     them to the same values `.ranking.converted` in Ranking.svelte sets, so
+     the two grids narrow the same way whichever state is on screen. Their
+     fallbacks are the original literals, so the NOW state — where `.converted`
+     is absent and the properties are unset — still gets the width its own
+     widest value needs. */
+  @container rankcols (max-width: 28rem) {
     .rank-head {
-      grid-template-columns: 1.2rem 5.4rem minmax(0, 1fr) 5.2rem 4.2rem;
-      gap: 0.45rem;
-      font-size: 0.66rem;
+      grid-template-columns:
+        1.15rem
+        clamp(4.5rem, 20cqi, 5.6rem)
+        minmax(0, 1fr)
+        var(--figs-w-narrow, clamp(4.7rem, 21cqi, 5.4rem))
+        var(--zero-w-narrow, clamp(3.8rem, 17cqi, 4.4rem));
+      gap: clamp(0.3rem, 1.3cqi, 0.5rem);
+      padding-inline: clamp(0.15rem, 0.7cqi, 0.3rem);
+      font-size: 0.62rem;
     }
     .sortbtn {
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       padding: 0.1rem 0.2rem 0.05rem;
+    }
+    .sortbtn.sn,
+    .sortbtn.sz {
+      padding-inline: 0;
     }
   }
 
-  @media (max-width: 640px) {
-    /* the figures column loses its numbers but keeps a slot for the † flag */
-    .rank-head {
-      grid-template-columns: 1.1rem 4.9rem minmax(0, 1fr) 0.9rem 3.2rem;
-      gap: 0.4rem;
-      padding: 0 0.15rem 0.3rem;
-      font-size: 0.62rem;
-    }
-    .rh-figs {
-      display: none;
-    }
-    .sortbtn {
-      font-size: 0.62rem;
-      padding: 0.1rem 0.2rem 0.05rem;
-      border-bottom-width: 2px;
-    }
+  /* Values must match `.ranking.converted` in Ranking.svelte character for
+     character — see the comment above the container query for why. */
+  .rank-head.converted {
+    --figs-w-narrow: clamp(6.5rem, 29cqi, 7.5rem);
+    --zero-w-narrow: clamp(2rem, 9cqi, 2.3rem);
   }
 </style>

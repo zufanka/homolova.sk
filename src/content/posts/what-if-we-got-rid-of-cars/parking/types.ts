@@ -1,5 +1,7 @@
 /** Data types for the "What if we got rid of cars?" piece. */
 
+import type { SortDir, SortKey } from './state.svelte';
+
 export interface Metrics {
 	zeroGreen: number;
 	medGreen: number;
@@ -23,6 +25,25 @@ export interface CityRow {
 	sparse: boolean;
 	uhi: boolean;
 	cells: number;
+}
+
+/**
+ * One step of a scroll-driven ranking: the sort it claims when it becomes the
+ * active step, the sentence that pins while it does, and an optional predicate
+ * marking the rows that sentence is about.
+ */
+export interface ScrollyStep {
+	sortKey: SortKey;
+	/** Defaults to the key's own `SORT_DEFAULT_DIR` entry. */
+	sortDir?: SortDir;
+	/**
+	 * The sentence, as inline HTML — it carries emphasis, and `<b>` plus the
+	 * `g` / `c` classes for a green or a car figure are what the scrolly styles.
+	 * Authored in the article next to the rest of the prose, so it is trusted
+	 * the same way the rest of the article's markup is.
+	 */
+	html: string;
+	highlight?: (c: CityRow) => boolean;
 }
 
 export interface UhiMeta {

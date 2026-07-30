@@ -1,10 +1,13 @@
 <script lang="ts">
   /**
-   * NOW / CONVERTED. Writes `view.stateKey`; the ranking, the map figures and
-   * the map colours all read it. "Converted" = every surface parking lot plus
-   * 60% of the calm-street area handed back as green.
+   * NOW / CONVERTED. Writes `stateKey` on the view of whichever instrument it
+   * is nested in; that instrument's ranking, map figures and map colours read
+   * it. "Converted" = every surface parking lot plus 60% of the calm-street
+   * area handed back as green.
    */
-  import { view, type StateKey } from './state.svelte';
+  import { useView, type StateKey } from './state.svelte';
+
+  const view = useView();
 
   const MODES: { key: StateKey; label: string }[] = [
     { key: 'now', label: 'Now' },

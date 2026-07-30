@@ -36,15 +36,11 @@ export interface ParkMapOptions {
 	onUhi?: (info: UhiInfo | null) => void;
 	/** True while the view is zoomed in; drives the Reset button. */
 	onZoom?: (zoomed: boolean) => void;
-	/** A tap on the inline map on a narrow screen wants full-screen. */
-	onRequestFullscreen?: () => void;
 	/** The element gestures bind to. Defaults to the canvas; pass the wrapper
 	 *  so pointer capture and focus land on the focusable element. */
 	surface?: HTMLElement;
 	/** Where `<slug>.json` and `<slug>.uhi.png` live. No trailing slash. */
 	geoBase?: string;
-	/** Narrow-screen test; defaults to the prototype's 899px breakpoint. */
-	isNarrow?: () => boolean;
 }
 
 const GEO_LRU = 6;
@@ -69,8 +65,6 @@ export class ParkMap {
 	#loadToken = 0;
 	#stateKey: StateKey = 'now';
 	#heatOn = false;
-	#fullscreen = false;
-	#fsOpenedAt = 0;
 	#neighbours: string[] = [];
 	#destroyed = false;
 
@@ -96,9 +90,6 @@ export class ParkMap {
 	#boxRect: DOMRect | null = null;
 	#ptrs = new Map<number, { x: number; y: number }>();
 	#pinch: { d: number; mx: number; my: number } | null = null;
-	#dragMoved = 0;
-	#lastTap = 0;
-	#lastTapXY: [number, number] | null = null;
 
 	constructor(canvas: HTMLCanvasElement, opts: ParkMapOptions = {}) {
 		this.#canvas = canvas;
@@ -220,17 +211,6 @@ export class ParkMap {
 		await this.#ensureUhi();
 	}
 
-	/** Full-screen changes the touch-gesture policy (inline on touch, one
-	 *  finger has to scroll the page) and the canvas size. */
-	setFullscreen(on: boolean): void {
-		if (this.#fullscreen === on) return;
-		this.#fullscreen = on;
-		if (on) this.#fsOpenedAt = Date.now();
-		this.#ptrs.clear();
-		this.#pinch = null;
-		this.#scheduleDraw();
-	}
-
 	/** The cities either side of the current one in the visible list order;
 	 *  prefetched when the browser is idle. */
 	setNeighbours(slugs: string[]): void {
@@ -239,12 +219,6 @@ export class ParkMap {
 
 	resetView(): void {
 		this.#resetView(false);
-	}
-
-	/** The canvas box changed. `draw()` re-reads it, so this is just a nudge. */
-	resize(): void {
-		this.#scheduleDraw();
-		this.#settleSoon();
 	}
 
 	destroy(): void {
@@ -611,20 +585,14 @@ export class ParkMap {
 	// gestures
 	// =========================================================================
 
-	#isNarrow(): boolean {
-		if (this.#opts.isNarrow) return this.#opts.isNarrow();
-		return window.matchMedia('(max-width: 899px)').matches;
-	}
-
 	#twoPtrs(): Array<{ x: number; y: number }> {
 		return Array.from(this.#ptrs.values()).slice(0, 2);
 	}
 
 	#onPointerDown = (e: PointerEvent): void => {
-		this.#dragMoved = 0;
-		// Inline on touch, one finger must scroll the page: gestures are
-		// full-screen-only for touch. A plain tap still opens full screen.
-		if (e.pointerType === 'touch' && !this.#fullscreen) return;
+		// The map sits in the flow of a scrolling article, so a finger on it has
+		// to belong to the page: touch pans and pinches are not ours to take.
+		if (e.pointerType === 'touch') return;
 		if (e.pointerType === 'mouse' && e.button !== 0) return;
 		this.#boxRect = this.#canvas.getBoundingClientRect();
 		this.#ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
@@ -652,7 +620,6 @@ export class ParkMap {
 		const dy = e.clientY - p.y;
 		p.x = e.clientX;
 		p.y = e.clientY;
-		this.#dragMoved += Math.abs(dx) + Math.abs(dy);
 		const box = this.#boxRect;
 		if (this.#pinch && this.#ptrs.size >= 2 && box) {
 			const [a, b] = this.#twoPtrs();
@@ -676,26 +643,6 @@ export class ParkMap {
 		if (this.#ptrs.size !== 0) return;
 		this.#updateChrome();
 		this.#settle();
-		// Double-tap zoom step (touch, full screen).
-		const box = this.#boxRect;
-		if (e.pointerType === 'touch' && this.#fullscreen && this.#dragMoved < 12 && box) {
-			const now = Date.now();
-			const x = e.clientX - box.left;
-			const y = e.clientY - box.top;
-			if (
-				now - this.#lastTap < 320 &&
-				this.#lastTapXY &&
-				Math.abs(x - this.#lastTapXY[0]) < 40 &&
-				Math.abs(y - this.#lastTapXY[1]) < 40
-			) {
-				this.#zoomAt(x, y, this.#view.z * 2);
-				this.#settleSoon();
-				this.#lastTap = 0;
-			} else {
-				this.#lastTap = now;
-				this.#lastTapXY = [x, y];
-			}
-		}
 	};
 
 	#onWheel = (e: WheelEvent): void => {
@@ -707,18 +654,10 @@ export class ParkMap {
 	};
 
 	#onDblClick = (e: MouseEvent): void => {
-		if (Date.now() - this.#fsOpenedAt < 600) return; // tap that just opened full screen
 		e.preventDefault();
 		const box = (this.#boxRect = this.#canvas.getBoundingClientRect());
 		this.#zoomAt(e.clientX - box.left, e.clientY - box.top, this.#view.z * 2);
 		this.#settleSoon();
-	};
-
-	/** Inline on small screens: a tap expands to full screen, where gestures live. */
-	#onClick = (): void => {
-		if (!this.#fullscreen && this.#isNarrow() && this.#dragMoved < 8) {
-			this.#opts.onRequestFullscreen?.();
-		}
 	};
 
 	#onKeyDown = (e: KeyboardEvent): void => {
@@ -753,7 +692,6 @@ export class ParkMap {
 		s.addEventListener('pointercancel', this.#onPointerEnd);
 		s.addEventListener('wheel', this.#onWheel, { passive: false });
 		s.addEventListener('dblclick', this.#onDblClick);
-		s.addEventListener('click', this.#onClick);
 		s.addEventListener('keydown', this.#onKeyDown);
 		window.addEventListener('resize', this.#onResize);
 		if (typeof ResizeObserver === 'function') {
@@ -770,7 +708,6 @@ export class ParkMap {
 		s.removeEventListener('pointercancel', this.#onPointerEnd);
 		s.removeEventListener('wheel', this.#onWheel);
 		s.removeEventListener('dblclick', this.#onDblClick);
-		s.removeEventListener('click', this.#onClick);
 		s.removeEventListener('keydown', this.#onKeyDown);
 		window.removeEventListener('resize', this.#onResize);
 		this.#resizeObserver?.disconnect();

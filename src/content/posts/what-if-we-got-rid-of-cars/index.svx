@@ -2,11 +2,11 @@
 title: "What if we got rid of cars?"
 date: "2026-07-29"
 slug: "what-if-we-got-rid-of-cars"
-summary: "Trees vs cars in 39 European capitals"
+summary: "I measured every road, parking lot and park in 39 capitals"
 newsletterMode: "teaser"
 newsletterImage: "/posts/what-if-we-got-rid-of-cars/parking-to-park-areal.jpg"
 featuredImage: "parking-to-park.jpg"
-newsletterTeaser: "In the median European capital, cars get more ground than parks. I measured every road, parking lot and park in 39 capitals to find out how much green is on the table."
+newsletterTeaser: "It might actually be nice."
 draft: true
 fullBleed: true
 # the piece's park green (--park in the styles below), so the site chrome
@@ -20,10 +20,11 @@ tags:
 
 <script lang="ts">
   import { cities } from './parking/cities';
+  import type { ScrollyStep } from './parking/types';
   import SquaresFigure from './parking/SquaresFigure.svelte';
-  import Board from './parking/Board.svelte';
+  import ScrollyRanking from './parking/ScrollyRanking.svelte';
+  import MapPanel from './parking/MapPanel.svelte';
   import TreesAreCool from './parking/TreesAreCool.svelte';
-  import GreenRule from './parking/GreenRule.svelte';
   // Vite resolves and fingerprints the file; the same illustration is the
   // post's featuredImage, where posts.ts resolves it the same way.
   import heroImage from './media/parking-to-park.jpg?url';
@@ -33,12 +34,64 @@ tags:
   // browser fetches the latin file only. To make it the site's face instead,
   // move this import and the --display override below into +layout.svelte.
   import '@fontsource/yeseva-one/400.css';
+
+  /**
+   * The two scroll-driven sequences. The sentences live here rather than in
+   * <ScrollyRanking /> because they are the article's prose; the component only
+   * knows how to pin them and what sort each one claims. `<b>` carries the
+   * emphasis; `.g` / `.c` tint a figure in the colour that figure already means
+   * elsewhere in the piece, so no highlight rests on colour alone.
+   */
+  const nowSteps: ScrollyStep[] = [
+    {
+      sortKey: 'green',
+      sortDir: 'desc',
+      html:
+        'Turns out that the availability of green spaces available a short walk from where ' +
+        'most people in a city live is the best in <b>Helsinki, Prague and Stockholm</b>. ' +
+        'Here also the amount of people living close to no green is quite low.'
+    },
+    {
+      sortKey: 'zero',
+      // worst at the top, so the eight cities the sentence counts are the ones
+      // the ink rule marks
+      sortDir: 'desc',
+      highlight: (c) => c.now.zeroGreen > 50,
+      html:
+        'In <b>eight cities</b> <b>more than half of the population</b> lives without any ' +
+        'green close by.'
+    },
+    {
+      sortKey: 'car',
+      sortDir: 'desc',
+      html:
+        'This while the car infrastructure gets a steady median value of ' +
+        '<b class="c">9 to 16%</b> in each of the cities.'
+    }
+  ];
+
+  const convertedSteps: ScrollyStep[] = [
+    {
+      sortKey: 'green',
+      sortDir: 'desc',
+      html:
+        'The median share of green in a city rises from <b class="g">0-15%</b> to ' +
+        '<b class="g">6-22%</b> and <b>almost no one lives far from trees</b>.'
+    },
+    {
+      sortKey: 'car',
+      sortDir: 'desc',
+      html:
+        'The cars are still present, but now occupy just <b class="c">5-8%</b> of the ' +
+        'median surface.'
+    }
+  ];
 </script>
 
 <!-- The prose quotes no live figures any more — every number it names is fixed
      in the text. `./parking/cities.ts` still exports `figures` (nCities,
      medGreen, carWins, flipCount and the converted equivalents, all derived
-     from the same rows the board reads) if a rewrite wants them back. -->
+     from the same rows the rankings read) if a rewrite wants them back. -->
 
 <article class="pp">
   <header class="hero" style:background-image="url({heroImage})">
@@ -81,7 +134,6 @@ tags:
       it, or spend it evaporating water. Asphalt cannot evaporate water, so it
       heats the air more than anything. That is how an urban heat island emerges.
     </p>
-    <TreesAreCool />
     <p>
       Asphalt's own surface can swing between roughly 40°C and 60°C on a sunny
       day, and it keeps releasing that stored heat into the air well after
@@ -95,6 +147,7 @@ tags:
       And by sweating, they can roughly <a href="https://www.nature.com/articles/s41467-026-71825-x">halve the
       urban heat island effect</a>.
     </p>
+      <TreesAreCool />
   </section>
 
   <section class="why">
@@ -116,6 +169,19 @@ tags:
       So what if we removed some
       of that car infrastructure?
     </p>
+
+    <figure class="aerial">
+      <img
+        src={aerialImage}
+        alt="Two aerial sketches of the same few blocks. On the left, wide roads and
+             rows of surface parking between the buildings; on the right, the same
+             streets and lots drawn over with trees, lawns and paths, the river
+             edged in green."
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+
     <p>
       Turns out, good things happen. Pontevedra, in western Spain,
       <a href="https://www.politico.eu/article/pontevedra-city-pioneer-europe-car-free-future/">banned
@@ -171,44 +237,48 @@ tags:
       <SquaresFigure />
     </div>
     <p class="body-copy">
-      To find a typical value for each city, I looked at all its squares and ordered them from the least green to the most green.
+      To find a typical (median) value for each city, I looked at all its squares and ordered them from the least green to the most green.
       Instead of giving every square the same importance, I gave more weight to squares where more people live.
       This way, a big forest on the edge of the city doesn't matter as much as a small park that many people can walk to.
     </p>
-    <p class="note">
-      <strong>Click HEAT</strong> to see the city's modelled summer heat island
-      over its streets.<br>
-      <strong>Click CONVERTED</strong> to see every surface parking lot plus 60%
-      of the calm streets given back as green.
-    </p>
-    <Board rows={cities} />
   </section>
+
+  <ScrollyRanking
+    rows={cities}
+    steps={nowSteps}
+    label="The 39 capitals as measured, ranked"
+  />
+
+  <section class="why">
+    <p>
+      So let's run an experiment. What would happen if we replaced the surface
+      parking and 60% of the small streets in a city with green?
+    </p>
+    <p class="note">
+      <strong>NOW and CONVERTED stay live</strong> while you scroll — switch between the
+      cities as they were measured and the same cities with their parking planted.
+    </p>
+  </section>
+
+  <ScrollyRanking
+    rows={cities}
+    steps={convertedSteps}
+    stateKey="scenario"
+    stateToggle
+    label="The 39 capitals with their parking converted to green, ranked"
+  />
 
   <section class="why closing">
     <p>
-      Making our cities livable is all about the choices we make. In Paris, even
-      when opposition exists, not many people want to go back to the
-      <a href="https://www.newstatesman.com/international-politics/2026/03/mayor-hidalgo-helped-paris-breathe-again">car
-      dominated city it used to be</a>. From this experiment we see that if we
-      dedicated all the surface parking and 60% of the small streets in a city to
-      green, none of the residents would live far from urban green.
+      Making our cities livable is all about the choices we make.
     </p>
   </section>
 
-  <figure class="aerial">
-    <img
-      src={aerialImage}
-      alt="Two aerial sketches of the same few blocks. On the left, wide roads and
-           rows of surface parking between the buildings; on the right, the same
-           streets and lots drawn over with trees, lawns and paths, the river
-           edged in green."
-      loading="lazy"
-      decoding="async"
-    />
-  </figure>
+  <MapPanel rows={cities} />
 
   <section class="method">
     <h2>How this was measured</h2>
+    <h3>Green and car infrastructure</h3>
     <p>
       Urban green = OpenStreetMap polygons of parks, gardens, recreation grounds, commons, village greens, dog parks and
       cemeteries, the same public recreational categories the EU's <a href="https://land.copernicus.eu/en/products/urban-atlas">Urban
@@ -251,6 +321,22 @@ tags:
       capitals it is nearly everyone, in sprawling ones (Vilnius, Belgrade) a
       quarter to a third live outside it.
     </p>
+    <h3></h3>
+    <p>
+      Figures are illustrative, not measurements, calculated with Claude and cross checked with the sources below.
+      Incoming shortwave radiation of 850 W/m² represents clear-sky midday conditions in mid-latitude summer. Albedo values (asphalt 0.12, park 0.20)
+      and surface emissivities follow standard published ranges (Oke 1987; <a href="https://www.cambridge.org/core/books/abs/urban-climates/urban-climates/0690FCE57A4E8E234524C2EE1A20C2BE">Oke, Mills, Christen & Voogt 2017</a>).
+      Longwave losses are calculated from assumed surface temperatures of approximately 57 °C for asphalt and 31 °C for the park canopy; 
+      the asphalt figure is dominated by heat radiated from the hot surface rather than reflected light, 
+      and in a street canyon a substantial fraction of that radiated heat is reabsorbed by adjacent walls rather than lost to sky. 
+      The partitioning of available energy is consistent with <a href="https://www.sciencedirect.com/science/article/abs/pii/S1352231099001338">Anandakumar (1999)</a>
+       for dry asphalt and <a href="https://rmets.onlinelibrary.wiley.com/doi/abs/10.1002/1097-0088(200007)20:9%3C1033::AID-JOC508%3E3.0.CO;2-U">Spronken-Smith, Oke & Lowry (2000)</a> 
+      for an irrigated urban park. Neither study reports the values shown here. Actual fluxes vary with latitude, season, 
+      sky condition, canopy structure, irrigation regime and surrounding urban form. Spronken-Smith et al. found sensible heat 
+      flux over their irrigated park to be negative during the afternoon, as dry air advected from surrounding built-up areas supplied 
+      additional energy to evaporation; the positive value shown here is therefore conservative.
+    </p>
+
     <p class="credit">
       Geometry © OpenStreetMap contributors, ODbL (incl. ocean polygons via
       osmdata.openstreetmap.de). <br>Population, land &amp; urban centres: EU JRC GHSL
@@ -386,9 +472,10 @@ tags:
     margin: 1.1rem 0 0;
   }
   .intro :global(p) { color: var(--body); }
-  /* .body-copy is what the board section's own paragraphs wear: the section
-     spans the full 84rem for the chart, so its prose has to opt back in to the
-     reading measure the way .intro / .why / .method get it for free */
+  /* .body-copy is what the .board section's own paragraphs wear: the section
+     spans the full 84rem so the Prague squares figure can go wide, so its prose
+     has to opt back in to the reading measure the way .intro / .why / .method
+     get it for free */
   .body-copy { color: var(--body); }
   .note {
     max-width: var(--measure);
@@ -396,19 +483,20 @@ tags:
     font-size: 0.94rem;
     margin: 1.6rem auto 1.1rem;
   }
-  /* the board section spans the full 84rem — its list column has to stay wide
-     enough for the ranking's diverging spine, which collapses to zero width if
-     the column drops under ~23rem. The prose inside it keeps the reading
-     measure via .body-copy instead. */
+  /* the .board section spans the full 84rem so the squares figure can go wide;
+     the prose inside it keeps the reading measure via .body-copy instead. The
+     two scrolly rankings and the map panel that follow set their own widths. */
   .board-head { margin-bottom: 1rem; }
-  /* The before/after aerial, closing the argument before the method notes.
+  /* The before/after aerial, answering the question the paragraph above it asks.
      Same treatment as the hero: no frame, no caption, the drawing just fades
      in and out of the page. Here it is a mask rather than a scrim, so the
-     <img> keeps its alt text and the fade works whatever sits behind it. The
-     drawing is 1200px wide, so 62rem stops it being blown up past native. */
+     <img> keeps its alt text and the fade works whatever sits behind it. Held
+     to the reading measure so it reads as part of the argument rather than
+     interrupting it; the drawing is 1200px wide, so that never blows it up past
+     native. */
   .aerial {
     margin: clamp(1rem, 4vw, 3rem) auto clamp(2rem, 6vw, 4rem);
-    max-width: 62rem;
+    max-width: var(--measure);
   }
   .aerial img {
     display: block;
