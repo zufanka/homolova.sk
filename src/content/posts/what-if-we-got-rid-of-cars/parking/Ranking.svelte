@@ -36,11 +36,10 @@
   );
 
   /**
-   * Always sorted on the `now` figures, whichever key is active. Converted
-   * "no green" is ~0 for every city, so sorting on it would collapse the list
-   * into a flat tie; holding green and car to the same rule keeps the order
-   * fixed across the switch, so the bars visibly grow in place rather than
-   * growing and reshuffling at once.
+   * Sorted on whichever state is on screen — `metrics()` already picks `now`
+   * vs `scenario` for the bars and figures below, so the comparator has to
+   * read through the same function or the list order stops matching what it
+   * displays the moment CONVERTED is active.
    *
    * Each comparator is written in its key's default direction; the other
    * direction is that same comparator negated, which carries the tie-breakers
@@ -53,17 +52,15 @@
       if (key === 'city') {
         return a.city.localeCompare(b.city);
       }
+      const ma = metrics(a);
+      const mb = metrics(b);
       if (key === 'zero') {
-        return (
-          b.now.zeroGreen - a.now.zeroGreen ||
-          b.now.medCar - a.now.medCar ||
-          a.now.medGreen - b.now.medGreen
-        );
+        return mb.zeroGreen - ma.zeroGreen || mb.medCar - ma.medCar || ma.medGreen - mb.medGreen;
       }
       if (key === 'green') {
-        return b.now.medGreen - a.now.medGreen || b.now.medCar - a.now.medCar;
+        return mb.medGreen - ma.medGreen || mb.medCar - ma.medCar;
       }
-      return b.now.medCar - a.now.medCar || b.now.medGreen - a.now.medGreen;
+      return mb.medCar - ma.medCar || mb.medGreen - ma.medGreen;
     };
     return rows.slice().sort((a, b) => sign * cmp(a, b));
   });
