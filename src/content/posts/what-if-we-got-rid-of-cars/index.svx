@@ -270,7 +270,9 @@ tags:
 
   <section class="why closing">
     <p>
-      Making our cities livable is all about the choices we make.
+      I am just a data analyst with a curious mind, not an urban planner. But from the numerous examples of cities that have
+      pushed out the cars infrastructure in favor of trees, it is pretty obvious to me that we can do something about the suffering the heatwaves bring to our cities.
+      While might need to embrace the air conditioning a bit more, but we also have to look well at how we build our cities and for whom: comfortable for the few or livable for everybody.
     </p>
   </section>
 
@@ -321,7 +323,7 @@ tags:
       capitals it is nearly everyone, in sprawling ones (Vilnius, Belgrade) a
       quarter to a third live outside it.
     </p>
-    <h3></h3>
+    <h3>Energy transformation of trees and asphalt</h3>
     <p>
       Figures are illustrative, not measurements, calculated with Claude and cross checked with the sources below.
       Incoming shortwave radiation of 850 W/m² represents clear-sky midday conditions in mid-latitude summer. Albedo values (asphalt 0.12, park 0.20)

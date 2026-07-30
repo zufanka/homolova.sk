@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="ebcol">
-      <h3 class="planted">Planted park</h3>
+      <h3 class="planted">Well watered park</h3>
       <div class="ebstack">
         <div class="ebseg sky" style="height:84.15px">
           <span>Reflected and radiated away</span><span>275 W/m²</span>
