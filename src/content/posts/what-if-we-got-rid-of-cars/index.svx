@@ -132,7 +132,7 @@ tags:
     <p>
       Any surface can bounce energy back to the sky, store it, heat the air with
       it, or spend it evaporating water. Asphalt cannot evaporate water, so it
-      heats the air more than anything. That is how an urban heat island emerges.
+      heats the air and absorbs a lot of the energy and releases the heat later. That is how an urban heat island emerges.
     </p>
     <p>
       Asphalt's own surface can swing between roughly 40°C and 60°C on a sunny
@@ -143,8 +143,8 @@ tags:
       Trees, on the other hand, <a href="https://theconversation.com/can-trees-really-cool-our-cities-down-44099">cool
       the city down</a>. Their shade prevents asphalt from absorbing the heat in
       the first place, and they use the energy they absorb to evaporate water in
-      a process called <em>evapotranspiration</em>. It's trees sweating! 
-      And by sweating, they can roughly <a href="https://www.nature.com/articles/s41467-026-71825-x">halve the
+      a process called <em>evapotranspiration</em>. It is what it sounds like: trees sweating! 
+      Just evaporating water like this can roughly <a href="https://www.nature.com/articles/s41467-026-71825-x">halve the
       urban heat island effect</a>.
     </p>
       <TreesAreCool />
@@ -237,8 +237,10 @@ tags:
       <SquaresFigure />
     </div>
     <p class="body-copy">
-      To find a typical (median) value for each city, I looked at all its squares and ordered them from the least green to the most green.
-      Instead of giving every square the same importance, I gave more weight to squares where more people live.
+      To find a typical (median) value for each city, I ordered all its squares on the amount of green.
+      Then I let the script go up the ordered squares and count the population until it reached half of the city population.
+      That square became the typical square as half of the population lives in squares with less and half with more green.
+      So instead of giving every square the same importance, I gave more weight to squares where more people live.
       This way, a big forest on the edge of the city doesn't matter as much as a small park that many people can walk to.
     </p>
   </section>
@@ -326,17 +328,19 @@ tags:
     <h3>Energy transformation of trees and asphalt</h3>
     <p>
       Figures are illustrative, not measurements, calculated with Claude and cross checked with the sources below.
-      Incoming shortwave radiation of 850 W/m² represents clear-sky midday conditions in mid-latitude summer. Albedo values (asphalt 0.12, park 0.20)
+      Both columns are an instantaneous midday snapshot. Incoming shortwave radiation of 850 W/m² represents clear-sky midday conditions in mid-latitude summer.
+      Albedo values (asphalt 0.12, park 0.18, a half grass half canopy mix)
       and surface emissivities follow standard published ranges (Oke 1987; <a href="https://www.cambridge.org/core/books/abs/urban-climates/urban-climates/0690FCE57A4E8E234524C2EE1A20C2BE">Oke, Mills, Christen & Voogt 2017</a>).
-      Longwave losses are calculated from assumed surface temperatures of approximately 57 °C for asphalt and 31 °C for the park canopy; 
-      the asphalt figure is dominated by heat radiated from the hot surface rather than reflected light, 
-      and in a street canyon a substantial fraction of that radiated heat is reabsorbed by adjacent walls rather than lost to sky. 
+      Longwave losses are calculated from assumed surface temperatures of approximately 53 °C for asphalt and 30 °C for the park canopy.
+      How much of what is left goes into the ground follows storage partition coefficients of 0.60 for asphalt and
+      0.10 for the park, inside the ranges <a href="https://doi.org/10.3390/atmos14121778">Hsieh, Chiu, Huang &amp; Visessri (2023)</a>
+      compiled from published surface energy balances: 0.21–0.71 for urban surfaces, 0.07–0.31 for vegetation.
       The partitioning of available energy is consistent with <a href="https://www.sciencedirect.com/science/article/abs/pii/S1352231099001338">Anandakumar (1999)</a>
-       for dry asphalt and <a href="https://rmets.onlinelibrary.wiley.com/doi/abs/10.1002/1097-0088(200007)20:9%3C1033::AID-JOC508%3E3.0.CO;2-U">Spronken-Smith, Oke & Lowry (2000)</a> 
-      for an irrigated urban park. Neither study reports the values shown here. Actual fluxes vary with latitude, season, 
-      sky condition, canopy structure, irrigation regime and surrounding urban form. Spronken-Smith et al. found sensible heat 
-      flux over their irrigated park to be negative during the afternoon, as dry air advected from surrounding built-up areas supplied 
-      additional energy to evaporation; the positive value shown here is therefore conservative.
+       for dry asphalt and <a href="https://rmets.onlinelibrary.wiley.com/doi/abs/10.1002/1097-0088(200007)20:9%3C1033::AID-JOC508%3E3.0.CO;2-U">Spronken-Smith, Oke & Lowry (2000)</a>
+      for an irrigated urban park. Neither study reports the values shown here. Actual fluxes vary with latitude, season, sky condition, canopy structure, irrigation regime and surrounding urban form.
+      </p>
+      <p>
+      If you find a substantial issues with this methodology please get in touch!
     </p>
 
     <p class="credit">
@@ -581,6 +585,33 @@ tags:
     line-height: 1.55;
     color: var(--body-soft);
     margin: 0.7rem 0 0;
+  }
+  /* The two subheads split the method section into its two halves. They step
+     *down* in size from the quiet body text around them and *up* in weight and
+     colour — slab caps in full ink — so they organise the reference matter
+     without competing with the Yeseva <h2> above or the essay proper. The rule
+     is the piece's recurring 1.5px ink border, doing the grouping work: the
+     space is all above the rule, so each heading reads as belonging to the
+     paragraphs under it rather than floating between two blocks. Ink on white
+     (20:1), so nothing here rests on hue. */
+  .method h3 {
+    font-family: var(--slab);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    line-height: 1.35;
+    text-transform: uppercase;
+    color: var(--ink);
+    border-top: 1.5px solid var(--ink);
+    margin: 2.6rem 0 0;
+    padding-top: 0.55rem;
+  }
+  /* the first subhead sits directly under the <h2>, where a rule would read as
+     an underline of the section title rather than a divider inside it */
+  .method h2 + h3 {
+    border-top: 0;
+    margin-top: 1rem;
+    padding-top: 0;
   }
   .method :global(code) {
     font-size: 0.85em;

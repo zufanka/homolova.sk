@@ -4,8 +4,10 @@
   goes in a planted park. Static — no state, no props. The surrounding
   paragraphs stay in the post's prose; only the figure and its labels live here.
 
-  Segment heights are the prototype's, in px: 1 W/m² = 0.306 px, so both stacks
-  sum to the same 850 W/m² and the two columns are directly comparable.
+  Segment heights are derived from the W/m² values at 1 W/m² = 0.306 px, so both
+  stacks sum to the same 850 W/m² and the two columns are directly comparable.
+  Change a value and its height has to move with it, or the bar stops matching
+  the number it is labelled with.
 -->
 <figure class="energy">
   <p class="ebintro">
@@ -16,37 +18,37 @@
     <div class="ebcol">
       <h3 class="asphalt-h">Asphalt</h3>
       <div class="ebstack">
-        <div class="ebseg sky" style="height:107.1px">
-          <span>Reflected and radiated away</span><span>350 W/m²</span>
+        <div class="ebseg sky" style="height:104.04px">
+          <span>Reflected and radiated away</span><span>340 W/m²</span>
         </div>
-        <div class="ebseg air" style="height:91.8px">
-          <span>Heating the air</span><span>300 W/m²</span>
+        <div class="ebseg air" style="height:62.73px">
+          <span>Heating the air</span><span>205 W/m²</span>
         </div>
-        <div class="ebseg ground" style="height:61.2px">
-          <span>Into the ground</span><span>200 W/m²</span>
+        <div class="ebseg ground" style="height:93.33px">
+          <span>Into the ground</span><span>305 W/m²</span>
         </div>
       </div>
     </div>
     <div class="ebcol">
       <h3 class="planted">Well watered park</h3>
       <div class="ebstack">
-        <div class="ebseg sky" style="height:84.15px">
-          <span>Reflected and radiated away</span><span>275 W/m²</span>
+        <div class="ebseg sky" style="height:73.44px">
+          <span>Reflected and radiated away</span><span>240 W/m²</span>
         </div>
-        <div class="ebseg water" style="height:122.4px">
-          <span>Evaporating water</span><span>400 W/m²</span>
+        <div class="ebseg water" style="height:130.05px">
+          <span>Evaporating water</span><span>425 W/m²</span>
         </div>
         <div class="ebseg air" style="height:38.25px">
           <span>Heating the air</span><span>125 W/m²</span>
         </div>
-        <div class="ebseg ground" style="height:15.3px">50 W/m²</div>
+        <div class="ebseg ground" style="height:18.36px"><span>Into the ground</span> <span>60 W/m²</span></div>
       </div>
     </div>
   </div>
   <figcaption>
 Illustrative values for clear-sky midday summer conditions at mid-latitudes<br>
-Sources: Oke et al. (2017);  Anandakumar (1999) Spronken-Smith et al. (2000).<br>
-The asphalt "reflected and radiated" figure is mostly heat radiated, not reflected light.
+The asphalt "reflected and radiated" figure is mostly radiated heat, not reflected light.<br>
+See detailed methodology below.
   </figcaption>
 </figure>
 
