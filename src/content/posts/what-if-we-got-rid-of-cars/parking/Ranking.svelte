@@ -194,27 +194,24 @@
     font-family: var(--sans, system-ui, sans-serif);
   }
 
+  /* The list is never a scroll container and never has a height imposed on it.
+     Two separate things go wrong when it is:
+
+     - On a touch screen it traps the scroll. A finger landing on the bars
+       scrolls the list, the page does not advance, and the reader is stuck
+       inside a pinned sequence with nothing to say why. `overscroll-behavior`
+       only fixes the two ends of that, not the middle.
+     - Left uncapped but set to `auto` it invents a scrollbar: sub-pixel row
+       heights alone leave a pixel or two of overflow across 39 rows, which
+       `auto` answers with a permanent ~15px bar on a list that fits.
+
+     A layout that cannot show every row (a phone held sideways) shrinks its
+     rows instead, and lets the rest run past the foot of the screen — see the
+     comment over `.viz` in ScrollyRanking.svelte. */
   .rank {
     list-style: none;
     margin: 0;
     padding: 0;
-    /* A ceiling for the list, published by the layout around the ranking the way
-       --map-h is published around the map — as a pair, because a ceiling without
-       scrolling would just clip rows. It is a safety valve, not the normal case:
-       a pinned frame sizes its rows so the whole list fits, and only a viewport
-       too short for that (a phone held sideways) hands these down.
-
-       Both stay unset otherwise, deliberately. An uncapped list must not become
-       a scroll container: sub-pixel row heights alone leave a pixel or two of
-       scrollable overflow, and `auto` answers that with a full-width scrollbar
-       on a list that fits perfectly well. */
-    max-height: var(--rank-h, none);
-    overflow-y: var(--rank-scroll, visible);
-    /* the spine's ::after overhangs the first and last rows by a few pixels, and
-       a scroll box would clip it. The padding gives it room, the negative margin
-       gives the padding back, so nothing moves either way. */
-    padding-block: 4px;
-    margin-block: -4px;
   }
   .rank li + li {
     margin-top: 3px;

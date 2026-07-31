@@ -8,9 +8,10 @@
    * step's sentence is a real block in document order and the chart renders
    * whole, so with no JS the section reads as prose over a complete chart.
    * `enhanced` — set in `onMount`, so it is false during the static prerender —
-   * only switches on the one-sentence-at-a-time fade. Inactive sentences go to
-   * `opacity: 0` and are never `aria-hidden` or `display: none`, so a screen
-   * reader still walks all of them in order.
+   * is what switches on the one-sentence-at-a-time fade, the progress rail and
+   * the scroll cue. Inactive sentences go to `opacity: 0` and are never
+   * `aria-hidden` or `display: none`, so a screen reader still walks all of
+   * them in order.
    *
    * The step is the unit of control:
    *
@@ -20,15 +21,19 @@
    *     guard in `claim()` is the whole mechanism.
    *   - The steps are ordinary blocks in flow, so scrolling back up re-enters
    *     the earlier one and re-claims its sort. The sequence is reversible.
-   *   - Nothing here calls `focus()` or `scrollTo()`. `IntersectionObserver`
-   *     reads; the page scrolls itself.
+   *   - Nothing here calls `focus()` or `scrollTo()`, hijacks a wheel event or
+   *     snaps. `IntersectionObserver` and `scrollY` read; the page scrolls
+   *     itself.
    *
    * Layout contract, the same shape as Board's `--map-h`: this component owns
    * the dimensions and publishes them, the children read them. `--rank-row` is
-   * the row height, `--rank-h` the short-viewport ceiling, and `rankcols` the
-   * container the sort header and the rows narrow off.
+   * the row height and `rankcols` is the container the sort header and the rows
+   * narrow off. Nothing here ever publishes a height plus a scroll to
+   * `<Ranking />`: see the comment over `.viz` for why the frame must never
+   * become a scroll container.
    */
   import { onMount, untrack } from 'svelte';
+  import { prefersReducedMotion } from 'svelte/motion';
   import Ranking from './Ranking.svelte';
   import SortButtons from './SortButtons.svelte';
   import StateToggle from './StateToggle.svelte';
@@ -56,11 +61,51 @@
   let enhanced = $state(false);
   let markEls = $state<HTMLElement[]>([]);
   let stepEls = $state<HTMLElement[]>([]);
+  let sectionEl: HTMLElement | undefined;
   /** Whether the *active* step's caption is hidden. One flag, not one per step,
    *  because only the active caption is ever visible to dismiss in the first
    *  place — reset alongside `active` in `claim()` is what makes it clear
    *  again on every boundary crossing, forward or back. */
   let dismissed = $state(false);
+  /** The active caption's opacity, driven by how far the reader is through the
+   *  step rather than by a timed transition — see `fade()`. Opens at 0: the
+   *  section is normally still below the fold on load, and the caption fades up
+   *  as the reader arrives. */
+  let capOpacity = $state(0);
+  /** The first-entry hint. Latches off for good the moment the sequence starts
+   *  producing captions, so it never reappears on the way back up. */
+  let cueOn = $state(false);
+
+  /**
+   * Where the caption fades, in fractions of one step's scroll distance.
+   *
+   * The sentence must never drift or fade while it is being read, so both ends
+   * are pinned to what the sticky caption is physically doing (see the comment
+   * over `.step`):
+   *
+   *   - It travels exactly one caption-height into place at the very start of a
+   *     step, so the fade-in is given that same distance — `inEnd` below, one
+   *     measured caption height over one step. It reaches full strength at the
+   *     instant it stops moving, and never before: a fixed fraction cannot do
+   *     this, because a caption is ~8% of a tall phone's viewport and ~30% of a
+   *     short landscape one, where 0.15 would have left it legible and still
+   *     sliding for half its travel.
+   *   - It then sits dead still until the step ends. The fade-out is spent late
+   *     and quickly inside that still stretch: the reader gets ~72% of the step
+   *     with the sentence stationary and fully legible, then it clears over the
+   *     next 16% and the following one arrives at the boundary. That gap is the
+   *     evidence that scrolling is doing something.
+   */
+  const FADE_OUT_START = 0.72;
+  const FADE_OUT_END = 0.88;
+
+  function fade(t: number, inEnd: number): number {
+    if (t <= 0) return 0;
+    if (t < inEnd) return t / inEnd;
+    if (t < FADE_OUT_START) return 1;
+    if (t < FADE_OUT_END) return (FADE_OUT_END - t) / (FADE_OUT_END - FADE_OUT_START);
+    return 0;
+  }
 
   // `untrack` because these are opening values on purpose: the view owns the
   // sort from here on, and `claim()` is the only thing that rewrites it.
@@ -74,12 +119,18 @@
     )
   );
 
+  /** Assigned in `onMount`. A boundary can be crossed by the observer without a
+   *  scroll event of its own arriving after it, and the new step's caption has
+   *  to be given its opacity by something. */
+  let ping: () => void = () => {};
+
   function claim(i: number): void {
     if (i === active) return;
     active = i;
     dismissed = false;
     view.sortKey = steps[i].sortKey;
     view.sortDir = steps[i].sortDir ?? SORT_DEFAULT_DIR[steps[i].sortKey];
+    ping();
   }
 
   function dismissCaption(): void {
@@ -93,6 +144,102 @@
 
   onMount(() => {
     enhanced = true;
+
+    /**
+     * Geometry, cached. Everything the scroll handler needs is measured here
+     * and here only, so a scroll frame reads `window.scrollY` and nothing else
+     * — no `getBoundingClientRect`, no forced layout, one rounded style write
+     * on the frames where the opacity actually changed.
+     *
+     * `pins[i]` is step i's pin line in document coordinates, read off the same
+     * zero-size marker the observer below watches. Keeping both on the marker
+     * is what keeps the fade and the step handover in the same units as the CSS
+     * pin: move `--cap-pin` and all three move together.
+     */
+    let pins: number[] = [];
+    /** Each caption's height, which is also the distance it travels into place
+     *  at the start of its step — and so the distance the fade-in gets. */
+    let caps: number[] = [];
+    /** One step's scroll distance. The steps are all 100svh, so the gap between
+     *  two pin lines is that distance, measured rather than assumed. */
+    let span = 0;
+    let vh = 0;
+    /** The section's top, in document coordinates — only the cue needs it. */
+    let top = 0;
+    let cueDone = false;
+    let lastO = -1;
+
+    function measure(): void {
+      const y = window.scrollY;
+      vh = window.innerHeight;
+      pins = markEls.map((el) => (el ? el.getBoundingClientRect().top + y : 0));
+      caps = stepEls.map((el) => el?.querySelector('p')?.getBoundingClientRect().height ?? 0);
+      span = pins.length > 1 ? pins[1] - pins[0] : vh;
+      top = sectionEl ? sectionEl.getBoundingClientRect().top + y : 0;
+    }
+
+    function update(): void {
+      const y = window.scrollY;
+      // `pins[active] - vh` is the scroll position at which the observer handed
+      // this step over: the position where its marker reached the foot of the
+      // screen. So `t` is progress through the step the observer says is on,
+      // and the two cannot disagree about which caption is fading.
+      const t = span > 0 ? Math.min(1, Math.max(0, (y - (pins[active] - vh)) / span)) : 0;
+      // Capped: a caption tall enough to eat half its own step would otherwise
+      // leave no still stretch at all before FADE_OUT_START.
+      const inEnd = span > 0 ? Math.min(0.45, (caps[active] * 1.02) / span) : 0.15;
+      // Reduced motion gets the boundaries and nothing in between: present for
+      // the whole of its step, gone outside it.
+      const raw = prefersReducedMotion.current ? (t > 0 ? 1 : 0) : fade(t, inEnd);
+      const o = Math.round(raw * 100) / 100;
+      if (o !== lastO) {
+        lastO = o;
+        capOpacity = o;
+      }
+
+      // The cue answers "is this page stuck?", which is only ever asked in the
+      // stretch where the chart has pinned and no caption has arrived yet. So
+      // it shows once the section is properly on screen and is spent the moment
+      // the first step takes over — by then the sequence is visibly running.
+      if (!cueDone) {
+        if (y >= pins[0] - vh) {
+          cueDone = true;
+          cueOn = false;
+        } else {
+          cueOn = y > top - vh * 0.55;
+        }
+      }
+    }
+
+    let frame = 0;
+    function schedule(): void {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        update();
+      });
+    }
+    ping = schedule;
+
+    function remeasure(): void {
+      measure();
+      update();
+    }
+
+    measure();
+    update();
+
+    window.addEventListener('scroll', schedule, { passive: true });
+    // innerHeight moves without the section's own height moving — a phone
+    // toolbar retracting does exactly that — and every pin line is quoted
+    // against it.
+    window.addEventListener('resize', remeasure);
+    // The steps are sized in svh, so a rotation, a late web font or the toggle
+    // strip appearing all move the pin lines. Watching the section is cheaper
+    // than guessing which events do that.
+    const ro = new ResizeObserver(remeasure);
+    if (sectionEl) ro.observe(sectionEl);
+
     /**
      * Which step's sentence is pinned right now, read off geometry rather than
      * guessed at.
@@ -121,11 +268,19 @@
       }
     });
     for (const el of markEls) if (el) io.observe(el);
-    return () => io.disconnect();
+
+    return () => {
+      io.disconnect();
+      ro.disconnect();
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', remeasure);
+      if (frame) cancelAnimationFrame(frame);
+      ping = () => {};
+    };
   });
 </script>
 
-<section class="scrolly" class:js={enhanced} aria-label={label}>
+<section class="scrolly" class:js={enhanced} aria-label={label} bind:this={sectionEl}>
   <div class="viz" class:withtoggle={stateToggle} style:--rank-n={rows.length}>
     {#if stateToggle}<StateToggle />{/if}
     <div class="rankwrap">
@@ -144,6 +299,7 @@
         <p
           class:dismissed={i === active && dismissed}
           aria-hidden={i === active && dismissed ? 'true' : undefined}
+          style:--cap-o={i === active ? capOpacity : null}
         >
           {@html s.html}
           <!-- Only the active, not-yet-dismissed step gets a button: rendering
@@ -164,6 +320,35 @@
       </li>
     {/each}
   </ol>
+
+  <!--
+    The rail: how many steps there are, which one is on, and on first arrival a
+    hint that scrolling is what advances them. Both answer the same complaint —
+    a pinned chart over a pinned sentence leaves most of the screen still, which
+    reads as a stuck page.
+
+    It is one element for the whole sequence rather than one per step, sticky
+    across the section, so it is already there while the chart is pinning and
+    before any caption has arrived — which is exactly when the page looks stuck.
+    Purely an affordance, so it is gated on `enhanced` and never reaches the
+    no-JS document.
+  -->
+  {#if enhanced}
+    <div class="rail">
+      <p class="cue" class:on={cueOn} aria-hidden="true">
+        Scroll <span class="arrow">↓</span>
+      </p>
+      <!-- The pips restate where the reader is in a list they can already walk;
+           labelled rather than left as a heap of unnamed spans, and not a live
+           region — the sort status in <Ranking /> already speaks on every
+           boundary and a second announcement there would only talk over it. -->
+      <div class="pips" role="img" aria-label="Step {active + 1} of {steps.length}">
+        {#each steps as _, i (i)}
+          <span class="pip" class:on={i === active}></span>
+        {/each}
+      </div>
+    </div>
+  {/if}
 </section>
 
 <style>
@@ -171,26 +356,45 @@
     position: relative;
     max-width: 52rem;
     margin-inline: auto;
+    /* The bottom of the screen, shared out: the rail takes the last --rail-h,
+       the caption pins above it, and the marker that starts a step sits at the
+       caption's own pin line. One sum, three consumers — .step > p, .mark and
+       .rail — so the three cannot drift apart. */
+    --cap-gap: 1.1rem;
+    --rail-h: 1.3rem;
+    --cap-pin: calc(var(--cap-gap) + var(--rail-h));
   }
 
   /*
    * The pinned frame. It has to hold every capital at once — a sticky element
-   * taller than the viewport would park its last rows permanently off-screen —
-   * so the row height is whatever a screen's worth of room divided by the
-   * number of rows comes to, floored so the bars stay visible and capped so
-   * they do not go chunky on a tall monitor. --rank-chrome is what the frame
-   * spends on everything that is not rows: the sort header, the source note
-   * under the list, the sticky top offset, and the NOW / CONVERTED strip when
-   * there is one.
+   * taller than the viewport parks its last rows off-screen for the length of
+   * the sequence — so the row height is whatever a screen's worth of room
+   * divided by the number of rows comes to, floored so the bars stay visible
+   * and capped so they do not go chunky on a tall monitor. --chrome-own is what
+   * the frame spends on everything that is not rows: the sort header, the
+   * source note under the list, the sticky top offset, and the NOW / CONVERTED
+   * strip when there is one; --rank-chrome adds the rail's strip along the
+   * bottom, which the source note has to clear.
    *
    * The 0.9rem is slack: it covers the list's own spine padding and the
    * sub-pixel rounding of 39 fractional row heights.
+   *
+   * There is deliberately no escape hatch for a viewport too short for even the
+   * floored row height — a phone held sideways. The frame used to hand
+   * <Ranking /> a max-height and `overflow-y: auto` there, which made the chart
+   * its own scroll container: on a touch screen a finger landing on the bars
+   * scrolled the list and the page did not advance, so the reader was stuck
+   * inside the scrolly with nothing to say why. Nothing in the pinned region
+   * may scroll. On those viewports the list simply runs past the foot of the
+   * screen and the rows below it come into view at the end of the sequence,
+   * where the frame releases — invisible for a while beats untouchable.
    */
   .viz {
     position: sticky;
     top: 1rem;
     z-index: 1;
-    --rank-chrome: 5.2rem;
+    --chrome-own: 5.2rem;
+    --rank-chrome: calc(var(--chrome-own) + var(--rail-h));
     --rank-row: clamp(
       0.78rem,
       calc((100svh - var(--rank-chrome) - 0.9rem) / var(--rank-n)),
@@ -198,22 +402,7 @@
     );
   }
   .viz.withtoggle {
-    --rank-chrome: 7.6rem;
-  }
-
-  /*
-   * The one case the rows cannot all fit: a viewport too short to give each of
-   * them even the floor above, which in practice means a phone turned sideways.
-   * Here the frame keeps the screen's height and the list scrolls inside it —
-   * the pair <Ranking /> wants, since a ceiling on its own would only clip.
-   * Above this height the list always fits and neither is published, so the
-   * normal case is never a scroll container.
-   */
-  @media (max-height: 660px) {
-    .viz {
-      --rank-h: calc(100svh - var(--rank-chrome));
-      --rank-scroll: auto;
-    }
+    --chrome-own: 7.6rem;
   }
 
   /* the ranking's header and rows narrow off this width, not the window's */
@@ -227,7 +416,7 @@
     padding: 0;
   }
   /*
-   * Step geometry, which the observer below depends on.
+   * Step geometry, which the observer and the fade both depend on.
    *
    * A step is a viewport tall and lays its sentence out at its own bottom edge;
    * `sticky; bottom` then holds that sentence at the foot of the screen. The pin
@@ -237,15 +426,16 @@
    * cost is fixed — a taller step just moves it — so the only choice is where to
    * spend it, and the marker's offset is what chooses.
    *
-   * At --cap-gap, the pin line's own offset, the step's watch ends at the exact
+   * At --cap-pin, the pin line's own offset, the step's watch ends at the exact
    * scroll position where its sentence stops being pinned. So the whole of the
-   * travel lands at the *start* of a step, under the fade-in, and the sentence
-   * then sits dead still at the foot of the screen for the entire rest of the
-   * step. Nothing ever drifts out of place while it is the one being read.
+   * travel lands at the *start* of a step, and the sentence then sits dead still
+   * at the foot of the screen for the entire rest of the step. Nothing ever
+   * drifts out of place while it is the one being read: the fade-in covers the
+   * travel and the late fade-out is spent inside the still stretch (FADE_IN_END
+   * and FADE_OUT_START in the script).
    */
   .step {
     position: relative;
-    --cap-gap: 1.1rem;
     min-height: 100svh;
     display: flex;
     flex-direction: column;
@@ -255,14 +445,14 @@
      bottom with the sentence */
   .mark {
     position: absolute;
-    top: var(--cap-gap);
+    top: var(--cap-pin);
     left: 0;
     width: 1px;
     height: 1px;
   }
   .step > p {
     position: sticky;
-    bottom: var(--cap-gap);
+    bottom: var(--cap-pin);
     z-index: 2;
     max-width: 34rem;
     margin: 0 auto;
@@ -292,24 +482,34 @@
     color: var(--ink, #020202);
     text-wrap: pretty;
   }
-  /* one sentence at a time, only once JS is there to say which one */
+  /* One sentence at a time, only once JS is there to say which one — and once
+     it can say how far through the step the reader is. --cap-o is written by
+     the scroll handler on the active caption only, so an inactive one falls
+     back to 0 without needing a rule of its own. No transition: the value is
+     already a function of scroll position, and easing it as well would let the
+     sentence keep changing after the reader stopped. */
   .scrolly.js .step > p {
-    opacity: 0;
-    transition: opacity 220ms ease;
+    opacity: var(--cap-o, 0);
   }
-  .scrolly.js .step.on > p {
-    opacity: 1;
+  /* An inactive caption is invisible but still a box, and its step is a whole
+     viewport tall, so it can be sitting anywhere over the pinned chart. Left
+     hit-testable it swallows taps meant for the row underneath. */
+  .scrolly.js .step:not(.on) > p {
+    pointer-events: none;
   }
-  /* Dismissing reuses the exact fade the caption already does on arrival —
-     same property, same transition, already gated below — rather than a
-     second animation. The CSS side only takes it out of sight and out of the
-     tab order; `aria-hidden` on the element (set in the markup alongside
-     `.dismissed`) is what takes it out of the accessibility tree, since
-     opacity and pointer-events alone still leave it in there for a screen
-     reader to announce. */
+  /* Dismissing is the one opacity change that is not scroll-driven — a click,
+     with no scroll distance to spread it over — so it brings its own 220ms
+     fade. Higher specificity than the rule above, so it wins over --cap-o for
+     as long as the flag is set; clearing the flag at the next boundary hands
+     the caption straight back to the scroll handler. The CSS side only takes it
+     out of sight and out of the tab order; `aria-hidden` on the element (set in
+     the markup alongside `.dismissed`) is what takes it out of the
+     accessibility tree, since opacity and pointer-events alone still leave it
+     in there for a screen reader to announce. */
   .scrolly.js .step.on > p.dismissed {
     opacity: 0;
     pointer-events: none;
+    transition: opacity 220ms ease;
   }
 
   /* A corner control sized like a fingertip, not a sentence: the visible chip
@@ -362,9 +562,98 @@
     font-variant-numeric: tabular-nums;
   }
 
+  /*
+   * The rail. Sticky across the whole section, clamped by it at both ends, so
+   * it rides in with the section's top edge and leaves with its bottom one.
+   * pointer-events: none because nothing in it is a control and it lies over
+   * the chart's last rows — a tap there belongs to the row underneath.
+   */
+  .rail {
+    position: sticky;
+    bottom: var(--cap-gap);
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--rail-h);
+    pointer-events: none;
+  }
+  /* Chrome, not data: this piece spends green and purple on green and car, so
+     the indicator is ink and paper only — the same 1.5px rule the captions, the
+     dismiss chip and the figures' plates are drawn with. The active pip is a
+     filled bar and the rest are hollow squares, so which one is on survives
+     without colour: it is wider, and it is solid where they are empty. */
+  /* The plate, not a border: the pips lie over the bars and the gaps between
+     them would otherwise show purple through. Sized off the pips, so it can
+     stand a hair taller than --rail-h without moving anything — the rail's
+     height is a fixed length, not its content's. */
+  .pips {
+    display: flex;
+    align-items: center;
+    gap: 0.32rem;
+    padding: 0.22rem 0.4rem;
+    background: rgba(var(--paper, 255, 255, 255), 0.88);
+  }
+  .pip {
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 1.5px solid var(--ink, #020202);
+    background: rgba(var(--paper, 255, 255, 255), 0.94);
+    transition: width 200ms ease;
+  }
+  .pip.on {
+    width: 1.25rem;
+    background: var(--ink, #020202);
+  }
+
+  /* Sits above the pips without being laid out with them: the cue comes and
+     goes, and the rail's height is a term in --cap-pin, so it may not change
+     when the cue leaves. */
+  .cue {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0 0 0.45rem;
+    padding: 0.2rem 0.55rem;
+    border: 1.5px solid var(--ink, #020202);
+    background: rgba(var(--paper, 255, 255, 255), 0.94);
+    font-family: var(--sans, system-ui, sans-serif);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink, #020202);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 200ms ease;
+  }
+  .cue.on {
+    opacity: 1;
+  }
+  .cue .arrow {
+    display: inline-block;
+  }
+  .cue.on .arrow {
+    animation: nudge 1.5s ease-in-out infinite;
+  }
+  @keyframes nudge {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(0.2rem);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .scrolly.js .step > p {
+    .scrolly.js .step.on > p.dismissed,
+    .cue,
+    .pip {
       transition: none;
+    }
+    .cue.on .arrow {
+      animation: none;
     }
   }
 
@@ -379,19 +668,17 @@
   @media (max-width: 700px) {
     .scrolly {
       max-width: none;
+      --cap-gap: 0.6rem;
     }
     /* a bigger allowance than the desktop one despite the smaller type: at this
        width the sort header wraps to two lines, which costs more than the type
        saves */
     .viz {
       top: 0.5rem;
-      --rank-chrome: 6rem;
+      --chrome-own: 6rem;
     }
     .viz.withtoggle {
-      --rank-chrome: 8.5rem;
-    }
-    .step {
-      --cap-gap: 0.6rem;
+      --chrome-own: 8.5rem;
     }
     .step > p {
       /* same reservation as the desktop rule above, just against the tighter
