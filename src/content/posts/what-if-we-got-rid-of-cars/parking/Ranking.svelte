@@ -12,8 +12,9 @@
    * scale spans BOTH states and every city: switching to converted grows the
    * green bars instead of silently rescaling the axis under them.
    *
-   * Clicking a row sets `slug` on its instrument's view, which is what drives
-   * the map when one is nested in the same instrument.
+   * The rows are inert. Nothing here is a control: the sort header above and the
+   * state toggle are the only things a reader operates, so the rows stay out of
+   * the tab order and carry no click, hover or focus affordance.
    */
   import { flip } from 'svelte/animate';
   import { cubicOut } from 'svelte/easing';
@@ -101,15 +102,24 @@
   }
 
   /**
-   * The bar is decorative and the figures are terse, so the whole row is named
-   * for assistive tech instead of read cell by cell. This is also the only
-   * place the † marker beside a city name is spelled out in words, so the
-   * sentence it appends has to stay.
+   * The row's figures, in words. The bar is decorative and the three numbers
+   * beside it are bare percentages, so they stay hidden from assistive tech and
+   * this sentence is read in their place: it is the only thing carrying their
+   * units and their frame of reference, and the only place the † beside a city
+   * name is spelled out.
+   *
+   * Rendered as real text in an `.sr-only` span rather than hung on the row as
+   * an `aria-label`. The row is a plain <div> now that it is not a control, and
+   * a label on a non-interactive element is not reliably announced.
+   *
+   * The rank and the city name are deliberately absent: both are visible text
+   * in the row and are already read from it, so repeating them here would say
+   * every city twice.
    */
-  function rowLabel(c: CityRow, i: number): string {
+  function rowSpeech(c: CityRow): string {
     const m = metrics(c);
     return (
-      `${i + 1}. ${c.city}. Green ${fmt1(m.medGreen)}% of the median square's land, ` +
+      `Green ${fmt1(m.medGreen)}% of the median square's land, ` +
       `car infrastructure ${fmt1(m.medCar)}%. No green: ${zeroText(c)} of residents.` +
       (highlight?.(c) ? ' Highlighted by the passage alongside.' : '') +
       (c.thin || c.sparse ? ' Parking is under-mapped here; the car figure is a floor.' : '')
@@ -143,23 +153,18 @@
     {#each ordered as c, i (c.slug)}
       {@const m = metrics(c)}
       <li animate:flip={flipArgs}>
-        <button
-          type="button"
-          class="row"
-          class:flag={highlight?.(c)}
-          class:active={view.slug === c.slug}
-          aria-pressed={view.slug === c.slug}
-          aria-label={rowLabel(c, i)}
-          onclick={() => (view.slug = c.slug)}
-        >
+        <div class="row" class:flag={highlight?.(c)}>
           <span class="rk">{i + 1}</span>
           <!-- The under-mapping marker qualifies the city, so it sits with the
                name rather than in a column of its own — that column's width is
-               what pays for the two figures on a phone. -->
+               what pays for the two figures on a phone. Hidden from assistive
+               tech because a lone "dagger" says nothing; `rowSpeech()` spells
+               the same qualification out in the row's sentence below. -->
           <span class="city">
             <span class="cityname">{c.city}</span>
             {#if c.thin || c.sparse}<span
                 class="flagged"
+                aria-hidden="true"
                 title="Parking is under-mapped here; the car figure is a floor">†</span
               >{/if}
           </span>
@@ -173,7 +178,10 @@
             <span class="ha car-ha">{fmt1(m.medCar)}%</span>
           </span>
           <span class="zero" aria-hidden="true">{zeroText(c)}</span>
-        </button>
+          <!-- Last, and out of flow, so it is neither a sixth grid column nor
+               read before the rank and name it follows on from. -->
+          <span class="sr-only">{rowSpeech(c)}</span>
+        </div>
       </li>
     {/each}
   </ol>
@@ -238,21 +246,7 @@
     grid-template-columns: 1.4rem 6.6rem minmax(0, 1fr) 6rem 5.4rem;
     align-items: center;
     gap: 0.7rem;
-    width: 100%;
-    background: none;
-    border: 0;
     padding: 0.28rem 0.3rem;
-    font: inherit;
-    color: inherit;
-    text-align: left;
-    cursor: pointer;
-  }
-  .row:hover {
-    background: var(--pk-plate);
-  }
-  .row.active {
-    background: var(--pk-plate);
-    outline: 1.5px solid var(--ink, #020202);
   }
   /* the step's emphasis: an ink rule down the leading edge and the plate wash.
      No new hue — green and purple are already spoken for as green and car, and
@@ -296,10 +290,6 @@
   /* a fixed-height row cannot absorb a wrap, so this one may not have one */
   .compact .zero {
     white-space: nowrap;
-  }
-  .row:focus-visible {
-    outline: 3px solid var(--ink, #020202);
-    outline-offset: -3px;
   }
   .rk {
     font-size: 0.75rem;
@@ -393,8 +383,8 @@
   }
   /* Sized off the name it follows (em, not rem), so it rides every tier's type
      scale without a rule of its own. The hover title is for a mouse; the row's
-     aria-label carries the same sentence for assistive tech, and `.axis-note`
-     under the list states it for everyone. */
+     `.sr-only` sentence carries the same words for assistive tech, and
+     `.axis-note` under the list states it for everyone. */
   .flagged {
     flex: none;
     font-weight: 700;

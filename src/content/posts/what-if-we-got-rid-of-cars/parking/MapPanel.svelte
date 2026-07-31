@@ -67,8 +67,6 @@
 
   <p class="note">
     <strong>Click HEAT</strong> to see the city's modelled summer heat island over its streets.<br />
-    <strong>Click CONVERTED</strong> to see every surface parking lot plus 60% of the calm streets
-    given back as green.
   </p>
 </section>
 

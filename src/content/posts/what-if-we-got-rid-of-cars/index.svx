@@ -256,10 +256,6 @@ tags:
       So let's run an experiment. What would happen if we replaced the surface
       parking and 60% of the small streets in a city with green?
     </p>
-    <p class="note">
-      <strong>NOW and CONVERTED stay live</strong> while you scroll — switch between the
-      cities as they were measured and the same cities with their parking planted.
-    </p>
   </section>
 
   <ScrollyRanking

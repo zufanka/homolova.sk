@@ -226,9 +226,42 @@
       gap: clamp(0.3rem, 1.3cqi, 0.5rem);
       padding-inline: clamp(0.15rem, 0.7cqi, 0.3rem);
       font-size: 0.62rem;
+      /*
+       * Two lines of label reserved, in BOTH states.
+       *
+       * NO GREEN is the same string in either state but its column is not: one
+       * line fits over the NOW width and needs two over the CONVERTED one
+       * (60.8px vs 32px at 375px). Left to itself the header was 24.8px in one
+       * state and 39.2px in the other, so hitting the toggle shoved all 39 rows
+       * 14px up or down the screen under the reader — the sticky frame is
+       * pinned, so the whole chart appeared to jump. The row height itself was
+       * never involved: --rank-row is computed from --chrome-own, a fixed
+       * allowance in ScrollyRanking.svelte, so it stayed at 15.6px throughout.
+       *
+       * Reserving the taller case rather than widening the converted column
+       * back to fit one line: that width is worth more to the two figures
+       * beside it (75px to 104px here) than a line of header is. `align-content`
+       * puts the slack above the labels, so the one-line state sits on the same
+       * baseline over the rows as the two-line state and the header reads
+       * identically either way — it just has air over it in NOW.
+       *
+       * The sum is this element's own bottom padding plus a `.sortbtn` at two
+       * lines: its line box twice, its vertical padding, and the 3px underline
+       * it reserves whether or not it is the active sort. The 1.5 is the line
+       * height pinned on `.sortbtn` just below, so this stays a value the file
+       * sets rather than one it inherits and hopes for. It is a floor, so a
+       * label that ever needs more still gets it — the height only has to be
+       * equal across the two states, not fixed.
+       *
+       * Header-only: `.row` in Ranking.svelte has no equivalent and needs none.
+       * The contract between the two files is the five columns and the gap.
+       */
+      min-height: calc(2 * 1.5 * 0.6rem + 0.15rem + 3px + 0.35rem);
+      align-content: end;
     }
     .sortbtn {
       font-size: 0.6rem;
+      line-height: 1.5;
       padding: 0.1rem 0.2rem 0.05rem;
     }
     .sortbtn.sn,

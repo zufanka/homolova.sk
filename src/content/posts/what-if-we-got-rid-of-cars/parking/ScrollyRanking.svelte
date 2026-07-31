@@ -160,8 +160,9 @@
     /** Each caption's height, which is also the distance it travels into place
      *  at the start of its step — and so the distance the fade-in gets. */
     let caps: number[] = [];
-    /** One step's scroll distance. The steps are all 100svh, so the gap between
-     *  two pin lines is that distance, measured rather than assumed. */
+    /** One step's scroll distance: the gap between two pin lines, measured
+     *  rather than assumed, so changing `.step`'s height in the stylesheet
+     *  carries the fade timing with it and the two cannot drift apart. */
     let span = 0;
     let vh = 0;
     /** The section's top, in document coordinates — only the cue needs it. */
@@ -434,9 +435,27 @@
    * travel and the late fade-out is spent inside the still stretch (FADE_IN_END
    * and FADE_OUT_START in the script).
    */
+  /* 65svh, not 100: a step's height is the scroll distance one caption costs,
+     and at a full viewport a gentle phone swipe often failed to cross a whole
+     one, so the reader had to swipe twice for one sentence. Shortening it is
+     the fix with no moving parts — no wheel handling, no programmatic scroll.
+     The floor is the caption, not the gesture: the sentence travels its own
+     height into place, so a shorter step spends a larger fraction of itself
+     moving and a smaller one holding still to be read (FADE_IN_END caps that
+     ratio at 0.45, i.e. ~220px). 65svh keeps the still stretch near half the
+     step while cutting a third off the swipe. Going much below this starts
+     letting a hard flick skip a sentence outright, which is worse than the
+     bug it fixes.
+
+     The 24rem floor is what stops that happening on a short landscape phone,
+     where 65svh would be ~247px: a 115px caption would then travel 47% of its
+     own step, past the 0.45 cap, so it would still be sliding at the moment
+     the fade-in declared it readable — the exact fault the per-caption
+     FADE_IN_END was introduced to fix. At 24rem the travel stays near 30%
+     there, i.e. no worse than before this change. */
   .step {
     position: relative;
-    min-height: 100svh;
+    min-height: max(65svh, 24rem);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
