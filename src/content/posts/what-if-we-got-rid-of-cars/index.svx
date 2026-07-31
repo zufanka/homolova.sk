@@ -273,8 +273,8 @@ tags:
   <section class="why closing">
     <p>
       I am just a data analyst with a curious mind, not an urban planner. But from the numerous examples of cities that have
-      pushed out the cars infrastructure in favor of trees, it is pretty obvious to me that we can do something about the suffering the heatwaves bring to our cities.
-      While might need to embrace the air conditioning a bit more, but we also have to look well at how we build our cities and for whom: comfortable for the few or livable for everybody.
+      pushed out the cars infrastructure in favor of trees, it is pretty obvious to me that we can do something about the suffering that heatwaves bring to our cities if we rethink what a city should look like,
+      and who and what it should serve. While might need to embrace the air conditioning a bit more, but I believe we have to look also at how we build our cities and for whom: comfortable for the few or livable for everybody.
     </p>
   </section>
 
