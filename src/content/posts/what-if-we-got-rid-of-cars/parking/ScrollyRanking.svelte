@@ -1,8 +1,8 @@
 <script lang="ts">
   /**
    * A ranking the scroll walks through: the chart pins near the top of the
-   * viewport, and each step's sentence pins to the bottom for as long as that
-   * step's block is passing.
+   * viewport, and each step's sentence pins across the middle of it for as long
+   * as that step's block is passing.
    *
    * Progressive enhancement over a document, not a replacement for one. Every
    * step's sentence is a real block in document order and the chart renders
@@ -292,32 +292,46 @@
 
   <ol class="steps">
     {#each steps as s, i (i)}
-      <li class="step" class:on={i === active} tabindex="-1" bind:this={stepEls[i]}>
+      <li
+        class="step"
+        class:on={i === active}
+        class:jsonly={s.enhancedOnly}
+        tabindex="-1"
+        bind:this={stepEls[i]}
+      >
         <span class="mark" data-step={i} bind:this={markEls[i]}></span>
         <!-- The sentences are the article's own prose, written a few lines from
              here in index.svx, and they carry inline emphasis. Nothing outside
              the repo reaches this. -->
-        <p
-          class:dismissed={i === active && dismissed}
-          aria-hidden={i === active && dismissed ? 'true' : undefined}
-          style:--cap-o={i === active ? capOpacity : null}
-        >
-          {@html s.html}
-          <!-- Only the active, not-yet-dismissed step gets a button: rendering
-               one for every step would leave invisible-but-tabbable buttons
-               sitting inside the faded-out captions. Gated on `enhanced` too,
-               so no-JS never puts it in the document at all. -->
-          {#if enhanced && i === active && !dismissed}
-            <button
-              type="button"
-              class="dismiss"
-              aria-label="Hide this text"
-              onclick={dismissCaption}
-            >
-              <span aria-hidden="true">×</span>
-            </button>
-          {/if}
-        </p>
+        <!-- A sentence about the controls is dropped when there are no working
+             controls to talk about — see `enhancedOnly` in types.ts. The <li>
+             around it is not: everything the observer and the fade measure is
+             indexed off it, so it has to exist in both documents. It is the
+             stylesheet's job to stop the empty one leaving a viewport-tall gap
+             in the no-JS reading. -->
+        {#if enhanced || !s.enhancedOnly}
+          <p
+            class:dismissed={i === active && dismissed}
+            aria-hidden={i === active && dismissed ? 'true' : undefined}
+            style:--cap-o={i === active ? capOpacity : null}
+          >
+            {@html s.html}
+            <!-- Only the active, not-yet-dismissed step gets a button: rendering
+                 one for every step would leave invisible-but-tabbable buttons
+                 sitting inside the faded-out captions. Gated on `enhanced` too,
+                 so no-JS never puts it in the document at all. -->
+            {#if enhanced && i === active && !dismissed}
+              <button
+                type="button"
+                class="dismiss"
+                aria-label="Hide this text"
+                onclick={dismissCaption}
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+            {/if}
+          </p>
+        {/if}
       </li>
     {/each}
   </ol>
@@ -357,13 +371,33 @@
     position: relative;
     max-width: 52rem;
     margin-inline: auto;
-    /* The bottom of the screen, shared out: the rail takes the last --rail-h,
-       the caption pins above it, and the marker that starts a step sits at the
-       caption's own pin line. One sum, three consumers — .step > p, .mark and
-       .rail — so the three cannot drift apart. */
+    /* Two budgets that no longer share a line. The rail keeps the foot of the
+       screen — --rail-h of indicator sitting --cap-gap above the bottom edge,
+       which is also the allowance .viz makes for it in --rank-chrome. The
+       caption is pinned across the middle instead, so --cap-pin is its own
+       length: as an offset up from the foot of the screen, half a viewport less
+       half a caption puts the sentence's own centre on the screen's.
+
+       CSS cannot know a caption's height — two or three lines depending on the
+       width, and twice that for the one long sentence — so --cap-half is the
+       nominal half of the ordinary case. Ordinary captions land within a few
+       pixels of the centre and the long one rides 1.5–2rem high, which nobody
+       notices, and in exchange the pin stays a single length .mark can be handed
+       verbatim. That sharing is the load-bearing part: pin and marker being the
+       same number is what makes a caption travel exactly its own height into
+       place, which is the distance the fade-in is given. Two consumers now,
+       .step > p and .mark, and they still must not drift apart. Measuring each
+       caption and publishing its own half would centre all of them, at the price
+       of a measure-and-write pass between the stylesheet and the scroll handler;
+       a couple of rem of slop is cheaper than that coupling.
+
+       svh, not vh or dvh: a retracting phone toolbar may not move the pin line
+       under a reader mid-sentence. The price is that while the toolbar is away
+       the caption sits half that toolbar below the true centre. */
     --cap-gap: 1.1rem;
     --rail-h: 1.3rem;
-    --cap-pin: calc(var(--cap-gap) + var(--rail-h));
+    --cap-half: 2.4rem;
+    --cap-pin: calc(50svh - var(--cap-half));
   }
 
   /*
@@ -420,20 +454,24 @@
    * Step geometry, which the observer and the fade both depend on.
    *
    * A step is a viewport tall and lays its sentence out at its own bottom edge;
-   * `sticky; bottom` then holds that sentence at the foot of the screen. The pin
-   * cannot be perfect for the whole step: sticky is clamped by the block it
-   * lives in, so the sentence has to climb a sentence's height into place at one
-   * end of the step's travel and slide the same distance out at the other. That
-   * cost is fixed — a taller step just moves it — so the only choice is where to
-   * spend it, and the marker's offset is what chooses.
+   * `sticky; bottom: --cap-pin` then holds that sentence across the middle of
+   * the screen. The pin cannot be perfect for the whole step: sticky is clamped
+   * by the block it lives in, so the sentence has to climb a sentence's height
+   * into place at one end of the step's travel and slide the same distance out
+   * at the other. That cost is fixed — a taller step just moves it — so the only
+   * choice is where to spend it, and the marker's offset is what chooses.
    *
-   * At --cap-pin, the pin line's own offset, the step's watch ends at the exact
-   * scroll position where its sentence stops being pinned. So the whole of the
-   * travel lands at the *start* of a step, and the sentence then sits dead still
-   * at the foot of the screen for the entire rest of the step. Nothing ever
+   * The marker carries --cap-pin too, and that identity is the whole trick.
+   * Sticky is clamped hardest when a step is entering, which parks its sentence
+   * on the step's own top edge — exactly --cap-pin above the foot of the screen
+   * at the moment the marker reaches it, and so exactly one caption-height below
+   * where the pin will hold it. So the whole of the travel lands at the *start*
+   * of a step, and it is one caption tall whatever --cap-pin is set to: move the
+   * pin anywhere up or down the screen and this stays true. The sentence then
+   * sits dead still, centred, for the entire rest of the step. Nothing ever
    * drifts out of place while it is the one being read: the fade-in covers the
-   * travel and the late fade-out is spent inside the still stretch (FADE_IN_END
-   * and FADE_OUT_START in the script).
+   * travel and the late fade-out is spent inside the still stretch (`inEnd` and
+   * FADE_OUT_START in the script).
    */
   /* 65svh, not 100: a step's height is the scroll distance one caption costs,
      and at a full viewport a gentle phone swipe often failed to cross a whole
@@ -459,6 +497,25 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+  }
+  /* A step whose sentence was dropped for want of the controls it describes
+     (`enhancedOnly` in types.ts) keeps its box so the indices and pin spacing
+     hold, but must not spend a screenful of the no-JS reading saying nothing —
+     there it collapses to nothing at all. Scoped to :not(.js), so the moment the
+     enhancement arrives and the sentence with it, the step is a step again. */
+  .scrolly:not(.js) .step.jsonly {
+    min-height: 0;
+  }
+  /* `dismissCaption()` lands focus on the step's own <li> so the reader stays
+     where they are when the button they clicked disappears. That <li> is a
+     `tabindex="-1"` programmatic target rather than anything the tab order ever
+     reaches, and it is a whole step tall — so the ring the browser draws on it
+     is a rectangle around most of the screen, which reads as a rendering fault
+     rather than as focus. Suppressed here and nowhere else: every control in
+     this component that a keyboard can actually reach (the dismiss chip, the
+     sort headers) keeps its own visible :focus-visible style. */
+  .step:focus-visible {
+    outline: none;
   }
   /* absolute, so `justify-content: flex-end` does not sweep it down to the
      bottom with the sentence */
@@ -580,6 +637,25 @@
     color: var(--asphalt, #7d4a9e);
     font-variant-numeric: tabular-nums;
   }
+  /* A control quoted inside a sentence, drawn the way the control itself is
+     drawn: the same 1.3rem square in the same 1.5px ink rule as .dismiss's chip
+     above, so a reader told about the × matches it to the one in the corner by
+     sight instead of hunting the screen for it. It is a picture of a button, not
+     a button — the sentence that uses it gives it a role and a label of its own,
+     since a bare × announces as nothing useful. inline-grid keeps the square
+     square inside a line of running text; the vertical-align sinks it so its
+     middle sits on the type's, not its foot on the baseline. */
+  .step > p :global(.chip) {
+    display: inline-grid;
+    place-items: center;
+    width: 1.3rem;
+    height: 1.3rem;
+    vertical-align: -0.28em;
+    border: 1.5px solid var(--ink, #020202);
+    background: rgba(var(--paper, 255, 255, 255), 0.94);
+    font-size: 0.85rem;
+    line-height: 1;
+  }
 
   /*
    * The rail. Sticky across the whole section, clamped by it at both ends, so
@@ -679,10 +755,26 @@
   /*
    * Phones. Both halves have to stay usable here: the sort buttons reachable and
    * the bars visible at the same time. So the frame gets the screen, the rows
-   * shrink to fit it (the clamp above), and the sentence is a two-to-three-line
-   * scrimmed strip allowed to sit over the last few rows rather than fighting
-   * the chart for the middle of the screen. svh, not vh, so a retracting browser
-   * toolbar does not shift the pin under the reader.
+   * shrink to fit it (the clamp above), and the sentence is a three-line
+   * scrimmed strip laid across it.
+   *
+   * That strip now sits over the middle of the list rather than over its last
+   * few rows, and on a phone that is the change that has to be argued for: the
+   * chart has the whole screen, the scrim is all but opaque, and so five of the
+   * thirty-nine rows are simply gone for as long as a sentence is up (nine under
+   * the longest one). The middle is still the cheapest five to lose. These
+   * sentences name the ends of a sorted list — the three greenest, the eight
+   * worst, the extremes of a range — and both ends stay clear, which the old
+   * foot-of-the-screen pin could not say, because it sat on the bottom ranks.
+   *
+   * --cap-half is left at the desktop value on purpose, even though the sentence
+   * runs to three lines here where it runs to two there. The smaller type gives
+   * back what the extra line costs — an ordinary caption measures within a few
+   * pixels of its desktop self at 390px — so the nominal half holds at both
+   * widths and this query does not need one of its own.
+   *
+   * svh, not vh, so a retracting browser toolbar does not shift the pin under
+   * the reader.
    */
   @media (max-width: 700px) {
     .scrolly {

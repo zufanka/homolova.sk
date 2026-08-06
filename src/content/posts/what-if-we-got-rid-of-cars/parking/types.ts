@@ -44,6 +44,17 @@ export interface ScrollyStep {
 	 */
 	html: string;
 	highlight?: (c: CityRow) => boolean;
+	/**
+	 * Marks a step whose sentence is about the enhancement rather than about the
+	 * data — where the sort control is, what the dismiss button does. Such a
+	 * sentence has nothing true to say in the prerendered document, where the
+	 * headers do not sort and the dismiss button is never rendered at all, so the
+	 * scrolly drops it there rather than tell a reader without JS to click
+	 * something that will not answer. Only the sentence goes: the step's `<li>`
+	 * and its marker stay in both documents, so `steps.length`, the marker
+	 * indices and the spacing between pin lines never depend on this flag.
+	 */
+	enhancedOnly?: boolean;
 }
 
 export interface UhiMeta {

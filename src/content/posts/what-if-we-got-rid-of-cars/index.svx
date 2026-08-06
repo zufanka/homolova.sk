@@ -25,10 +25,10 @@ tags:
   import ScrollyRanking from './parking/ScrollyRanking.svelte';
   import MapPanel from './parking/MapPanel.svelte';
   import TreesAreCool from './parking/TreesAreCool.svelte';
+  import BeforeAfter from './parking/BeforeAfter.svelte';
   // Vite resolves and fingerprints the file; the same illustration is the
   // post's featuredImage, where posts.ts resolves it the same way.
   import heroImage from './media/parking-to-park.jpg?url';
-  import aerialImage from './media/parking-to-park-areal.jpg?url';
   // This post's display face, loaded only with this post — the rest of the site
   // keeps Bowlby One. @font-face blocks carry unicode-range per subset, so the
   // browser fetches the latin file only. To make it the site's face instead,
@@ -43,6 +43,24 @@ tags:
    * elsewhere in the piece, so no highlight rests on colour alone.
    */
   const nowSteps: ScrollyStep[] = [
+    {
+      // Opens the ranking, so this pair is also its starting sort — the same one
+      // the sentence below claims, so the list is already the way the first
+      // number wants it before anyone reads about it.
+      sortKey: 'green',
+      sortDir: 'desc',
+      // The only step that is about the thing rather than about the cities: both
+      // ways in are otherwise found by accident. `enhancedOnly` drops it from the
+      // no-JS document, where neither of the two controls it names is there to
+      // use. The × is quoted as a picture of the button — role and label supplied
+      // because a bare multiplication sign announces as nothing worth hearing.
+      enhancedOnly: true,
+      html:
+        'I let the scroll do the sorting here. <b>Click a column header</b> to sort it ' +
+        'yourself, or the ' +
+        '<span class="chip" role="img" aria-label="hide-this-text button">×</span> ' +
+        'to clear this text off the bars.'
+    },
     {
       sortKey: 'green',
       sortDir: 'desc',
@@ -119,6 +137,18 @@ tags:
       degrees that day, but the heat was oppressing. In the evening even with all
       windows open, the heat would not leave the flat. I did not sleep that night.
     </p>
+
+    <!-- The view out of that flat's window, so the sleepless night above has a
+         place the reader can actually stand in. It is also the only pair in the
+         piece that is not a landmark or an aerial: an ordinary estate car park,
+         which is the kind of ground the whole essay is really about. -->
+    <BeforeAfter pair="grandma">
+      {#snippet caption()}
+        The car park below my grandmother's window, Petržalka, Bratislava.<br />
+        My grandma, © All rights reserved, reimagined by Gemini Nano Banana 2
+      {/snippet}
+    </BeforeAfter>
+
     <p>
      I have come across multiple articles about how Europe should embrace air conditioning,
      but to me that seems to be symptom relief rather than grabbing the problem by the roots.
@@ -170,17 +200,13 @@ tags:
       of that car infrastructure?
     </p>
 
-    <figure class="aerial">
-      <img
-        src={aerialImage}
-        alt="Two aerial sketches of the same few blocks. On the left, wide roads and
-             rows of surface parking between the buildings; on the right, the same
-             streets and lots drawn over with trees, lawns and paths, the river
-             edged in green."
-        loading="lazy"
-        decoding="async"
-      />
-    </figure>
+    <BeforeAfter pair="belvedere">
+      {#snippet caption()}
+        The Belvedere Courtyard, Vatican City.<br />
+        Diego Delso, <a href="https://delso.photo/">delso.photo</a>, License CC BY-SA,
+        reimagined by Gemini Nano Banana 2
+      {/snippet}
+    </BeforeAfter>
 
     <p>
       Turns out, good things happen. Pontevedra, in western Spain,
@@ -256,6 +282,21 @@ tags:
       So let's run an experiment. What would happen if we replaced the surface
       parking and 60% of the small streets in a city with green?
     </p>
+
+    <!-- The experiment the paragraph above has just described, done once, to
+         one place, before the ranking below does it to thirty-nine capitals at
+         once. This is the only pair in the piece that is pure surface parking —
+         no courtyard, no buildings, just the hectares themselves — so it is the
+         one that shows what "replace the surface parking" actually means on the
+         ground. It sits here rather than beside the Belvedere so the two
+         comparisons don't stack in the same section. -->
+    <BeforeAfter pair="grossgerau">
+      {#snippet caption()}
+        A car park on the edge of Gross-Gerau, Hesse, Germany.<br />
+        <a href="https://commons.wikimedia.org/wiki/User:MB-one">Matti Blume</a>, CC BY-SA,
+        reimagined by Qwen3.8
+      {/snippet}
+    </BeforeAfter>
   </section>
 
   <ScrollyRanking
@@ -489,31 +530,6 @@ tags:
      the prose inside it keeps the reading measure via .body-copy instead. The
      two scrolly rankings and the map panel that follow set their own widths. */
   .board-head { margin-bottom: 1rem; }
-  /* The before/after aerial, answering the question the paragraph above it asks.
-     Same treatment as the hero: no frame, no caption, the drawing just fades
-     in and out of the page. Here it is a mask rather than a scrim, so the
-     <img> keeps its alt text and the fade works whatever sits behind it. Held
-     to the reading measure so it reads as part of the argument rather than
-     interrupting it; the drawing is 1200px wide, so that never blows it up past
-     native. */
-  .aerial {
-    margin: clamp(1rem, 4vw, 3rem) auto clamp(2rem, 6vw, 4rem);
-    max-width: var(--measure);
-  }
-  .aerial img {
-    display: block;
-    width: 100%;
-    height: auto;
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      transparent 0,
-      #000 14%,
-      #000 86%,
-      transparent 100%
-    );
-    mask-image: linear-gradient(to bottom, transparent 0, #000 14%, #000 86%, transparent 100%);
-  }
-
   /* the Prague figure draws at 46rem internally, so the block is centred at
      that width rather than at the container's */
   .squares { margin: 1.6rem auto; max-width: 46rem; }

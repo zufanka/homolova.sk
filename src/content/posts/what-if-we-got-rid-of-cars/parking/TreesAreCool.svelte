@@ -46,8 +46,10 @@
     </div>
   </div>
   <figcaption>
-Illustrative values for clear-sky midday summer conditions at mid-latitudes<br>
-The asphalt "reflected and radiated" figure is mostly radiated heat, not reflected light.<br>
+Illustrative values for clear-sky midday summer conditions at mid-latitudes.
+The asphalt "reflected and radiated" figure is mostly radiated heat, not reflected light. 
+"Heating the air" = direct conduction/convection from the surface.
+"Reflected and radiated away" = infrared light leaving the surface, absorbed or lost separately from that airflow.
 See detailed methodology below.
   </figcaption>
 </figure>
