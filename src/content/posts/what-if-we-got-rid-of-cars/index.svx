@@ -6,6 +6,11 @@ summary: "I measured every road, parking lot and park in 39 capitals"
 newsletterMode: "teaser"
 newsletterImage: "/posts/what-if-we-got-rid-of-cars/parking-to-park-areal.jpg"
 featuredImage: "parking-to-park.jpg"
+# The social card shows the header illustration, not the newsletter's aerial:
+# the aerial is a wide two-panel drawing that a 1.91:1 card crops into
+# illegibility, while the hero reads at card size.
+ogImage: "parking-to-park.jpg"
+ogDescription: "Turning parking lots into parks with OpenStreetMap and a bit of imagination."
 newsletterTeaser: "It might actually be nice."
 draft: true
 fullBleed: true
@@ -150,9 +155,11 @@ tags:
     </BeforeAfter>
 
     <p>
-     I have come across multiple articles about how Europe should embrace air conditioning,
-     but to me that seems to be symptom relief rather than grabbing the problem by the roots.
-    The real issue being in how we design our cities, the materials we build with, and how we choose to allocate urban space.
+    While air conditioning (compared to the rest of the world still <a href="https://archive.is/RzOLc" target="_blank">relatively uncommon in Europe</a>) might provide momentary relief,
+    it seems more like treating the symptoms rather than grabbing the problem by the roots.
+    The real issue is how we design our cities, the materials we build with, and how we choose to allocate urban space.
+  </p>
+  <p>
     In this essay, I explore what might happen if we replaced car infrastructure with trees.
     </p>
   </section>

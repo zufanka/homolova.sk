@@ -14,6 +14,18 @@ export interface PostFrontmatter {
   tags?: PostTag[];
   /** Filename of the featured image, resolved against the post's media/ folder. */
   featuredImage?: string;
+  /** The image social platforms show when the post is shared. Resolved the same
+   *  way `featuredImage` is: a bare filename comes from the post's media/
+   *  folder, a `/`-rooted path is taken as-is from static/. Set this when the
+   *  social card wants a different picture from the newsletter's — without it
+   *  the two are forced to share `newsletterImage`, which is a screenshot
+   *  chosen to survive an email client rather than to read at card size. */
+  ogImage?: string;
+  /** The sentence social platforms show under the title. Falls back to
+   *  `summary`. Kept separate because `summary` also feeds the homepage cards
+   *  and the RSS feed that beehiiv builds newsletter drafts from, so rewording
+   *  the social card should not quietly reword the newsletter. */
+  ogDescription?: string;
   /** Hero-block background colour. Any CSS colour. Falls back to site default. */
   accent?: string;
   /** If true, post renders full-bleed without the narrow prose container. */
@@ -96,10 +108,17 @@ export function mediaUrl(slug: string, filename: string): string {
   return url;
 }
 
-function resolveFeaturedImage(slug: string, filename?: string): string | undefined {
+/** A frontmatter image reference to a URL: a bare filename resolves against the
+ *  post's media/ folder, anything already rooted or absolute is left alone.
+ *  Shared by `featuredImage` and `ogImage`, which accept the same two forms. */
+export function resolvePostImage(slug: string, filename?: string): string | undefined {
   if (!filename) return undefined;
   if (filename.startsWith('/') || filename.startsWith('http')) return filename;
   return mediaUrl(slug, filename);
+}
+
+function resolveFeaturedImage(slug: string, filename?: string): string | undefined {
+  return resolvePostImage(slug, filename);
 }
 
 const all: { meta: PostFrontmatter; mod: PostModule; featuredImageUrl?: string }[] = Object.entries(
