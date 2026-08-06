@@ -45,9 +45,9 @@
   import grandmaAfterSmall from '../media/grandma-after-800.webp?url';
   import grandmaAfterLarge from '../media/grandma-after-1280.webp?url';
   import grossgerauBeforeSmall from '../media/grossgerau-before-800.webp?url';
-  import grossgerauBeforeLarge from '../media/grossgerau-before-1080.webp?url';
+  import grossgerauBeforeLarge from '../media/grossgerau-before-1280.webp?url';
   import grossgerauAfterSmall from '../media/grossgerau-after-800.webp?url';
-  import grossgerauAfterLarge from '../media/grossgerau-after-1080.webp?url';
+  import grossgerauAfterLarge from '../media/grossgerau-after-1280.webp?url';
 
   type Pair = {
     beforeSmall: string;
@@ -108,18 +108,21 @@
       beforeLarge: grossgerauBeforeLarge,
       afterSmall: grossgerauAfterSmall,
       afterLarge: grossgerauAfterLarge,
-      w: 1080,
-      h: 516,
+      w: 1280,
+      h: 802,
       beforeAlt:
         'An aerial view of a car park on the edge of Gross-Gerau: several ' +
         'hectares of asphalt ruled into rows and packed end to end with new ' +
-        'cars, a long white multi-storey deck along one side, ploughed fields ' +
-        'to the left and a multi-track railway line running across the bottom.',
+        'cars, a long white multi-storey deck at the lower left, ploughed and ' +
+        'green fields to the left, the town — houses, two tower blocks and red ' +
+        'tennis courts — along the top, an industrial estate down the right ' +
+        'side and a multi-track railway line running across the bottom.',
       afterAlt:
         'The same ground from the same height, reimagined as a public park: ' +
-        'lawns and curving gravel paths, beds of yellow and red flowers, a pond, ' +
-        'picnic tables, benches and a playground with a slide and swings — the ' +
-        'same fields and the same railway line still framing it.'
+        'two ponds, lawns and curving gravel paths, beds of yellow, red and ' +
+        'white flowers, benches and a playground with slides — the same town, ' +
+        'the same fields, the same industrial estate, the same white multi-storey ' +
+        'deck and the same railway line still framing it.'
     }
   } satisfies Record<string, Pair>;
 
@@ -177,9 +180,20 @@
 
     <!-- Which half is which, in words. The two states differ by colour
          (asphalt grey against green) far too obviously to rely on it, and a
-         reader who cannot tell them apart by hue gets the same labels. -->
-    <span class="tag left">Photograph</span>
-    <span class="tag right">Reimagined</span>
+         reader who cannot tell them apart by hue gets the same labels.
+
+         Each label rides in a frame-sized clip carrying the *same* inset() as
+         the image it belongs to, so a label is cut by the seam at the instant
+         the picture beneath it is, and is gone entirely once its half is. No
+         threshold, no second copy of --pos: a label cannot disagree with the
+         image it names because it is clipped by the same number.
+
+         aria-hidden on both: each image's alt text already names what it shows
+         on its own, so announcing these would repeat it — and a clipped element
+         stays in the accessibility tree, which would leave a screen reader
+         reading out a label that is no longer on screen. -->
+    <div class="tags photo" aria-hidden="true"><span class="tag">Car park</span></div>
+    <div class="tags green" aria-hidden="true"><span class="tag">Park park</span></div>
 
     {#if interactive}
       <!-- The wording matches the two tags above rather than describing the
@@ -193,8 +207,8 @@
         max="100"
         step="1"
         bind:value={pos}
-        aria-label="Wipe between the photograph and the reimagined version"
-        aria-valuetext="{pos}% photograph, {100 - pos}% reimagined"
+        aria-label="Wipe between “Car park” and “Park park”"
+        aria-valuetext="{pos}% car park, {100 - pos}% park park"
       />
     {/if}
 
@@ -255,10 +269,26 @@
     clip-path: inset(0 calc(100% - var(--pos)) 0 0);
   }
 
+  /* The label's clip. Frame-sized on purpose: inset() resolves its percentages
+     against this box, so `100% - --pos` here means the same thing it means on
+     .clipped. Clipping the <span> itself instead would measure the percentages
+     against the chip's own width and the two would drift apart. */
+  .tags {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .tags.photo {
+    clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+  }
+  .tags.green {
+    clip-path: inset(0 0 0 var(--pos));
+  }
+
   .tag {
     position: absolute;
     top: 0;
-    z-index: 3;
     padding: 0.2rem 0.45rem;
     background: var(--ink);
     color: var(--bg, #fff);
@@ -269,12 +299,11 @@
     text-transform: uppercase;
     /* white on ink, so a label holds up over whichever half ends up under it
        once the seam has passed beneath it */
-    pointer-events: none;
   }
-  .tag.left {
+  .tags.photo .tag {
     left: 0;
   }
-  .tag.right {
+  .tags.green .tag {
     right: 0;
   }
 

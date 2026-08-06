@@ -56,10 +56,10 @@ tags:
       // because a bare multiplication sign announces as nothing worth hearing.
       enhancedOnly: true,
       html:
-        'I let the scroll do the sorting here. <b>Click a column header</b> to sort it ' +
+        'As you scroll, the sorting will change. Click any column header to sort it ' +
         'yourself, or the ' +
         '<span class="chip" role="img" aria-label="hide-this-text button">×</span> ' +
-        'to clear this text off the bars.'
+        'to remove this popup.'
     },
     {
       sortKey: 'green',
@@ -144,7 +144,7 @@ tags:
          which is the kind of ground the whole essay is really about. -->
     <BeforeAfter pair="grandma">
       {#snippet caption()}
-        The car park below my grandmother's window, Petržalka, Bratislava.<br />
+        Parking lot in Petržalka, Bratislava.<br />
         My grandma, © All rights reserved, reimagined by Gemini Nano Banana 2
       {/snippet}
     </BeforeAfter>
@@ -181,7 +181,7 @@ tags:
   </section>
 
   <section class="why">
-    <h2>It's not that crazy</h2>
+    <h2>It's not crazy</h2>
     <p>
       <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(22)02585-5/fulltext">Raising
       tree coverage</a> could prevent deaths. Yet Europe is short of the green
@@ -195,7 +195,7 @@ tags:
     </p>
     <p>
       While ground in cities is scarce and valuable, there is one type of
-      infrastructure we do allocate a lot of space to: cars.
+      infrastructure we do allocate a lot of space to: <b>cars</b>.
       So what if we removed some
       of that car infrastructure?
     </p>
@@ -263,11 +263,10 @@ tags:
       <SquaresFigure />
     </div>
     <p class="body-copy">
-      To find a typical (median) value for each city, I ordered all its squares on the amount of green.
-      Then I let the script go up the ordered squares and count the population until it reached half of the city population.
-      That square became the typical square as half of the population lives in squares with less and half with more green.
-      So instead of giving every square the same importance, I gave more weight to squares where more people live.
-      This way, a big forest on the edge of the city doesn't matter as much as a small park that many people can walk to.
+    To find a typical value for each city, I used the <em>population-weighted median</em>.
+    Instead of treating every square equally, I gave more weight to places where more people live.
+    I sorted all squares by the amount of green space or car infrastructure and found the point where half of the city's population lives in squares with less, and half in squares with more.
+    This gives a better picture of what the typical resident experiences. A large forest on the edge of the city counts less than a small park that thousands of people can walk to.
     </p>
   </section>
 
@@ -278,18 +277,13 @@ tags:
   />
 
   <section class="why">
+  <h2>The experiment 🧪</h2>
     <p>
-      So let's run an experiment. What would happen if we replaced the surface
-      parking and 60% of the small streets in a city with green?
+      Now, what if we replaced all surface parking with green space? And what if we went a step further?
+      Let's also convert 60% of residential streets that aren't major traffic arteries, similar to what Barcelona is doing.
+      The picture changes a lot.
     </p>
 
-    <!-- The experiment the paragraph above has just described, done once, to
-         one place, before the ranking below does it to thirty-nine capitals at
-         once. This is the only pair in the piece that is pure surface parking —
-         no courtyard, no buildings, just the hectares themselves — so it is the
-         one that shows what "replace the surface parking" actually means on the
-         ground. It sits here rather than beside the Belvedere so the two
-         comparisons don't stack in the same section. -->
     <BeforeAfter pair="grossgerau">
       {#snippet caption()}
         A car park on the edge of Gross-Gerau, Hesse, Germany.<br />
@@ -309,9 +303,12 @@ tags:
 
   <section class="why closing">
     <p>
-      I am just a data analyst with a curious mind, not an urban planner. But from the numerous examples of cities that have
-      pushed out the cars infrastructure in favor of trees, it is pretty obvious to me that we can do something about the suffering that heatwaves bring to our cities if we rethink what a city should look like,
-      and who and what it should serve. While might need to embrace the air conditioning a bit more, but I believe we have to look also at how we build our cities and for whom: comfortable for the few or livable for everybody.
+      Before there are plans, there are ideas and this is an exercise in imagination. And I am reluctant to say 'just' because imagining something is a first step to change.
+      As <a href="https://ourworldindata.org/urbanization" target="_blank">more and more of us live in cities</a> and as the climate keeps getting hotter, we need to imagine some serious change.</p>
+    <p>
+      Many examples of cities that have replaced the cars with trees show us that we can do something about the suffering that heatwaves bring to our cities.
+      First we need to imagine what a city should look like, and especially who and what it should serve. <a href="https://www.geographyrealm.com/gray-green-urban-divide-wealth-poverty-visible-space/" target="_blank">Trees are political</a>.
+      While embracing the air conditioning can be a part of it all, we should first ask how we build our cities and for whom: comfortable for the few, or pleasant to live in for everyone?
     </p>
   </section>
 
@@ -322,14 +319,10 @@ tags:
     <h3>Green and car infrastructure</h3>
     <p>
       Urban green = OpenStreetMap polygons of parks, gardens, recreation grounds, commons, village greens, dog parks and
-      cemeteries, the same public recreational categories the EU's <a href="https://land.copernicus.eu/en/products/urban-atlas">Urban
-      Atlas</a> calls "green urban areas", and the same OSM tags used to monitor
-      <a href="https://www.mdpi.com/2073-445X/13/12/2174">UN SDG 11.7.1</a>,
-      plus nature reserves, and forest and wood together. Dissolved so overlaps
+      cemeteries, nature reserves, forest and woodlands. Dissolved so overlaps
       count once, open water subtracted, and nothing under 0.5&nbsp;ha (the size
       at which the
-      <a href="https://www.who.int/europe/publications/i/item/WHO-EURO-2016-3352-43111-60341">WHO's
-      evidence review</a> starts counting a green space at all). The categories
+      <a href="https://www.who.int/europe/publications/i/item/WHO-EURO-2016-3352-43111-60341">WHO's</a> starts counting a green space at all). The categories
       verge grass, meadow, grassland, heath, scrub and gated allotments are left
       out of the calculation.
     </p>
@@ -350,7 +343,7 @@ tags:
       population-weighted, squares sorted by value until cumulative population
       crosses half. "No green" is the share of a core's residents standing in a
       square with no green in it at all. The converted state re-runs all three
-      with every surface parking lot and 60% of the calm-street area moved from
+      with every surface parking lot and 60% of the interior street area moved from
       car to green.
     </p>
     <p>
@@ -364,8 +357,8 @@ tags:
     </p>
     <h3>Energy transformation of trees and asphalt</h3>
     <p>
-      Figures are illustrative, not measurements, calculated with Claude and cross checked with the sources below.
-      Both columns are an instantaneous midday snapshot. Incoming shortwave radiation of 850 W/m² represents clear-sky midday conditions in mid-latitude summer.
+      Figures are illustrative, not measurements, calculated with Claude and verified over multiple iterations.
+      Incoming shortwave radiation of 850 W/m² represents clear-sky midday conditions in mid-latitude summer.
       Albedo values (asphalt 0.12, park 0.18, a half grass half canopy mix)
       and surface emissivities follow standard published ranges (Oke 1987; <a href="https://www.cambridge.org/core/books/abs/urban-climates/urban-climates/0690FCE57A4E8E234524C2EE1A20C2BE">Oke, Mills, Christen & Voogt 2017</a>).
       Longwave losses are calculated from assumed surface temperatures of approximately 53 °C for asphalt and 30 °C for the park canopy.
