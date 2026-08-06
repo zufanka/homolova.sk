@@ -277,7 +277,7 @@ tags:
   />
 
   <section class="why">
-  <h2>The experiment 🧪</h2>
+  <h2>Let's experiment 🧪</h2>
     <p>
       Now, what if we replaced all surface parking with green space? And what if we went a step further?
       Let's also convert 60% of residential streets that aren't major traffic arteries, similar to what Barcelona is doing.
@@ -303,11 +303,13 @@ tags:
 
   <section class="why closing">
     <p>
-      Before there are plans, there are ideas and this is an exercise in imagination. And I am reluctant to say 'just' because imagining something is a first step to change.
-      As <a href="https://ourworldindata.org/urbanization" target="_blank">more and more of us live in cities</a> and as the climate keeps getting hotter, we need to imagine some serious change.</p>
+      Before there are plans, there are ideas. This is an exercise in imagination. I am reluctant to say 'just' because imagining something is a first step to change.
+      As <a href="https://ourworldindata.org/urbanization" target="_blank">more and more of us live in cities</a> and as the climate keeps getting hotter, we do need to imagine some serious change.</p>
     <p>
       Many examples of cities that have replaced the cars with trees show us that we can do something about the suffering that heatwaves bring to our cities.
       First we need to imagine what a city should look like, and especially who and what it should serve. <a href="https://www.geographyrealm.com/gray-green-urban-divide-wealth-poverty-visible-space/" target="_blank">Trees are political</a>.
+    </p>
+    <p>  
       While embracing the air conditioning can be a part of it all, we should first ask how we build our cities and for whom: comfortable for the few, or pleasant to live in for everyone?
     </p>
   </section>
