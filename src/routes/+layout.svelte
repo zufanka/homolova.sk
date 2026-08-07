@@ -6,6 +6,7 @@
     SITE_URL,
     SITE_TITLE,
     SITE_DESCRIPTION,
+    SITE_AUTHOR,
     DEFAULT_OG_IMAGE,
     absoluteUrl
   } from '$lib/site';
@@ -38,7 +39,7 @@
       url: SITE_URL,
       author: {
         '@type': 'Person',
-        name: 'Ada Homolova',
+        name: SITE_AUTHOR,
         url: `${SITE_URL}/hello`
       }
     })
@@ -93,6 +94,14 @@
   <meta property="og:url" content={canonical} />
   <meta property="og:image" content={ogImage} />
   <meta property="og:site_name" content={SITE_TITLE} />
+  <!-- The JSON-LD below already names the author, but link scrapers (LinkedIn's
+       post inspector among them) read these two flat tags and report "no author
+       found" without them. `article:author` is only meaningful on an article, so
+       it is emitted with the type that claims to be one. -->
+  <meta name="author" content={SITE_AUTHOR} />
+  {#if ogType === 'article'}
+    <meta property="article:author" content={SITE_AUTHOR} />
+  {/if}
   <meta name="twitter:card" content="summary_large_image" />
   {@html `<script type="application/ld+json">${websiteJsonLd}</script>`}
   <script

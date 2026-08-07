@@ -134,12 +134,15 @@ See detailed methodology below.
     background: #5aa8d8;
     color: var(--ink);
   }
-  /* the same purple the maps and the ranking give car infrastructure — heating
-     the air is what the asphalt does, so it wears the asphalt's colour. Ink on
-     it only reaches 3.3:1, so these labels flip to white. */
+  /* Was the same purple the maps and the ranking give car infrastructure, but
+     that hue is spoken for elsewhere in this piece — heating the air isn't
+     unique to asphalt (the park column does it too), so borrowing "car" here
+     was misleading. Orange reads as heat instead, and it's already the
+     piece's accent colour rather than a new one. White on it is only 2.4:1,
+     so these labels flip to ink (8.7:1) to stay readable. */
   .ebseg.air {
-    background: var(--asphalt, #7d4a9e);
-    color: #fff;
+    background: var(--orange, #ff8a1f);
+    color: var(--ink, #020202);
   }
   .ebseg.ground {
     background: var(--ink);

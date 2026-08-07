@@ -32,7 +32,7 @@ export interface ParkMapOptions {
 	/** Loading / error message for the box over the canvas; null clears it. */
 	onOverlay?: (msg: string | null) => void;
 	/** The selected city's heat-island metadata, or null when it has none.
-	 *  Fires on every city load — drives the Heat button and the legend. */
+	 *  Fires on every city load — drives the Heat island button and the legend. */
 	onUhi?: (info: UhiInfo | null) => void;
 	/** True while the view is zoomed in; drives the Reset button. */
 	onZoom?: (zoomed: boolean) => void;
@@ -225,6 +225,8 @@ export class ParkMap {
 		if (this.#destroyed) return;
 		this.#destroyed = true;
 		this.#unbindListeners();
+		this.#ptrs.clear();
+		this.#pinch = null;
 		this.#cancelPrefetch();
 		if (this.#settleTimer) clearTimeout(this.#settleTimer);
 		if (this.#resizeTimer) clearTimeout(this.#resizeTimer);
@@ -585,25 +587,71 @@ export class ParkMap {
 	// gestures
 	// =========================================================================
 
+	/**
+	 * Touch model, and why it is a pointer *count* rather than a pointer type.
+	 *
+	 * The map sits in the flow of a scrolling article and is more than half a
+	 * phone screen tall, so one finger on it has to keep belonging to the page —
+	 * the same rule the ranking learned the hard way (see the comment over
+	 * `.viz` in `ScrollyRanking.svelte`: a pinned frame that ate a finger left
+	 * readers stuck with nothing to say why). So:
+	 *
+	 *   - one finger  → the page. Tracked so we know when a second arrives, but
+	 *     never panned, never captured, never `preventDefault`ed. A swipe that
+	 *     starts on the map scrolls the article exactly as if the map were a
+	 *     picture.
+	 *   - two fingers → the map. Pinch to zoom, drag to pan, `preventDefault`ed
+	 *     so the browser neither scrolls the page nor page-zooms underneath us.
+	 *
+	 * Deliberately *not* "one finger pans once you are zoomed in": zooming in is
+	 * too weak an opt-in to justify a full-bleed element that swallows scrolls,
+	 * and there is no way to tell a pan from a scroll-past at the first move
+	 * without a hold delay. Two-finger drag pans instead, which is what an
+	 * embedded map does everywhere else.
+	 *
+	 * The other half of this lives in `CityMap.svelte`: `touch-action: pan-y` on
+	 * `.mapview` lets the vertical page scroll through untouched while denying
+	 * the browser both horizontal panning and pinch-zoom, so a two-finger
+	 * gesture is delivered to us instead of being consumed on the compositor.
+	 * It is static — no state where it becomes `none`, because that is exactly
+	 * the state that traps a reader.
+	 */
+
 	#twoPtrs(): Array<{ x: number; y: number }> {
 		return Array.from(this.#ptrs.values()).slice(0, 2);
 	}
 
+	/** (Re)base the pinch on whichever two pointers are down now. Called on
+	 *  every add and every removal so changing the pair cannot jump the view. */
+	#seedPinch(): void {
+		if (this.#ptrs.size < 2) {
+			this.#pinch = null;
+			return;
+		}
+		const [a, b] = this.#twoPtrs();
+		this.#pinch = {
+			d: Math.max(12, Math.hypot(a.x - b.x, a.y - b.y)),
+			mx: (a.x + b.x) / 2,
+			my: (a.y + b.y) / 2
+		};
+	}
+
 	#onPointerDown = (e: PointerEvent): void => {
-		// The map sits in the flow of a scrolling article, so a finger on it has
-		// to belong to the page: touch pans and pinches are not ours to take.
-		if (e.pointerType === 'touch') return;
 		if (e.pointerType === 'mouse' && e.button !== 0) return;
 		this.#boxRect = this.#canvas.getBoundingClientRect();
 		this.#ptrs.set(e.pointerId, { x: e.clientX, y: e.clientY });
-		if (this.#ptrs.size === 2) {
-			const [a, b] = this.#twoPtrs();
-			this.#pinch = {
-				d: Math.hypot(a.x - b.x, a.y - b.y),
-				mx: (a.x + b.x) / 2,
-				my: (a.y + b.y) / 2
-			};
+		this.#seedPinch();
+
+		if (e.pointerType === 'touch') {
+			// Nothing to claim: touch pointers are implicitly captured to their
+			// down target by the browser, so moves keep arriving without us
+			// taking capture — and taking it here is what breaks the *second*
+			// finger's route to this handler. No `preventDefault` either: it
+			// would suppress the compatibility mouse events, and double-tap
+			// zoom is a synthesised `dblclick`.
+			return;
 		}
+
 		try {
 			this.#surface.setPointerCapture(e.pointerId);
 		} catch {
@@ -631,18 +679,47 @@ export class ParkMap {
 			this.#pinch.d = d;
 			this.#pinch.mx = mx;
 			this.#pinch.my = my;
-		} else if (this.#ptrs.size === 1) {
+			if (e.cancelable) e.preventDefault();
+		} else if (this.#ptrs.size === 1 && e.pointerType !== 'touch') {
 			this.#panBy(dx, dy);
 		}
+		// One touch pointer falls through on purpose: that gesture is the page's.
 	};
 
 	#onPointerEnd = (e: PointerEvent): void => {
 		if (!this.#ptrs.has(e.pointerId)) return;
 		this.#ptrs.delete(e.pointerId);
-		if (this.#ptrs.size < 2) this.#pinch = null;
+		try {
+			if (this.#surface.hasPointerCapture(e.pointerId)) {
+				this.#surface.releasePointerCapture(e.pointerId);
+			}
+		} catch {
+			/* pointer already gone */
+		}
+		// Rebase rather than drop: lifting one of three fingers leaves a pinch.
+		this.#seedPinch();
 		if (this.#ptrs.size !== 0) return;
 		this.#updateChrome();
 		this.#settle();
+	};
+
+	/** `lostpointercapture` is the backstop for a capture torn away mid-drag
+	 *  (a browser gesture taking over, the element being re-laid-out). Ordinary
+	 *  releases land here too, after `pointerup` has already cleaned up — the
+	 *  `has` guard in `#onPointerEnd` makes those a no-op. */
+	#onLostCapture = (e: PointerEvent): void => {
+		this.#onPointerEnd(e);
+	};
+
+	/**
+	 * `touch-action: pan-y` stops the browser pinch-zooming, but a two-finger
+	 * drag still reads as a vertical scroll to it, and iOS runs its page zoom
+	 * outside `touch-action` altogether. Cancelling the touch move while our
+	 * pinch is live is what actually settles both. Pointer events fire first, so
+	 * `#pinch` is already current by the time this runs.
+	 */
+	#onTouchMove = (e: TouchEvent): void => {
+		if (this.#pinch && e.touches.length >= 2 && e.cancelable) e.preventDefault();
 	};
 
 	#onWheel = (e: WheelEvent): void => {
@@ -690,6 +767,8 @@ export class ParkMap {
 		s.addEventListener('pointermove', this.#onPointerMove);
 		s.addEventListener('pointerup', this.#onPointerEnd);
 		s.addEventListener('pointercancel', this.#onPointerEnd);
+		s.addEventListener('lostpointercapture', this.#onLostCapture);
+		s.addEventListener('touchmove', this.#onTouchMove, { passive: false });
 		s.addEventListener('wheel', this.#onWheel, { passive: false });
 		s.addEventListener('dblclick', this.#onDblClick);
 		s.addEventListener('keydown', this.#onKeyDown);
@@ -706,6 +785,8 @@ export class ParkMap {
 		s.removeEventListener('pointermove', this.#onPointerMove);
 		s.removeEventListener('pointerup', this.#onPointerEnd);
 		s.removeEventListener('pointercancel', this.#onPointerEnd);
+		s.removeEventListener('lostpointercapture', this.#onLostCapture);
+		s.removeEventListener('touchmove', this.#onTouchMove);
 		s.removeEventListener('wheel', this.#onWheel);
 		s.removeEventListener('dblclick', this.#onDblClick);
 		s.removeEventListener('keydown', this.#onKeyDown);

@@ -14,7 +14,10 @@
    *
    * Takes no props for its data — it reads `heat` (the toggle) off the view of
    * the instrument it is nested in, plus the `heat` store that `<CityMap />`
-   * fills from the loaded geometry, so it can sit anywhere under the map.
+   * fills from the loaded geometry, so it can sit anywhere under the map. It
+   * renders directly beneath the canvas, and only while the overlay is on: a
+   * scale with nothing to scale describes nothing, and it is now the only place
+   * that says what the overlay means.
    */
   import { useView } from './state.svelte';
   import { heat } from './map/heat.svelte';
@@ -54,10 +57,9 @@
         {/if}
       </span>
       <p class="uhinote">
-        <span class="uhilong"
-          >Summer heat island, °C above the rural surroundings (UrbClim 2008–2017 model, EEA) — one
-          scale for every city, topped at the hottest cell measured in any of them.</span
-        >
+        Summer heat island intensity (°C above surrounding rural areas; UrbClim 2008–2017, EEA). The
+        same colour scale is used for every city, max is the highest temperature recorded in any city
+        (Sarajevo).
       </p>
     {/if}
   </div>
@@ -131,15 +133,19 @@
     left: auto;
     right: 0.3rem;
   }
+  /* Small, muted, inside the column — the same treatment as the converted note
+     it sits above, so the two read as one band of apparatus under the plate.
+     It is kept at every width, including a phone. It used to be dropped below
+     899px to buy the map room, on the argument that the ramp plus this city's
+     peak said enough on their own; they do not. They carry no units, no source
+     and no reason the top of the scale is where it is, and the panel's prose no
+     longer says any of it either — the sentence that used to tell a reader to
+     press HEAT ISLAND is gone now that HEAT ISLAND is a labelled control in
+     the panel's chrome. The key only exists while the overlay is on, so this
+     costs a phone
+     three lines exactly when it is looking at the thing they describe. */
   .uhinote {
     margin: 0.3rem 0 0;
-  }
-
-  @media (max-width: 899px) {
-    /* on small screens the key has to earn its space against the map itself:
-       keep it to one line (ramp + this city's peak) and drop the provenance */
-    .uhilong {
-      display: none;
-    }
+    max-width: var(--measure);
   }
 </style>

@@ -10,7 +10,7 @@ featuredImage: "parking-to-park.jpg"
 # the aerial is a wide two-panel drawing that a 1.91:1 card crops into
 # illegibility, while the hero reads at card size.
 ogImage: "parking-to-park.jpg"
-ogDescription: "Turning parking lots into parks with OpenStreetMap and a bit of imagination."
+ogDescription: "Turning car parks into park parks using OpenStreetMap and a bit of imagination."
 newsletterTeaser: "It might actually be nice."
 draft: true
 fullBleed: true
@@ -136,10 +136,10 @@ tags:
       on releasing it deep into the night, giving no relief.
     </p>
     <p>
-      At the end of this heatwave, I have spent a night in my hometown Bratislava
+      At the end of this heatwave, I spent a night in my hometown Bratislava
       to visit my grandmother. She lives on the fifth floor of an apartment
       building in Petržalka, the concrete jungle I grew up in. It was 'only' 34
-      degrees that day, but the heat was oppressing. In the evening even with all
+      degrees that day, but the heat was oppressive. In the evening even with all
       windows open, the heat would not leave the flat. I did not sleep that night.
     </p>
 
