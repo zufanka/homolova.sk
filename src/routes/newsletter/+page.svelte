@@ -136,7 +136,7 @@
     </button>
 
     {#if result.kind === 'success'}
-      <p class="np__msg np__msg--ok" role="status">Subscribed. Welcome.</p>
+      <p class="np__msg np__msg--ok" role="status">Welcome! Check your email to confirm your subscription.</p>
     {:else if result.kind === 'error'}
       <p class="np__msg np__msg--err" role="status">{result.msg}</p>
     {/if}

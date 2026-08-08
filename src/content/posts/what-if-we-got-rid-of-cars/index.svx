@@ -323,8 +323,24 @@ tags:
 
   <MapPanel rows={cities} />
 
+  <!-- The methodology is reference matter: the readers who want it will open it,
+       and folding it keeps a screen and a half of it from standing between the
+       essay's last line and the subscribe bar. <details> rather than a scripted
+       toggle, so it opens with no JS, prints open, and Ctrl+F on a closed
+       section still finds and reveals its text in current browsers. The source
+       credits fold away with the rest: ODbL and CC BY ask that attribution
+       accompany the work, which a closed <details> on the same page still does,
+       and the licences are named again in the RSS and the post's own metadata. -->
   <section class="method">
-    <h2>How this was measured</h2>
+    <details class="fold">
+      <summary>
+        <h2>How this was measured</h2>
+        <!-- aria-hidden: <details> already tells assistive tech whether the
+             section is expanded, and a second "Show"/"Hide" in the accessible
+             name would only contradict it half the time. This word is for the
+             eye, which has nothing else to go on. -->
+        <span class="foldcue" aria-hidden="true"></span>
+      </summary>
     <h3>Green and car infrastructure</h3>
     <p>
       Urban green = OpenStreetMap polygons of parks, gardens, recreation grounds, commons, village greens, dog parks and
@@ -381,7 +397,6 @@ tags:
       <p>
       If you find a substantial issues with this methodology please get in touch!
     </p>
-
     <p class="credit">
       Geometry © OpenStreetMap contributors, ODbL (incl. ocean polygons via
       osmdata.openstreetmap.de). <br>Population, land &amp; urban centres: EU JRC GHSL
@@ -391,6 +406,7 @@ tags:
       Paris road widths calibrated against Ville de Paris open data (Plan de
       Voirie). <br>Analysis and code by Ada Homolova & Claude Opus 5
     </p>
+    </details>
   </section>
 </article>
 
@@ -621,11 +637,89 @@ tags:
     padding-top: 0.55rem;
   }
   /* the first subhead sits directly under the <h2>, where a rule would read as
-     an underline of the section title rather than a divider inside it */
-  .method h2 + h3 {
+     an underline of the section title rather than a divider inside it. The h2
+     is inside the <summary> now, so the adjacency is summary + h3. */
+  .method summary + h3 {
     border-top: 0;
     margin-top: 1rem;
     padding-top: 0;
+  }
+
+  /* The fold. The <h2> stays the heading it always was and sits inside the
+     <summary>, so the outline and the type scale are untouched; only the marker
+     and the pointer are new. display: block on the summary kills the default
+     list-item box, which otherwise puts the browser's own triangle in front of
+     a block-level h2 and breaks the line. The ::after arrow is ours, turning a
+     quarter-turn when the section opens. */
+  /* A bare chevron beside a heading is not an affordance — it reads as
+     punctuation. So the whole row becomes the control and says what it does in
+     words: the title on the left, a SHOW / HIDE chip on the right, the two held
+     apart by the same 1.5px ink rule the <h3>s below already use to group
+     themselves. That rule is what makes the row read as a band rather than as a
+     line of prose, and the chip is the piece's own recurring shape (the scrolly
+     cue, the state toggle, the map's buttons are all uppercase sans in a 1.5px
+     ink box). Nothing here rests on an icon, and nothing rests on colour. */
+  .method .fold > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+    list-style: none;
+    border-top: 1.5px solid var(--ink);
+    margin-top: 1rem;
+    padding-top: 0.7rem;
+  }
+  .method .fold > summary::-webkit-details-marker {
+    display: none;
+  }
+  /* the heading keeps its own size and face; only its default margin goes, so
+     the flex row can centre it against the chip */
+  .method .fold > summary h2 {
+    margin: 0;
+  }
+  .method .fold > summary .foldcue {
+    flex: none;
+    font-family: var(--sans, system-ui, sans-serif);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    padding: 0.3rem 0.6rem;
+    white-space: nowrap;
+    transition: background-color 140ms ease, color 140ms ease;
+  }
+  .method .fold > summary .foldcue::after {
+    content: 'Show';
+  }
+  .method .fold[open] > summary .foldcue::after {
+    content: 'Hide';
+  }
+  /* the whole row is the target, so hovering anywhere on it lights the chip —
+     the value inversion the toggles elsewhere in the piece use when active */
+  .method .fold > summary:hover .foldcue {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .method .fold > summary:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .method .fold > summary .foldcue {
+      transition: none;
+    }
+  }
+  /* on a phone the title wraps to two lines and a nowrap chip beside it leaves
+     the heading a narrow column, so the chip drops beneath it */
+  @media (max-width: 480px) {
+    .method .fold > summary {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
   }
   .method :global(code) {
     font-size: 0.85em;
