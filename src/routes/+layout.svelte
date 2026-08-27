@@ -143,15 +143,6 @@
   </div>
 </header>
 
-{#if !bare}
-  <nav class="subnav">
-    <div class="subnav__inner">
-      <a href="/hello">about</a>
-      <a href="/rss.xml">rss</a>
-    </div>
-  </nav>
-{/if}
-
 <main class:bare>
   {@render children()}
 </main>
@@ -248,28 +239,6 @@
     align-items: center;
   }
 
-  .subnav {
-    /* mirror main's outer gutter so the nav keeps pace with the content
-       column on narrow viewports */
-    padding: 0 24px;
-  }
-  .subnav__inner {
-    max-width: var(--measure);
-    margin: 0 auto;
-    padding: 0 var(--gutter) 18px;
-    display: flex;
-    gap: 16px;
-    font-size: 14px;
-    color: var(--body-soft);
-  }
-  .subnav__inner a {
-    border-bottom: 2px solid var(--footer-accent, var(--pink));
-    padding-bottom: 1px;
-  }
-  .subnav__inner a:hover {
-    background: var(--footer-accent, var(--pink));
-    color: var(--ink);
-  }
   .nav__mark {
     font-family: var(--display);
     text-transform: uppercase;

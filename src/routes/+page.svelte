@@ -11,17 +11,7 @@
   <title>Hey it's Ada</title>
 </svelte:head>
 
-{#if featured}
-  <section class="hero fadein">
-    <p>
-      I'm a freelance
-      <a class="hero__link hero__link--pink" href="/hello">data journalist</a>
-      and a
-      <a class="hero__link hero__link--green" href="https://datafrosch.fun" target="_blank" rel="noopener">professional frosch</a>.
-    </p>
-  </section>
-
-  <section class="featured fadein">
+{#if featured}  <section class="featured fadein">
     <PostCard post={featured} variant="featured" />
   </section>
 {/if}
@@ -31,8 +21,17 @@
     <PostCard {post} variant="compact" />
     {#if i === 1}
       <aside class="inbox-banner">
-        <span class="inbox-banner__copy">Ada in your inbox</span>
-        <a href="/newsletter" class="inbox-banner__cta">subscribe →</a>
+        <img class="inbox-banner__photo" src="/images/ada-portrait.webp" alt="Portrait of Ada Homolova" />
+        <div class="inbox-banner__body">
+          <p class="inbox-banner__text">
+            Welcome! 👋 I'm a freelance
+            <a class="hero__link hero__link--pink" href="/hello">data journalist</a>
+            and a
+            <a class="hero__link hero__link--green" href="https://datafrosch.fun" target="_blank" rel="noopener">professional frosch</a>.
+            Here I publish essays on what intrigues me about the systems we live in.
+          </p>
+          <a href="/newsletter" class="btn">subscribe →</a>
+        </div>
       </aside>
     {/if}
   {/each}
@@ -46,40 +45,44 @@
   }
   @keyframes fadein { to { opacity: 1; transform: none; } }
 
-  .hero {
-    max-width: var(--measure);
-    margin: 40px auto 56px;
-    padding: 0 var(--gutter);
+  .inbox-banner {
+    border: var(--border);
+    background: var(--pink);
+    display: flex;
+    align-items: stretch;
+    min-height: 240px;
   }
-  .hero p {
-    font-family: var(--slab);
-    font-size: 19px;
-    line-height: 1.5;
+  .inbox-banner__photo {
+    flex: 0 0 33%;
+    width: 33%;
+    object-fit: cover;
+    display: block;
+  }
+  .inbox-banner__body {
+    flex: 1;
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    min-width: 0;
+  }
+  .inbox-banner__text {
     margin: 0;
+    font-family: var(--slab);
+    font-size: clamp(17px, 2vw, 19px);
+    line-height: 1.5;
   }
-  .hero a {
+  .inbox-banner__text a {
     color: var(--ink);
     font-weight: 700;
     text-decoration: underline;
     text-decoration-thickness: 2px;
     text-underline-offset: 3px;
-    padding: 0 0.15em;
-    box-decoration-break: clone;
     transition: background 160ms ease-out;
   }
-  .hero a:hover {
-    background: var(--ink);
-    color: var(--pink);
-    text-decoration: none;
-  }
-  .hero__link {
+  .inbox-banner__text a:hover {
     background: var(--pink);
-  }
-  .hero__link--green {
-    background: var(--mint);
-  }
-  .hero__link--green:hover {
-    color: var(--mint);
   }
 
   .featured {
@@ -88,34 +91,34 @@
     padding: 0 var(--gutter);
   }
 
-  .inbox-banner {
-    margin-top: 8px;
-    padding: 14px 20px;
-    border: var(--border);
-    background: var(--pink);
-    box-shadow: 4px 4px 0 var(--ink);
-    display: flex;
+  .btn {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .inbox-banner__copy {
-    font-family: var(--display);
-    text-transform: uppercase;
-    font-size: clamp(15px, 2.2vw, 18px);
-    letter-spacing: -0.01em;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 22px;
+    border: var(--border);
+    background: var(--bg);
     color: var(--ink);
+    font-family: var(--display);
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    align-self: flex-start;
+    margin-top: 12px;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 140ms ease-out, box-shadow 140ms ease-out, background 140ms ease-out;
   }
-  .inbox-banner__cta {
-    border-bottom: 3px solid var(--ink);
-    padding: 0 2px 1px;
-    font-weight: 600;
-    font-size: 15px;
-    white-space: nowrap;
-    transition: background 160ms ease-out;
+  .btn:hover {
+    background: var(--mint);
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--ink);
   }
-  .inbox-banner__cta:hover { background: var(--ink); color: var(--pink); }
+  .btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 var(--ink);
+  }
 
   .feed {
     max-width: var(--measure);
