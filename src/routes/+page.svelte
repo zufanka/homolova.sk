@@ -12,6 +12,15 @@
 </svelte:head>
 
 {#if featured}
+  <section class="hero fadein">
+    <p>
+      I'm a freelance
+      <a class="hero__link hero__link--pink" href="/hello">data journalist</a>
+      and a
+      <a class="hero__link hero__link--green" href="https://datafrosch.fun" target="_blank" rel="noopener">professional frosch</a>.
+    </p>
+  </section>
+
   <section class="featured fadein">
     <PostCard post={featured} variant="featured" />
   </section>
@@ -36,6 +45,42 @@
     animation: fadein 700ms 80ms ease-out forwards;
   }
   @keyframes fadein { to { opacity: 1; transform: none; } }
+
+  .hero {
+    max-width: var(--measure);
+    margin: 40px auto 56px;
+    padding: 0 var(--gutter);
+  }
+  .hero p {
+    font-family: var(--slab);
+    font-size: 19px;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .hero a {
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    padding: 0 0.15em;
+    box-decoration-break: clone;
+    transition: background 160ms ease-out;
+  }
+  .hero a:hover {
+    background: var(--ink);
+    color: var(--pink);
+    text-decoration: none;
+  }
+  .hero__link {
+    background: var(--pink);
+  }
+  .hero__link--green {
+    background: var(--mint);
+  }
+  .hero__link--green:hover {
+    color: var(--mint);
+  }
 
   .featured {
     max-width: var(--measure);
