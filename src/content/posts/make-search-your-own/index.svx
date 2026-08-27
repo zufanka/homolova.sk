@@ -5,8 +5,6 @@ slug: "make-search-your-own"
 summary: "Internet search sucks. The good news is you don’t have to keep 'Googling'. Take my hand into the expanding lands of internet search."
 newsletterMode: "full"
 featuredImage: "peacock.png"
-tags:
-  - "essay"
 ---
 
 <p>Internet search sucks. It's not just my personal opinion.</p>

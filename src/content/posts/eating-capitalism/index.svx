@@ -7,7 +7,6 @@ newsletterMode: "full"
 featuredImage: "headerimage.jpg"
 titleFill: "#ffec00"
 tags:
-  - "essay"
   - "data"
 ---
 

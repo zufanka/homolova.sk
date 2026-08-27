@@ -6,7 +6,6 @@ summary: "At the end of 2024, I surveyed friends and colleagues about important 
 newsletterMode: "full"
 featuredImage: "broligarchy.png"
 tags:
-  - "essay"
   - "data"
 ---
 

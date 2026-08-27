@@ -147,7 +147,7 @@ tags:
          place the reader can actually stand in. It is also the only pair in the
          piece that is not a landmark or an aerial: an ordinary estate car park,
          which is the kind of ground the whole essay is really about. -->
-    <BeforeAfter pair="grandma">
+    <BeforeAfter pair="grandma" hint>
       {#snippet caption()}
         Parking lot in Petržalka, Bratislava.<br />
         My grandma, © All rights reserved, reimagined by Gemini Nano Banana 2

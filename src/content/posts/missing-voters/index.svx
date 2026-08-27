@@ -13,7 +13,6 @@ titleFill: "#d45d5d"
 footerBg: "#eaeae6"
 footerAccent: "#d45d5d"
 tags:
-  - "essay"
   - "data"
 ---
 

@@ -129,8 +129,22 @@
   let {
     pair,
     caption,
-    interactive = true
-  }: { pair: keyof typeof PAIRS; caption: Snippet; interactive?: boolean } = $props();
+    interactive = true,
+    /** Show the one-time "drag" cue. Set on the piece's *first* wipe only: the
+     *  handle is the same shape every time after that, and a cue repeated at
+     *  every figure stops reading as help and starts reading as decoration. */
+    hint = false
+  }: {
+    pair: keyof typeof PAIRS;
+    caption: Snippet;
+    interactive?: boolean;
+    hint?: boolean;
+  } = $props();
+
+  /** Latches on the first input and never resets: the cue has done its job the
+   *  moment the reader moves the handle, and bringing it back on release would
+   *  read as a fault. */
+  let touched = $state(false);
 
   const img = $derived(PAIRS[pair]);
 
@@ -207,6 +221,7 @@
         max="100"
         step="1"
         bind:value={pos}
+        oninput={() => (touched = true)}
         aria-label="Wipe between “Car park” and “Park park”"
         aria-valuetext="{pos}% car park, {100 - pos}% park park"
       />
@@ -229,6 +244,15 @@
             />
           </svg>
         </span>
+        <!-- The one-time cue. Rides on the seam so it sits under the handle it
+             is describing wherever that handle is, and says the word rather
+             than animating a mystery: the chevrons alone were read as
+             decoration. aria-hidden because the range input already announces
+             itself as a slider — a screen reader is told what this is, only the
+             eye is not. -->
+        {#if hint && !touched}
+          <span class="dragcue" aria-hidden="true">Drag</span>
+        {/if}
       {/if}
     </div>
   </div>
@@ -337,6 +361,57 @@
     border: 1.5px solid var(--ink);
     color: #fff;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* The drag cue, in the piece's own cue shape — the scrolly's "Scroll ↓" chip
+     is uppercase sans in a 1.5px ink box on paper, and this is the same object
+     doing the same job at a different control. Sits just under the grip and
+     rocks the width of a couple of pixels, which is enough to catch the eye
+     without becoming something that has to be waited out. */
+  .dragcue {
+    position: absolute;
+    top: calc(50% + 1.5rem);
+    left: 0;
+    transform: translateX(-50%);
+    padding: 0.2rem 0.5rem;
+    border: 1.5px solid var(--ink);
+    background: rgba(255, 255, 255, 0.92);
+    font-family: var(--sans, system-ui, sans-serif);
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    white-space: nowrap;
+    pointer-events: none;
+    animation: dragcue-in 400ms ease both, dragcue-rock 2.4s ease-in-out 400ms infinite;
+  }
+  @keyframes dragcue-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes dragcue-rock {
+    0%,
+    100% {
+      transform: translateX(-50%);
+    }
+    45% {
+      transform: translateX(calc(-50% + 3px));
+    }
+    70% {
+      transform: translateX(calc(-50% - 3px));
+    }
+  }
+  /* Reduced motion keeps the chip — it is the part that carries the meaning —
+     and drops only the rocking. */
+  @media (prefers-reduced-motion: reduce) {
+    .dragcue {
+      animation: dragcue-in 400ms ease both;
+    }
   }
   .grip :global(svg) {
     display: block;

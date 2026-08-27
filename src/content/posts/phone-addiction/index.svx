@@ -6,7 +6,6 @@ summary: "Phone addiction is on the rise—and your brain is hooked. Let's get i
 newsletterMode: "full"
 featuredImage: "visualelectric-1748548407717.jpg"
 tags:
-  - "essay"
   - "data"
 ---
 

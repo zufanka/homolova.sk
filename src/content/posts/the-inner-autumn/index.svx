@@ -6,8 +6,6 @@ summary: "How I learned to stop worrying and love the PMS"
 newsletterMode: "full"
 featuredImage: "uterusinautumn.jpg"
 titleFill: "#5b8bee"
-tags:
-  - "essay"
 ---
 
 

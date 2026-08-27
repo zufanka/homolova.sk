@@ -5,8 +5,6 @@ slug: "i-dream-of-packing"
 summary: "Unpacking perfectionism, woolen socks, grief, trust and squirrels"
 newsletterMode: "full"
 featuredImage: "squirreldreams.jpg"
-tags:
-  - "essay"
 ---
 
 

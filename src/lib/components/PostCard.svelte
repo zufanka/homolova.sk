@@ -28,13 +28,6 @@
   <div class="card__body">
     <div class="card__meta">
       <span class="card__date">{post.date.replaceAll('-', ' · ')}</span>
-      {#if post.tags?.length}
-        <span class="card__tags">
-          {#each post.tags as tag (tag)}
-            <span class="card__tag card__tag--{tag}">{tag}</span>
-          {/each}
-        </span>
-      {/if}
     </div>
     {#if variant === 'featured'}
       <h1 class="card__title">{post.title}</h1>
@@ -80,23 +73,6 @@
     letter-spacing: 0.02em;
     white-space: nowrap;
   }
-  .card__tags {
-    display: inline-flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .card__tag {
-    font-family: var(--slab);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-size: 11px;
-    border: 1.5px solid var(--ink);
-    padding: 4px 8px;
-  }
-  .card__tag--essay   { background: var(--mint); }
-  .card__tag--data    { background: var(--blue); color: var(--ink); }
-  .card__tag--fiction { background: var(--orange); }
 
   .card__title {
     position: relative;
