@@ -28,7 +28,7 @@
             <a class="hero__link hero__link--pink" href="/hello">data journalist</a>
             and a
             <a class="hero__link hero__link--green" href="https://datafrosch.fun" target="_blank" rel="noopener">professional frosch</a>.
-            Here I publish essays on what intrigues me about the systems we live in.
+            Here I publish essays on what intrigues me about the weird and wondrous systems we live in.
           </p>
           <a href="/newsletter" class="btn">subscribe →</a>
         </div>
@@ -56,6 +56,7 @@
     flex: 0 0 33%;
     width: 33%;
     object-fit: cover;
+    object-position: right bottom;
     display: block;
   }
   .inbox-banner__body {
@@ -131,5 +132,14 @@
 
   @media (max-width: 720px) {
     .feed { gap: 22px; }
+    .inbox-banner {
+      flex-direction: column;
+    }
+    .inbox-banner__photo {
+      flex: none;
+      width: 100%;
+      min-height: 200px;
+      border-bottom: var(--border);
+    }
   }
 </style>
