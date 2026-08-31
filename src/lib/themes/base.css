@@ -28,9 +28,8 @@
   --link-hover-color: var(--ink);
 
   /* Fullscreen overlay hero (Hero.svelte with `image`): wash + text tokens.
-     Dark is the default polarity — light text over a dark wash, forgiving
-     over busy/bright photos. A light polarity (ink text over a paper wash)
-     is applied per post via `.hero--light` in Hero.svelte. */
+     Every overlay hero is dark polarity — light text over a dark wash,
+     forgiving over busy/bright photos. */
   --hero-wash: 10, 10, 14; /* rgb triplet: radial wash colour behind the text block */
   --hero-text: #ffffff;
   --hero-text-soft: rgba(255, 255, 255, 0.92);

@@ -21,7 +21,6 @@
     date,
     image,
     focal,
-    tone = 'dark',
     decoration,
     byline
   }: {
@@ -31,7 +30,6 @@
     date?: string;
     image?: string;
     focal?: string;
-    tone?: 'dark' | 'light';
     decoration?: Snippet;
     byline?: Snippet;
   } = $props();
@@ -39,7 +37,7 @@
   const fmtDate = (iso: string) => iso.replaceAll('-', ' · ');
 </script>
 
-<header class="hero" class:hero--image={image} class:hero--light={image && tone === 'light'}>
+<header class="hero" class:hero--image={image}>
   {#if image}
     <img
       class="hero-image"
@@ -112,7 +110,7 @@
   .hero--image .hero-content::before {
     content: '';
     position: absolute;
-    inset: -3.5rem -3rem;
+    inset: -5.5rem -5rem;
     background:
       radial-gradient(
         ellipse closest-side,
@@ -121,26 +119,6 @@
         transparent 100%
       );
     pointer-events: none;
-  }
-  /* Light polarity: ink-type text over a wash derived from the theme's --bg
-     (reads as paper, not pure white). */
-  .hero--light::before {
-    background:
-      linear-gradient(
-        to bottom,
-        color-mix(in srgb, var(--bg) 70%, transparent) 0%,
-        color-mix(in srgb, var(--bg) 82%, transparent) 55%,
-        var(--bg) 100%
-      );
-  }
-  .hero--light .hero-content::before {
-    background:
-      radial-gradient(
-        ellipse closest-side,
-        color-mix(in srgb, var(--bg) 80%, transparent),
-        color-mix(in srgb, var(--bg) 62%, transparent) 55%,
-        transparent 100%
-      );
   }
   .hero-decoration {
     position: absolute;

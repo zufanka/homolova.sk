@@ -52,7 +52,6 @@
       <Hero
         image={data.heroImageUrl}
         focal={data.meta.heroFocal ?? undefined}
-        tone={data.meta.heroTone ?? 'dark'}
         title={data.meta.title}
         dek={data.meta.summary}
         author="Ada Homolova"

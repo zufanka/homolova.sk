@@ -5,7 +5,6 @@ slug: "the-inner-autumn"
 summary: "How I learned to stop worrying and love the PMS"
 newsletterMode: "full"
 heroStyle: overlay
-heroTone: light
 featuredImage: "uterusinautumn.jpg"
 titleFill: "#5b8bee"
 ---
