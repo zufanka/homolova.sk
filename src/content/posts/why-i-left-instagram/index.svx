@@ -82,7 +82,6 @@ Similarly, we can chose to disengage from Meta's cash cows.
     alt="Two isometric blocky cows compared: a tiny pink cow representing Instagram's 2015 revenue of 0.5 billion dollars, dwarfed by a much larger one for 2025's 83.6 billion — the cow grew a lot."
   />
   <figcaption>
-    <span>The cow grew a lot</span>
     <span class="src">Source: <a href="https://resourcera.com/data/social/instagram-revenue/" target="_blank" rel="noopener">Resourcera</a> (estimates)</span>
   </figcaption>
 </figure>
@@ -106,7 +105,7 @@ We don't have to reach for the spaces that just suck us in. We can choose where 
     gap: 0.35rem;
     font-family: var(--sans);
   }
-  .graphic figcaption > span:first-child {
+  .graphic figcaption .title {
     font-size: 0.75rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
