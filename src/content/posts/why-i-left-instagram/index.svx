@@ -1,8 +1,8 @@
 ---
 title: "Why I left Instagram"
-date: "2026-08-29"
+date: "2026-09-06"
 slug: "why-i-left-instagram"
-summary: "I quit Instagram after realizing what the feed does to my attention — and found richer places to put it instead."
+summary: "There are nicer places out there."
 newsletterMode: "full"
 heroStyle: overlay
 featuredImage: "escaping_insta.jpg"
@@ -32,8 +32,7 @@ In this slaughterhouse, you are the meat and the engineers don't really care abo
     alt="Isometric illustration of a blocky pink cow marked with a dollar symbol, with a faded gray second cow behind it. Instagram is Meta's cash cow: half of Meta's yearly ad revenue in 2025 came from Instagram — 83.6 billion dollars."
   />
   <figcaption>
-    <span>Instagram is Meta's cash cow</span>
-    <span class="src">Half of Meta's yearly ad revenue in 2025 came from Instagram. Source: <a href="https://resourcera.com/data/social/instagram-revenue/" target="_blank" rel="noopener">Resourcera</a> — estimates; Meta does not break out Instagram revenue in its reports. CC BY-SA homolova.sk</span>
+    <span class="src">Source: <a href="https://resourcera.com/data/social/instagram-revenue/" target="_blank" rel="noopener">Resourcera</a> — estimates; Meta does not break out Instagram revenue in its reports. CC BY-SA homolova.sk</span>
   </figcaption>
 </figure>
 
@@ -54,8 +53,7 @@ Actual experiences make us happy. This is not something Instagram would really s
     alt="Isometric bar-chart of three blocky cows of ascending size: TikTok at 33 billion, YouTube at 40 billion, and Meta towering at 196 billion dollars of 2025 ad revenue. Meta's is the biggest cow in town."
   />
   <figcaption>
-    <span>Meta's is the biggest cow in town</span>
-    <span class="src">2025 ad revenue. Sources: <a href="https://www.statista.com/statistics/271258/facebooks-advertising-revenue-worldwide/" target="_blank" rel="noopener">Statista</a> (Meta), <a href="https://www.tubefilter.com/2026/02/05/alphabet-q4-2025-youtube-earnings-revenue-60-billion/" target="_blank" rel="noopener">Tubefilter / Alphabet Q4 2025</a> (YouTube), <a href="https://marketingltb.com/blog/statistics/tiktok-ads-statistics/#2" target="_blank" rel="noopener">MarketingLTB</a> (TikTok, forecast). CC BY-SA homolova.sk</span>
+    <span class="src">Sources: <a href="https://www.statista.com/statistics/271258/facebooks-advertising-revenue-worldwide/" target="_blank" rel="noopener">Statista</a> (Meta), <a href="https://www.tubefilter.com/2026/02/05/alphabet-q4-2025-youtube-earnings-revenue-60-billion/" target="_blank" rel="noopener">Tubefilter / Alphabet Q4 2025</a> (YouTube), <a href="https://marketingltb.com/blog/statistics/tiktok-ads-statistics/#2" target="_blank" rel="noopener">MarketingLTB</a> (TikTok, forecast). CC BY-SA homolova.sk</span>
   </figcaption>
 </figure>
 
@@ -85,7 +83,7 @@ Similarly, we can chose to disengage from Meta's cash cows.
   />
   <figcaption>
     <span>The cow grew a lot</span>
-    <span class="src">Instagram's 2015 revenue was only 0.6% of its 2025 revenue. Source: <a href="https://resourcera.com/data/social/instagram-revenue/" target="_blank" rel="noopener">Resourcera</a> — estimates. CC BY-SA homolova.sk</span>
+    <span class="src">Source: <a href="https://resourcera.com/data/social/instagram-revenue/" target="_blank" rel="noopener">Resourcera</a> (estimates). CC BY-SA homolova.sk</span>
   </figcaption>
 </figure>
 
