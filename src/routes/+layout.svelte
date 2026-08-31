@@ -94,6 +94,10 @@
   <meta property="og:url" content={canonical} />
   <meta property="og:image" content={ogImage} />
   <meta property="og:site_name" content={SITE_TITLE} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={ogTitle} />
+  <meta name="twitter:description" content={ogDescription} />
+  <meta name="twitter:image" content={ogImage} />
   <!-- The JSON-LD below already names the author, but link scrapers (LinkedIn's
        post inspector among them) read these two flat tags and report "no author
        found" without them. `article:author` is only meaningful on an article, so

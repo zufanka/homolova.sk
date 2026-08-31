@@ -6,6 +6,7 @@ summary: "There are nicer places out there."
 newsletterMode: "full"
 heroStyle: overlay
 featuredImage: "escaping_insta.jpg"
+ogImage: "escaping_insta-og.jpg"
 tags:
   - "essay"
 draft: true
