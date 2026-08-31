@@ -4,6 +4,7 @@ date: "2025-08-29"
 slug: "i-dream-of-packing"
 summary: "Unpacking perfectionism, woolen socks, grief, trust and squirrels"
 newsletterMode: "full"
+heroStyle: overlay
 featuredImage: "squirreldreams.jpg"
 ---
 

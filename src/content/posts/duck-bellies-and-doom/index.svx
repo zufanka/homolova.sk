@@ -4,6 +4,8 @@ date: "2025-02-06"
 slug: "duck-bellies-and-doom"
 summary: "At the end of 2024, I surveyed friends and colleagues about important topics for next year. Here are 13 more responses."
 newsletterMode: "full"
+heroStyle: overlay
+heroTone: light
 featuredImage: "ducks.png"
 tags:
   - "data"

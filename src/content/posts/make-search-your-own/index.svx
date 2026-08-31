@@ -4,6 +4,7 @@ date: "2024-12-12"
 slug: "make-search-your-own"
 summary: "Internet search sucks. The good news is you don’t have to keep 'Googling'. Take my hand into the expanding lands of internet search."
 newsletterMode: "full"
+heroStyle: overlay
 featuredImage: "peacock.png"
 ---
 

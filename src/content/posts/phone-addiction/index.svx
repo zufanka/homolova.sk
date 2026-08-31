@@ -4,6 +4,7 @@ date: "2025-06-01"
 slug: "phone-addiction"
 summary: "Phone addiction is on the rise—and your brain is hooked. Let's get intimate: dip into my own screen time stats and test yourself on the Smartphone Addiction Scale."
 newsletterMode: "full"
+heroStyle: overlay
 featuredImage: "visualelectric-1748548407717.jpg"
 tags:
   - "data"

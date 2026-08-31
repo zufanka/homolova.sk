@@ -79,7 +79,7 @@
 
   .card__title {
     position: relative;
-    font-family: var(--display);
+    font-family: var(--site-display);
     font-size: 64px;
     line-height: 0.95;
     letter-spacing: 0.005em;

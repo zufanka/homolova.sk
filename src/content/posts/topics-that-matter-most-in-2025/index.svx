@@ -4,6 +4,7 @@ date: "2025-01-13"
 slug: "topics-that-matter-most-in-2025"
 summary: "At the end of 2024, I surveyed friends and colleagues about important topics for next year. Here are the results."
 newsletterMode: "full"
+heroStyle: overlay
 featuredImage: "broligarchy.png"
 tags:
   - "data"

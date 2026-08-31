@@ -12,6 +12,12 @@
  * footer) and the post body inherit the themed values.
  */
 :root {
+  /* Chrome identity: site furniture (nav mark "Hey it's Ada", read-more,
+     subscribe, post cards) always renders in the site display face — themes
+     recolor chrome via --accent but never retype it. Themes override
+     --display for post CONTENT only; never override --site-display. */
+  --site-display: 'Bowlby One', system-ui, sans-serif;
+
   --accent: var(--pink);
   --serif: Georgia, 'Times New Roman', serif;
   --prose-font: var(--sans);
@@ -20,4 +26,13 @@
   --link-underline-color: var(--pink);
   --link-hover-bg: var(--pink);
   --link-hover-color: var(--ink);
+
+  /* Fullscreen overlay hero (Hero.svelte with `image`): wash + text tokens.
+     Dark is the default polarity — light text over a dark wash, forgiving
+     over busy/bright photos. A light polarity (ink text over a paper wash)
+     is applied per post via `.hero--light` in Hero.svelte. */
+  --hero-wash: 10, 10, 14; /* rgb triplet: radial wash colour behind the text block */
+  --hero-text: #ffffff;
+  --hero-text-soft: rgba(255, 255, 255, 0.92);
+  --hero-text-muted: rgba(255, 255, 255, 0.78);
 }

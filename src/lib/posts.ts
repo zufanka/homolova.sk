@@ -40,6 +40,17 @@ export interface PostFrontmatter {
   footerBg?: string;
   /** Accent colour for footer links (underline + hover fill). Defaults to pink. */
   footerAccent?: string;
+  /** Hero shape: classic = bordered figure + text block; overlay = fullscreen
+   *  background-image hero. Default classic. */
+  heroStyle?: 'classic' | 'overlay';
+  /** Overrides featuredImage as the hero background (resolved against the
+   *  post's media/ dir); only used when heroStyle is overlay. */
+  heroImage?: string;
+  /** CSS object-position for the overlay hero image, e.g. "center 30%". */
+  heroFocal?: string;
+  /** Overlay hero polarity; dark = light text on dark wash (default, forgiving
+   *  over photos/screenshots), light = ink text on paper wash (pale illustrations). */
+  heroTone?: 'dark' | 'light';
   /** If set, the post is an index-only entry that links out — no /posts/<slug>/ page is rendered. */
   externalUrl?: string;
   /** If true, hide from homepage feed, RSS, and sitemap. The /posts/<slug>/ page
@@ -103,6 +114,16 @@ function validate(meta: Partial<PostFrontmatter>, path: string): PostFrontmatter
   if (meta.theme != null && !/^[a-z0-9-]+$/.test(meta.theme)) {
     throw new Error(
       `post ${path}: theme "${meta.theme}" must match /^[a-z0-9-]+$/`
+    );
+  }
+  if (meta.heroStyle != null && meta.heroStyle !== 'classic' && meta.heroStyle !== 'overlay') {
+    throw new Error(
+      `post ${path}: heroStyle "${meta.heroStyle}" must be "classic" or "overlay"`
+    );
+  }
+  if (meta.heroTone != null && meta.heroTone !== 'dark' && meta.heroTone !== 'light') {
+    throw new Error(
+      `post ${path}: heroTone "${meta.heroTone}" must be "dark" or "light"`
     );
   }
   return meta as PostFrontmatter;

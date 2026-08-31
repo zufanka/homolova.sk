@@ -4,6 +4,7 @@ date: "2026-08-29"
 slug: "why-i-left-instagram"
 summary: "I quit Instagram after realizing what the feed does to my attention — and found richer places to put it instead."
 newsletterMode: "full"
+heroStyle: overlay
 featuredImage: "escaping_insta.jpg"
 tags:
   - "essay"

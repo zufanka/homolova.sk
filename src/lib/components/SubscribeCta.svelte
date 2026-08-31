@@ -16,7 +16,7 @@
     text-align: center;
   }
   .cta__heading {
-    font-family: var(--display);
+    font-family: var(--site-display);
     text-transform: uppercase;
     font-size: clamp(1.25rem, 3.5vw, 1.75rem);
     line-height: 1.1;

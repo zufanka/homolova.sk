@@ -57,10 +57,8 @@
   <article>
     <div class="beans-hero">
       <Hero
-        kicker="Data essay"
         title="An ode to beans"
         dek="Even small seeds can reshape large systems."
-        scrollLabel="Scroll"
       >
         {#snippet byline()}
           <p class="byline">by <a href="/hello">Ada Homolova</a> · 15 May 2026</p>
@@ -571,10 +569,6 @@
   .beans-hero :global(.hero-decoration) {
     z-index: 0;
   }
-  .beans-hero :global(p.hero-kicker) {
-    color: #999;
-    margin: 0 0 2.5rem;
-  }
   .beans-hero :global(p.hero-dek) {
     font-family: var(--serif);
     font-size: clamp(1.25rem, 2vw, 1.55rem);
@@ -584,11 +578,6 @@
     max-width: 32ch;
     margin: 0 auto;
   }
-  .beans-hero :global(p.hero-scroll-hint) {
-    color: var(--text-on-light-muted);
-    margin: 3.5rem 0 0;
-  }
-
   /* dancing notes — seven beans absolutely positioned around the title.
      Transform composes a parallax translateY (set by JS into --py) with each
      note's individual rotation (--rot). */

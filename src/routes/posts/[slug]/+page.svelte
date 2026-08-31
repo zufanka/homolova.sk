@@ -5,17 +5,24 @@
   import SubscribeCta from '$lib/components/SubscribeCta.svelte';
   import PostCard from '$lib/components/PostCard.svelte';
   import { SITE_URL, absoluteUrl } from '$lib/site';
+  import Hero from '$lib/components/Hero.svelte';
   import '$lib/styles/post-body.css';
 
   let {
     data
   }: {
-    data: { meta: PostFrontmatter; component: Component; featuredImageUrl?: string };
+    data: {
+      meta: PostFrontmatter;
+      component: Component;
+      featuredImageUrl?: string;
+      heroImageUrl?: string;
+    };
   } = $props();
   const Post = data.component;
   const accent = data.meta.titleFill ?? data.meta.footerAccent ?? 'var(--accent, var(--pink))';
   const related = relatedPosts(data.meta, 3);
   const titleFill = data.meta.titleFill ?? 'var(--accent, var(--pink))';
+  const overlayHero = $derived(data.meta.heroStyle === 'overlay' && !!data.heroImageUrl);
   const fmtDate = (iso: string) => iso.replaceAll('-', ' · ');
 
   const articleJsonLd = JSON.stringify({
@@ -40,7 +47,20 @@
 </svelte:head>
 
 <article class:fullBleed={data.meta.fullBleed}>
-  {#if !data.meta.fullBleed}
+  {#if overlayHero}
+    <div class="hero-breakout">
+      <Hero
+        image={data.heroImageUrl}
+        focal={data.meta.heroFocal ?? undefined}
+        tone={data.meta.heroTone ?? 'dark'}
+        title={data.meta.title}
+        dek={data.meta.summary}
+        author="Ada Homolova"
+        date={data.meta.date}
+      />
+    </div>
+  {/if}
+  {#if !data.meta.fullBleed && !overlayHero}
     <header class="post-hero">
       {#if data.featuredImageUrl}
         <figure class="post-hero__image">
@@ -81,6 +101,10 @@
 </section>
 
 <style>
+  .hero-breakout {
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+  }
   .post-hero {
     margin-bottom: 3rem;
   }
@@ -152,7 +176,7 @@
     padding: 0 1.25rem 4rem;
   }
   .read-more h2 {
-    font-family: var(--display);
+    font-family: var(--site-display);
     text-transform: uppercase;
     letter-spacing: 0.01em;
     line-height: 1.15;

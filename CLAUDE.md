@@ -86,11 +86,11 @@ tags: string[]
 
 A **theme** is one token file `src/lib/themes/<name>.css` scoped `[data-theme='<name>']`, imported by that dir's `index.ts`. A post opts in with `theme: <name>` frontmatter; no field = the default site look. The attribute lands on the `.site-root` wrapper in the root layout, so tokens cascade to the post body **and** the chrome (nav mark / footer accent fall back to `var(--accent)`).
 
-The token contract lives in `src/lib/themes/base.css`: `--accent`, `--serif`, `--prose-font`/`-size`/`-leading`, `--link-underline-color`/`-hover-bg`/`-hover-color`. Defaults there reproduce the old site exactly — zero visual change unless a theme overrides a subset. Current themes: `beans`, `voters`, `snow`.
+The token contract lives in `src/lib/themes/base.css`: `--accent`, `--serif`, `--prose-font`/`-size`/`-leading`, `--link-underline-color`/`-hover-bg`/`-hover-color`, plus `--site-display` (chrome-only: the nav mark, read-more, subscribe, post cards always keep the site face — themes recolor chrome via `--accent`, they never retype it; `--display` overrides apply to post content only). Defaults there reproduce the old site exactly — zero visual change unless a theme overrides a subset. Current themes: `beans`, `voters`, `snow`.
 
 If a post needs only 1–2 overrides (e.g. one display font), **skip the theme** — override locally in the post's scoped styles instead (`what-if-we-got-rid-of-cars` is the reference). Themes are for reusable multi-post or full looks, not one-offs.
 
-- **Hero:** `src/lib/components/Hero.svelte` (kicker/title/dek + byline & decoration snippets). Restyle via `:global` overrides on a wrapper — see `Beans.svelte`.
+- **Hero:** `src/lib/components/Hero.svelte` (title/dek/byline + `decoration`/`byline` snippets; kicker and scroll-hint are gone by design). It also supports `image`/`focal` for a fullscreen background-image hero — opted into per post via `heroStyle: overlay` frontmatter (+ optional `heroImage`/`heroFocal`; default remains `classic`). Overlay heroes default to dark tone (light text on a localized radial wash + soft shadow); `heroTone: light` flips for pale illustrations. Restyle via `:global` overrides on a wrapper — see `Beans.svelte`.
 - **Prose:** `.post-body` (`src/lib/styles/post-body.css`) is styled entirely by tokens — a new prose post under any theme needs zero CSS.
 - **D3/JS:** read tokens through `src/lib/themes/tokens.ts` (`cssVar`/`getTokens`, browser-side only — resolves against the `[data-theme]` wrapper, not `:root`).
 - **Fonts:** per-post `import '@fontsource/<face>/<weight>.css'` in the post component — never Google Fonts links.

@@ -26,6 +26,8 @@ export const load = ({ params }: { params: { slug: string } }) => {
       canonical: postUrl(post.meta)
     },
     component: post.component,
-    featuredImageUrl: post.featuredImageUrl
+    featuredImageUrl: post.featuredImageUrl,
+    heroImageUrl:
+      resolvePostImage(params.slug, post.meta.heroImage) ?? post.featuredImageUrl
   };
 };

@@ -102,7 +102,7 @@
     border: var(--border);
     background: var(--bg);
     color: var(--ink);
-    font-family: var(--display);
+    font-family: var(--site-display);
     font-size: 18px;
     text-transform: uppercase;
     letter-spacing: 0.02em;

@@ -70,18 +70,11 @@
   <header>
     <HeaderPassports />
     <div class="header-content">
-      <p class="kicker">Data essay</p>
       <h1>The Missing Voters</h1>
       <p class="subtitle">
         11.8 million EU citizens pay taxes to governments they cannot vote for.
       </p>
       <p class="byline">by <a target="_blank" rel="noopener" href="https://homolova.sk/hello">Ada Homolova</a> · 8 February 2026</p>
-      <div class="scroll-hint">
-        <span>Scroll to explore</span>
-        <svg width="20" height="24" viewBox="0 0 20 24" fill="none">
-          <path d="M10 4 L10 18 M4 14 L10 20 L16 14" stroke="#999" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
     </div>
   </header>
 
@@ -216,15 +209,6 @@
     border-radius: 8px;
   }
 
-  .kicker {
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #999;
-    margin-bottom: 1rem;
-  }
-
   h1, h2, h4 {
     font-family: var(--display);
   }
@@ -250,21 +234,6 @@
     font-size: 0.9rem;
     color: #888;
     margin-bottom: 2rem;
-  }
-
-  .scroll-hint {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    color: #999;
-    font-size: 0.8rem;
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
   }
 
   .background {

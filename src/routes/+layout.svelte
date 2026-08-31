@@ -237,7 +237,7 @@
   }
 
   .nav__mark {
-    font-family: var(--display);
+    font-family: var(--site-display);
     text-transform: uppercase;
     color: var(--mark-fill, var(--pink));
     -webkit-text-stroke: 1.5px var(--ink);

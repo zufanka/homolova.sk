@@ -4,6 +4,7 @@ date: "2025-10-05"
 slug: "eating-capitalism"
 summary: "How our food got hijacked by profits and is now having its way with our bodies"
 newsletterMode: "full"
+heroStyle: overlay
 featuredImage: "headerimage.jpg"
 titleFill: "#ffec00"
 tags:
