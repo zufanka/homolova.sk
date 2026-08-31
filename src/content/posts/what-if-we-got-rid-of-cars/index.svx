@@ -36,6 +36,7 @@ tags:
   // Vite resolves and fingerprints the file; the same illustration is the
   // post's featuredImage, where posts.ts resolves it the same way.
   import heroImage from './media/parking-to-park.jpg?url';
+  import Hero from '$lib/components/Hero.svelte';
   // This post's display face, loaded only with this post — the rest of the site
   // keeps Bowlby One. @font-face blocks carry unicode-range per subset, so the
   // browser fetches the latin file only. To make it the site's face instead,
@@ -118,15 +119,21 @@ tags:
      medGreen, carWins, flipCount and the converted equivalents, all derived
      from the same rows the rankings read) if a rewrite wants them back. -->
 
+<!-- The shared fullscreen hero, dark tone: the drawing is a pale pencil
+     sketch (lum ~198), so light text over the gentle dark wash reads best
+     and the sketch stays visible at the edges. Sits outside .pp so it spans
+     the viewport; the wrapper keeps this post's display face on the title. -->
+<div class="cars-hero">
+  <Hero
+    image={heroImage}
+    title="What if we got rid of cars?"
+    dek="It's getting hot in here and not in the good way."
+    author="Ada Homolova"
+    date="2026-07-29"
+  />
+</div>
+
 <article class="pp">
-  <header class="hero" style:background-image="url({heroImage})">
-    <div class="hero-inner">
-      <h1>What if we got rid of cars?</h1>
-      <p class="stand">
-        It's getting hot in here and not in the good way.
-      </p>
-    </div>
-  </header>
 
   <section class="intro">
     <p>
@@ -426,8 +433,6 @@ tags:
     --park: #0a6b40;
     --asphalt: #7d4a9e;
     --plate: #fdf5f0;
-    /* the illustration's paper colour, used for the scrim under the hero type */
-    --paper: 246, 242, 234;
     /* art-nouveau display face for this post's headings only, overriding the
        site's Bowlby One. Single weight (400), so nothing here asks for bold. */
     --display: 'Yeseva One', Georgia, serif;
@@ -436,63 +441,11 @@ tags:
     padding: 2.5rem var(--gutter) 4rem;
   }
 
-  /* The opening band: the parking-to-park illustration as a background, pulled
-     out to the article container's edges (over the .pp gutter and top padding),
-     with the title block centred on it. The drawing is a pale pencil sketch, so
-     the type needs a paper-coloured scrim to stay readable over the foliage —
-     ::before rather than a gradient on the element itself, so the image keeps
-     its own colours where no text sits. */
-  .hero {
-    position: relative;
-    display: grid;
-    align-content: center;
-    min-height: clamp(20rem, 42vw, 32rem);
-    margin: -2.5rem calc(-1 * var(--gutter)) clamp(1.5rem, 4vw, 3rem);
-    padding: clamp(3rem, 8vw, 6rem) var(--gutter) clamp(5rem, 13vw, 9rem);
-    background-size: cover;
-    background-position: center 62%;
-    background-repeat: no-repeat;
-  }
-  /* Two stacked washes: the paper-coloured scrim that keeps the type legible,
-     and above it a fade to the page background so the drawing dissolves into
-     the article instead of ending on a rule. The bottom padding above keeps the
-     text clear of the fade. rgb(255,255,255) is --bg, spelled out because the
-     fade needs it at partial alpha. */
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0) 52%,
-        rgba(255, 255, 255, 0.55) 78%,
-        rgba(255, 255, 255, 0.9) 92%,
-        rgb(255, 255, 255) 100%
-      ),
-      linear-gradient(
-        to bottom,
-        rgba(var(--paper), 0.42),
-        rgba(var(--paper), 0.74) 52%,
-        rgba(var(--paper), 0.5)
-      );
-  }
-  .hero-inner {
-    position: relative;
-    max-width: var(--measure);
-    margin: 0 auto;
-  }
-  /* full ink over the drawing, where --body would go soft on the foliage */
-  .hero .stand { color: var(--ink); }
-  /* on a phone the band is the whole first screen — the drawing needs the room
-     more than the text does, and the title block rides in its lower half */
-  @media (max-width: 700px) {
-    .hero {
-      align-content: end;
-      min-height: 76svh;
-      padding-top: clamp(6rem, 34vw, 12rem);
-      background-position: 58% 58%;
-    }
+  /* The shared <Hero> above lives outside .pp; this wrapper carries the
+     post's display face to it, the same way the site's prose posts inherit
+     their theme's face. */
+  .cars-hero {
+    --display: 'Yeseva One', Georgia, serif;
   }
   .pp :global(section) {
     margin-bottom: clamp(3rem, 7vw, 5.5rem);
@@ -526,13 +479,6 @@ tags:
   .body-copy {
     max-width: var(--measure);
     margin-inline: auto;
-  }
-  .stand {
-    font-family: var(--slab);
-    font-size: clamp(1.05rem, 2vw, 1.25rem);
-    line-height: 1.5;
-    color: var(--body);
-    margin: 1.1rem 0 0;
   }
   .intro :global(p) { color: var(--body); }
   /* .body-copy is what the .board section's own paragraphs wear: the section
