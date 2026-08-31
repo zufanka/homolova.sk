@@ -73,6 +73,7 @@
     font-family: var(--slab);
     font-size: clamp(17px, 2vw, 19px);
     line-height: 1.5;
+    color: var(--ink);
   }
   .inbox-banner__text a {
     color: var(--ink);

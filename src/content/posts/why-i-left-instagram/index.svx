@@ -1,0 +1,66 @@
+---
+title: "Why I left Instagram"
+date: "2026-08-29"
+slug: "why-i-left-instagram"
+summary: "I quit Instagram after realizing what the feed does to my attention — and found richer places to put it instead."
+newsletterMode: "full"
+featuredImage: "escaping_insta.jpg"
+tags:
+  - "essay"
+draft: true
+---
+
+<script lang="ts">
+  import InstagramRevenue from './InstagramRevenue.svelte';
+  import AdRevenue from './AdRevenue.svelte';
+</script>
+
+I left Instagram after one day, while riding a bicycle down the river, a sudden realization hit me. What a disgusting space it was. How dehumanizing. How completely at odds with my values.
+
+Partially, it was about what it did to me. How my thumb knew to find the icon seemingly by itself. How I felt powerless to resist. How angry it made me with myself.
+
+And then the realization that I was creating content for it, so my friends would feel the same. And I felt deeply that I don't want it anymore.
+
+Then my head stepped in and asked: "But what about all the beautiful things?" Surely, there are plenty of beautiful things never to be discovered by me now. It's not about the content. It's about the monstrous machinery the beautiful things live in. Like a flower arrangement in a slaughterhouse.
+
+In this slaughterhouse, you are the meat and the engineers don't really care about beauty.
+
+<InstagramRevenue />
+
+## Reach
+
+On one occasion, a woman I knew spent five minutes directing my attention, through an avalanche of words, intensely toward my right hand. At the end of it I felt every bone, each joint, I felt the blood running through my veins and skin wrapping around the flesh. The right hand felt very different from the left. Attention is powerful.
+
+In the times when we used to roam the savanna, it helped us to find ripe fruit and evade venomous snakes. It makes it possible for us to learn, create, connect. It amplifies our senses so we can really see, feel, smell. And equally important: being seen and felt (and smelled) by others.
+
+Literally, it means "stretch toward." In Latin, *attendere*: to stretch. To reach. But what are we reaching towards in a feed? "Instagram brings you closer to the people and things you love", states the tagline on the [about pages](https://about.instagram.com/). It promises a nourishing meal but it is serving fast food, a beautiful image of a hamburger held together by pins and glue - pretty but inedible. Feed is just an empty shell of actual experience: feet in the grass, laugh with a friend, playing an instrument, walk in the forest, the smell of food being prepared.
+
+Actual experiences make us happy. This is not something Instagram would really strive for, because happiness is not good for business. You can not sell anti-ageing cream to a person who does not care about wrinkles. We are being served FOMO, worries and flaws. So by participating in algorithmic feeds, we are actually reaching towards a system designed to make us anxious about our bodies, career, politics, our very existence. And keep us hooked by offering solutions we don't need.
+
+<AdRevenue />
+
+While stretching is a slow, deliberate movement, the algorithmic feed reduces our attention to a twitch. Just a quick reflex, a spasm designed to hijack our brains reward mechanism. It forces us to trade intention for impulse. As a result, any such engineered information stream can unconsciously [steer us toward goals that are not our own](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/3F8D7BA2C0FE3A7126A4D9B73A89415D/9781108429092AR.pdf/Stand_out_of_our_Light.pdf?event-type=FTLA). In the short term, this distracts us from what we actually want to do. Sew a dress. Play with our kid. Go for a run. In the long term, it might chip away on our ability to pursue and achieve goals that really matter to us. Make our own clothes. Be a good parent. Be fit.
+
+The point is: it does not have to be this way. We can make spaces where the algorithm aims to make us calmer. More educated. More empathetic. More cooperative. Or where it does nothing at all.
+
+## Release
+
+For me, richness in life comes from movement. Being up and about with wind in my hair, dancing, fingers in soil, or shaping clay. Senses touching the environment, smoke from a fire, warmth on my skin, blackbird's song on the air.
+
+Getting sucked into a feed I stop breathing, stop feeling thirst. I stop feeling like a body in a world. Moreover, I spend time in an environment where the engineers don't give a damn about my well being.
+
+So I left. My thumb does not look for the icon anymore. There is less to do on my phone. And I read books. And learn to play piano. I call my mom. And I am finding out that life is far too rich to even miss the feed.
+
+In an old anecdote, Alexander the Great walked up to a sun bathing Diogenes, the Greek cynic philosopher that lived in a barrel, and asked him what he desired. Diogenes simply answered: "Stand out of my sun."
+
+Similarly, we can chose to disengage from Meta's cash cows. Leaving something behind creates space to think about what we are really searching for in the feed and find alternatives.
+
+When an overwhelming urge to share comes over me now, I send out a couple of private messages. Have a little conversation. Check on how people are doing. I also discovered that some people actually look at the stories sections on WhatsApp and Signal. So I sometimes share there. It's cute and so it doesn't keep me scrolling.
+
+Looking for inspiration, I might go for actual printed magazines. Like [MacGuffin](https://www.macguffinmagazine.com/) or [Fukt](https://www.fuktmagazine.com/). I go through them regularly and explore, engaging with the content, reading essays and  interviews with artists, look repeatedly at the same things and discover something new every time. It's so different from just swiping away to the next and next and next.
+
+I love making photos just for the pretty pictures sake, so I became a [Wikimedia](https://commons.wikimedia.org) contributor. Now [my photos](https://commons.wikimedia.org/w/index.php?title=Special:ListFiles/Heyimada&ilshowall=1) are out there and free of copyright, so anybody can use them if they like. The spirit of the Wikipedia project, passion for information and free sharing of knowledge, resonates way more with my own values, and so it feels good to contribute.
+
+There are more projects out there, like the [Fediverse](https://en.wikipedia.org/wiki/Fediverse), where [Mastodon](https://joinmastodon.org/) is the Twitter alternative and [pixelfed](https://pixelfed.org/) is the Instagram alternative. These projects copy the format of popular social media, but put them into the hands of the people.
+
+We don't have to reach for the spaces that just suck us in. We can choose where to put our attention. We can make spaces of our own. So get out there, my dear reader. Reach for the spaces that are good for you, and fill them with beautiful things.

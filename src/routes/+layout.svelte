@@ -44,8 +44,7 @@
       }
     })
   );
-  const showSubscribeBar = $derived(page.url.pathname !== '/newsletter');
-  const footerBarBg = $derived(meta?.footerBg ?? 'var(--card)');
+  const showSubscribeLink = $derived(page.url.pathname !== '/newsletter');
   const footerSiteBg = $derived(meta?.footerBg ?? 'var(--bg)');
   const footerAccent = $derived(meta?.footerAccent ?? 'var(--pink)');
 
@@ -134,6 +133,10 @@
     <a href="/hello">about</a>
     &nbsp;·&nbsp;
     <a href="/rss.xml">rss</a>
+    {#if showSubscribeLink}
+      &nbsp;·&nbsp;
+      <a href="/newsletter">subscribe →</a>
+    {/if}
   </span>
 {/snippet}
 
@@ -146,19 +149,6 @@
 <main class:bare>
   {@render children()}
 </main>
-
-{#if showSubscribeBar}
-  <aside
-    class="subscribe-bar"
-    style:background={footerBarBg}
-    style:--footer-accent={footerAccent}
-  >
-    <div class="subscribe-bar__inner">
-      <span class="subscribe-bar__copy">Want this in your inbox?</span>
-      <a href="/newsletter" class="subscribe-bar__cta">subscribe →</a>
-    </div>
-  </aside>
-{/if}
 
 <footer
   class="site-footer"
@@ -255,35 +245,6 @@
     margin: 0 auto;
     padding: 0 24px;
   }
-
-  .subscribe-bar {
-    border-top: var(--border);
-  }
-  .subscribe-bar__inner {
-    max-width: var(--container);
-    margin: 0 auto;
-    padding: 26px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 22px;
-    flex-wrap: wrap;
-  }
-  .subscribe-bar__copy {
-    font-family: var(--display);
-    text-transform: uppercase;
-    font-size: clamp(18px, 2.4vw, 24px);
-    letter-spacing: -0.01em;
-    color: var(--ink);
-  }
-  .subscribe-bar__cta {
-    border-bottom: 3px solid var(--footer-accent, var(--pink));
-    padding: 0 2px 1px;
-    font-weight: 600;
-    font-size: 16px;
-    transition: background 160ms ease-out;
-  }
-  .subscribe-bar__cta:hover { background: var(--footer-accent, var(--pink)); }
 
   .site-footer {
     border-top: var(--border);

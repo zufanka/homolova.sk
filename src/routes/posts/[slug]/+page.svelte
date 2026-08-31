@@ -1,6 +1,9 @@
 <script lang="ts">
   import type { Component } from 'svelte';
   import type { PostFrontmatter } from '$lib/posts';
+  import { relatedPosts } from '$lib/posts';
+  import SubscribeCta from '$lib/components/SubscribeCta.svelte';
+  import PostCard from '$lib/components/PostCard.svelte';
   import { SITE_URL, absoluteUrl } from '$lib/site';
 
   let {
@@ -9,6 +12,8 @@
     data: { meta: PostFrontmatter; component: Component; featuredImageUrl?: string };
   } = $props();
   const Post = data.component;
+  const accent = data.meta.titleFill ?? data.meta.footerAccent ?? 'var(--pink)';
+  const related = relatedPosts(data.meta, 3);
   const titleFill = data.meta.titleFill ?? 'var(--pink)';
   const fmtDate = (iso: string) => iso.replaceAll('-', ' · ');
 
@@ -60,6 +65,19 @@
     </div>
   {/if}
 </article>
+
+<section class="post-footer-cta">
+  <SubscribeCta {accent} />
+</section>
+
+<section class="read-more">
+  <h2>Read more</h2>
+  <div class="read-more__list">
+    {#each related as post (post.slug)}
+      <PostCard {post} />
+    {/each}
+  </div>
+</section>
 
 <style>
   .post-hero {
@@ -121,6 +139,29 @@
     max-width: 36rem;
     color: var(--body);
     line-height: 1.5;
+  }
+  .post-footer-cta {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 0 1.25rem 4rem;
+  }
+  .read-more {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 0 1.25rem 4rem;
+  }
+  .read-more h2 {
+    font-family: var(--display);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    line-height: 1.15;
+    font-size: 1.4rem;
+    margin: 3rem 0 1.5rem;
+  }
+  .read-more__list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
   }
   .prose {
     max-width: var(--measure);

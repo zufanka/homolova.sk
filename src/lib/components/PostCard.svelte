@@ -5,13 +5,15 @@
 
   let {
     post,
-    variant = 'compact'
-  }: { post: PostSummary; variant?: Variant } = $props();
+    variant = 'compact',
+    accent = 'var(--pink)'
+  }: { post: PostSummary; variant?: Variant; accent?: string } = $props();
 </script>
 
 <a
   href={postUrl(post)}
   class="card card--{variant}"
+  style:--card-title-fill={accent}
   data-sveltekit-reload={post.externalUrl ? '' : undefined}
 >
   {#if post.featuredImageUrl}
@@ -83,7 +85,7 @@
     letter-spacing: 0.005em;
     text-transform: uppercase;
     margin: 0 0 22px;
-    color: var(--pink);
+    color: var(--card-title-fill, var(--pink));
     -webkit-text-stroke: 2px var(--ink);
     text-shadow:
       -1px -1px 0 var(--ink),

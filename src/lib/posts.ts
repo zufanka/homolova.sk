@@ -165,6 +165,23 @@ export function getSlugs(): string[] {
   return all.filter(({ meta }) => !meta.externalUrl).map(({ meta }) => meta.slug);
 }
 
+/** Posts to show in the end-of-essay "Read more" section: scores every
+ *  non-draft post except the current one by how many tags it shares with the
+ *  current post, breaking ties by recency (the `all` list is date-desc).
+ *  If the current post has no tags (or not enough matches), the list is
+ *  filled with the most recent remaining posts. */
+export function relatedPosts(current: PostFrontmatter, count = 3): PostSummary[] {
+  const currentTags = new Set(current.tags ?? []);
+  const candidates = listPosts().filter((p) => p.slug !== current.slug);
+  const scored = candidates.map((p, i) => ({
+    p,
+    i,
+    score: (p.tags ?? []).filter((t) => currentTags.has(t)).length
+  }));
+  scored.sort((a, b) => b.score - a.score || a.i - b.i);
+  return scored.slice(0, count).map(({ p }) => p);
+}
+
 export function postUrl(meta: PostFrontmatter): string {
   return meta.externalUrl ?? `/posts/${meta.slug}`;
 }
