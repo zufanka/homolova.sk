@@ -15,7 +15,7 @@ draft: true
   import SubscribeInline from '$lib/components/SubscribeInline.svelte';
 </script>
 
-I left Instagram after one day, while riding a bicycle down the river, a sudden realization hit me. What a disgusting space it was. How dehumanizing. How completely at odds with my values.
+I left Instagram after one day, while riding a bicycle down the river, it hit me. What a disgusting space it was. How completely at odds with my values.
 
 Partially, it was about what it did to me. How my thumb knew to find the icon seemingly by itself. How I felt powerless to resist. How angry it made me with myself.
 
