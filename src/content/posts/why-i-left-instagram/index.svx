@@ -12,8 +12,6 @@ draft: true
 ---
 
 <script lang="ts">
-  import InstagramRevenue from './InstagramRevenue.svelte';
-  import AdRevenue from './AdRevenue.svelte';
   import SubscribeInline from '$lib/components/SubscribeInline.svelte';
 </script>
 
@@ -27,7 +25,17 @@ Then my head stepped in and asked: "But what about all the beautiful things?" Su
 
 In this slaughterhouse, you are the meat and the engineers don't really care about beauty.
 
-<InstagramRevenue />
+<figure class="graphic">
+  <img
+    src="./media/instagram-cash-cow.png"
+    width="1200" height="1200"
+    alt="Isometric illustration of a blocky pink cow marked with a dollar symbol, with a faded gray second cow behind it. Instagram is Meta's cash cow: half of Meta's yearly ad revenue in 2025 came from Instagram — 83.6 billion dollars."
+  />
+  <figcaption>
+    <span>Instagram is Meta's cash cow</span>
+    <span class="src">Half of Meta's yearly ad revenue in 2025 came from Instagram. Source: <a href="https://resourcera.com/data/social/instagram-revenue/" target="_blank" rel="noopener">Resourcera</a> — estimates; Meta does not break out Instagram revenue in its reports. CC BY-SA homolova.sk</span>
+  </figcaption>
+</figure>
 
 ## Reach
 
@@ -39,7 +47,17 @@ Literally, it means "stretch toward." In Latin, *attendere*: to stretch. To reac
 
 Actual experiences make us happy. This is not something Instagram would really strive for, because happiness is not good for business. You can not sell anti-ageing cream to a person who does not care about wrinkles. We are being served FOMO, worries and flaws. So by participating in algorithmic feeds, we are actually reaching towards a system designed to make us anxious about our bodies, career, politics, our very existence. And keep us hooked by offering solutions we don't need.
 
-<AdRevenue />
+<figure class="graphic">
+  <img
+    src="./media/ad-revenue-cows.png"
+    width="1200" height="1200"
+    alt="Isometric bar-chart of three blocky cows of ascending size: TikTok at 33 billion, YouTube at 40 billion, and Meta towering at 196 billion dollars of 2025 ad revenue. Meta's is the biggest cow in town."
+  />
+  <figcaption>
+    <span>Meta's is the biggest cow in town</span>
+    <span class="src">2025 ad revenue. Sources: <a href="https://www.statista.com/statistics/271258/facebooks-advertising-revenue-worldwide/" target="_blank" rel="noopener">Statista</a> (Meta), <a href="https://www.tubefilter.com/2026/02/05/alphabet-q4-2025-youtube-earnings-revenue-60-billion/" target="_blank" rel="noopener">Tubefilter / Alphabet Q4 2025</a> (YouTube), <a href="https://marketingltb.com/blog/statistics/tiktok-ads-statistics/#2" target="_blank" rel="noopener">MarketingLTB</a> (TikTok, forecast). CC BY-SA homolova.sk</span>
+  </figcaption>
+</figure>
 
 While stretching is a slow, deliberate movement, the algorithmic feed reduces our attention to a twitch. Just a quick reflex, a spasm designed to hijack our brains reward mechanism. It forces us to trade intention for impulse. As a result, any such engineered information stream can unconsciously [steer us toward goals that are not our own](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/3F8D7BA2C0FE3A7126A4D9B73A89415D/9781108429092AR.pdf/Stand_out_of_our_Light.pdf?event-type=FTLA). In the short term, this distracts us from what we actually want to do. Sew a dress. Play with our kid. Go for a run. In the long term, it might chip away on our ability to pursue and achieve goals that really matter to us. Make our own clothes. Be a good parent. Be fit.
 
@@ -57,7 +75,21 @@ So I left. My thumb does not look for the icon anymore. There is less to do on m
 
 In an old anecdote, Alexander the Great walked up to a sun bathing Diogenes, the Greek cynic philosopher that lived in a barrel, and asked him what he desired. Diogenes simply answered: "Stand out of my sun."
 
-Similarly, we can chose to disengage from Meta's cash cows. Leaving something behind creates space to think about what we are really searching for in the feed and find alternatives.
+Similarly, we can chose to disengage from Meta's cash cows.
+
+<figure class="graphic">
+  <img
+    src="./media/cash-cow-growth.png"
+    width="1200" height="1200"
+    alt="Two isometric blocky cows compared: a tiny pink cow representing Instagram's 2015 revenue of 0.5 billion dollars, dwarfed by a much larger one for 2025's 83.6 billion — the cow grew a lot."
+  />
+  <figcaption>
+    <span>The cow grew a lot</span>
+    <span class="src">Instagram's 2015 revenue was only 0.6% of its 2025 revenue. Source: <a href="https://resourcera.com/data/social/instagram-revenue/" target="_blank" rel="noopener">Resourcera</a> — estimates. CC BY-SA homolova.sk</span>
+  </figcaption>
+</figure>
+
+Leaving something behind creates space to think about what we are really searching for in the feed and find alternatives.
 
 When an overwhelming urge to share comes over me now, I send out a couple of private messages. Have a little conversation. Check on how people are doing. I also discovered that some people actually look at the stories sections on WhatsApp and Signal. So I sometimes share there. It's cute and so it doesn't keep me scrolling.
 
@@ -68,3 +100,22 @@ I love making photos just for the pretty pictures sake, so I became a [Wikimedia
 There are more projects out there, like the [Fediverse](https://en.wikipedia.org/wiki/Fediverse), where [Mastodon](https://joinmastodon.org/) is the Twitter alternative and [pixelfed](https://pixelfed.org/) is the Instagram alternative. These projects copy the format of popular social media, but put them into the hands of the people.
 
 We don't have to reach for the spaces that just suck us in. We can choose where to put our attention. We can make spaces of our own. So get out there, my dear reader. Reach for the spaces that are good for you, and fill them with beautiful things.
+
+<style>
+  .graphic figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-family: var(--sans);
+  }
+  .graphic figcaption > span:first-child {
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #3f6fd8;
+  }
+  .graphic .src {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+</style>
