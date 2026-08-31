@@ -41,13 +41,22 @@ export function remarkRelativeImages() {
     });
 
     if (used) {
-      tree.children.unshift({
-        type: 'html',
-        value:
-          "<script>\n" +
-          "  const __media__ = import.meta.glob('./media/*', { eager: true, query: '?url', import: 'default' });\n" +
-          "</script>\n"
+      // Merge into the post's own instance <script> block if it has one —
+      // Svelte allows only a single top-level script element, so a second
+      // injected block would break compilation.
+      const OPEN_TAG = /^<script([^>]*)>/;
+      const target = tree.children.find((node) => {
+        if (node.type !== 'html') return false;
+        const m = OPEN_TAG.exec(node.value);
+        return m && !/\bmodule\b/.test(m[1]); // instance script only
       });
+      const line =
+        "  const __media__ = import.meta.glob('./media/*', { eager: true, query: '?url', import: 'default' });\n";
+      if (target) {
+        target.value = target.value.replace(OPEN_TAG, (tag) => tag + '\n' + line);
+      } else {
+        tree.children.unshift({ type: 'html', value: '<script>\n' + line + '</script>\n' });
+      }
     }
   };
 }

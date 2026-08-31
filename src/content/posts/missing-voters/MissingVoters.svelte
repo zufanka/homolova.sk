@@ -7,6 +7,7 @@
   import PopulationPyramid from './components/PopulationPyramid.svelte';
   import BrexitLineChart from './components/BrexitLineChart.svelte';
   import HeaderPassports from './components/HeaderPassports.svelte';
+  import SubscribeInline from '$lib/components/SubscribeInline.svelte';
   import csvRaw from './data/voting_age_population.csv?raw';
   import imgMalta from './img/header/malta.png';
   import imgCroatia from './img/header/croatia.png';
@@ -141,6 +142,7 @@
 
     <p>This might sound like I don't care about casting my vote, but I actually do. I would love to vote. Yet in practice I don't. And it seems to be a structural problem.</p>
     <p>What is more, mobile Europeans are, on average, younger than the native population. Millions of younger voters are therefore probably missing from the ballots.</p>
+    <SubscribeInline />
   </section>
 
   <section class="prose">

@@ -10,6 +10,10 @@ featuredImage: "uterusinautumn.jpg"
 titleFill: "#5b8bee"
 ---
 
+<script>
+  import SubscribeInline from '$lib/components/SubscribeInline.svelte';
+</script>
+
 
 <p>It’s autumn. The elation of summer dissolves, the air cools, and the trees burst into color. It’s the season for staying in, wearing warm socks, and savoring pumpkin stews.</p>
 
@@ -100,6 +104,7 @@ titleFill: "#5b8bee"
 
 <img src="./media/happypumpkin.png" alt="" width="99" height="82">
 
+<SubscribeInline accent="#5b8bee" />
 
 <h2>Moon lodge</h2>
 

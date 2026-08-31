@@ -4,6 +4,7 @@
   import '@fontsource/nunito/600.css';
   import '@fontsource/nunito/400-italic.css';
   import '@fontsource/berkshire-swash/400.css';
+  import SubscribeInline from '$lib/components/SubscribeInline.svelte';
 
   const __media__ = import.meta.glob('./media/*', {
     eager: true,
@@ -163,6 +164,9 @@
       {#if i === breakIndex}
         <article class="story">
           <p class="section-break">***</p>
+        </article>
+        <article class="story">
+          <SubscribeInline accent="#c9b896" />
         </article>
       {/if}
       <article class="story">

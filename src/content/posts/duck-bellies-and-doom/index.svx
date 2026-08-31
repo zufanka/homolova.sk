@@ -11,6 +11,10 @@ tags:
   - "data"
 ---
 
+<script>
+  import SubscribeInline from '$lib/components/SubscribeInline.svelte';
+</script>
+
 <p>At the end of 2024, I asked some friends and colleagues a question: "Which topic do you think is the most important to write about next year?" I loved these conversations because they took me to unexpected places. So, I posed the same question to people on the internet and received <strong>31 responses</strong>, which I am now sharing with you. <a href="https://homolova.sk/blog/topics-that-matter-most-in-2025/" target="_blank" rel="noopener noreferrer">In my previous post</a>, I discussed the first seven answers that addressed the new <strong>world order</strong>. Today, I will dive deeper into two other categories: <strong>climate &amp; energy</strong> and <strong>conflict</strong>. </p>
 <p><strong>Climate</strong> and <strong>conflict</strong> are closely intertwined, as both contribute to vulnerabilities in our societies. As a warm-up for what is coming below, you might want to explore Climate-Conflict-Vulnerability Index and their <a href="httpshttps://climate-conflict.org/www/data-pages/hazards" target="_blank" rel="noopener">interactive world map</a>, which is both beautiful and disturbing to look at.</p>
 <p><img src="./media/InShot_20250204_190936919.gif" alt="Climate Conflict vulnerability index map" width="480" height="660"><br>I am sharing all answers in full, with only slight edits. Beneath each response, I offer my reflections, additional resources, and datasets, hopefully inspiring you to explore further.</p>
@@ -34,6 +38,7 @@ What will happen in the future is uncertain. For the newsletter of the Follow Th
 <blockquote><p><strong>Response 13:</strong> The war to end all wars. On principle, we, humanity, want to end all wars but we’ve seen a huge surge in disgustingly violent, ruthless and needless wars. I do hope that a war to end all wars will not be necessary but looks like Others will make that decision and dump it on us to deal with. It might not suffice, though, because the military complex will find more wars to be had. They gotta put food on the table! :) Are we ever getting off of this bloody merry-go-round?</p></blockquote>
 <p>In their <a href="https://ucdp.uu.se/year/2023" target="_blank" rel="noopener">yearly wrap-up</a>, the Uppsala Conflict Data Program concluded that 2023 marked the highest number of active state-based armed conflicts "ever recorded by the UCDP, totaling 59." It seems the time to invest is indeed ripe.  <br>  <br>In October 2024, Citigroup, one of the big four US banks, published <a href="https://www.citigroup.com/global/insights/money-and-might-financing-the-future-of-defense" target="_blank" rel="noopener">a report</a> outlining possible future scenarios and investment opportunities in the defense sector. I found point 3 here especially cynical.</p>
 <p><img src="./media/Pasted-image-20250204154207.png" alt="Recent global developments" width="536" height="574">Also, check out Figure 27 of the report (which I am not allowed to reproduce) for a handy list of companies to start exploring—or investing in. Your call!</p>
+
 <p>Ok now take a deep breath. Ready for the second tranche of man-made catastrophes? Here we go.</p>
 <h2>Climate &amp; Energy</h2>
 <blockquote><p><strong>Response 14:</strong> Climate, because civilizational collapse is a thing</p></blockquote>
@@ -50,6 +55,9 @@ This topic is humongous, and I'm not entirely sure how rosy the outlooks really 
  
 
 This seemed quite bleak, so I asked the robots at <a data-tooltip-position="top" aria-label="https://homolova.sk/blog/make-search-your-own/" rel="noopener nofollow" href="https://homolova.sk/blog/make-search-your-own/" target="_blank">Perplexity</a> if we are on track. Initially, the bot said, "The energy transition is not on track, and the situation is likely to worsen without significant changes." This made me properly sad, so I asked if they could find me some hopeful news. Luckily, they could. "The message is clear: we are making substantial progress in the global energy transition, and there's genuine hope for a sustainable, clean energy future." That made me feel better. Who said hallucinations were a bug?
+
+<SubscribeInline />
+
 <blockquote><p><strong>Response 19:</strong> Climate change and the impact of new technologies like crypto, cloud, AI, etc. Because of the immediate and future impact of it. With such high demand for high energy requiring technologies, we risk a worsening of the actual conditions to a point of no return.</p></blockquote>
 
 <p>While the recent generative AI boom is making tech companies increasingly energy-hungry, the International Energy Agency's analysis suggests that we should be more concerned about the <a href="https://www.iea.org/commentaries/what-the-data-centre-and-ai-boom-could-mean-for-the-energy-sector" target="_blank" rel="noopener">rising energy demands of air conditioning</a>. <img src="./media/Screenshot_20250205_134700.png" alt="Global growth in electricity demand. " width="676" height="608"></p>

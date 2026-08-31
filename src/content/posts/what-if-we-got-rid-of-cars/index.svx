@@ -37,6 +37,7 @@ tags:
   // post's featuredImage, where posts.ts resolves it the same way.
   import heroImage from './media/parking-to-park.jpg?url';
   import Hero from '$lib/components/Hero.svelte';
+  import SubscribeInline from '$lib/components/SubscribeInline.svelte';
   // This post's display face, loaded only with this post — the rest of the site
   // keeps Bowlby One. @font-face blocks carry unicode-range per subset, so the
   // browser fetches the latin file only. To make it the site's face instead,
@@ -286,6 +287,10 @@ tags:
     </p>
   </section>
 
+  <div class="inline-cta-slot">
+    <SubscribeInline accent="#0a6b40" />
+  </div>
+
   <ScrollyRanking
     rows={cities}
     steps={nowSteps}
@@ -476,7 +481,8 @@ tags:
   .why,
   .method,
   .board-head,
-  .body-copy {
+  .body-copy,
+  .inline-cta-slot {
     max-width: var(--measure);
     margin-inline: auto;
   }

@@ -10,6 +10,10 @@ tags:
   - "data"
 ---
 
+<script>
+  import SubscribeInline from '$lib/components/SubscribeInline.svelte';
+</script>
+
 <p>At the end of 2024, I asked a some friends and colleagues a question: "Which topic do you think is the most important to write about next year?" and got some very diverse answers. A friend who is a designer and visual artist suggested to make people aware that no piece of information is neutral. A colleague reflected on the power of Musk and his army of satellites. And another friend simply said: "Nothing. I can't do anything with the news." </p>
 <p>The conversations were so interensting that I decided to scale it up. At the end of November I tossed a survey into my network and let it cook there for a couple of weeks. This resulted in a fresh batch of <strong>31 answers</strong> to ponder.</p>
 <p>Some topics made an expected appearance. Climate, for instance, was mentioned 11 times accross all the answers. However many responses surprised me. And so I have found myself diving into democracy metrics, world population predictions, duck curves and dark data.</p>
@@ -42,6 +46,7 @@ tags:
 <p><img src="./media/categories.png" alt="" width="632" height="749"></p>
 <p>Below you will find the responses from the first prominent category: <strong>world order</strong>. <strong></strong>The answers are provided in full, lightly edited, and include some of my own reflections, data and other resources. Enjoy!</p>
 <p><img src="./media/bro1-2.png" alt="" width="137" height="112"></p>
+
 <h2>World order</h2>
 <p>The responses in this category focus on the shifting political climate. They highlight concerns about the rise of populist leaders, far-right sentiments, and the changing role of the U.S. They question the direction modern democracies are heading.</p>
 <blockquote><p><strong>Response 1:</strong> Europe: European Union, how Europe is becoming more and more right-wing</p></blockquote>
@@ -53,6 +58,9 @@ tags:
 <blockquote><p><strong>Response 3:</strong> Totalitarianism in Europe. Totalitarian trends (or fear of totalitarian trends, fear of public unrest, active instrumentalisation of groups in difficult political challenges) overshadow meaningful political discussions on all important topics such as the climate crisis, inequality and polarisation in societies, environmental issues such as pollution with chemicals, plastics and the resulting health crisis... The general wish to maintain a "business as usual" approach in spite of all the above concerns may be among the keys to start covering this challenge. </p></blockquote>
 <p>This response, as I interpret it, suggests focusing on totalitarian trends in Europe to clear the way for discussions about truly pressing issues.</p>
 <p>Three other responses focused on the situation in the US, with Trump and Musk at the wheel.</p>
+
+<SubscribeInline />
+
 <blockquote><p><strong>Response 4:</strong> The change in geopolitics brought on by the US elections. With Trump (and Musk) getting into office, we will see a shift of power away from the state to private individuals. In military conflicts, this has already been foreshadowed by the Starlink story in Ukraine and Musk’s ties to the global far-right. Moreover, capital will become increasingly privatized as the new government aims to unleash anonymous cryptocapitalism. Gradually, governments’ former monetary powers will slip from democratic control.</p></blockquote>
 <blockquote><p><strong>Response 5:</strong> Trump and how it influences our safety in Europe or the Pacific even (Taiwan)</p></blockquote>
 <blockquote><p><strong>Response 6:</strong> Broligarchy: how tech and similar bros are broing away rights and broifying politics. The bro approach to business and politics shapes social media algorithms, elections, lobbying and political priorities</p></blockquote>

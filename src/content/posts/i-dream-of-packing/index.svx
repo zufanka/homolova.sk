@@ -8,6 +8,10 @@ heroStyle: overlay
 featuredImage: "squirreldreams.jpg"
 ---
 
+<script>
+  import SubscribeInline from '$lib/components/SubscribeInline.svelte';
+</script>
+
 
 <p>I have a recurrent dream. It's been going on for years. The circumstances are always different, but the theme is constant: I am packing. Packing, but I can't finish in time. Packing, but I don't have enough bags. Packing and suddenly discovering more things that need to be packed. You get the idea.</p>
 
@@ -133,6 +137,7 @@ featuredImage: "squirreldreams.jpg"
 
 <img src="./media/squirrel_nuts.png" alt="" width="147" height="107">
 
+<SubscribeInline />
 
 <h2>Building trust</h2>
 

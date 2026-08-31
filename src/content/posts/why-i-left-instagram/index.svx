@@ -14,6 +14,7 @@ draft: true
 <script lang="ts">
   import InstagramRevenue from './InstagramRevenue.svelte';
   import AdRevenue from './AdRevenue.svelte';
+  import SubscribeInline from '$lib/components/SubscribeInline.svelte';
 </script>
 
 I left Instagram after one day, while riding a bicycle down the river, a sudden realization hit me. What a disgusting space it was. How dehumanizing. How completely at odds with my values.
@@ -43,6 +44,8 @@ Actual experiences make us happy. This is not something Instagram would really s
 While stretching is a slow, deliberate movement, the algorithmic feed reduces our attention to a twitch. Just a quick reflex, a spasm designed to hijack our brains reward mechanism. It forces us to trade intention for impulse. As a result, any such engineered information stream can unconsciously [steer us toward goals that are not our own](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/3F8D7BA2C0FE3A7126A4D9B73A89415D/9781108429092AR.pdf/Stand_out_of_our_Light.pdf?event-type=FTLA). In the short term, this distracts us from what we actually want to do. Sew a dress. Play with our kid. Go for a run. In the long term, it might chip away on our ability to pursue and achieve goals that really matter to us. Make our own clothes. Be a good parent. Be fit.
 
 The point is: it does not have to be this way. We can make spaces where the algorithm aims to make us calmer. More educated. More empathetic. More cooperative. Or where it does nothing at all.
+
+<SubscribeInline />
 
 ## Release
 

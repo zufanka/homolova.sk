@@ -13,6 +13,7 @@
   import Hero from '$lib/components/Hero.svelte';
   import Placeholder from './components/Placeholder.svelte';
   import Divider from './components/Divider.svelte';
+  import SubscribeInline from '$lib/components/SubscribeInline.svelte';
   import ProteinPriceBarcode from './components/ProteinPriceBarcode.svelte';
   import FertilizerArea from './components/FertilizerArea.svelte';
   import EmissionsBars from './components/EmissionsBars.svelte';
@@ -265,6 +266,7 @@
         Perhaps the fairy tale had it backwards all along. The true magic was never the
         giant in the clouds, but the tiny beans in the soil.
       </p>
+      <SubscribeInline />
     </section>
 
     <section class="chapter"><h2>A sustainable diet</h2></section>

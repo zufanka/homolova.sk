@@ -11,6 +11,10 @@ tags:
   - "data"
 ---
 
+<script>
+  import SubscribeInline from '$lib/components/SubscribeInline.svelte';
+</script>
+
 
 <p>I am passionate about food. I love making it, eating it and feeding it to others especially.</p>
 
@@ -120,7 +124,6 @@ tags:
 
 <img src="./media/molecule.png" alt="" width="199" height="142">
 
-
 <h2>The Business of Bliss</h2>
 
 
@@ -175,6 +178,7 @@ And sugar is a one powerful ingredient. It triggers a big release of dopamine. A
 
 
 
+<SubscribeInline accent="#ffec00" />
 
 <h2>Eat food. Not too much. Mostly plants.</h2>
 

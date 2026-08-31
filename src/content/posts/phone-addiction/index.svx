@@ -10,8 +10,11 @@ tags:
   - "data"
 ---
 
+<script>
+  import SubscribeInline from '$lib/components/SubscribeInline.svelte';
+</script>
 
-<p>Somewhere in the early 2010s, I met Melanie in Barcelona. I was a broke freelance journalist traveling for a workshop and needed a place to stay. I found Melanie on CouchSurfing, and she kindly agreed to host me. Back then, mobile data wasn’t really a thing yet, but Wi-Fi was everywhere: open city networks, cafés. Just not in her apartment.</p>
+<p>Somewhere in the early 2010s, I met Melanie in Barcelona. I was a broke freelance journalist traveling for a workshop and needed a place to stay. I found Melanie on CouchSurfing, and she kindly agreed to host me. Back then, mobile data wasn't really a thing yet, but Wi-Fi was everywhere: open city networks, cafés. Just not in her apartment.</p>
 
 
 <p>Melanie was a young American who had moved to Spain a year earlier. She used to work at Apple, which made her one of the early adopters of the iPhone. She told me how she’d hang out with friends at bars or restaurants, but everyone would just be on their phones. They’d even chat privately about people at the table—as if talking behind their backs, while sitting right next to them. She came to hate that, and eventually banned the internet from her home. The evening I spent with her, she knitted and drew,</p>
@@ -54,12 +57,12 @@ tags:
 
 <blockquote>
 <p>“When you pack a mobile persuasive technology with you, you pack a source of influence. At any time the device can suggest, encourage, and reward.”</p>
-<p><small>~ B. J. Fogg, <i>Persuasive Technologies</i></small></p>
+<p><small>~ B. J. Fogg, <i>Persuasive Technologies</i></small></p>
 </blockquote>
 
+<SubscribeInline />
 
-
-<p>As an investigative journalist I often ask myself the question who is benefiting (and despite of that yes my life is still fun.) According to several — let’s say “<a href="https://appfigures.com/resources/insights/20250110?f=5" target="_blank" rel="noopener">less</a> than <a href="https://www.businessofapps.com/data/most-popular-apps/" target="_blank" rel="noopener">perfect</a>” — data sources, rocking the charts of most downloaded apps are <i>Instagram</i>, <i>TikTok</i>, <i>WhatsApp</i>, <i>Facebook</i>, and <i>ChatGPT</i>. In other words, a large chunk of our phone time is spent inside the carefully crafted gardens of <i>Meta</i> and a few others. These apps are packed with persuasive design, and none of them let you opt out of it. I can’t tweak or change how they work. There is no choice. Which makes me believe, that my smartphone isn’t really mine at all.</p>
+<p>As an investigative journalist I often ask myself the question who is benefiting (and despite of that yes my life is still fun.) According to several - let's say "<a href="https://appfigures.com/resources/insights/20250110?f=5" target="_blank" rel="noopener">less</a> than <a href="https://www.businessofapps.com/data/most-popular-apps/" target="_blank" rel="noopener">perfect</a>" - data sources, rocking the charts of most downloaded apps are <i>Instagram</i>, <i>TikTok</i>, <i>WhatsApp</i>, <i>Facebook</i>, and <i>ChatGPT</i>. In other words, a large chunk of our phone time is spent inside the carefully crafted gardens of <i>Meta</i> and a few others. These apps are packed with persuasive design, and none of them let you opt out of it. I can't tweak or change how they work. There is no choice. Which makes me believe, that my smartphone isn't really mine at all.</p>
 
 
 <p>But it could be! We could design apps that put users in control. <a href="https://www.hertie-school.org/fileadmin/2_Research/2_Research_directory/Research_Centres/Centre_for_Digital_Governance/5_Papers/Student_publications/Student_working_paper_series/2023_Digital_Addiction_by_Design.pdf" target="_blank" rel="noopener">For example</a> by giving us the option to:</p>

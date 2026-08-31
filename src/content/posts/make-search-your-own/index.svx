@@ -8,6 +8,10 @@ heroStyle: overlay
 featuredImage: "peacock.png"
 ---
 
+<script>
+  import SubscribeInline from '$lib/components/SubscribeInline.svelte';
+</script>
+
 <p>Internet search sucks. It's not just my personal opinion.</p>
 <p><img src="./media/googleisgettingworse.png" alt="screenshots of articles about google getting worse" width="1200" height="1200"></p>
 <p>If you don't trust the media, maybe you do trust the Germans: their university researchers came to the same sad conclusion <i>“that higher-ranked pages are on average more optimized, more monetized [...] and they show signs of lower text quality”,</i> reads their recent <a href="https://downloads.webis.de/publications/papers/bevendorff_2024a.pdf">paper</a>.</p>
@@ -31,7 +35,10 @@ featuredImage: "peacock.png"
 <p><i>Pie thickeners, by Nicola Lamb</i></p>
 </figcaption>
 </figure>
-<p>I use <i>Marginalia</i> if I am interested in anything related to craft (cooking, basket weaving) or if I feel like online exploration outside the social media ecosystem. Their rainbow <a href="https://search.marginalia.nu/explore/random">‘random’</a> button is perfect for that.</p>
+<p>I use <i>Marginalia</i> if I am interested in anything related to craft (cooking, basket weaving) or if I feel like online exploration outside the social media ecosystem. Their rainbow <a href="https://search.marginalia.nu/explore/random">’random’</a> button is perfect for that.</p>
+
+<SubscribeInline />
+
 <h2>Embeddings search</h2>
 <p>LLMs are also taking over internet search. There are new search engines that let you chat with the search results and even formulate new questions based on the previous search.</p>
 <p>Two examples of these are Exa and Perplexity. I have discovered them only recently but use them regularly to discover material around a certain topic for my work related searches. </p>
