@@ -21,8 +21,8 @@
   --accent: var(--pink);
   --serif: Georgia, 'Times New Roman', serif;
   --prose-font: var(--sans);
-  --prose-size: 1rem;
-  --prose-leading: 1.5;
+  --prose-size: 1.125rem;
+  --prose-leading: 1.6;
   --link-underline-color: var(--pink);
   --link-hover-bg: var(--pink);
   --link-hover-color: var(--ink);

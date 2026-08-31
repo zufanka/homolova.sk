@@ -103,9 +103,10 @@
   .hero-breakout {
     width: 100vw;
     margin-inline: calc(50% - 50vw);
+    margin-bottom: 3rem;
   }
   .post-hero {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
   }
   .hero-inner {
     max-width: var(--measure);
