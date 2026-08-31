@@ -8,10 +8,8 @@ newsletterImage: "/posts/ode-to-beans/ode-to-beans.jpg"
 newsletterTeaser: "A data essay on why legumes matter, and how to comfortably eat them."
 featuredImage: "ode-to-beans.jpg"
 fullBleed: true
-headerFill: "#D95C2A"
-titleFill: "#D95C2A"
+theme: beans
 footerBg: "#F5EDE0"
-footerAccent: "#D95C2A"
 tags:
   - "data"
 ---

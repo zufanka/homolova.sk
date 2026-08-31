@@ -8,6 +8,7 @@ newsletterImage: "1_squirrel_sleeping.jpg"
 newsletterTeaser: "A short illustrated story for the winter solstice — best read on the web."
 featuredImage: "1_squirrel_sleeping.jpg"
 fullBleed: true
+theme: snow
 headerFill: "#c9b896"
 footerBg: "#ebe7dc"
 footerAccent: "#c9b896"

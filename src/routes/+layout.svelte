@@ -16,11 +16,12 @@
   import '@fontsource/roboto/600.css';
   import '@fontsource/roboto-slab/500.css';
   import '@fontsource/roboto-slab/700.css';
+  import '$lib/themes';
 
   let { children } = $props();
   const meta = $derived((page.data as { meta?: LayoutMeta })?.meta);
   const bare = $derived(Boolean(meta?.fullBleed));
-  const headerFill = $derived(meta?.headerFill ?? meta?.titleFill ?? 'var(--pink)');
+  const headerFill = $derived(meta?.headerFill ?? meta?.titleFill ?? 'var(--accent, var(--pink))');
 
   const ogTitle = $derived(meta?.ogTitle ?? SITE_TITLE);
   const ogDescription = $derived(meta?.ogDescription ?? SITE_DESCRIPTION);
@@ -46,7 +47,7 @@
   );
   const showSubscribeLink = $derived(page.url.pathname !== '/newsletter');
   const footerSiteBg = $derived(meta?.footerBg ?? 'var(--bg)');
-  const footerAccent = $derived(meta?.footerAccent ?? 'var(--pink)');
+  const footerAccent = $derived(meta?.footerAccent ?? 'var(--accent, var(--pink))');
 
   // Mail address is assembled client-side so the prerendered HTML never
   // contains the literal address — keeps simple scrapers from harvesting it.
@@ -140,6 +141,7 @@
   </span>
 {/snippet}
 
+<div class="site-root" data-theme={meta?.theme}>
 <header class="nav" class:nav--bare={bare}>
   <div class="nav__inner">
     <a href="/" class="nav__mark" style:--mark-fill={headerFill}>Hey it's Ada</a>
@@ -159,8 +161,13 @@
     {@render footerLinks()}
   </div>
 </footer>
+</div>
 
 <style>
+  .site-root {
+    min-height: 100svh;
+    background: var(--bg);
+  }
   :global(:root) {
     --bg: #ffffff;
     --card: #fdf5f0;

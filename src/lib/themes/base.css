@@ -1,0 +1,23 @@
+/*
+ * Theme token contract.
+ *
+ * This file declares the full list of custom properties a per-post theme may
+ * set. The defaults below reproduce the site's current look exactly, so posts
+ * without a `theme` frontmatter field render identically to today.
+ *
+ * A theme is one CSS file in this directory (imported by ./index.ts) that
+ * overrides any subset of these tokens scoped to `[data-theme='name']`, where
+ * `name` is the post's `theme` frontmatter value. The attribute is set on the
+ * `.site-root` wrapper in the root layout, so both the site chrome (nav mark,
+ * footer) and the post body inherit the themed values.
+ */
+:root {
+  --accent: var(--pink);
+  --serif: Georgia, 'Times New Roman', serif;
+  --prose-font: var(--sans);
+  --prose-size: 1rem;
+  --prose-leading: 1.5;
+  --link-underline-color: var(--pink);
+  --link-hover-bg: var(--pink);
+  --link-hover-color: var(--ink);
+}

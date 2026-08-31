@@ -1,0 +1,12 @@
+/* missing-voters theme */
+[data-theme='voters'] {
+  --display: 'DM Serif Text', Georgia, serif;
+  --bg: #fafaf8;
+  --accent: #d45d5d;
+  --prose-font: var(--sans);
+  --prose-size: clamp(1rem, 2vw, 1.2rem);
+  --prose-leading: 1.75;
+  --link-underline-color: transparent;
+  --link-hover-bg: transparent;
+  --link-hover-color: inherit;
+}

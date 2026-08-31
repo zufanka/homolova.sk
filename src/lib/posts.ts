@@ -26,6 +26,8 @@ export interface PostFrontmatter {
    *  and the RSS feed that beehiiv builds newsletter drafts from, so rewording
    *  the social card should not quietly reword the newsletter. */
   ogDescription?: string;
+  /** theme name; resolves to data-theme on the site wrapper; absence = default site look */
+  theme?: string;
   /** Hero-block background colour. Any CSS colour. Falls back to site default. */
   accent?: string;
   /** If true, post renders full-bleed without the narrow prose container. */
@@ -48,7 +50,7 @@ export interface PostFrontmatter {
 
 export type LayoutMeta = Pick<
   PostFrontmatter,
-  'fullBleed' | 'headerFill' | 'titleFill' | 'footerBg' | 'footerAccent'
+  'fullBleed' | 'headerFill' | 'titleFill' | 'footerBg' | 'footerAccent' | 'theme'
 > & {
   ogTitle?: string;
   ogDescription?: string;
@@ -97,6 +99,11 @@ function validate(meta: Partial<PostFrontmatter>, path: string): PostFrontmatter
         `post ${path}: newsletterMode=teaser requires newsletterImage and newsletterTeaser`
       );
     }
+  }
+  if (meta.theme != null && !/^[a-z0-9-]+$/.test(meta.theme)) {
+    throw new Error(
+      `post ${path}: theme "${meta.theme}" must match /^[a-z0-9-]+$/`
+    );
   }
   return meta as PostFrontmatter;
 }

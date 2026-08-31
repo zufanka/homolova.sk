@@ -1,4 +1,5 @@
 <script>
+  import '@fontsource/dm-serif-text/400.css';
   import Scroller from '@sveltejs/svelte-scroller';
   import { csvParse } from 'd3';
   import BubbleChart from './components/BubbleChart.svelte';
@@ -43,22 +44,22 @@
 
   const steps = [
     {
-      text: `<i>Bubble size</i> shows <span style="color: #d45d5d; font-weight: 700;">total adult population</span>. The <i>vertical axis</i> shows the <span style="color: #d45d5d; font-weight: 700;">number</span> of adult mobile Europeans; the <i>horizontal axis</i> shows their <span style="color: #d45d5d; font-weight: 700;">share</span> in the population.`,
+      text: `<i>Bubble size</i> shows <span style="color: var(--accent); font-weight: 700;">total adult population</span>. The <i>vertical axis</i> shows the <span style="color: var(--accent); font-weight: 700;">number</span> of adult mobile Europeans; the <i>horizontal axis</i> shows their <span style="color: var(--accent); font-weight: 700;">share</span> in the population.`,
     },
     {
-      text: 'A whopping <span style="color: #d45d5d; font-weight: 700;">37%</span> of adults living in <span style="color: #d45d5d; font-weight: 700;">Luxembourg</span> are mobile Europeans, most notably from Portugal due to a history of guest workers in the 70ies.',
+      text: 'A whopping <span style="color: var(--accent); font-weight: 700;">37%</span> of adults living in <span style="color: var(--accent); font-weight: 700;">Luxembourg</span> are mobile Europeans, most notably from Portugal due to a history of guest workers in the 70ies.',
     },
     {
-      text: '<span style="color: #d45d5d; font-weight: 700;">Germany</span> has the largest total amount of adult mobile Europeans: <span style="color: #d45d5d; font-weight: 700;">3.7 million</span>, <span style="color: #d45d5d; font-weight: 700;">5.4%</span> of the population.',
+      text: '<span style="color: var(--accent); font-weight: 700;">Germany</span> has the largest total amount of adult mobile Europeans: <span style="color: var(--accent); font-weight: 700;">3.7 million</span>, <span style="color: var(--accent); font-weight: 700;">5.4%</span> of the population.',
     },
     {
-      text: '<span style="color: #d45d5d; font-weight: 700;">Spain, Italy</span> and <span style="color: #d45d5d; font-weight: 700;">France</span> also host a large population of other EU citizens. Combined a bit more than Germany.',
+      text: '<span style="color: var(--accent); font-weight: 700;">Spain, Italy</span> and <span style="color: var(--accent); font-weight: 700;">France</span> also host a large population of other EU citizens. Combined a bit more than Germany.',
     },
     {
-      text: 'A significant proportion of adults in <span style="color: #d45d5d; font-weight: 700;">Netherlands, Denmark, Austria, Belgium, Ireland, Malta</span> and <span style="color: #d45d5d; font-weight: 700;">Cyprus</span> are from other EU countries.',
+      text: 'A significant proportion of adults in <span style="color: var(--accent); font-weight: 700;">Netherlands, Denmark, Austria, Belgium, Ireland, Malta</span> and <span style="color: var(--accent); font-weight: 700;">Cyprus</span> are from other EU countries.',
     },
     {
-      text: 'In these countries the fewest mobile Europeans live, but it still amounts to nearly <span style="color: #d45d5d; font-weight: 700;">950 thousand</span>.',
+      text: 'In these countries the fewest mobile Europeans live, but it still amounts to nearly <span style="color: var(--accent); font-weight: 700;">950 thousand</span>.',
     },
   ];
 </script>
@@ -193,7 +194,6 @@
   .mv-root {
     width: 100%;
     overflow-x: hidden;
-    background: #fafaf8;
     padding-bottom: 4rem;
   }
 
@@ -226,7 +226,7 @@
   }
 
   h1, h2, h4 {
-    font-family: 'DM Serif Text', serif;
+    font-family: var(--display);
   }
 
   h1 {
@@ -310,7 +310,7 @@
   }
 
   .step.active .step-content {
-    border-left-color: #d45d5d;
+    border-left-color: var(--accent);
   }
 
   .step-content p {
@@ -416,7 +416,7 @@
   .read-more-title {
     display: block;
     font-weight: 600;
-    color: #d45d5d;
+    color: var(--accent);
     margin-bottom: 0.25rem;
   }
 
@@ -451,7 +451,7 @@
   }
 
   .subscribe-btn {
-    background: #d45d5d;
+    background: var(--accent);
   }
 
   .subscribe-btn:hover {
@@ -495,7 +495,7 @@
     border-radius: 5px;
     font-size: 0.9rem;
     font-weight: 500;
-    background: #d45d5d;
+    background: var(--accent);
     color: #fff;
     border: none;
     cursor: pointer;

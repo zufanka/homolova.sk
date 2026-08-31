@@ -1,0 +1,26 @@
+/*
+ * "beans" theme — ode-to-beans.
+ * Design-level decisions for the post AND the site chrome around it.
+ * Palette-level colors (legume chart colors, parchment-adjacent surfaces)
+ * stay in the post's own palette.css; only the theme contract lives here.
+ */
+[data-theme='beans'] {
+  /* Typography */
+  --sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --display: 'Cherry Bomb One', var(--serif);
+
+  /* Prose */
+  --prose-font: var(--serif);
+  --prose-size: 1.15rem;
+  --prose-leading: 1.65;
+
+  /* Surfaces & chrome */
+  --bg: #F5EDE0; /* parchment — same as --surface-parchment in the post palette */
+  --accent: #D95C2A; /* coral lentil — nav mark + chrome accent */
+
+  /* Prose links (kidney underline, coral on hover, no hover fill) */
+  --link-underline-color: #7B2D2D;
+  --link-hover-bg: transparent;
+  --link-hover-color: #D95C2A;
+}

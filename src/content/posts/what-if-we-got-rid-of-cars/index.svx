@@ -19,6 +19,8 @@ fullBleed: true
 headerFill: "#0a6b40"
 titleFill: "#0a6b40"
 footerAccent: "#0a6b40"
+# a future post with a bigger palette/typography set should use `theme:` and
+# a file in src/lib/themes/ instead of stacking local overrides like these
 tags:
   - "data"
 ---

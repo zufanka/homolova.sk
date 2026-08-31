@@ -1,0 +1,90 @@
+/* Global prose styles for the post body, extracted from the post page
+ * component. Uses `.post-body` (not `.prose`) because several posts define
+ * their own scoped `.prose` classes; `.post-body` is unique to the site page.
+ * Typography and link colours are token-driven — see src/lib/themes/base.css
+ * for the contract; base defaults reproduce the previous look exactly. */
+
+.post-body {
+  font-family: var(--prose-font);
+  font-size: var(--prose-size);
+  line-height: var(--prose-leading);
+}
+
+.post-body h2,
+.post-body h3 {
+  font-family: var(--display);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+  margin-top: 3rem;
+}
+
+.post-body h2 {
+  font-size: 1.4rem;
+}
+
+.post-body h3 {
+  font-size: 1.1rem;
+}
+
+.post-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+}
+
+.post-body figure {
+  margin: 2.5rem 0;
+}
+
+.post-body figure img {
+  width: 100%;
+  margin: 0;
+}
+
+.post-body p:has(> img:only-child) {
+  text-align: center;
+}
+
+.post-body figcaption {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.post-body pre {
+  background: var(--code-bg);
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+  font-size: 0.9rem;
+}
+
+.post-body code {
+  background: var(--code-bg);
+  padding: 0.05rem 0.3rem;
+  font-size: 0.9em;
+}
+
+.post-body pre code {
+  background: none;
+  padding: 0;
+}
+
+.post-body blockquote {
+  border-left: 3px solid var(--rule);
+  margin-left: 0;
+  padding-left: 1rem;
+  color: var(--muted);
+}
+
+.post-body a {
+  border-bottom: 2px solid var(--link-underline-color);
+  padding-bottom: 1px;
+  transition: background 160ms ease-out;
+}
+
+.post-body a:hover {
+  background: var(--link-hover-bg);
+  color: var(--link-hover-color);
+}

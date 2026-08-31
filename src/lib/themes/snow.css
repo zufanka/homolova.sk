@@ -1,0 +1,13 @@
+/* let-it-snow theme — winter cream, Nunito body, Lombard display. */
+[data-theme='snow'] {
+  --sans: 'Nunito', sans-serif;
+  --display: 'Lombard', 'Berkshire Swash', cursive;
+  --bg: #f5f1e8;
+  --accent: #5a7a5a;
+  --prose-font: 'Nunito', sans-serif;
+  --prose-size: 1.2rem;
+  --prose-leading: 1.9;
+  --link-underline-color: #5a7a5a;
+  --link-hover-bg: transparent;
+  --link-hover-color: #5a7a5a;
+}

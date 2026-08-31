@@ -1,5 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import '@fontsource/nunito/400.css';
+  import '@fontsource/nunito/600.css';
+  import '@fontsource/nunito/400-italic.css';
+  import '@fontsource/berkshire-swash/400.css';
 
   const __media__ = import.meta.glob('./media/*', {
     eager: true,
@@ -208,15 +212,6 @@
   </aside>
 </div>
 
-<svelte:head>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Nunito:ital,wght@0,400;0,600;1,400&display=swap"
-    rel="stylesheet"
-  />
-</svelte:head>
-
 <style>
   @font-face {
     font-family: 'Lombard';
@@ -227,15 +222,14 @@
 
   .winter {
     display: flow-root;
-    font-family: 'Nunito', sans-serif;
-    background-color: #f5f1e8;
+    font-family: var(--prose-font);
     color: #2a2a2a;
-    line-height: 1.9;
-    font-size: 1.2rem;
+    line-height: var(--prose-leading);
+    font-size: var(--prose-size);
   }
 
   .winter h1 {
-    font-family: 'Lombard', 'Berkshire Swash', cursive;
+    font-family: var(--display);
     font-size: 5rem;
     font-weight: 400;
     margin-bottom: 0.5rem;
@@ -266,7 +260,7 @@
     margin-top: 0.5rem;
   }
   .hero-author a {
-    color: #5a7a5a;
+    color: var(--accent);
     text-decoration: none;
   }
   .hero-author a:hover {

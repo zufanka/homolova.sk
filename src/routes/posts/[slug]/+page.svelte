@@ -5,6 +5,7 @@
   import SubscribeCta from '$lib/components/SubscribeCta.svelte';
   import PostCard from '$lib/components/PostCard.svelte';
   import { SITE_URL, absoluteUrl } from '$lib/site';
+  import '$lib/styles/post-body.css';
 
   let {
     data
@@ -12,9 +13,9 @@
     data: { meta: PostFrontmatter; component: Component; featuredImageUrl?: string };
   } = $props();
   const Post = data.component;
-  const accent = data.meta.titleFill ?? data.meta.footerAccent ?? 'var(--pink)';
+  const accent = data.meta.titleFill ?? data.meta.footerAccent ?? 'var(--accent, var(--pink))';
   const related = relatedPosts(data.meta, 3);
-  const titleFill = data.meta.titleFill ?? 'var(--pink)';
+  const titleFill = data.meta.titleFill ?? 'var(--accent, var(--pink))';
   const fmtDate = (iso: string) => iso.replaceAll('-', ' · ');
 
   const articleJsonLd = JSON.stringify({
@@ -60,7 +61,7 @@
   {#if data.meta.fullBleed}
     <Post />
   {:else}
-    <div class="prose">
+    <div class="post-body">
       <Post />
     </div>
   {/if}
@@ -163,73 +164,9 @@
     flex-direction: column;
     gap: 22px;
   }
-  .prose {
+  .post-body {
     max-width: var(--measure);
     margin: 0 auto;
     padding: 0 1.25rem 4rem;
-  }
-  .prose :global(h2),
-  .prose :global(h3) {
-    font-family: var(--display);
-    text-transform: uppercase;
-    letter-spacing: 0.01em;
-    line-height: 1.15;
-    margin-top: 3rem;
-  }
-  .prose :global(h2) {
-    font-size: 1.4rem;
-  }
-  .prose :global(h3) {
-    font-size: 1.1rem;
-  }
-  .prose :global(img) {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    margin: 1.5rem auto;
-  }
-  .prose :global(figure) {
-    margin: 2.5rem 0;
-  }
-  .prose :global(figure img) {
-    width: 100%;
-    margin: 0;
-  }
-  .prose :global(p:has(> img:only-child)) {
-    text-align: center;
-  }
-  .prose :global(figcaption) {
-    margin-top: 0.5rem;
-    color: var(--muted);
-    font-size: 0.9rem;
-  }
-  .prose :global(pre) {
-    background: var(--code-bg);
-    padding: 0.75rem 1rem;
-    overflow-x: auto;
-    font-size: 0.9rem;
-  }
-  .prose :global(code) {
-    background: var(--code-bg);
-    padding: 0.05rem 0.3rem;
-    font-size: 0.9em;
-  }
-  .prose :global(pre code) {
-    background: none;
-    padding: 0;
-  }
-  .prose :global(blockquote) {
-    border-left: 3px solid var(--rule);
-    margin-left: 0;
-    padding-left: 1rem;
-    color: var(--muted);
-  }
-  .prose :global(a) {
-    border-bottom: 2px solid var(--pink);
-    padding-bottom: 1px;
-    transition: background 160ms ease-out;
-  }
-  .prose :global(a:hover) {
-    background: var(--pink);
   }
 </style>

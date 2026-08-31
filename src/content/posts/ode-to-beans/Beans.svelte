@@ -1,6 +1,16 @@
 <script>
   import { onMount } from 'svelte';
+  // Same faces/weights the Google Fonts <link> used to serve, now self-hosted.
+  import '@fontsource/cherry-bomb-one/400.css';
+  import '@fontsource/fraunces/500.css';
+  import '@fontsource/fraunces/700.css';
+  import '@fontsource/inter/400.css';
+  import '@fontsource/inter/500.css';
+  import '@fontsource/inter/600.css';
+  import '@fontsource/source-serif-4/400.css';
+  import '@fontsource/source-serif-4/600.css';
   import './palette.css';
+  import Hero from '$lib/components/Hero.svelte';
   import Placeholder from './components/Placeholder.svelte';
   import Divider from './components/Divider.svelte';
   import ProteinPriceBarcode from './components/ProteinPriceBarcode.svelte';
@@ -43,35 +53,31 @@
   });
 </script>
 
-<svelte:head>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-  <link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Cherry+Bomb+One&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap"
-  />
-</svelte:head>
-
 <div class="beans-root">
   <article>
-    <header class="hero">
-      <div class="hero-notes" aria-hidden="true">
-        <img class="note note--1" src={mungNote}      alt="" data-parallax="0.08"  />
-        <img class="note note--2" src={adzukiNote}    alt="" data-parallax="-0.05" />
-        <img class="note note--3" src={blackBeanNote} alt="" data-parallax="0.12"  />
-        <img class="note note--4" src={favaNote}      alt="" data-parallax="-0.10" />
-        <img class="note note--5" src={borlottiNote}  alt="" data-parallax="0.15"  />
-        <img class="note note--6" src={kidneyNote}    alt="" data-parallax="-0.08" />
-        <img class="note note--7" src={chickpeaNote}  alt="" data-parallax="0.10"  />
-      </div>
-      <div class="hero-content">
-        <p class="kicker">Data essay</p>
-        <h1>An ode to beans</h1>
-        <p class="dek">Even small seeds can reshape large systems.</p>
-        <p class="byline">by <a href="/hello">Ada Homolova</a> · 15 May 2026</p>
-        <p class="scroll-hint"><span>Scroll</span><span class="scroll-arrow" aria-hidden="true">↓</span></p>
-      </div>
-    </header>
+    <div class="beans-hero">
+      <Hero
+        kicker="Data essay"
+        title="An ode to beans"
+        dek="Even small seeds can reshape large systems."
+        scrollLabel="Scroll"
+      >
+        {#snippet byline()}
+          <p class="byline">by <a href="/hello">Ada Homolova</a> · 15 May 2026</p>
+        {/snippet}
+        {#snippet decoration()}
+          <div class="hero-notes">
+            <img class="note note--1" src={mungNote}      alt="" data-parallax="0.08"  />
+            <img class="note note--2" src={adzukiNote}    alt="" data-parallax="-0.05" />
+            <img class="note note--3" src={blackBeanNote} alt="" data-parallax="0.12"  />
+            <img class="note note--4" src={favaNote}      alt="" data-parallax="-0.10" />
+            <img class="note note--5" src={borlottiNote}  alt="" data-parallax="0.15"  />
+            <img class="note note--6" src={kidneyNote}    alt="" data-parallax="-0.08" />
+            <img class="note note--7" src={chickpeaNote}  alt="" data-parallax="0.10"  />
+          </div>
+        {/snippet}
+      </Hero>
+    </div>
 
     <section class="prose">
       <p>
@@ -424,18 +430,19 @@
      this subtree, including child components that read var(--sans).
      ============================================================ */
   .beans-root {
-    --sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
-    --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    /* Font/serif/accent/bg tokens now come from the beans theme
+       (src/lib/themes/beans.css) via [data-theme='beans'] on the site
+       wrapper. Only chart-title typography stays local. */
     --headline: 'Fraunces', 'Source Serif 4', Georgia, serif;
 
     font-family: var(--sans);
     font-size: 18px;
     line-height: 1.55;
     color: var(--text-on-light);
-    background: var(--surface-parchment);
-    /* padding-bottom traps the final child's margin-bottom inside .beans-root
-       so the parchment bg extends all the way to the footer (otherwise the
-       margin collapses out and the body's white bg shows through). */
+    /* The parchment background is painted by the site wrapper via the
+       theme's --bg. padding-bottom still traps the final child's
+       margin-bottom inside .beans-root so spacing before the footer
+       doesn't collapse away. */
     padding-bottom: 1px;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -463,9 +470,9 @@
     margin: 0 0 1rem;
   }
   .beans-root :global(p) {
-    font-family: var(--serif);
-    font-size: 1.15rem;
-    line-height: 1.65;
+    font-family: var(--prose-font);
+    font-size: var(--prose-size);
+    line-height: var(--prose-leading);
     margin: 0 0 1.25rem;
   }
   .beans-root :global(a) {
@@ -524,16 +531,12 @@
   }
 
   /* ============================================================
-     Article-local layout — hero, prose, chapter
+     Hero — built on the shared Hero component (props + snippets),
+     restyled via :global overrides to preserve the bespoke look:
+     90vh flex-centered stage, 720px content column, Cherry Bomb
+     display title, parallax bean notes around it.
      ============================================================ */
-  article {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-
-  .hero {
-    position: relative;
+  .beans-hero :global(.hero) {
     width: 100%;
     min-height: 90vh;
     margin: 0;
@@ -542,7 +545,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
     /* overflow visible lets parallax notes drift past the hero edge.
        isolation makes the hero its own stacking-context atom, so the
        prose section (which follows in the DOM) paints on top of any
@@ -550,20 +552,41 @@
     overflow: visible;
     isolation: isolate;
   }
-  .hero-content {
-    position: relative;
-    z-index: 1;
+  .beans-hero :global(.hero-content) {
     max-width: 720px;
     width: 100%;
+    padding: 0;
   }
-  .hero :global(h1) {
-    font-family: 'Cherry Bomb One', var(--serif);
+  /* element+class specificity so these win over both Hero's own rules
+     and the broad `.beans-root :global(p)` prose rule. */
+  .beans-hero :global(.hero h1) {
+    font-family: var(--display);
     font-weight: 400;
     font-size: clamp(2.75rem, 7.5vw, 5.25rem);
     line-height: 1;
     letter-spacing: 0;
     color: var(--text-on-light);
     margin: 0 0 1.25rem;
+  }
+  .beans-hero :global(.hero-decoration) {
+    z-index: 0;
+  }
+  .beans-hero :global(p.hero-kicker) {
+    color: #999;
+    margin: 0 0 2.5rem;
+  }
+  .beans-hero :global(p.hero-dek) {
+    font-family: var(--serif);
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--text-on-light);
+    max-width: 32ch;
+    margin: 0 auto;
+  }
+  .beans-hero :global(p.hero-scroll-hint) {
+    color: var(--text-on-light-muted);
+    margin: 3.5rem 0 0;
   }
 
   /* dancing notes — seven beans absolutely positioned around the title.
@@ -607,28 +630,9 @@
     .note--4 { top: 30%; left: 1%;   width: clamp(32px, 8vw,    44px); }
     .note--7 { top: 38%; right: 1%;  width: clamp(28px, 7vw,    38px); }
   }
-  /* p.kicker / p.scroll-hint / p.dek all need element+class specificity
-     to beat `.beans-root :global(p)` (0,2,1 once scoped). */
-  p.kicker {
-    font-family: var(--sans);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #999;
-    margin: 0 0 2.5rem;
-  }
-  /* p.dek beats the broader `.beans-root :global(p)` rule's specificity,
-     so font-size, margin: 0 auto (centering), and italic actually apply. */
-  p.dek {
-    font-family: var(--serif);
-    font-size: clamp(1.25rem, 2vw, 1.55rem);
-    font-style: italic;
-    line-height: 1.45;
-    color: var(--text-on-light);
-    max-width: 32ch;
-    margin: 0 auto;
-  }
+  /* Byline is rendered through Hero's byline snippet; Hero's own
+     .hero-byline styling doesn't apply to snippet content, so the
+     original look is restated here. */
   p.byline {
     font-family: var(--sans);
     font-size: 0.9rem;
@@ -637,29 +641,6 @@
   }
   p.byline :global(a) {
     color: inherit;
-  }
-  p.scroll-hint {
-    font-family: var(--sans);
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--text-on-light-muted);
-    margin: 3.5rem 0 0;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-  }
-  .scroll-arrow {
-    display: inline-block;
-    animation: scroll-bob 1.8s ease-in-out infinite;
-  }
-  @keyframes scroll-bob {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(4px); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .scroll-arrow { animation: none; }
   }
 
   .prose {
@@ -677,7 +658,7 @@
     padding: 6rem 1.5rem 1rem;
   }
   .chapter :global(h2) {
-    font-family: 'Cherry Bomb One', var(--serif);
+    font-family: var(--display);
     font-weight: 400;
     font-size: clamp(2rem, 4.5vw, 3.25rem);
     line-height: 1.1;
