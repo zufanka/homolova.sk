@@ -199,7 +199,15 @@
     font-weight: 400;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+  }
+  /* Clip stray horizontal overflow (e.g. decorative negative insets)
+     without turning the page into a scroll container — iOS Safari
+     ignores `hidden` on body alone (WebKit bug 153852). The `hidden`
+     line is the fallback for Safari < 16, which lacks `clip`. */
+  :global(html),
+  :global(body) {
     overflow-x: hidden;
+    overflow-x: clip;
   }
   :global(a) { color: inherit; text-decoration: none; }
   :global(img) { max-width: 100%; height: auto; }

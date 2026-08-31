@@ -81,6 +81,7 @@
     display: grid;
     align-content: center;
     min-height: calc(100svh - 5rem);
+    overflow: clip;
   }
   .hero-image {
     position: absolute;
