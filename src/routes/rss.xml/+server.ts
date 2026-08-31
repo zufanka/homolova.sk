@@ -1,5 +1,5 @@
 import { render } from 'svelte/server';
-import { listPosts, getPost, postUrl, type PostFrontmatter } from '$lib/posts';
+import { listPosts, getPost, postUrl, resolvePostImage, type PostFrontmatter } from '$lib/posts';
 import { SITE_URL, SITE_TITLE, SITE_DESCRIPTION } from '$lib/site';
 
 export const prerender = true;
@@ -31,9 +31,10 @@ function renderFull(meta: PostFrontmatter): string {
 
 function renderTeaser(meta: PostFrontmatter): string {
   const url = absoluteUrl(meta);
-  const img = meta.newsletterImage!.startsWith('http')
-    ? meta.newsletterImage!
-    : `${SITE_URL}${meta.newsletterImage}`;
+  const resolved = resolvePostImage(meta.slug, meta.newsletterImage!);
+  const img = resolved!.startsWith('http')
+    ? resolved!
+    : `${SITE_URL}${resolved!.startsWith('/') ? '' : '/'}${resolved}`;
   return `
     <p><a href="${url}"><img src="${img}" alt="${escape(meta.title)}" /></a></p>
     <p>${escape(meta.newsletterTeaser ?? meta.summary)}</p>

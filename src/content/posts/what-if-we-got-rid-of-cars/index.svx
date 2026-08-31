@@ -4,7 +4,7 @@ date: "2026-07-29"
 slug: "what-if-we-got-rid-of-cars"
 summary: "Turning car parks into park parks using OpenStreetMap and a bit of imagination."
 newsletterMode: "teaser"
-newsletterImage: "/posts/what-if-we-got-rid-of-cars/parking-to-park.jpg"
+newsletterImage: "/posts/what-if-we-got-rid-of-cars/parking-to-park-areal.jpg"
 featuredImage: "parking-to-park.jpg"
 # The social card shows the header illustration, not the newsletter's aerial:
 # the aerial is a wide two-panel drawing that a 1.91:1 card crops into

@@ -14,7 +14,7 @@ export const load = ({ params }: { params: { slug: string } }) => {
   // card it had.
   const ogImage =
     resolvePostImage(params.slug, post.meta.ogImage) ??
-    post.meta.newsletterImage ??
+    resolvePostImage(params.slug, post.meta.newsletterImage) ??
     post.featuredImageUrl;
   return {
     meta: {
