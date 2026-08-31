@@ -18,14 +18,13 @@
       heroImageUrl?: string;
     };
   } = $props();
-  const Post = data.component;
-  const accent = data.meta.titleFill ?? data.meta.footerAccent ?? 'var(--accent, var(--pink))';
-  const related = relatedPosts(data.meta, 3);
-  const titleFill = data.meta.titleFill ?? 'var(--accent, var(--pink))';
+  const Post = $derived(data.component);
+  const accent = $derived(data.meta.titleFill ?? data.meta.footerAccent ?? 'var(--accent, var(--pink))');
+  const related = $derived(relatedPosts(data.meta, 3));
+  const titleFill = $derived(data.meta.titleFill ?? 'var(--accent, var(--pink))');
   const overlayHero = $derived(data.meta.heroStyle === 'overlay' && !!data.heroImageUrl);
   const fmtDate = (iso: string) => iso.replaceAll('-', ' · ');
-
-  const articleJsonLd = JSON.stringify({
+  const articleJsonLd = $derived(JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: data.meta.title,
@@ -38,7 +37,7 @@
       name: 'Ada Homolova',
       url: `${SITE_URL}/hello`
     }
-  });
+  }));
 </script>
 
 <svelte:head>
