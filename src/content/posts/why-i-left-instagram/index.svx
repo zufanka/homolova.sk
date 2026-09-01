@@ -43,7 +43,7 @@ On one occasion, a woman I knew spent five minutes directing my attention, throu
 
 In the times when we used to roam the savanna, attention helped us to find ripe fruit and evade venomous snakes. It makes it possible for us to learn, create, connect. It amplifies our senses so we can really see, feel, smell. And equally important: being seen and felt (and smelled) by others.
 
-In Latin, *attendere* means to stretch. To reach. But what are we reaching towards in a feed? "Instagram brings you closer to the people and things you love", states the tagline on the [about pages](https://about.instagram.com/). It promises a nourishing meal but it is serving fast food, a beautiful image of a hamburger held together by pins and glue - pretty but inedible. Much of the feed is an empty shell of real experiences: feet in the grass, laugh with a friend, playing an instrument, walk in the forest, the smell of food being prepared.
+In Latin, *attendere* means to stretch. To reach. But what are we reaching towards in a feed? "Instagram brings you closer to the people and things you love", states the tagline on the [about pages](https://about.instagram.com/). It promises a nourishing meal but it is serving us fast food (<i>feed</i> - get it?), a beautiful image of a hamburger held together by pins and glue all pretty, but inedible. Much of the feed is an empty shell of real experiences: feet in the grass, laugh with a friend, playing an instrument, walk in the forest, the smell of food being prepared.
 
 These are experiences that make us content and happy. But the Instagram experience is not optimized for contentment or happiness. It is quite simple: you can not sell anti-ageing cream to a person who does not care about wrinkles. If you are happy with what you have, why would you need more? By participating in algorithmic feeds, we are reaching towards systems designed to make us anxious about our bodies, career, politics, our very existence. And conventiently offering solutions. But do we really need any of them?
 
@@ -51,16 +51,16 @@ I don't think I do.
 
 <figure class="graphic">
   <img
-    src="./media/ad-revenue-cows.png"
+    src="./media/cash-cow-growth.png"
     width="1200" height="1200"
-    alt="Isometric bar-chart of three blocky cows of ascending size: TikTok at 33 billion, YouTube at 40 billion, and Meta towering at 196 billion dollars of 2025 ad revenue. Meta's is the biggest cow in town."
+    alt="Two isometric blocky cows compared: a tiny pink cow representing Instagram's 2015 revenue of 0.5 billion dollars, dwarfed by a much larger one for 2025's 83.6 billion — the cow grew a lot."
   />
   <figcaption>
-    <span class="src">Sources: <a href="https://www.statista.com/statistics/271258/facebooks-advertising-revenue-worldwide/" target="_blank" rel="noopener">Statista</a> (Meta), <a href="https://www.tubefilter.com/2026/02/05/alphabet-q4-2025-youtube-earnings-revenue-60-billion/" target="_blank" rel="noopener">Tubefilter / Alphabet Q4 2025</a> (YouTube), <a href="https://marketingltb.com/blog/statistics/tiktok-ads-statistics/#2" target="_blank" rel="noopener">MarketingLTB</a> (TikTok, forecast)</span>
+    <span class="src">Source: <a href="https://resourcera.com/data/social/instagram-revenue/" target="_blank" rel="noopener">Resourcera</a> (estimates)</span>
   </figcaption>
 </figure>
 
-The feed does not only capture, but also degrades our attention. While stretching is a slow, deliberate movement, while scrolling our attention is reduces our attention to a twitch. Just a quick reflex, a spasm designed to hijack our brains reward mechanism. It forces us to trade intention for impulse. As a result, any such engineered information stream can unconsciously [steer us toward goals that are not our own](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/3F8D7BA2C0FE3A7126A4D9B73A89415D/9781108429092AR.pdf/Stand_out_of_our_Light.pdf?event-type=FTLA). In the short term, this distracts us from what we actually want to do. Sew a dress. Play with our kid. Go for a run. In the long term, it might chip away on our ability to pursue and achieve goals that really matter to us. Make our own clothes. Be a good parent. Be fit.
+The feed does not only capture, but also degrades our attention. While stretching is a slow, deliberate movement, scrolling reduces our attention to a twitch. Just a quick reflex, a spasm designed to hijack our brains reward mechanism. It forces us to trade intention for impulse. As a result, any such engineered information stream can unconsciously [steer us toward goals that are not our own](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/3F8D7BA2C0FE3A7126A4D9B73A89415D/9781108429092AR.pdf/Stand_out_of_our_Light.pdf?event-type=FTLA). In the short term, this distracts us from what we actually want to do. Sew a dress. Play with our kid. Go for a run. In the long term, it might chip away on our ability to pursue and achieve goals that really matter to us. Make our own clothes. Be a good parent. Be fit.
 
 While this is an environment that we are forced into now, mostly by peer pressure, it does not have to be this way. We can make spaces where the algorithm aims to make us calmer. More educated. More empathetic. More cooperative. Or where it does nothing at all.
 
@@ -80,12 +80,12 @@ Similarly, we can chose to disengage from Meta's cash cow.
 
 <figure class="graphic">
   <img
-    src="./media/cash-cow-growth.png"
+    src="./media/ad-revenue-cows.png"
     width="1200" height="1200"
-    alt="Two isometric blocky cows compared: a tiny pink cow representing Instagram's 2015 revenue of 0.5 billion dollars, dwarfed by a much larger one for 2025's 83.6 billion — the cow grew a lot."
+    alt="Isometric bar-chart of three blocky cows of ascending size: TikTok at 33 billion, YouTube at 40 billion, and Meta towering at 196 billion dollars of 2025 ad revenue. Meta's is the biggest cow in town."
   />
   <figcaption>
-    <span class="src">Source: <a href="https://resourcera.com/data/social/instagram-revenue/" target="_blank" rel="noopener">Resourcera</a> (estimates)</span>
+    <span class="src">Sources: <a href="https://www.statista.com/statistics/271258/facebooks-advertising-revenue-worldwide/" target="_blank" rel="noopener">Statista</a> (Meta), <a href="https://www.tubefilter.com/2026/02/05/alphabet-q4-2025-youtube-earnings-revenue-60-billion/" target="_blank" rel="noopener">Tubefilter / Alphabet Q4 2025</a> (YouTube), <a href="https://marketingltb.com/blog/statistics/tiktok-ads-statistics/#2" target="_blank" rel="noopener">MarketingLTB</a> (TikTok, forecast)</span>
   </figcaption>
 </figure>
 
