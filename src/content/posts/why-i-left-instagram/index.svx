@@ -16,7 +16,7 @@ draft: true
   import SubscribeInline from '$lib/components/SubscribeInline.svelte';
 </script>
 
-I left Instagram after one day, while riding a bicycle down the river, it hit me. What a disgusting space it was. How completely at odds with my values.
+I deleted my Instagram account after one day in March, while riding a bicycle down the river, it hit me. What a disgusting space it was. How completely at odds with my values.
 
 Partially, it was about what it did to me. How my thumb knew to find the icon seemingly by itself. How I felt powerless to resist. How angry it made me with myself.
 
@@ -41,11 +41,13 @@ In this slaughterhouse, you are the meat and the engineers don't really care abo
 
 On one occasion, a woman I knew spent five minutes directing my attention, through an avalanche of words, intensely toward my right hand. At the end of it I felt every bone, each joint, I felt the blood running through my veins and skin wrapping around the flesh. The right hand felt very different from the left. Attention is powerful.
 
-In the times when we used to roam the savanna, it helped us to find ripe fruit and evade venomous snakes. It makes it possible for us to learn, create, connect. It amplifies our senses so we can really see, feel, smell. And equally important: being seen and felt (and smelled) by others.
+In the times when we used to roam the savanna, attention helped us to find ripe fruit and evade venomous snakes. It makes it possible for us to learn, create, connect. It amplifies our senses so we can really see, feel, smell. And equally important: being seen and felt (and smelled) by others.
 
-Literally, it means "stretch toward." In Latin, *attendere*: to stretch. To reach. But what are we reaching towards in a feed? "Instagram brings you closer to the people and things you love", states the tagline on the [about pages](https://about.instagram.com/). It promises a nourishing meal but it is serving fast food, a beautiful image of a hamburger held together by pins and glue - pretty but inedible. Feed is just an empty shell of actual experience: feet in the grass, laugh with a friend, playing an instrument, walk in the forest, the smell of food being prepared.
+In Latin, *attendere* means to stretch. To reach. But what are we reaching towards in a feed? "Instagram brings you closer to the people and things you love", states the tagline on the [about pages](https://about.instagram.com/). It promises a nourishing meal but it is serving fast food, a beautiful image of a hamburger held together by pins and glue - pretty but inedible. Much of the feed is an empty shell of real experiences: feet in the grass, laugh with a friend, playing an instrument, walk in the forest, the smell of food being prepared.
 
-Actual experiences make us happy. This is not something Instagram would really strive for, because happiness is not good for business. You can not sell anti-ageing cream to a person who does not care about wrinkles. We are being served FOMO, worries and flaws. So by participating in algorithmic feeds, we are actually reaching towards a system designed to make us anxious about our bodies, career, politics, our very existence. And keep us hooked by offering solutions we don't need.
+These are experiences that make us content and happy. But the Instagram experience is not optimized for contentment or happiness. It is quite simple: you can not sell anti-ageing cream to a person who does not care about wrinkles. If you are happy with what you have, why would you need more? By participating in algorithmic feeds, we are reaching towards systems designed to make us anxious about our bodies, career, politics, our very existence. And conventiently offering solutions. But do we really need any of them?
+
+I don't think I do.
 
 <figure class="graphic">
   <img
@@ -58,9 +60,9 @@ Actual experiences make us happy. This is not something Instagram would really s
   </figcaption>
 </figure>
 
-While stretching is a slow, deliberate movement, the algorithmic feed reduces our attention to a twitch. Just a quick reflex, a spasm designed to hijack our brains reward mechanism. It forces us to trade intention for impulse. As a result, any such engineered information stream can unconsciously [steer us toward goals that are not our own](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/3F8D7BA2C0FE3A7126A4D9B73A89415D/9781108429092AR.pdf/Stand_out_of_our_Light.pdf?event-type=FTLA). In the short term, this distracts us from what we actually want to do. Sew a dress. Play with our kid. Go for a run. In the long term, it might chip away on our ability to pursue and achieve goals that really matter to us. Make our own clothes. Be a good parent. Be fit.
+The feed does not only capture, but also degrades our attention. While stretching is a slow, deliberate movement, while scrolling our attention is reduces our attention to a twitch. Just a quick reflex, a spasm designed to hijack our brains reward mechanism. It forces us to trade intention for impulse. As a result, any such engineered information stream can unconsciously [steer us toward goals that are not our own](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/3F8D7BA2C0FE3A7126A4D9B73A89415D/9781108429092AR.pdf/Stand_out_of_our_Light.pdf?event-type=FTLA). In the short term, this distracts us from what we actually want to do. Sew a dress. Play with our kid. Go for a run. In the long term, it might chip away on our ability to pursue and achieve goals that really matter to us. Make our own clothes. Be a good parent. Be fit.
 
-The point is: it does not have to be this way. We can make spaces where the algorithm aims to make us calmer. More educated. More empathetic. More cooperative. Or where it does nothing at all.
+While this is an environment that we are forced into now, mostly by peer pressure, it does not have to be this way. We can make spaces where the algorithm aims to make us calmer. More educated. More empathetic. More cooperative. Or where it does nothing at all.
 
 <SubscribeInline />
 
@@ -74,7 +76,7 @@ So I left. My thumb does not look for the icon anymore. There is less to do on m
 
 In an old anecdote, Alexander the Great walked up to a sun bathing Diogenes, the Greek cynic philosopher that lived in a barrel, and asked him what he desired. Diogenes simply answered: "Stand out of my sun."
 
-Similarly, we can chose to disengage from Meta's cash cows.
+Similarly, we can chose to disengage from Meta's cash cow.
 
 <figure class="graphic">
   <img
