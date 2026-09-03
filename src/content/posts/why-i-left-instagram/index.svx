@@ -20,9 +20,9 @@ I deleted my Instagram account after one day in March, while riding a bicycle do
 
 Partially, it was about what it did to me. How my thumb knew to find the icon seemingly by itself. How I felt powerless to resist. How angry it made me with myself.
 
-And then the realization that I was creating content for it, so my friends would feel the same. And I felt deeply that I don't want it anymore.
+And then the realization that I was creating content for it, so my friends would feel the same. And deep down I felt that I didn't want to be a part of it anymore.
 
-Then my head stepped in and asked: "But what about all the beautiful things?" Surely, there are plenty of beautiful things. It's not about the content. It's about the monstrous machinery the beautiful things live in. Like a flower arrangement in a slaughterhouse.
+Then my head stepped in and asked: "But what about all the beautiful things?" And surely, there are plenty of those. But it's not about that. It's about the monstrous machinery the beautiful things live in. Like a flower arrangement in a slaughterhouse.
 
 In this slaughterhouse, you are the meat and the engineers don't really care about beauty.
 
@@ -41,17 +41,16 @@ In this slaughterhouse, you are the meat and the engineers don't really care abo
 
 On one occasion, a woman I knew spent five minutes directing my attention, through an avalanche of words, intensely toward my right hand. At the end of it I felt every bone, each joint, I felt the blood running through my veins and skin wrapping around the flesh. The right hand felt very different from the left. Attention is powerful.
 
-In the times when we used to roam the savanna, attention helped us to find ripe fruit and evade venomous snakes. It makes it possible for us to learn, create, connect. It amplifies our senses so we can really see, feel, smell. And equally important: being seen and felt (and smelled) by others.
+> In order to do anything that matters, we must first be able to give attention to the things that matter. Doing so has never been easy, but lately it’s become harder in new and surprising ways
+~ [James Williams (2018)](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/3F8D7BA2C0FE3A7126A4D9B73A89415D/9781108429092AR.pdf/Stand_out_of_our_Light.pdf)
 
-In Latin, *attendere* means to stretch. To reach. But what are we reaching towards in a feed? "Instagram brings you closer to the people and things you love", states the tagline on the [about pages](https://about.instagram.com/). But does it really?
+In Latin, *attendere* means to stretch. To reach. But while stretching is a slow, deliberate movement, scrolling reduced my attention to a twitch. Just a quick reflex, a spasm designed to hijack my brain's reward mechanism. It forced me to trade intention for impulse. Hijacked attention getting hooked on the tiny dopamine shots I got everytime I glimpsed something I liked.
 
-In my experience, the feed does not feel this nourishing. It’s even called a feed. Get it? Fodder. Much of what we are being served feels like fast food: a beautiful image of a hamburger held together by pins and glue — pretty, but inedible. And the real thing isn’t really worth it either.
+In the short term, giving attention to Instagram was distracting me from what I actually wanted to do: sew a dress. Practice the piano. Go for a run. But in the long term, it was chipping away at my ability to pursue and achieve goals that really matter to me: Make my own clothes. Play the Gnossienne. Be fit.
 
-What I truly want are experiences that fill me up and satisfy my needs: feet in the grass, a laugh with a friend, playing an instrument, walking in the forest, the smell of food being prepared.
+Because even an 30 minutes of my daily attention directed toward the feed was too much. And I did miss it. Attention allows me to focus and so learn, create, and connect. It amplifies my senses, so I can truly see, feel, and smell, and, just as importantly, be seen, felt (and smelled) by others.
 
-But the Instagram experience is full of empty calories that leave me craving for more. And it is that way by design. Because you cannot sell anti-ageing cream to a person who does not care about wrinkles. They first need to crave it. If you are happy with what you have, you don’t want more.
-
-So by feeding our brains images from an algorithmic feed, we are reaching towards systems designed to never satisfy. The fodder aggravates our appetite only to feed us more and more, without ever letting us feel full.
+Scrolling Instagram feed I instead gave attention to Meta and serving their goal, which is dead simple: selling me advertising.
 
 <figure class="graphic">
   <img
@@ -64,15 +63,27 @@ So by feeding our brains images from an algorithmic feed, we are reaching toward
   </figcaption>
 </figure>
 
-The feed does not only capture our attention. It also degrades it. While stretching is a slow, deliberate movement, scrolling reduces our attention to a twitch. Just a quick reflex, a spasm designed to hijack our brain's reward mechanism. It forces us to trade intention for impulse.
+Instagram promises to "[brings you closer to the people and things you love](https://about.instagram.com/)". But does it really?
 
-As a result, any such engineered information stream can unconsciously [steer us toward goals that are not our own](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/3F8D7BA2C0FE3A7126A4D9B73A89415D/9781108429092AR.pdf/Stand_out_of_our_Light.pdf?event-type=FTLA). In the short term, this distracts us from what we actually want to do. Sew a dress. Play with our kid. Go for a run. In the long term, it might chip away at our ability to pursue and achieve goals that really matter to us. Make our own clothes. Be a good parent. Be fit.
+In my experience, the feed does not really feel nourishing. It’s even called a feed. Get it? Fodder. Much of what I was being served feelt more like fast food than a nourishing meal. Images of bikers, hikers, nature. Excercise. Cool buildings. Impressive art. Pretty objects, good-looking people, cute animals.
 
-While this is an environment that we are forced into now, mostly by peer pressure, it does not have to be this way. We can make spaces where the algorithm aims to make us calmer. More educated. More empathetic. More cooperative. Or where it does nothing at all.
+But what I truly want are experiences that fill me up and satisfy my needs: feet in the grass, a laugh with a friend, playing an instrument, walking in the forest, the smell of food being prepared.
+
+The Instagram experience is instead packed with empty calories, that just as real fast food, left me craving for more. And that is part of the business model.
+
+Targeting me with an ad for anti-ageing cream does not make much sense if I do not care about wrinkles. They can not sell me a solution for a problem I don't think I have, but they can manufacture the feeling that something is missing.
+
+Make me compare my body to other bodies. My home to other homes. My life to other lives. Show me experiences I am not having, places I am not visiting, things I do not own, people I do not look like. It holds a carrot on a stick that will never be close enough to eat.
+
+So this compulsive feeding of my brain with images from an algorithmic feed was not merely distracting. It was manipulative. Every day, I was reaching for a system designed to hijack my attention, pull me away from my own goals, and keep me hungry.
+
+In the end, I was the one being consumed.
 
 <SubscribeInline />
 
 ## Release
+
+Commercial social media are currently a toxic environment, that we don't really chose, but are instead forced into by peer pressure. But it does not have to be this way. We can make spaces where the algorithm aims to make us calmer. More educated. More empathetic. More cooperative. Or where it does nothing at all.
 
 For me, richness in life comes from movement. Being up and about with wind in my hair, dancing, fingers in soil, or shaping clay. Senses touching the environment, smoke from a fire, warmth on my skin, blackbird's song on the air.
 
@@ -82,7 +93,7 @@ So I left. My thumb does not look for the icon anymore. There is less to do on m
 
 In an old anecdote, Alexander the Great walked up to a sun bathing Diogenes, the Greek cynic philosopher that lived in a barrel, and asked him what he desired. Diogenes simply answered: "Stand out of my sun."
 
-As surely as a guy in a barrel could tell the king to piss off, we can refuse to have our attention milked to pay for Zuckerberg’s private island. Ditch Meta’s cash cow. Get some sun.
+As surely as a guy in a barrel could tell the king to piss off, we can refuse to have our attention milked to fund somebody's private island compound. Ditch Meta’s cash cow. Get some sun.
 
 <figure class="graphic">
   <img
@@ -95,13 +106,15 @@ As surely as a guy in a barrel could tell the king to piss off, we can refuse to
   </figcaption>
 </figure>
 
+## Redirect
+
 Leaving Instagram behind created space to think about what it was I was really looking for.
 
 When an overwhelming urge to share comes over me now, I send out a couple of private messages. Have a little conversation. Check on how people are doing. I also discovered that some people actually look at the stories sections on WhatsApp and Signal. So I sometimes share there. It's cute and so it doesn't keep me or anybody else scrolling forever.
 
 When I crave inspiration, I might reach out to some of the beautiful magazines out there. Like [MacGuffin](https://www.macguffinmagazine.com/) or [Fukt](https://www.fuktmagazine.com/). I go through them regularly and explore, engaging with the content more deeply, reading essays and interviews with the artists, look repeatedly at the same things and discover something new every time. It's so different from just swiping away to the next and next and next.
 
-I love making photos just for the pretty pictures sake, so I became a [Wikimedia](https://commons.wikimedia.org) contributor. Now [my photos](https://commons.wikimedia.org/w/index.php?title=Special:ListFiles/Heyimada&ilshowall=1) are out there and free of copyright, so anybody can use them if they like. The spirit of the Wikipedia project, passion for information and free sharing of knowledge, resonates way more with my own values, and so it feels good to contribute.
+I love making photos just for the pretty pictures sake, so I became a [Wikimedia](https://commons.wikimedia.org) contributor. Now [my photos](https://commons.wikimedia.org/w/index.php?title=Special:ListFiles/Heyimada&ilshowall=1) are out there and free of copyright, so anybody can use them if they like. The spirit of the Wikipedia project, passion for information and free sharing of knowledge, resonates way more with my own values, and so contributing actually feels good.
 
 There are more projects out there, like the [Fediverse](https://en.wikipedia.org/wiki/Fediverse), where [Mastodon](https://joinmastodon.org/) is the Twitter alternative and [pixelfed](https://pixelfed.org/) is the Instagram alternative. These projects copy the format of popular social media, but put them into the hands of the people. They still miss critical mass. But critical mass is made of people. It is up to us to make the move.
 
