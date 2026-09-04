@@ -16,13 +16,13 @@ draft: true
   import SubscribeInline from '$lib/components/SubscribeInline.svelte';
 </script>
 
-I deleted my Instagram account after one day in March, while riding a bicycle down the river, it hit me. What a disgusting space it was. How completely at odds with my values.
+I deleted my Instagram account in March. As I was riding a bicycle down the river, it hit me. What a disgusting space it was. How completely at odds with my values.
 
 Partially, it was about what it did to me. How my thumb knew to find the icon seemingly by itself. How I felt powerless to resist. How angry it made me with myself.
 
 And then the realization that I was creating content for it, so my friends would feel the same. And deep down I felt that I didn't want to be a part of it anymore.
 
-Then my head stepped in and asked: "But what about all the beautiful things?" And surely, there are plenty of those. But it's not about that. It's about the monstrous machinery the beautiful things live in. Like a flower arrangement in a slaughterhouse.
+Then my head stepped in and asked: "But what about all the beautiful things?"  Surely, there are plenty of those. But it's not about that. It's about the monstrous machinery the beautiful things live in. Like a flower arrangement in a slaughterhouse.
 
 In this slaughterhouse, you are the meat and the engineers don't really care about beauty.
 
@@ -44,13 +44,13 @@ On one occasion, a woman I knew spent five minutes directing my attention, throu
 > In order to do anything that matters, we must first be able to give attention to the things that matter. Doing so has never been easy, but lately it’s become harder in new and surprising ways
 ~ [James Williams (2018)](https://www.cambridge.org/core/services/aop-cambridge-core/content/view/3F8D7BA2C0FE3A7126A4D9B73A89415D/9781108429092AR.pdf/Stand_out_of_our_Light.pdf)
 
-In Latin, *attendere* means to stretch. To reach. But while stretching is a slow, deliberate movement, scrolling reduced my attention to a twitch. Just a quick reflex, a spasm designed to hijack my brain's reward mechanism. It forced me to trade intention for impulse. Hijacked attention getting hooked on the tiny dopamine shots I got every time I glimpsed something I liked.
+In Latin, *attendere* means to stretch. To reach. But while stretching is a slow, deliberate movement, scrolling reduced my attention to a twitch. Just a quick reflex, a spasm designed to hijack my brain's reward mechanism. It forced me to trade intention for impulse. Hijacked attention, hooked on the tiny dopamine shots I got every time I glimpsed something I liked.
 
 In the short term, giving attention to Instagram was distracting me from what I actually wanted to do: sew a dress. Practice the piano. Go for a run. But in the long term, it was chipping away at my ability to pursue and achieve goals that really matter to me: Make my own clothes. Play the Gnossienne. Be fit.
 
-Because even an 30 minutes of my daily attention directed toward the feed was too much distraction. Attention allows me to focus and so learn, create, and connect. It amplifies my senses, so I can truly see, feel, and smell, and, just as importantly, be seen, felt (and smelled) by others.
+Because even an 30 minutes of my daily attention directed toward the feed was too much distraction. Attention allows me to focus and to learn, create, and connect. It amplifies my senses, so I can truly see, feel, and smell, and, just as importantly, be seen, felt (and smelled) by others.
 
-Scrolling Instagram feed I instead gave attention to Meta and serving their goal, which is dead simple: selling me advertising.
+Scrolling Instagram feed I instead gave attention to Meta and serving their goal, which is dead simple: showing me ads.
 
 <figure class="graphic">
   <img
@@ -63,13 +63,13 @@ Scrolling Instagram feed I instead gave attention to Meta and serving their goal
   </figcaption>
 </figure>
 
-Instagram promises to "[brings you closer to the people and things you love](https://about.instagram.com/)". But does it really?
+Instagram promises that it "[brings you closer to the people and things you love](https://about.instagram.com/)". But does it really?
 
 In my experience, the feed does not really feel nourishing. It’s even called a feed. Get it? Fodder. Much of what I was being served felt more like fast food than a nourishing meal. Images of bikers, hikers, nature. Exercise. Cool buildings. Impressive art. Pretty objects, good-looking people, cute animals.
 
-But what I truly want are experiences that fill me up and satisfy my needs: feet in the grass, a laugh with a friend, playing an instrument, walking in the forest, the smell of food being prepared.
+But what I truly want are experiences that fill me, and satisfy my needs: feet in the grass, a laugh with a friend, playing an instrument, walking in the forest, the smell of food being prepared.
 
-The Instagram experience is instead packed with empty calories, that just as real fast food, left me craving for more. And that is part of the business model.
+The Instagram experience is instead packed with empty calories, that just as real fast food, left me craving for more. It is part of the business model.
 
 Targeting me with an ad for anti-ageing cream does not make much sense if I do not care about wrinkles. They can not sell me a solution for a problem I don't think I have, but they can manufacture the feeling that something is missing.
 
@@ -89,7 +89,9 @@ For me, richness in life comes from movement. Being up and about with wind in my
 
 Getting sucked into a feed I stop breathing, stop feeling thirst. I stop feeling like a body in a world. Moreover, I spend time in an environment where the engineers don't give a damn about my well being. Where I am being actively manipulated. That is made by a company that has [repeatedly been sued](https://en.wikipedia.org/wiki/Lawsuits_involving_Meta_Platforms) for fueling addiction and knowingly harming their users mental health.
 
-So I left. My thumb does not look for the icon anymore. There is less to do on my phone. And I read books. And learn to play piano. I call my mom. And I am finding out that life is far too rich to even miss the feed.
+So I left. My thumb does not look for the icon anymore. There is less to do on my phone. Stopping this compulsive behavior made it actually easier to stop others, like compulsive snacking when I am bored or need some comfort.
+
+I am more present. I read books, learn to play piano. I call my mom. I spend those 30 minutes on excercise instead. And I am finding out that my life is far too rich to even miss the feed.
 
 In an old anecdote, Alexander the Great walked up to a sun bathing Diogenes, the Greek cynic philosopher that lived in a barrel, and asked him what he desired. Diogenes simply answered: "Stand out of my sun."
 
@@ -110,7 +112,7 @@ As surely as a guy in a barrel could tell the king to piss off, we can refuse to
 
 Leaving Instagram behind created space to think about what it was I was really looking for.
 
-When an overwhelming urge to share comes over me now, I send out a couple of private messages. Have a little conversation. Check on how people are doing. I also discovered that some people actually look at the stories sections on WhatsApp and Signal. So I sometimes share there. It's cute and so it doesn't keep me or anybody else scrolling forever.
+When an overwhelming urge to share comes over me now, I send out a couple of private messages. Have a little conversation. Check on how people are doing. I also discovered that some people actually look at the stories sections on WhatsApp and Signal. So I sometimes share there. It's cute and doesn't keep me or anybody else scrolling forever.
 
 When I crave inspiration, I might reach out to some of the beautiful magazines out there. Like [MacGuffin](https://www.macguffinmagazine.com/) or [Fukt](https://www.fuktmagazine.com/). I go through them regularly and explore, engaging with the content more deeply, reading essays and interviews with the artists, look repeatedly at the same things and discover something new every time. It's so different from just swiping away to the next and next and next.
 
