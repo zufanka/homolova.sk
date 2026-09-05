@@ -9,7 +9,7 @@ featuredImage: "escaping_insta.jpg"
 ogImage: "escaping_insta-og.jpg"
 tags:
   - "essay"
-draft: true
+draft: false
 ---
 
 <script lang="ts">
@@ -83,9 +83,13 @@ In the end, I was the one being consumed.
 
 ## Release
 
-Commercial social media are currently a toxic environment, that we don't really chose, but are instead forced into by peer pressure. But it does not have to be this way. We can make spaces where the algorithm aims to make us calmer. More educated. More empathetic. More cooperative. Or where it does nothing at all.
+Commercial social media has become a toxic environment that we don’t really choose, but are pushed into by peer pressure. Instagram alone has over 3 billion users worldwide, and the number keeps growing.
 
-For me, richness in life comes from movement. Being up and about with wind in my hair, dancing, fingers in soil, or shaping clay. Senses touching the environment, smoke from a fire, warmth on my skin, blackbird's song on the air.
+But it doesn’t have to be this way.
+
+We can build spaces where algorithms work for us: making us calmer, more informed, more empathetic, more cooperative. Or spaces where algorithms simply get out of the way.
+
+For me, richness in life comes from movement. Being up and about with wind in my hair, dancing, fingers in soil, or shaping clay. Senses touching the environment, smoke from a fire, warmth on my skin, blackbird's song in the air.
 
 Getting sucked into a feed I stop breathing, stop feeling thirst. I stop feeling like a body in a world. Moreover, I spend time in an environment where the engineers don't give a damn about my well being. Where I am being actively manipulated. That is made by a company that has [repeatedly been sued](https://en.wikipedia.org/wiki/Lawsuits_involving_Meta_Platforms) for fueling addiction and knowingly harming their users mental health.
 
@@ -93,7 +97,7 @@ So I left.
 
 My thumb no longer looks for the icon. There is less to do on my phone. And stopping this compulsive behavior has made it easier to stop other compulsive habits too. Like snacking when I’m bored or looking for comfort.
 
-I am more present. I read books. I’m learning to play the piano. I call my mom. I spend those 30 minutes exercising instead. And I’m realizing that my life is far too rich to even miss the feed.
+I am more present. I read books. I’m learning to play the piano. I call my mom. I spend those 30 minutes on [pilates with Nicole](https://www.youtube.com/@MoveWithNicole) instead. And I’m realizing that my life is far too rich to even miss the feed.
 
 In an old anecdote, Alexander the Great walked up to a sun bathing Diogenes, the Greek cynic philosopher that lived in a barrel, and asked him what he desired. Diogenes simply answered: "Stand out of my sun."
 
