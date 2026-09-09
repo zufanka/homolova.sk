@@ -2,7 +2,8 @@
 title: "Why I left Instagram"
 date: "2026-09-06"
 slug: "why-i-left-instagram"
-summary: "I deleted my Instagram account after realizing my thumb opened it by itself and I was creating content that did the same to friends — the beautiful things sat in machinery I no longer wanted to feed. There are nicer places out there."
+summary: "There are nicer places out there."
+ogDescription: "I deleted my Instagram account after realizing my thumb opened it by itself and I was creating content that did the same to friends — the beautiful things sat in machinery I no longer wanted to feed. There are nicer places out there."
 newsletterMode: "full"
 heroStyle: overlay
 featuredImage: "escaping_insta.jpg"

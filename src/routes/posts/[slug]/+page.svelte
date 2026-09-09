@@ -29,7 +29,7 @@
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: data.meta.title,
-    description: data.meta.summary,
+    description: data.meta.ogDescription ?? data.meta.summary,
     image: data.featuredImageUrl ? absoluteUrl(data.featuredImageUrl) : undefined,
     datePublished: data.meta.date,
     dateModified: data.meta.dateModified ?? data.meta.date,

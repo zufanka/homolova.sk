@@ -2,7 +2,7 @@
 title: "What if we got rid of cars?"
 date: "2026-07-29"
 slug: "what-if-we-got-rid-of-cars"
-summary: "Using OpenStreetMap, I measured surface car parks in European cities: turned into parks, the median share of urban green would rise from 0-15% to 6-22%, and almost no one would live far from trees."
+summary: "Turning car parks into park parks using OpenStreetMap and a bit of imagination."
 newsletterMode: "teaser"
 newsletterImage: "/posts/what-if-we-got-rid-of-cars/parking-to-park-areal.jpg"
 featuredImage: "parking-to-park.jpg"
@@ -10,7 +10,7 @@ featuredImage: "parking-to-park.jpg"
 # the aerial is a wide two-panel drawing that a 1.91:1 card crops into
 # illegibility, while the hero reads at card size.
 ogImage: "parking-to-park.jpg"
-ogDescription: "Turning car parks into park parks using OpenStreetMap and a bit of imagination."
+ogDescription: "Using OpenStreetMap, I measured surface car parks in European cities: turned into parks, the median share of urban green would rise from 0-15% to 6-22%, and almost no one would live far from trees."
 newsletterTeaser: "It might actually be nice."
 draft: false
 fullBleed: true

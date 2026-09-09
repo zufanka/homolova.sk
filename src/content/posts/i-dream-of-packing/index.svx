@@ -2,7 +2,8 @@
 title: "I dream of packing"
 date: "2025-08-29"
 slug: "i-dream-of-packing"
-summary: "I unpack a recurring dream of endlessly unfinished packing into what it actually holds: perfectionism, grief, trust — and squirrels."
+summary: "Unpacking perfectionism, woolen socks, grief, trust and squirrels"
+ogDescription: "I unpack a recurring dream of endlessly unfinished packing into what it actually holds: perfectionism, grief, trust — and squirrels."
 newsletterMode: "full"
 heroStyle: overlay
 featuredImage: "squirreldreams.jpg"
