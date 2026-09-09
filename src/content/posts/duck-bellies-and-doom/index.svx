@@ -2,7 +2,7 @@
 title: "Duck bellies and doom"
 date: "2025-02-06"
 slug: "duck-bellies-and-doom"
-summary: "At the end of 2024, I surveyed friends and colleagues about important topics for next year. Here are 13 more responses."
+summary: "Part two of my end-of-2024 survey of 31 answers: 13 responses on climate, energy and conflict, from fears of WW3 to the duck curve now reshaping solar power grids."
 newsletterMode: "full"
 heroStyle: overlay
 featuredImage: "ducks.png"

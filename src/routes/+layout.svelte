@@ -41,7 +41,13 @@
       author: {
         '@type': 'Person',
         name: SITE_AUTHOR,
-        url: `${SITE_URL}/hello`
+        url: `${SITE_URL}/hello`,
+        sameAs: [
+          'https://datafrosch.fun',
+          'https://www.linkedin.com/in/adahomolova/',
+          'https://github.com/adahomolova',
+          'https://bsky.app/profile/adahomolova.bsky.social'
+        ]
       }
     })
   );
@@ -94,6 +100,9 @@
   <meta property="og:url" content={canonical} />
   <meta property="og:image" content={ogImage} />
   <meta property="og:site_name" content={SITE_TITLE} />
+  <meta property="og:locale" content="en" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={ogTitle} />
   <meta name="twitter:description" content={ogDescription} />
@@ -106,7 +115,6 @@
   {#if ogType === 'article'}
     <meta property="article:author" content={SITE_AUTHOR} />
   {/if}
-  <meta name="twitter:card" content="summary_large_image" />
   {@html `<script type="application/ld+json">${websiteJsonLd}</script>`}
   <script
     async

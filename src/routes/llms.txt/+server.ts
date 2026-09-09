@@ -11,7 +11,8 @@ export const GET = async () => {
       const url = p.externalUrl?.startsWith('http')
         ? p.externalUrl
         : `${SITE_URL}${postUrl(p)}`;
-      return `- [${p.title}](${url}): ${p.summary}`;
+      const tags = p.tags?.length ? ` [tags: ${p.tags.join(', ')}]` : '';
+      return `- [${p.title}](${url}) (${p.date})${tags}: ${p.summary}`;
     })
     .join('\n');
 

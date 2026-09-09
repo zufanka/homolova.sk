@@ -6,6 +6,8 @@ export type PostTag = 'essay' | 'data' | 'fiction';
 export interface PostFrontmatter {
   title: string;
   date: string;
+  /** Optional; falls back to `date` in JSON-LD/SEO contexts. */
+  dateModified?: string;
   slug: string;
   summary: string;
   newsletterMode: NewsletterMode;

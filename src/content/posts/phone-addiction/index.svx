@@ -2,7 +2,7 @@
 title: "Phone addiction"
 date: "2025-06-01"
 slug: "phone-addiction"
-summary: "Phone addiction is on the rise—and your brain is hooked. Let's get intimate: dip into my own screen time stats and test yourself on the Smartphone Addiction Scale."
+summary: "Smartphones are engineered to hook attention: heavy use is linked to poor sleep and anxiety, and my own daily screen time rivals China's proposed two-hour adult cap. My fix so far: the phone goes in a box from 8PM to 10AM."
 newsletterMode: "full"
 heroStyle: overlay
 featuredImage: "visualelectric-1748548407717.jpg"

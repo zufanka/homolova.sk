@@ -2,7 +2,7 @@
 title: "The inner autumn"
 date: "2025-11-16"
 slug: "the-inner-autumn"
-summary: "How I learned to stop worrying and love the PMS"
+summary: "Half the population lives through a monthly inner autumn: the progesterone-dominated luteal phase, when energy turns inward and PMS peaks. I map the menstrual cycle's seasons and make the case for honoring them like the year's."
 newsletterMode: "full"
 heroStyle: overlay
 featuredImage: "uterusinautumn.jpg"

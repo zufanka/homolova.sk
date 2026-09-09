@@ -20,6 +20,19 @@
     name="description"
     content="Ada Homolova — freelance data journalist. Own projects, teaching, and a chronological client history."
   />
+  {@html `<script type="application/ld+json">${JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Ada Homolova',
+    url: 'https://homolova.sk/hello',
+    jobTitle: 'Freelance data journalist',
+    sameAs: [
+      'https://datafrosch.fun',
+      'https://www.linkedin.com/in/adahomolova/',
+      'https://github.com/adahomolova',
+      'https://bsky.app/profile/adahomolova.bsky.social'
+    ]
+  })}</script>`}
 </svelte:head>
 
 <article class="hello">

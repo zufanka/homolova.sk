@@ -3,10 +3,15 @@ import { SITE_URL } from '$lib/site';
 
 export const prerender = true;
 
-const STATIC_PAGES = ['/', '/hello', '/newsletter'];
-const TODAY = new Date().toISOString().split('T')[0];
+const STATIC_PAGES = ['/', '/hello', '/newsletter', '/visualize-cycle'];
 
-function urlEntry(loc: string, lastmod: string): string {
+function staticEntry(loc: string): string {
+  return `  <url>
+    <loc>${loc}</loc>
+  </url>`;
+}
+
+function postEntry(loc: string, lastmod: string): string {
   return `  <url>
     <loc>${loc}</loc>
     <lastmod>${lastmod}</lastmod>
@@ -16,15 +21,13 @@ function urlEntry(loc: string, lastmod: string): string {
 export const GET = async () => {
   const posts = listPosts();
 
-  const staticEntries = STATIC_PAGES.map((path) => urlEntry(`${SITE_URL}${path}`, TODAY)).join(
-    '\n'
-  );
+  const staticEntries = STATIC_PAGES.map((path) => staticEntry(`${SITE_URL}${path}`)).join('\n');
 
   const postEntries = posts
     .map((p) => {
       const path = postUrl(p);
       const loc = path.startsWith('http') ? path : `${SITE_URL}${path}`;
-      return urlEntry(loc, p.date);
+      return postEntry(loc, p.date);
     })
     .join('\n');
 

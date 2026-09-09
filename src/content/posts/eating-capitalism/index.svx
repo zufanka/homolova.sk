@@ -2,7 +2,7 @@
 title: "Eating capitalism"
 date: "2025-10-05"
 slug: "eating-capitalism"
-summary: "How our food got hijacked by profits and is now having its way with our bodies"
+summary: "How profit hijacked our plates: ultra-processed foods drive rising calorie intake and obesity while starving our gut microbes of fiber — and no McDonald's meal meets the criteria of a balanced diet."
 newsletterMode: "full"
 heroStyle: overlay
 featuredImage: "headerimage.jpg"

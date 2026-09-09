@@ -19,6 +19,7 @@
     };
   } = $props();
   const Post = $derived(data.component);
+  const canonicalUrl = $derived(`${SITE_URL}/posts/${data.meta.slug}`);
   const accent = $derived(data.meta.titleFill ?? data.meta.footerAccent ?? 'var(--accent, var(--pink))');
   const related = $derived(relatedPosts(data.meta, 3));
   const titleFill = $derived(data.meta.titleFill ?? 'var(--accent, var(--pink))');
@@ -31,7 +32,10 @@
     description: data.meta.summary,
     image: data.featuredImageUrl ? absoluteUrl(data.featuredImageUrl) : undefined,
     datePublished: data.meta.date,
-    url: `${SITE_URL}/posts/${data.meta.slug}`,
+    dateModified: data.meta.dateModified ?? data.meta.date,
+    mainEntityOfPage: canonicalUrl,
+    keywords: data.meta.tags?.length ? data.meta.tags.join(', ') : undefined,
+    url: canonicalUrl,
     author: {
       '@type': 'Person',
       name: 'Ada Homolova',

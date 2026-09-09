@@ -2,7 +2,7 @@
 title: "Topics that matter most"
 date: "2025-01-13"
 slug: "topics-that-matter-most-in-2025"
-summary: "At the end of 2024, I surveyed friends and colleagues about important topics for next year. Here are the results."
+summary: "I asked friends, colleagues and the internet which topics matter most for 2025 and collected 31 answers. Climate led with 11 mentions; this first part unpacks the world-order cluster, from broligarchs to democracy metrics."
 newsletterMode: "full"
 heroStyle: overlay
 featuredImage: "broligarchy.png"

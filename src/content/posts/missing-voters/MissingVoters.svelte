@@ -147,6 +147,7 @@
 
   <section class="prose">
     <h2>Mobile Europeans are, on average, younger than the native population</h2>
+    <p>Across the EU27, 55% of mobile Europeans are of prime working age (25–54), compared to 38% of the native population. Only 10% are 65 or older, half the native share of 20%.</p>
     <PopulationPyramid />
   </section>
 
@@ -163,6 +164,7 @@
   <p>Remember Brexit? What made the difference was just 3.7% of the votes <Footnote number={5} text="The difference between remain and leave were 1.3 million votes out of 33.6 million" />. Today, more than half of Britons think that leaving was a mistake.</p>
 
   <h2>Less and less Britons believe leaving the EU was a good idea</h2>
+  <p>In the latest YouGov poll (January 2025), 55% of Britons said it was wrong to leave the EU, while only 30% said it was right — a gap that has been widening since Brexit day.</p>
   <BrexitLineChart />
   
   <p>These are weird times. The USA grows more unpredictable by the day and our governments are tilting rightwards, with growing Euroscepticism. Far-right parties now hold a quarter of the seats in the European Parliament, a historic high.</p>
