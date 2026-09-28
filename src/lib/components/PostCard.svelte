@@ -86,6 +86,8 @@
     text-transform: uppercase;
     margin: 0 0 22px;
     color: var(--card-title-fill, var(--pink));
+    overflow-wrap: break-word;
+    text-wrap: balance;
     -webkit-text-stroke: 2px var(--ink);
     text-shadow:
       -1px -1px 0 var(--ink),
@@ -139,8 +141,8 @@
   }
 
   @media (max-width: 720px) {
-    .card__title { font-size: 40px; }
-    .card__title--sm { font-size: 30px; margin-bottom: 12px; }
+    .card__title { font-size: clamp(28px, 9.5vw, 40px); }
+    .card__title--sm { font-size: clamp(22px, 8vw, 30px); margin-bottom: 12px; }
 
     .card--featured .card__body { padding: 24px; }
     .card--featured .card__image { aspect-ratio: 4 / 3; }
