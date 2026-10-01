@@ -1,6 +1,7 @@
 ---
 title: "Make search your own!"
 date: "2024-12-12"
+updated: "2026-09-30"
 slug: "make-search-your-own"
 summary: "Internet search sucks. The good news is you don’t have to keep 'Googling'. Take my hand into the expanding lands of internet search."
 ogDescription: "Google has held about 90% of the search market for 15 years while results grow more optimized and less useful. I map the alternative search engines I use daily and how to make search your own."
@@ -13,6 +14,8 @@ featuredImage: "peacock.png"
   import SubscribeInline from '$lib/components/SubscribeInline.svelte';
 </script>
 
+<p><em>Updated 30 September 2026: the search landscape has shifted quite a bit since this post originally appeared — the AI Overviews era arrived, Google dipped below 90% market share for the first time in a decade, and Exa (below) quietly exited consumer search. I have revised the sections where reality moved on, and added a note at the end on what changed.</em></p>
+
 <p>Internet search sucks. It's not just my personal opinion.</p>
 <p><img src="./media/googleisgettingworse.png" alt="screenshots of articles about google getting worse" width="1200" height="1200"></p>
 <p>If you don't trust the media, maybe you do trust the Germans: their university researchers came to the same sad conclusion <i>“that higher-ranked pages are on average more optimized, more monetized [...] and they show signs of lower text quality”,</i> reads their recent <a href="https://downloads.webis.de/publications/papers/bevendorff_2024a.pdf">paper</a>.</p>
@@ -24,19 +27,19 @@ featuredImage: "peacock.png"
 <p>Every day I use a couple of different search engines. All of them are designed with a different approach to indexing the web.</p>
 <h2>Keyword search</h2>
 <h3>Ecosia</h3>
-<p><a href="https://www.ecosia.org/"><i>Ecosia</i></a> is my default search engine. I use it when I know what I am searching for: company names, people, wikipedia articles, documentation. Under the hood it uses two of the big boys : <i>Google</i> and <i>Microsoft Bing</i>. The search is therefore still not better than Google, but their business is. <i>Ecosia</i> is the largest not-for-profit search engine that puts 100% of their revenues into <a href="https://blog.ecosia.org/ecosia-financial-reports-tree-planting-receipts/">planting trees</a>.</p>
-<p>As well as search, <i>Ecosia</i> also offers a free <a href="https://www.ecosia.org/chat">AI chat feature</a>, based on GPT-3. This one I use for translations and when I need definitions of some terms or phenomena. I also use it for basic recipes, and tweaks for recipes (especially for baking - which I still find mesmerizing).</p>
+<p><a href="https://www.ecosia.org/"><i>Ecosia</i></a> is my default search engine. I use it when I know what I am searching for: company names, people, wikipedia articles, documentation. Under the hood it uses some of the big boys — <em>Microsoft Bing</em> and, in some regions, <em>Google</em> — but since 2025 it increasingly also serves results from its own index. Together with the French search engine Qwant it built <em>Staan</em>, a European search index, which has been serving a growing share of Ecosia's results since August 2025. The search is therefore still not better than Google, but their business is. <em>Ecosia</em> is the largest not-for-profit search engine that puts 100% of their revenues into <a href="https://blog.ecosia.org/ecosia-financial-reports-tree-planting-receipts/">planting trees</a>.</p>
+<p>As well as search, <em>Ecosia</em> also offers a free <a href="https://www.ecosia.org/chat">AI chat feature</a>. It was based on GPT-3 when I first wrote this; today <em>Ecosia AI</em> offers AI Overviews and a chat assistant running on Mistral models, hosted on European servers. This one I use for translations and when I need definitions of some terms or phenomena. I also use it for basic recipes, and tweaks for recipes (especially for baking - which I still find mesmerizing).</p>
 <h3>Google</h3>
 <p><a href="https://www.google.com/"><i>Google</i></a> is not completely out of my system, but I currently use it only when I can not find things via Ecosia. Google is amazingly good at finding out where to buy things online, so I do my infrequent online shopping ventures on <i>Google</i>.</p>
 <h3>Marginalia</h3>
-<p><a href="https://search.marginalia.nu/"><i>Marginalia</i></a> is what I like to see as a serendipity search engine: you never know what you will get. The index is built by Swedish developer, Viktor Löfgren, mostly on grant money (he also has a <a href="https://www.patreon.com/marginalia_nu">patreon</a>). It  focuses on “small obscure websites and non-commercial content”, as the author puts it. </p>
+<p><a href="https://marginalia-search.com/"><em>Marginalia</em></a> is what I like to see as a serendipity search engine: you never know what you will get. (It moved from <em>search.marginalia.nu</em> to its own domain, <em>marginalia-search.com</em>, in early 2025.) The index is built by Swedish developer, Viktor Löfgren, mostly on grant money (he also has a <a href="https://www.patreon.com/marginalia_nu">patreon</a>). It  focuses on “small obscure websites and non-commercial content”, as the author puts it. </p>
 <p>What I love about <i>Marginalia</i> is that when I searched for a recipe for a crumble, instead of one of the sterile over-optimized recipe pages, I discovered the Kitchen Projects substack, where somebody called Nicola Lamb documents their <a href="https://kitchenprojects.substack.com/p/plum-crumble-pie">experiments in crumble baking</a>. Next to the recipe, she also shares explanations of how baking with fruit works. If this doesn’t give you warm fuzzy feelings for the internet, I don’t know what will.</p>
 <figure><img src="./media/nicolalammcrumbleexperiments.jpg" alt="Pie thickeners, by Nicola Lamb" width="1200" height="1600">
 <figcaption>
 <p><i>Pie thickeners, by Nicola Lamb</i></p>
 </figcaption>
 </figure>
-<p>I use <i>Marginalia</i> if I am interested in anything related to craft (cooking, basket weaving) or if I feel like online exploration outside the social media ecosystem. Their rainbow <a href="https://search.marginalia.nu/explore/random">’random’</a> button is perfect for that.</p>
+<p>I use <i>Marginalia</i> if I am interested in anything related to craft (cooking, basket weaving) or if I feel like online exploration outside the social media ecosystem. Their rainbow <a href="https://marginalia-search.com/explore/random">’random’</a> button is perfect for that.</p>
 
 <SubscribeInline />
 
@@ -46,12 +49,22 @@ featuredImage: "peacock.png"
 <h3>Perplexity</h3>
 <p><a href="http://perplexity.ai"><i>Perplexity</i></a> lets you chat with the internet. The interface is very user friendly and includes all the search results the robot is basing its answer on. But be careful here, because LLM models do hallucinate and as <a href="https://www.wired.com/story/perplexity-is-a-bullshit-machine/">WIRED reported</a>: “it falsely claimed that WIRED had reported that a specific police officer in California had committed a crime”. It is therefore more suitable for general overview questions rather than in-depth search.</p>
 <h3>Exa</h3>
-<p>Where <i>perplexity</i> makes you chat with the internet directly, <a href="https://exa.ai/search"><i>Exa</i></a> <i></i>returns actual search results first, that you can then chat with if you like, so resembling an actual search engine more closely. It also (automatically) alternates between keyword search and embeddings-based search depending on what you ask. This is a good call, as keyword search is <a href="https://www.wired.com/story/ai-energy-demands-water-impact-internet-hyper-consumption-era/">less thirsty for resources</a>. I also like <i>Exa’</i>s focus on using LLMs to return relevant search results.</p>
+<p>Where <em>Perplexity</em> makes you chat with the internet directly, <em>Exa</em> returned actual search results first, that you could then chat with if you liked, so resembling an actual search engine more closely. It also (automatically) alternated between keyword search and embeddings-based search depending on what you asked. This is a good call, as keyword search is <a href="https://www.wired.com/story/ai-energy-demands-water-impact-internet-hyper-consumption-era/">less thirsty for resources</a>. <em>Update 2026:</em> Exa has since quietly retired its consumer search product and pivoted to being “the search engine for AI” — a search API that developers of AI applications plug into instead. A telling sign of the times: the interesting newcomers increasingly build <em>on top of</em> search for robots, not for us humans.</p>
 <h2>Premium</h2>
 <h3>Kagi</h3>
-<p><a href="https://kagi.com/"><i>Kagi</i></a> is the only search engine in the list that you need to pay for - if you want to do more than 100 searches a month. In return they won’t run ads or sell your data. You can personalize their keyword search;  they also offer an AI bot feature where you can choose from a dozen LLMs . </p>
-<p>As I don’t have premium access, I use <i>Kagi</i> sparingly, for the most in depth part of any research. The search results are very good and it helps me find things that I could not find using any of the other search engines.</p>
+<p><a href="https://kagi.com/"><em>Kagi</em></a> is the only search engine in the list that you need to pay for. There is a one-time trial of 100 searches, and after that plans start at $5 a month. In return they won’t run ads or sell your data. You can personalize their keyword search; they also offer an AI assistant where you can choose from a dozen LLMs. </p>
+<p>As I don’t have a premium subscription, I use <em>Kagi</em> sparingly, for the most in depth part of any research. The search results are very good and it helps me find things that I could not find using any of the other search engines.</p>
 <p>—</p>
-<p>This list is personal, and by no means exhaustive. I for example don’t use the most famous privacy oriented alternative to Google, <a href="https://duckduckgo.com/">DuckDuckGO</a>. There also exists a little army of <a href="https://www.are.na/elan-kiderman-ullendorff/search-engines-for-wandering">small ‘folk’ search engine</a> like <i>Marginalia.</i> This list is very much a work in progress and a living active process. </p>
+<p>This list is personal, and by no means exhaustive. I for example don't use the most famous privacy oriented alternative to Google, <a href="https://duckduckgo.com/">DuckDuckGo</a>. There also exists a little army of <a href="https://www.are.na/elan-kiderman-ullendorff/search-engines-for-wandering">small 'folk' search engine</a> like <i>Marginalia.</i> This list is very much a work in progress and a living active process. </p>
 <p>The Internet morphs and changes. Looking ahead to 2034 the internet will be at least as different from now as now is different from how things were in 2014. Therefore we need to keep our strategies for navigating it flexible too.</p>
 <p>Have other search engines you use and love? I would love to hear about them!</p>
+
+<h2>What changed since 2024</h2>
+<p><em>Written 30 September 2026.</em> When I first published this post, Google had been holding about <a href="https://gs.statcounter.com/search-engine-market-share">90% of the search market</a> for 15 years and the main question was how to escape the SEO swamp. Since then the landscape changed faster than I expected:</p>
+<ul>
+<li><strong>Google itself became an answer engine.</strong> AI Overviews rolled out to over 200 countries in May 2025, and according to <a href="https://www.pewresearch.org/short-reads/2025/07/30/how-users-interact-with-google-search-results-when-ai-overviews-appear/">Pew Research</a>, people click a traditional search result only 8% of the time when an AI Overview is shown — down from 15% without one. Publisher traffic from Google search reportedly fell by a third.</li>
+<li><strong>Google dipped below 90% market share</strong> for the first time in a decade (Statcounter, mid-2025) — not because people switched to Bing, but because chatbots like ChatGPT became de-facto search engines for everyday questions.</li>
+<li><strong>Reddit became the new Google.</strong> After a data licensing deal between Google and Reddit, Reddit surged to become one of the most visible websites in Google results — and generations younger than me now openly admit they just add “reddit” to every search.</li>
+<li><strong>Perplexity grew up</strong> — launched its Comet browser, fought scraping controversies, and pivoted to sharing subscription revenue with publishers instead of showing ads.</li>
+</ul>
+<p>The irony is not lost on me: I left Google to escape cluttered results, and in 2025 Google itself turned into the biggest chatbot of them all. The advice at the heart of this post survives, though. Keep several maps in your pocket — a keyword engine, a serendipity engine, and a good chatbot — and remember that none of them shows the whole landscape.</p>
