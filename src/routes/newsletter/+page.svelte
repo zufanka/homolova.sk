@@ -24,8 +24,8 @@
   let website = $state('');
   let selected = $state(new Set<NewsletterId>(NEWSLETTERS.map((n) => n.id)));
   let result = $state<
-    | { kind: 'idle' | 'submitting' | 'success' }
-    | { kind: 'error'; msg: string }
+    | { kind: 'idle' | 'submitting' }
+    | { kind: 'success' | 'error'; msg: string }
   >({ kind: 'idle' });
 
   function toggle(id: NewsletterId, on: boolean) {
@@ -37,11 +37,13 @@
 
   async function submit(e: SubmitEvent) {
     e.preventDefault();
+    if (result.kind === 'submitting') return;
     // Bot caught by honeypot — pretend success, drop silently.
     if (website) {
-      result = { kind: 'success' };
+      result = { kind: 'success', msg: 'Thanks for signing up!' };
       return;
     }
+    if (!(e.currentTarget as HTMLFormElement).reportValidity()) return;
     const newsletters = [...selected];
     if (newsletters.length === 0) {
       result = { kind: 'error', msg: 'pick at least one newsletter' };
@@ -52,10 +54,29 @@
       const res = await fetch(ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, newsletters, website })
+        body: JSON.stringify({ email: email.trim(), newsletters, website })
       });
-      if (!res.ok) throw new Error(`subscription failed: ${res.status}`);
-      result = { kind: 'success' };
+      const data = await res.json();
+      const subscriptions: { newsletter: NewsletterId; status: string }[] = Array.isArray(data.subscriptions) ? data.subscriptions : [];
+      const title = (id: NewsletterId) => NEWSLETTERS.find((n) => n.id === id)!.title;
+      const messages: string[] = [];
+      for (const status of ['active', 'pending', 'validating']) {
+        const names = subscriptions.filter((s) => newsletters.includes(s.newsletter) && s.status === status).map((s) => title(s.newsletter)).join(' and ');
+        if (!names) continue;
+        if (status === 'active') messages.push(`You're subscribed to ${names}.`);
+        else if (status === 'pending') messages.push(`Check your inbox to confirm ${names}.`);
+        else messages.push(`Your signup to ${names} is being checked.`);
+      }
+      const failed = newsletters.filter((id) => !subscriptions.some((s) => s.newsletter === id && ['active', 'pending', 'validating'].includes(s.status)));
+      if (!res.ok || data.ok !== true || failed.length) {
+        if (failed.length && subscriptions.length) {
+          selected = new Set(failed);
+          result = { kind: 'error', msg: [...messages, `Couldn't subscribe to ${failed.map(title).join(' and ')}. Try again for that newsletter.`].join(' ') };
+          return;
+        }
+        throw new Error(`subscription failed: ${res.status}`);
+      }
+      result = { kind: 'success', msg: messages.join(' ') };
       email = '';
       selected = new Set(NEWSLETTERS.map((n) => n.id));
     } catch (err) {
@@ -105,7 +126,7 @@
       />
     </label>
 
-    <fieldset class="np__list">
+    <fieldset class="np__list" disabled={result.kind === 'submitting'}>
       <legend class="sr-only">Choose newsletters</legend>
 
       {#each NEWSLETTERS as n (n.id)}
@@ -136,7 +157,7 @@
     </button>
 
     {#if result.kind === 'success'}
-      <p class="np__msg np__msg--ok" role="status">Welcome! Check your email to confirm your subscription.</p>
+      <p class="np__msg np__msg--ok" role="status">{result.msg}</p>
     {:else if result.kind === 'error'}
       <p class="np__msg np__msg--err" role="status">{result.msg}</p>
     {/if}
