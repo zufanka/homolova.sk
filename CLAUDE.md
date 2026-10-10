@@ -53,21 +53,25 @@ Both share the site's nav, footer, and typography via a root layout. No more dis
 
 The form on `/newsletter` posts to a tiny serverless function — **not** part of this repo, because GitHub Pages can't run server code.
 
-- **Source:** `~/Projects/homolova-newsletter-api/` (separate folder, separate Vercel project, not coupled to the SvelteKit deploy).
+- **Source:** `~/Projects/homolova-sk/website/homolova-newsletter-api/` (nested in this repo, but still a separate Vercel project, not coupled to the SvelteKit deploy).
 - **Deployed to:** Vercel project `homolova-sk` → `https://homolova-sk.vercel.app/api/subscribe`. The endpoint URL is hardcoded in `src/routes/newsletter/+page.svelte`.
-- **What the function does:** validates email, drops honeypot submissions, then calls `POST https://api.beehiiv.com/v2/publications/{pubId}/subscriptions` once per selected newsletter.
+- **What the function does:** validates email, drops honeypot submissions, then calls `POST https://api.beehiiv.com/v2/publications/{pubId}/subscriptions` once per selected newsletter. `utm_source` is decided server-side from the allowlisted request origin (`datafrosch.fun` for the production DataFrosch origins, `homolova.sk` for everything else, including local dev) — the client body never influences attribution.
 - **Required env vars on the Vercel project** (values live only in Vercel, never in git):
   - `BEEHIIV_API_KEY` — single key covers both publications (same beehiiv account). Marked Sensitive.
   - `ADA_ESSAYS_PUB_ID` — publication ID for "Hi! It's Ada".
   - `POND_PUB_ID` — publication ID for "The Pond".
 - **Double opt-in:** the function passes `double_opt_override: "on"` in the beehiiv request body. **Don't remove this** — beehiiv's API silently bypasses DOI by default, so without that flag confirmation emails stop being sent and subscribers go straight to "active." The publication-level DOI setting alone does **not** apply to API-created subscribers.
-- **Redeploying after a change:**
+- **Redeploying after a change:** always deploy from a clean standalone copy. Running `vercel` inside the nested folder gets rejected — the CLI picks up the enclosing repo's git metadata and tries to author a commit it has no permission for. The copy needs exactly the function source, the package files, and the project link — no git metadata and no `.env.local` (secrets live in the Vercel project settings and survive deploys untouched):
   ```bash
-  cd ~/Projects/homolova-newsletter-api
-  npx vercel --prod
+  tmp=$(mktemp -d)
+  src=~/Projects/homolova-sk/website/homolova-newsletter-api
+  cp -r "$src/api" "$tmp/"
+  cp "$src/package.json" "$src/package-lock.json" "$tmp/"
+  mkdir -p "$tmp/.vercel" && cp "$src/.vercel/project.json" "$tmp/.vercel/"
+  cd "$tmp" && npx vercel --prod
   ```
-  The Vercel project is **not** connected to a git repo — deploys are CLI-only. (Intentional: keeps it decoupled from the SvelteKit GitHub Actions pipeline.)
-- **CORS:** function allows `https://homolova.sk`, `https://www.homolova.sk`, `http://localhost:5173`. Add new origins there if needed.
+  (Used successfully for the 2026-10 deploy that added the datafrosch.fun CORS origins and origin-based `utm_source`.) The website repo around the API folder is untouched by these deploys; the Vercel project itself has no git integration — CLI-only by design, keeping it decoupled from the SvelteKit GitHub Actions pipeline.
+- **CORS:** function allows `https://homolova.sk`, `https://www.homolova.sk`, `http://localhost:5173`, plus `https://datafrosch.fun` / `https://www.datafrosch.fun` (The Pond hero signup on datafrosch.fun/pond.html posts here with `newsletters: ['the-pond']`) and `http://localhost:8000` / `http://127.0.0.1:8000` (that site's local preview). Add new origins there if needed.
 
 ## Post frontmatter schema
 
@@ -151,7 +155,7 @@ In dev, the `serveStaticIndex` plugin in `vite.config.ts` rewrites `/posts/<slug
 ## Paths
 
 - This repo: `~/Projects/homolova-sk/`
-- Subscribe API (separate Vercel project): `~/Projects/homolova-newsletter-api/`
+- Subscribe API (separate Vercel project): `~/Projects/homolova-sk/website/homolova-newsletter-api/`
 - Old Publii source (reference only): `~/Documents/Publii/sites/hi-im-ada/input/`
 - Old Publii build output: `~/Documents/Publii/sites/hi-im-ada/output/`
 
